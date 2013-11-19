@@ -1,4 +1,4 @@
-package com.geowarin.mvc.base.config;
+package ch.evaletolab.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.geowarin.mvc.base.controller" })
+@ComponentScan(basePackages = { "ch.evaletolab.controller" })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Override

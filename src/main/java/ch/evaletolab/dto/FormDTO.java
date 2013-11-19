@@ -1,4 +1,4 @@
-package com.geowarin.mvc.base.dto;
+package ch.evaletolab.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 

@@ -1,4 +1,4 @@
-package com.geowarin.mvc.base.config;
+package ch.evaletolab.config;
 
 
 import javax.servlet.Filter;

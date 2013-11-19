@@ -1,4 +1,4 @@
-package com.geowarin.mvc.base.controller;
+package ch.evaletolab.controller;
 
 import javax.validation.Valid;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.geowarin.mvc.base.dto.FormDTO;
+import ch.evaletolab.dto.FormDTO;
 
 @Controller
 public class HomeController {
