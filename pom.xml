@@ -168,7 +168,24 @@
       <version>1.0.0</version>
     </dependency>
 
-                                
+		<dependency>
+		  <groupId>org.codehaus.jackson</groupId>
+		  <artifactId>jackson-mapper-asl</artifactId>
+		  <version>1.9.13</version>
+		</dependency>
+
+		<dependency>
+		  <groupId>org.codehaus.jackson</groupId>
+		  <artifactId>jackson-core-asl</artifactId>
+		  <version>1.9.13</version>
+		</dependency>
+            
+            
+		<dependency>
+		    <groupId>us.monoid.web</groupId>
+		    <artifactId>resty</artifactId>
+		    <version>0.3.2</version>
+		</dependency>                                
 	</dependencies>
 
 </project>
