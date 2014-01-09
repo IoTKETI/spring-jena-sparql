@@ -12,7 +12,6 @@ import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.JsonNodeFactory;
 import org.codehaus.jackson.node.ObjectNode;
 
-import play.libs.Json;
 
 
 import com.hp.hpl.jena.query.QuerySolution;

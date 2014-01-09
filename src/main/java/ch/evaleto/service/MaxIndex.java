@@ -1,5 +1,6 @@
 package ch.evaleto.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,14 +35,20 @@ public class MaxIndex extends ListBaseList{
 	
 	private QueryIterator _maxindex(Node pepNode, Binding binding, Var listVar, Node predicate, List<Node> objectArgs, ExecutionContext execCxt){
 		final List<Node> x=new ArrayList<Node>();
-		Model model =maxindex.getModelFromAA(pepNode.getLiteralValue().toString());
-		 NodeIterator itr = model.listObjects();
-	      while(itr.hasNext()) {
-	         Node node = itr.next().asNode();
-	         System.out.print(" node "+node);
-	         x.add(node);
-	      }		
+		Model model;
+		try {
+			model = maxindex.getModelFromAA(pepNode.getLiteralValue().toString());
+			NodeIterator itr = model.listObjects();
+			while(itr.hasNext()) {
+				Node node = itr.next().asNode();
+				System.out.print(" node "+node);
+				x.add(node);
+			}		
 	     
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return super.allLists(binding,x, listVar, predicate, new PropFuncArg(objectArgs, null), execCxt) ;			
 	}
 	
@@ -62,12 +69,17 @@ public class MaxIndex extends ListBaseList{
 		
 		
 		final List<Node> x=new ArrayList<Node>();
-		Model model =maxindex.getModelFromAA(pepNode.getLiteralValue().toString());
-		 StmtIterator itr = model.listStatements();
-	      while(itr.hasNext()) {
-	         Triple node = itr.next().asTriple();
-	         x.add(node.getSubject());
-	      }		
+		Model model;
+		try {
+			model = maxindex.getModelFromAA(pepNode.getLiteralValue().toString());
+			StmtIterator itr = model.listStatements();
+			while(itr.hasNext()) {
+				Triple node = itr.next().asTriple();
+				x.add(node.getSubject());
+			}		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
         return super.allLists(binding,x, listVar, predicate, new PropFuncArg(objectArgs, null), execCxt) ;	
     }
 
