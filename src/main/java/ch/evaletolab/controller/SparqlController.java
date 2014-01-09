@@ -27,7 +27,7 @@ import ch.evaleto.service.NextprotFunctionRegistry;
 public class SparqlController {
 	
 	
-	static NextprotFunctionRegistry registry=new NextprotFunctionRegistry();
+//	static NextprotFunctionRegistry registry=new NextprotFunctionRegistry();
 	
 	
 	
@@ -36,35 +36,35 @@ public class SparqlController {
 		return "/spaql";
 	}
 	
-	
-	@RequestMapping(value = "/sparql", method = RequestMethod.GET, produces="application/json")
-    public @ResponseBody String spaql(HttpServletRequest request, HttpServletResponse response,
-    		@RequestParam(value="query", required=false) String query) {
-		response.setHeader("Accept", "application/sparql-results+xml");
-		Enumeration<String> e=request.getAttributeNames();
-		while(e.hasMoreElements()){
-			String name=e.nextElement();
-			System.out.println(name+" - "+request.getAttribute(name));
-		}
-		
-		System.out.println("INPUT -------------");
-		System.out.println(query);
-		System.out.println("HEADERs -------------");
-		Enumeration<String> h=request.getHeaderNames();
-		while(h.hasMoreElements()){
-			String name=h.nextElement();
-			System.out.println(name+" - "+request.getHeaders(name));
-		}
-
-		System.out.println("OUTPUT -------------");
-		
-		Model rdf = registry.getDefault();
-		ResultSet rs =QueryExecutionFactory.create(query, rdf).execSelect();
-
-		
-		return registry.convertResultSetToJSON(rs);
-	}
-	
+//	
+//	@RequestMapping(value = "/sparql", method = RequestMethod.GET, produces="application/json")
+//    public @ResponseBody String spaql(HttpServletRequest request, HttpServletResponse response,
+//    		@RequestParam(value="query", required=false) String query) {
+//		response.setHeader("Accept", "application/sparql-results+xml");
+//		Enumeration<String> e=request.getAttributeNames();
+//		while(e.hasMoreElements()){
+//			String name=e.nextElement();
+//			System.out.println(name+" - "+request.getAttribute(name));
+//		}
+//		
+//		System.out.println("INPUT -------------");
+//		System.out.println(query);
+//		System.out.println("HEADERs -------------");
+//		Enumeration<String> h=request.getHeaderNames();
+//		while(h.hasMoreElements()){
+//			String name=h.nextElement();
+//			System.out.println(name+" - "+request.getHeaders(name));
+//		}
+//
+//		System.out.println("OUTPUT -------------");
+//		
+//		Model rdf = registry.getDefault();
+//		ResultSet rs =QueryExecutionFactory.create(query, rdf).execSelect();
+//
+//		
+//		return registry.convertResultSetToJSON(rs);
+//	}
+//	
 	
 	
 

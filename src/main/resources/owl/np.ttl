@@ -26,45 +26,56 @@
       rdfs:subClassOf owl:Thing ;
       owl:equivalentClass up:Protein .
       
-      
-:Go_Function
+:Tissue
       rdf:type owl:Class ;
-      rdfs:comment "General description of the functions of a protein."^^xsd:string ;
-      rdfs:label "Function"^^xsd:string ;
-      rdfs:seeAlso "http://www.uniprot.org/manual/function"^^xsd:anyURI ;
-      rdfs:subClassOf up:Annotation ;
-      owl:disjointWith up:Function_Annotation .
+      rdfs:subClassOf owl:Thing.
 
+:Evidence
+      rdf:type owl:Class ;
+      rdfs:subClassOf owl:Thing.
+                
+
+#
+#
+# define some properties
+:in
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain :Expression ;
+      rdfs:range :Tissue.
+
+:withExperimentalDesciption
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain :Expression ;
+      rdfs:range :Evidence.
+
+#
+#
+# define expresion schema
 :Expression
       rdf:type owl:Class ;
       rdfs:comment "General description of the expression of a protein."^^xsd:string ;
       rdfs:label "Expression"^^xsd:string ;
       rdfs:seeAlso "http://www.proteinatlas.org/"^^xsd:anyURI ;
       rdfs:seeAlso "http://bgee.unil.ch/bgee/bgee"^^xsd:anyURI ;
-      rdfs:subClassOf up:Annotation ;
+      rdfs:subClassOf up:Annotation.
 
 
 :expressed
       rdf:type owl:ObjectProperty ;
       rdfs:domain :Isoform ;
-      rdfs:range :Expression;
-      rdfs:subPropertyOf up:annotation .
-
+      rdfs:range :Expression.
+      
 :highlyExpressed
       rdf:type owl:ObjectProperty ;
       rdfs:domain :Isoform ;
-      rdfs:range :Expression;
-      rdfs:subPropertyOf up:annotation .
-
+      rdfs:range :Expression.
+      
 :notHighlyExpressed
       rdf:type owl:ObjectProperty ;
       rdfs:domain :Isoform ;
-      rdfs:range :Expression;
-      rdfs:subPropertyOf up:annotation .
-
+      rdfs:range :Expression.
+      
 :notExpressed
       rdf:type owl:ObjectProperty ;
       rdfs:domain :Isoform ;
-      rdfs:range :Expression;
-      rdfs:subPropertyOf up:annotation .
-
+      rdfs:range :Expression.

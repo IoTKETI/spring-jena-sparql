@@ -1,0 +1,32 @@
+#
+#isoform
+<http://np.org/np/protein/NX_P01234-1> <http://www.w3.org/2002/07/owl#rdf:type> <http://np.org/np#Isoform>.
+<http://np.org/np/protein/NX_P01234-2> <http://www.w3.org/2002/07/owl#rdf:type> <http://np.org/np#Isoform>.
+
+#
+#annotation
+<http://np.org/np/expression/AN_1> <http://www.w3.org/2002/07/owl#rdf:type> <http://np.org/np#Expression>.
+<http://np.org/np/expression/AN_2> <http://www.w3.org/2002/07/owl#rdf:type> <http://np.org/np#Expression>.
+
+#
+#evidence
+<http://np.org/np/evidence/EV_1> <http://www.w3.org/2002/07/owl#rdf:type> <http://np.org/np#Evidence>.
+
+#
+#tissue
+<http://np.org/np/terminology/Liver> <http://www.w3.org/2002/07/owl#rdf:type> <http://np.org/np#Tissue>.
+<http://np.org/np/terminology/Brain> <http://www.w3.org/2002/07/owl#rdf:type> <http://np.org/np#Tissue>.
+
+#
+#statement 1, Proteins that are not highly expressed in liver at embrion stage
+<http://np.org/np/isoform/NX_P01234-1> <http://np.org/np#notHighlyExpressed> <http://np.org/np/expression/AN_1>. 
+<http://np.org/np/expression/AN_1> <http://np.org/np#in> <http://np.org/np/terminology/Liver>.
+<http://np.org/np/expression/AN_1> <http://np.org/np#withExperimentalDescription> <http://np.org/np/evidence/EV_1>.
+<http://np.org/np/evidence/EV_1> <http://np.org/np#stage> "embrion".
+
+#
+#statement 1, Proteins that are expressed in Brain 
+<http://np.org/np/isoform/NX_P01234-2> <http://np.org/np#expressed> <http://np.org/np/expression/AN_2>. 
+<http://np.org/np/expression/AN_2> <http://np.org/np#in> <http://np.org/np/terminology/Brain>.
+<http://np.org/np/expression/AN_2> <http://np.org/np#withExperimentalDescription> <http://np.org/np/evidence/EV_2>.
+<http://np.org/np/evidence/EV_2> <http://np.org/np#stage> "embrion".
