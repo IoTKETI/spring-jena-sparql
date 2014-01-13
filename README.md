@@ -8,16 +8,24 @@ It demonstrates the use of spring 3.2 Java Servlet container initialization, wit
 * Proteins that are not highly expressed in liver at embrion stage
     * graph: *Proteins* **notHighlyExpressed**   **in** *liver* **withExperimentDesciption** **atStage** *embrion*.
 * Proteins that are expressed in liver and involved in transport
-* Proteins that are expressed   in liver and involved in transport 
+   * graph: Proteins expressed in liver and involved in transport. 
 * Proteins >=1000 amino acids and located in nucleus and expression in nervous system
+   * graph: Proteins length(>= 1000) and located in nucleus and expressed in nervous system.  
 * Proteins highly expressed at IHC level in heart
+   * graph: Proteins notHighlyExpressed in liver withExperimentDesciption atLevel IHC;in heart.
 * Proteins highly expressed in* brain but not expressed in* testis
+   * graph: Proteins highlyExpressed in(+) brain and notExpressed in(+) testis
 * Proteins which are expressed in brain according to IHC but not expressed in brain according to microarray
-* Simple join with aggregate group field 
+   * graph: Proteins expressed in(+) brain withExperimentDesciption atLevel IHC and 
+	proteins notExpressed in(+) brain withExperimentDesciption atLevel microarray
 * Proteins whose genes are on chromosome N that are expressed only a single tissue/organ
+   * graph: Proteins gene chromosome N and COUNT( expressed in tissue)==1 
 * Proteins which are expressed in liver according to IHC data but not found in HUPO liver proteome set
+   * graph: Proteins expressed in liver withExperimentDesciption atLevel IHC and not 
+	proteins peptide withExperimentDesciption assignedBy HUPO liver proteome  
 * **3 recursive/deeph path**
 * Proteins with a PDZ domain that interact with at least 1 protein which is expressed in brain
+   * graph: Proteins domain in PDZ interactWith proteins expressed in brain
 
 ###Use case for general annotation
 ###Use case for positional annotation
