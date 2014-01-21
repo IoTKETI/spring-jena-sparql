@@ -97,18 +97,29 @@ public class Expression {
 	 * Proteins that are notHighlyExpressed   in liver withExperimentDesciption at embrion stage
 	 */
 	@Test
-	public void notHighlyExpressed(){
+	public void notHighlyExpressedAtEmbrionStage(){
+		//
+		// specific query
 		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
 				 "PREFIX : <http://np.org/np#> " +
 				 "PREFIX tissue: <http://np.org/np/terminology/> "+
 				 "SELECT * WHERE { " +
 				 "  ?isoform :notHighlyExpressed/:in tissue:Bile%20duct. " +
 				 "}";
-			
+		//
+		// load data and owl schema
+		m=ModelFactory.createDefaultModel();
+		m.read("expression-heavy2.ttl").read("owl/np.ttl");
+		rdfs= ModelFactory.createRDFSModel(m);
+
+		//
+		// execute query
 		Query query = QueryFactory.create(q);
 		long start=System.currentTimeMillis();
         QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
         ResultSet rs = qe.execSelect();
+        //
+        // check ResultSet content
         System.out.println("notHiglyExpressed "+(System.currentTimeMillis()-start)+" ms");
         ResultSetFormatter.out(System.out, rs, query);	
 	}	
