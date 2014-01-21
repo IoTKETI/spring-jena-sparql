@@ -1,5 +1,7 @@
 package ch.evaletolab.rdf;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +23,6 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 /**
  * Use case for expression queries
- * - Simple join
  * -  Proteins that are not highly expressed in liver at embrion stage
  * -  Proteins that are expressed in liver and involved in transport
  * -  Proteins that are expressed   in liver and involved in transport 
@@ -32,8 +33,6 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
  * -  Simple join with aggregate group field 
  * -  Proteins whose genes are on chromosome N that are expressed only a single tissue/organ
  * -  Proteins which are expressed in liver according to IHC data but not found in HUPO liver proteome set
- * 
- * - 3 recursive/deeph path
  * -  Proteins with a PDZ domain that interact with at least 1 protein which is expressed in brain
  * 
  * @author evaleto
@@ -50,31 +49,27 @@ public class Expression {
 	@Before
 	public void setup() {
 		m=ModelFactory.createDefaultModel();
-		m.read("expression-heavy2.ttl").read("owl/np.ttl");
+		m.read("expression-heavy.ttl").read("owl/np.ttl");
 		rdfs= ModelFactory.createRDFSModel(m);
 		
 		
 		//
-		// load query
+		// load data
 		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-				 "PREFIX : <http://np.org/np#> " +
+				 "PREFIX : <http://np.org/rdf#> " +
 				 "SELECT * WHERE { " +
 				 "  ?tissue a :Tissue . " +
 				 "}";		
-		long start=System.currentTimeMillis();
 		Query query = QueryFactory.create(q);
         QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        ResultSet rs = qe.execSelect();
-        System.out.println("isoforms: "+(System.currentTimeMillis()-start)+" ms");
-        
-        ResultSetFormatter.out(System.out, rs, query);			
+        qe.execSelect();	
 	}
 	
 	@Test
 	//https://code.google.com/p/project-knowledgetv/source/browse/trunk/knowledge-tv/knowledge-tv-sqtv-lib/src/test/java/br/ufpb/di/knowledgetv/sqtv/tests/JenaTest.java?r=24
 	public void listIsoforms(){
 		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-				 "PREFIX : <http://np.org/np#> " +
+				 "PREFIX : <http://np.org/rdf#> " +
 				 "SELECT * WHERE { " +
 				 "  ?isoform a :Isoform . " +
 				 "}";
@@ -87,30 +82,27 @@ public class Expression {
         ResultSet rs = qe.execSelect();
         System.out.println("isoforms: "+(System.currentTimeMillis()-start)+" ms");
         
-        ResultSetFormatter.out(System.out, rs, query);	
+        ResultSetFormatter.out(System.out, rs, query);
+		assertEquals(rs.getRowNumber(), 122);
 //        while(rs.hasNext()){
 //        	 QuerySolution row= rs.next();
 //             String value= row.getLiteral("name").toString();        }
 	}
 	
 	/**
-	 * Proteins that are notHighlyExpressed   in liver withExperimentDesciption at embrion stage
+	 * Proteins that are not highly expressed in liver at embrion stage
 	 */
 	@Test
 	public void notHighlyExpressedAtEmbrionStage(){
 		//
 		// specific query
 		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-				 "PREFIX : <http://np.org/np#> " +
-				 "PREFIX tissue: <http://np.org/np/terminology/> "+
+				 "PREFIX : <http://np.org/rdf#> " +
+				 "PREFIX tissue: <http://np.org/rdf/terminology/> "+
 				 "SELECT * WHERE { " +
 				 "  ?isoform :notHighlyExpressed/:in tissue:Bile%20duct. " +
 				 "}";
-		//
-		// load data and owl schema
-		m=ModelFactory.createDefaultModel();
-		m.read("expression-heavy2.ttl").read("owl/np.ttl");
-		rdfs= ModelFactory.createRDFSModel(m);
+
 
 		//
 		// execute query
@@ -124,21 +116,73 @@ public class Expression {
         ResultSetFormatter.out(System.out, rs, query);	
 	}	
 	
+	
+	/**
+	 * Q11, Proteins that are expressed in liver and involved in transport
+	 */
 	@Test
-	public void expressed(){
-		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-				 "PREFIX : <http://np.org/np#> " +
-				 "PREFIX tissue: <http://np.org/np/terminology/> "+
-				 "SELECT * WHERE { " +
-				 "  ?isoform :expressed/:in tissue:Renal%20tubule. " +
-				 "}";
-		
-		Query query = QueryFactory.create(q);
-		long start=System.currentTimeMillis();
-        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        ResultSet rs = qe.execSelect();
-        
-        System.out.println("expressed: "+(System.currentTimeMillis()-start)+" ms");
-        ResultSetFormatter.out(System.out, rs, query);	
+	public void expressedInLiverAndInvolvedInTransport(){
+
+	}
+	
+	/**
+	 * Q17, Proteins >=1000 amino acids and located in nucleus and expression in nervous system
+	 *  --> hierarchical Terms for Nervous System
+	 */
+	@Test
+	public void expressedInNervousSystem(){
+
 	}		
+	
+	/**
+	 * Q4, Proteins highly expressed in brain but not expressed in testis
+	 *  --> hierarchical Terms for Testis and Brain
+	 */
+	@Test
+	public void highlyExpressedInBrainButNotInTestis(){
+
+	}			
+	
+	/**
+	 * Q50, Proteins which are expressed in brain according to IHC 
+	 *      but not expressed in brain according to microarray
+	 */
+	@Test
+	public void expressedInBrainAccordingIHC(){
+
+	}			
+	
+	/**
+	 * Q83, Proteins whose genes are on chromosome N that are expressed only a single tissue/organ
+	 */
+	@Test
+	public void expressedOnASingleTissue(){
+
+	}		
+	
+	/**
+	 * Q77, Proteins which are expressed in liver according to IHC data but not found in HUPO liver proteome set
+	 */
+	@Test
+	public void expressedInLiverAccordingIHC(){
+
+	}	
+	
+	/**
+	 * Q15, Proteins with a PDZ domain that interact with at least 1 protein which is expressed in brain
+	 *  --> hierarchical terms for Brain
+	 */
+	@Test
+	public void expresssedInBrain(){
+
+	}	
+	
+	/**
+	 * Q20, Proteins with >=2 HPA antibodies whose genes are located on chromosome 21 and that are 
+	 *      highly expressed at IHC level in heart
+	 */
+	@Test
+	public void highlyExpresssedInHeartAtIHCLevel(){
+
+	}	
 }
