@@ -1,0 +1,288 @@
+#Class
+:BgeeHumanDevelopmentalStages
+      rdf:type owl:Class ;
+      rdfs:comment "Contains the developmental and metastage ontology"^^xsd:string ;
+      rdfs:label "Bgee human developmental stages"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/BgeeHumanDevelopmentalStages"^^xsd:anyURI ;
+      .
+
+#Class
+:EnzymeClassification
+      rdf:type owl:Class ;
+      rdfs:comment "Enzyme classification and enzyme description."^^xsd:string ;
+      rdfs:label "Enzyme classification"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/EnzymeClassification"^^xsd:anyURI ;
+      .
+
+#Class
+:EvidenceCodeOntology
+      rdf:type owl:Class ;
+      rdfs:comment "Ontology to describe information that is used to support an assertion."^^xsd:string ;
+      rdfs:label "Evidence code ontology"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/EvidenceCodeOntology"^^xsd:anyURI ;
+      .
+
+#Class
+:Evoc
+      rdf:type owl:Class ;
+      rdfs:comment "Expressed Sequence Annotation for Humans Provides structured controlled vocabularies for the annotation of expressed sequences with respect to anatomical system, cell type, developmental stage, experimental technique, microarray platform, pathology, pooling, tissue preparation and treatment."^^xsd:string ;
+      rdfs:label "eVOC"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/Evoc"^^xsd:anyURI ;
+      .
+
+#Class
+:EvocAnatomicalSystem
+      rdf:type owl:Class ;
+      rdfs:comment "eVOC ontology for anatomical system. http://trac.genebio.com/~defaultuser/repository/anatomicalsystem.obo"^^xsd:string ;
+      rdfs:label "eVOC Anatomical System"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/EvocAnatomicalSystem"^^xsd:anyURI ;
+      .
+
+#Class
+:EvocCellType
+      rdf:type owl:Class ;
+      rdfs:comment "eVOC ontology for cell types. http://trac.genebio.com/~defaultuser/repository/celltype.obo"^^xsd:string ;
+      rdfs:label "eVOC Cell Type"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/EvocCellType"^^xsd:anyURI ;
+      .
+
+#Class
+:EvocDevelopmentStage
+      rdf:type owl:Class ;
+      rdfs:comment "eVOC ontology for development stages. http://trac.genebio.com/~defaultuser/repository/developmentstage.obo"^^xsd:string ;
+      rdfs:label "eVOC Development Stage"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/EvocDevelopmentStage"^^xsd:anyURI ;
+      .
+
+#Class
+:EvocPathology
+      rdf:type owl:Class ;
+      rdfs:comment "eVOC ontology for pathologies. http://trac.genebio.com/~defaultuser/repository/pathology.obo"^^xsd:string ;
+      rdfs:label "eVOC Pathology"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/EvocPathology"^^xsd:anyURI ;
+      .
+
+#Class
+:GeneOntologyBiologicalProcess
+      rdf:type owl:Class ;
+      rdfs:comment "A biological process is a recognized series of events or molecular functions. A biological process is not equivalent to a pathway, although some GO terms do describe pathways. Mutant phenotypes often reflect disruptions in biological processes."^^xsd:string ;
+      rdfs:label "Gene Ontology biological process"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/GeneOntologyBiologicalProcess"^^xsd:anyURI ;
+      .
+
+#Class
+:GeneOntologyCellularComponent
+      rdf:type owl:Class ;
+      rdfs:comment "The cellular component ontology describes locations, at the levels of subcellular structures and macromolecular complexes."^^xsd:string ;
+      rdfs:label "Gene Ontology cellular component"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/GeneOntologyCellularComponent"^^xsd:anyURI ;
+      .
+
+#Class
+:GeneOntologyMolecularFunction
+      rdf:type owl:Class ;
+      rdfs:comment "The functions of a gene product are the jobs that it does or the "abilities" that it has. These may include transporting things around, binding to things, holding things together and changing one thing into another. This is different from the biological processes the gene product is involved in, which involve more than one activity. "^^xsd:string ;
+      rdfs:label "Gene Ontology molecular function"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/GeneOntologyMolecularFunction"^^xsd:anyURI ;
+      .
+
+#Class
+:Go
+      rdf:type owl:Class ;
+      rdfs:comment "The Gene Ontology project provides a controlled vocabulary to describe gene and gene product attributes in any organism"^^xsd:string ;
+      rdfs:label "GO"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/Go"^^xsd:anyURI ;
+      .
+
+#Class
+:Mesh
+      rdf:type owl:Class ;
+      rdfs:comment "Medical Subject Headings is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity."^^xsd:string ;
+      rdfs:label "MeSH"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/Mesh"^^xsd:anyURI ;
+      .
+
+#Class
+:MeshAnatomy
+      rdf:type owl:Class ;
+      rdfs:comment "Medical Subject Headings is the National Library of Medicine's controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity."^^xsd:string ;
+      rdfs:label "MeSH Anatomy"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/MeshAnatomy"^^xsd:anyURI ;
+      .
+
+#Class
+:Mim
+      rdf:type owl:Class ;
+      rdfs:comment "OMIM is a comprehensive, authoritative, and timely compendium of human genes and genetic phenotypes."^^xsd:string ;
+      rdfs:label "MIM"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/Mim"^^xsd:anyURI ;
+      .
+
+#Class
+:NciThesaurus
+      rdf:type owl:Class ;
+      rdfs:comment "Ontology to describe information that is used to support an assertion."^^xsd:string ;
+      rdfs:label "NCI Thesaurus"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/NciThesaurus"^^xsd:anyURI ;
+      .
+
+#Class
+:NextprotBiosequenceAnnotation
+      rdf:type owl:Class ;
+      rdfs:comment "Ontolgy for biosequence annotations is a set of terms and relationships used to describe the annotations of biological sequences"^^xsd:string ;
+      rdfs:label "neXtProt biosequence annotation"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/NextprotBiosequenceAnnotation"^^xsd:anyURI ;
+      .
+
+#Class
+:NextprotCellLine
+      rdf:type owl:Class ;
+      rdfs:comment "Uniprot ontology for cell lines. http://trac.genebio.com/~defaultuser/repository/cell_lines.txt"^^xsd:string ;
+      rdfs:label "neXtProt cell line"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/NextprotCellLine"^^xsd:anyURI ;
+      .
+
+#Class
+:NextprotDomain
+      rdf:type owl:Class ;
+      rdfs:comment "List of domains, repeat and zinc fingers extracted from similar.txt in Uniprot knowledge base. http://www.uniprot.org/docs/similar.txt"^^xsd:string ;
+      rdfs:label "neXtProt domain"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/NextprotDomain"^^xsd:anyURI ;
+      .
+
+#Class
+:NextprotFamily
+      rdf:type owl:Class ;
+      rdfs:comment "Control vocabulary to describe the protein families"^^xsd:string ;
+      rdfs:label "neXtProt family"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/NextprotFamily"^^xsd:anyURI ;
+      .
+
+#Class
+:NextprotHumanAnatomy
+      rdf:type owl:Class ;
+      rdfs:comment "neXtProt ontology for anatomical system"^^xsd:string ;
+      rdfs:label "neXtProt human anatomy"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/NextprotHumanAnatomy"^^xsd:anyURI ;
+      .
+
+#Class
+:NextprotMetal
+      rdf:type owl:Class ;
+      rdfs:comment "Control vocabulary for metal bound to protein."^^xsd:string ;
+      rdfs:label "neXtProt metal"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/NextprotMetal"^^xsd:anyURI ;
+      .
+
+#Class
+:NonStandardAminoAcid
+      rdf:type owl:Class ;
+      rdfs:comment "Control vocabulary for non-standard residues."^^xsd:string ;
+      rdfs:label "Non-standard amino acid"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/NonStandardAminoAcid"^^xsd:anyURI ;
+      .
+
+#Class
+:Organelle
+      rdf:type owl:Class ;
+      rdfs:comment "Organelle in which the mature protein is targeted."^^xsd:string ;
+      rdfs:label "Organelle"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/Organelle"^^xsd:anyURI ;
+      .
+
+#Class
+:SequenceOntology
+      rdf:type owl:Class ;
+      rdfs:comment "Subset of protein feature ontology."^^xsd:string ;
+      rdfs:label "Sequence ontology"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/SequenceOntology"^^xsd:anyURI ;
+      .
+
+#Class
+:Unipathway
+      rdf:type owl:Class ;
+      rdfs:comment "List of metabolic pathways in Uniprot knowledge base. http://www.uniprot.org/docs/pathlist.txt"^^xsd:string ;
+      rdfs:label "UniPathway"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/Unipathway"^^xsd:anyURI ;
+      .
+
+#Class
+:UniprotCarbohydrate
+      rdf:type owl:Class ;
+      rdfs:comment "Control vocabulary to describe the various carbohydrates added to proteins."^^xsd:string ;
+      rdfs:label "UniProt carbohydrate"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/UniprotCarbohydrate"^^xsd:anyURI ;
+      .
+
+#Class
+:UniprotDisease
+      rdf:type owl:Class ;
+      rdfs:comment "Control vocabulary to describe the diseases. Mapping to MeSH and MIM as well as to Uniprot keywords."^^xsd:string ;
+      rdfs:label "UniProt disease"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/UniprotDisease"^^xsd:anyURI ;
+      .
+
+#Class
+:UniprotFamily
+      rdf:type owl:Class ;
+      rdfs:comment "List of families extracted from similar.txt in Uniprot knowledge base. http://www.uniprot.org/docs/similar.txt"^^xsd:string ;
+      rdfs:label "UniProt family"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/UniprotFamily"^^xsd:anyURI ;
+      .
+
+#Class
+:UniprotKeyword
+      rdf:type owl:Class ;
+      rdfs:comment "List of keywords used in Uniprot knowledge base. http://www.uniprot.org/docs/keywlist.txt"^^xsd:string ;
+      rdfs:label "UniProt keyword"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/UniprotKeyword"^^xsd:anyURI ;
+      .
+
+#Class
+:UniprotPostTranslationalModification
+      rdf:type owl:Class ;
+      rdfs:comment "List of posttranslational modifications in Uniprot knowledge base. http://www.uniprot.org/docs/ptmlist.txt"^^xsd:string ;
+      rdfs:label "UniProt post-translational modification"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/UniprotPostTranslationalModification"^^xsd:anyURI ;
+      .
+
+#Class
+:UniprotRegionStructure
+      rdf:type owl:Class ;
+      rdfs:comment "Control vocabulary to describe the protein region structure"^^xsd:string ;
+      rdfs:label "UniProt region structure"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/UniprotRegionStructure"^^xsd:anyURI ;
+      .
+
+#Class
+:UniprotSubcellularLocation
+      rdf:type owl:Class ;
+      rdfs:comment "List of subcellular location in Uniprot knowledge base. http://www.uniprot.org/docs/subcell.txt"^^xsd:string ;
+      rdfs:label "UniProt subcellular location"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/UniprotSubcellularLocation"^^xsd:anyURI ;
+      .
+
+#Class
+:UniprotSubcellularOrientation
+      rdf:type owl:Class ;
+      rdfs:comment "List of subcellular orientation in Uniprot knowledge base. http://www.uniprot.org/docs/subcell.txt"^^xsd:string ;
+      rdfs:label "UniProt subcellular orientation"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/UniprotSubcellularOrientation"^^xsd:anyURI ;
+      .
+
+#Class
+:UniprotSubcellularTopology
+      rdf:type owl:Class ;
+      rdfs:comment "List of subcellular topology in Uniprot knowledge base. http://www.uniprot.org/docs/subcell.txt"^^xsd:string ;
+      rdfs:label "UniProt subcellular topology"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/UniprotSubcellularTopology"^^xsd:anyURI ;
+      .
+
+#Class
+:UniprotTopology
+      rdf:type owl:Class ;
+      rdfs:comment "Control vocabulary to describe the topology of regions for transmembrane proteins that span membrane compartments."^^xsd:string ;
+      rdfs:label "UniProt topology"^^xsd:string ;
+      rdfs:seeAlso "http://www.nextprot.org/manual/UniprotTopology"^^xsd:anyURI ;
+      .
+

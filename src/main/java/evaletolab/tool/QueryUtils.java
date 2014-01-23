@@ -1,4 +1,4 @@
-package ch.evaleto.tool;
+package evaletolab.tool;
 
 import java.util.HashMap;
 import java.util.Iterator;

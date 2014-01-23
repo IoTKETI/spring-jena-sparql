@@ -1,4 +1,4 @@
-package ch.evaletolab.config;
+package evaletolab.config;
 
 
 import javax.servlet.Filter;

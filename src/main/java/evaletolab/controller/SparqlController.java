@@ -1,4 +1,4 @@
-package ch.evaletolab.controller;
+package evaletolab.controller;
 
 import java.util.Enumeration;
 
@@ -21,7 +21,7 @@ import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 
-import ch.evaleto.service.NextprotFunctionRegistry;
+import evaletolab.service.NextprotFunctionRegistry;
 
 @Controller
 public class SparqlController {

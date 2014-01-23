@@ -1,4 +1,4 @@
-package ch.evaletolab.dto;
+package evaletolab.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 

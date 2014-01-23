@@ -1,4 +1,4 @@
-package ch.evaleto.service;
+package evaletolab.service;
 
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.sparql.engine.ExecutionContext;

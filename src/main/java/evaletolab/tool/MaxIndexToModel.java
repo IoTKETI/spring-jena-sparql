@@ -1,4 +1,4 @@
-package ch.evaleto.tool;
+package evaletolab.tool;
 
 import java.io.IOException;
 import java.util.Arrays;

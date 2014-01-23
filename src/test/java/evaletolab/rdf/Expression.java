@@ -1,4 +1,4 @@
-package ch.evaletolab.rdf;
+package evaletolab.rdf;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,7 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import ch.evaletolab.config.WebConfig;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -20,6 +19,8 @@ import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+
+import evaletolab.config.WebConfig;
 
 /**
  * Use case for expression queries

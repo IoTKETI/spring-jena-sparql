@@ -1,11 +1,10 @@
-package ch.evaleto.service;
+package evaletolab.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-import ch.evaleto.tool.MaxIndexToModel;
 
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.Node;
@@ -23,6 +22,8 @@ import com.hp.hpl.jena.sparql.pfunction.PropFuncArg;
 import com.hp.hpl.jena.sparql.pfunction.library.ListBaseList;
 import com.hp.hpl.jena.sparql.util.IterLib;
 import com.hp.hpl.jena.sparql.util.graph.GNode;
+
+import evaletolab.tool.MaxIndexToModel;
 
 /** 
  * List membership with index : property function to access list using ?pep

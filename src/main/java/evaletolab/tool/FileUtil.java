@@ -1,4 +1,4 @@
-package ch.evaleto.tool;
+package evaletolab.tool;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

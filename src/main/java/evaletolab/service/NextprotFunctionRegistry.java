@@ -1,4 +1,4 @@
-package ch.evaleto.service;
+package evaletolab.service;
 
 
 import java.io.ByteArrayOutputStream;

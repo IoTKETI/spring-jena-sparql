@@ -1,4 +1,4 @@
-package ch.evaleto.tool;
+package evaletolab.tool;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -136,8 +136,6 @@ public void relationAnnotationMapping() throws SQLException, ClassNotFoundExcept
 	            ret.append(word.substring(0, 1).toUpperCase());
 	            ret.append(word.substring(1).toLowerCase());
 	        }
-//	        if (!(ret.length()==init.length()))
-//	            ret.append(" ");
 	    }
 
 	    return ret.toString();
