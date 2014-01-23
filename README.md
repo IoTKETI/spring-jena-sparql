@@ -27,7 +27,7 @@ It demonstrates the use of spring 3.2 Java Servlet container initialization, wit
 * Proteins with a PDZ domain that interact with at least 1 protein which is expressed in brain
    * graph: Proteins domain in PDZ interactWith proteins expressed in brain
 
-###Use case for sequence annotation
+###Use case for sequence annotations
  * - Q3	Proteins with >=2 transmembrane regions 
  * - Q5	Proteins located in mitochondrion and that lack a transit peptide
  * - Q9	Proteins with 3 disulfide bonds and that are not hormones 
@@ -49,7 +49,7 @@ It demonstrates the use of spring 3.2 Java Servlet container initialization, wit
  * - Q48 Proteins with >=1 variants of the type "C->" (Cys to anything else) that are linked to >=1 disease
  * - Q49 Proteins with >=1 variants of the types "A->R" or "R->A"
 
-###Use case for positional annotation
+###Use case for general annotations
 ###Use case for PTM queries
 
 
