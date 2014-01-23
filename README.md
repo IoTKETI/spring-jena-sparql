@@ -4,7 +4,7 @@ Study of protein queries with spring-mvc and jena
 This project will help to build an RDF schema by iteration and tests. The schema creation mainly focues on the user queries. 
 It demonstrates the use of spring 3.2 Java Servlet container initialization, with Jena(RDF) and Sorl(Lucene) together ready to tests our use cases.
 
-* [initial rdf schema](tree/master/src/main/resources/owl)
+* [initial rdf schema](https://github.com/evaletolab/spring-jena-sparql/tree/master/src/main/resources/owl)
 
 ###Use case for expression
 * Proteins that are not highly expressed in liver at embrion stage
