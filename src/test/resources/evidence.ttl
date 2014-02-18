@@ -1,0 +1,132 @@
+@prefix : <http://nextprot.org/rdf#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix entry: <http://nextprot.org/rdf/entry/> .
+@prefix isoform: <http://nextprot.org/rdf/isoform/> .
+@prefix annotation: <http://nextprot.org/rdf/annotation/> .
+@prefix evidence: <http://nextprot.org/rdf/evidence/> .
+@prefix publication: <http://nextprot.org/rdf/publication/> .
+@prefix term: <http://nextprot.org/rdf/terminology/> .
+@prefix gene: <http://nextprot.org/rdf/gene/> .
+
+# Use case for evidences queries
+# - Q53  which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
+# - Q57  which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
+# - Q63  which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
+# - Q68  with protein evidence PE=2 (transcript level)
+#  
+#
+
+:involved
+   a rdf:Property, owl:FunctionalProperty;
+   owl:equivalentProperty :hasGoBiologicalProcess;
+   rdfs:label "functional"^^xsd:string; 
+   rdfs:domain :Isoform ;
+   rdfs:range :Annotation;
+   .
+
+#
+# - Q68  with protein evidence PE=2 (transcript level)
+entry:NX_Q68 a :Entry;
+  :isoform isoform:NX_Q68-2;
+  :isoform isoform:NX_Q68-1;
+  .
+
+entry:NX_Q68 
+   :proteinExistence "transcript level"^^xsd:string;
+   .
+ 
+
+#
+# - Q53  which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
+term:GO:0007155 a :GoBiologicalProcess;
+  rdfs:label "cell adhesion"^^xsd:string;
+  rdfs:comment "The attachment of a cell, either to another cell or to an underlying substrate such as the extracellular matrix, via cell adhesion molecules."^^xsd:string;
+  rdfs:subClassOf term:GO:0044763;
+  .
+#  
+# involved in GO:0007155 with evidence IAE and IC
+entry:NX_Q53 a :Entry;
+  :isoform isoform:NX_Q53-2;
+  :isoform isoform:NX_Q53-1;
+  .
+
+isoform:NX_Q53-2 a :Isoform;
+  :hasGoBiologicalProcess annotation:NX_Q53-2-AN_Q53_002055;
+  :hasRegionOfInterest annotation:NX_Q53-2-AN_Q53_002154;
+  .
+annotation:NX_Q53-2-AN_Q53_002055 a :GoBiologicalProcess;
+  :quality :GOLD;
+  :in term:GO:0007155;
+  :evidence evidence:665617;
+  .      
+
+annotation:NX_Q53-2-AN_Q53_002154 a :RegionOfInterest;
+  :quality :GOLD;
+  .      
+
+evidence:665617 a :IAE;
+  :negative "false"^^xsd:boolean;
+  .
+
+# involved in GO:0007155 with evidences in ISS and IC
+entry:NX_Q53_1 a :Entry;
+  :isoform isoform:NX_Q53_1-2;
+  :isoform isoform:NX_Q53_1-1;
+  .
+
+isoform:NX_Q53_1-2 a :Isoform;
+  :hasGoBiologicalProcess annotation:NX_Q53_1-2-AN_Q53_1_002055;
+  :hasGoBiologicalProcess annotation:NX_Q53_1-2-AN_Q53_1_002154;
+  .
+annotation:NX_Q53_1-2-AN_Q53_1_002055 a :GoBiologicalProcess;
+  :in term:GO:0007155;
+  :evidence evidence:665617_2;
+  .      
+
+annotation:NX_Q53_1-2-AN_Q53_1_002154 a :GoBiologicalProcess;
+  :in term:GO:0007155;
+  :evidence evidence:665617_1;
+  .      
+
+evidence:665617_1 a :ISS;
+  :negative "false"^^xsd:boolean;
+  .
+
+evidence:665617_2 a :IC;
+  :negative "false"^^xsd:boolean;
+  .    
+  
+# SHOULD MATCH  ----------------------------------------------------------------  
+# involved in GO:0007155 with evidences in IC and ISO
+entry:NX_Q53_2 a :Entry;
+  :isoform isoform:NX_Q53_2-2;
+  :isoform isoform:NX_Q53_2-1;
+  .
+
+isoform:NX_Q53_2-2 a :Isoform;
+  :hasGoBiologicalProcess annotation:NX_Q53_2-2-AN_Q53_2_002055;
+  :hasGoBiologicalProcess annotation:NX_Q53_2-2-AN_Q53_2_002154;
+  .
+annotation:NX_Q53_2-2-AN_Q53_2_002055 a :GoBiologicalProcess;
+  :quality :GOLD;
+  :in term:GO:0007155;
+  :evidence evidence:665618_2;
+  .      
+
+annotation:NX_Q53_2-2-AN_Q53_2_002154 a :GoBiologicalProcess;
+  :quality :GOLD;
+  :in term:GO:0007155;
+  :evidence evidence:665618_1;
+  .      
+
+evidence:665618_1 a :ISO;
+  :negative "false"^^xsd:boolean;
+  .
+
+evidence:665618_2 a :IC;
+  :negative "false"^^xsd:boolean;
+  .    

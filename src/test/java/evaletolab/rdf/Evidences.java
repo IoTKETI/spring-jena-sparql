@@ -43,12 +43,32 @@ public class Evidences {
 	@Before
 	public void setup() {
 		m=ModelFactory.createDefaultModel();
-		m.read("evidences-heavy.ttl").read("owl/np.ttl");
+		m.read("evidence.ttl").read("terminology-disease.ttl").read("publication.ttl").read("owl/np.ttl");
 		rdfs= ModelFactory.createRDFSModel(m);
+
 
 	}
 	
-	
+	/**
+	 * Q53	which are involved in cell adhesion according to GO with 
+	 *      an evidence not IAE and not ISS 
+	 *      - Cell adhesion [GO:0007155] 
+	 */
+	@Test
+	public void involvedInGO0007155(){
+		// query
+		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
+				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
+				 "PREFIX : <http://nextprot.org/rdf#> " +
+				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
+				 "SELECT ?entry WHERE { " +
+				 "  ?entry :isoform/:involved/:in term:GO:0007155"+
+				 "}";	
+		Query query = QueryFactory.create(q);
+        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+        ResultSetFormatter.out(System.out, qe.execSelect(), query);
+	}		
 	
 	/**
 	 * Q53	which are involved in cell adhesion according to GO with 
@@ -59,33 +79,70 @@ public class Evidences {
 	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS(){
 		// query
 		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
+				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
 				 "PREFIX : <http://nextprot.org/rdf#> " +
+				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
 				 "SELECT ?entry WHERE { " +
-				 "  ?entry  :isoform/:involved/ ?statement;:in GO:0007155"+
-				 "  FILTER NOT EXISTS { ?statement :evidence/rdfs:type :IAE } "+
+				 "  ?entry  :isoform/:involved ?statement;:in term:GO:0007155"+
+				 "  FILTER NOT EXISTS { " +
+				 "    {?statement :evidence/rdfs:type :IAE }UNION{?statement :evidence/rdfs:type :ISS }"+
+				 "  } "+
 				 "}";	
+		Query query = QueryFactory.create(q);
+        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+        ResultSetFormatter.out(System.out, qe.execSelect(), query);
+	}	
+
+	@Test
+	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_1(){
+		// query
+		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
+				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
+				 "PREFIX : <http://nextprot.org/rdf#> " +
+				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
+				 "SELECT ?entry WHERE { " +
+				 "  ?entry  :isoform/:involved ?statement;:in term:GO:0007155"+
+				 "  FILTER NOT EXISTS { ?statement :evidence/rdfs:type/owl:unionOf (:IAE :ISS)} "+
+				 "}";	
+		Query query = QueryFactory.create(q);
+        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+        ResultSetFormatter.out(System.out, qe.execSelect(), query);
 	}	
 
 	@Test
 	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_2(){
 		// query
 		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
+				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
 				 "PREFIX : <http://nextprot.org/rdf#> " +
+				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
 				 "SELECT ?entry WHERE { " +
-				 "  ?entry  :isoform/:involved/ ?statement;:in GO:0007155."+
+				 "  ?entry  :isoform/:involved ?statement;:in term:GO:0007155."+
 				 "  ?statement :evidence/rdfs:type/owl:differentFrom :IAE;owl:differentFrom :ISS."+
 				 "}";	
+		Query query = QueryFactory.create(q);
+        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+        ResultSetFormatter.out(System.out, qe.execSelect(), query);
 	}	
 
 	@Test
 	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_3(){
 		// query
 		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
+				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
 				 "PREFIX : <http://nextprot.org/rdf#> " +
+				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
 				 "SELECT ?entry WHERE { " +
-				 "  ?entry  :isoform/:involved/ ?statement;:in GO:0007155."+
+				 "  ?entry  :isoform/:involved ?statement;:in term:GO:0007155."+
 				 "  ?statement :evidence/rdfs:type/owl:complementOf :IAE;owl:complementOf :ISS. "+
 				 "}";	
+		Query query = QueryFactory.create(q);
+        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+        ResultSetFormatter.out(System.out, qe.execSelect(), query);
 	}	
 	
 	/**
@@ -115,69 +172,4 @@ public class Evidences {
 	public void withProteinEvidencePE2(){
 
 	}	
-
-	/**
-	 * Q14 with 2 SH3 domains and 1 SH2 domain
-	 */
-	@Test
-	public void with2SH3And1SHD2(){
-
-	}	
-	
-	/**
-	 * Q15 with a PDZ domain that interact with at least 1 protein which is expressed in brain
-	 *  --> hierarchical Terms for Nervous System
-	 */
-	@Test
-	public void withPDZthatInteractWithProteinExpressedInBrain(){
-
-	}	
-	
-	/**
-	 * Q16 with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain
-	 */
-	@Test
-	public void withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature(){
-
-	}
-	
-	/**
-	 * Q18 that are acetylated and methylated and located in the nucleus
-	 */
-	@Test
-	public void thatAreAcetylatedAndMethylated(){
-
-	}
-	
-	/**
-	 * Q19 contains a signal sequence followed by a extracellular domain containing a "KRKR" motif
-	 */
-	@Test
-	public void containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif(){
-
-	}
-	
-	/**
-	 * Q32 with a coiled coil region and involved in transcription but does not contain a bZIP domain
-	 */
-	@Test
-	public void withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP(){
-
-	}
-	
-	/**
-	 * Q34 with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
-	 */
-	@Test
-	public void withHomeoboxAndWithVariantsInTheHomeobox(){
-
-	}		
-	
-	/**
-	 * Q38 with >=1 selenocysteine in their sequence
-	 */
-	@Test
-	public void withSelenocysteineInTheirSequence(){
-
-	}		
 }

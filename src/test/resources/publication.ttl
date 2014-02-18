@@ -1,0 +1,47 @@
+@prefix : <http://nextprot.org/rdf#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix entry: <http://nextprot.org/rdf/entry/> .
+@prefix isoform: <http://nextprot.org/rdf/isoform/> .
+@prefix annotation: <http://nextprot.org/rdf/annotation/> .
+@prefix evidence: <http://nextprot.org/rdf/evidence/> .
+@prefix publication: <http://nextprot.org/rdf/publication/> .
+@prefix term: <http://nextprot.org/rdf/terminology/> .
+@prefix gene: <http://nextprot.org/rdf/gene/> .
+
+
+publication:178d0394ef78390b0087c12f6c45686a a :Publication;
+    :title """A quantitative atlas of mitotic phosphorylation.""";
+    :journal "Proceedings of the National Academy of Sciences of the United States of America"^^xsd:string; 
+    :volume "105"^^xsd:string;
+    :issue "31"^^xsd:string; 
+    :year "2008"^^xsd:string;
+    :firstPage "10762"^^xsd:string; 
+    :lastPage "10767"^^xsd:string;
+    :author[ a :Person;
+        :name "Noah Dephoure "^^xsd:string; 
+    ];
+    :author[ a :Person;
+        :name "Chunshui Zhou "^^xsd:string; 
+    ];
+    :author[ a :Person;
+        :name "Judit Vill&#233;n "^^xsd:string; 
+    ];
+    :author[ a :Person;
+        :name "Sean A Beausoleil "^^xsd:string; 
+    ];
+    :author[ a :Person;
+        :name "Corey E Bakalarski "^^xsd:string; 
+    ];
+    :author[ a :Person;
+        :name "Stephen J Elledge "^^xsd:string; 
+    ];
+    :author[ a :Person;
+        :name "Steven P Gygi "^^xsd:string; 
+    ];
+    rdfs:sameAs "http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&amp;cmd=search&amp;term=18669648"^^xsd:anyURI;
+    rdfs:sameAs "http://dx.doi.org/10.1073/pnas.0805139105"^^xsd:anyURI;
+    .

@@ -3,11 +3,13 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix up: <http://purl.uniprot.org/core/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix entry: <http://nextprot.org/rdf/entry/> .
 @prefix isoform: <http://nextprot.org/rdf/isoform/> .
 @prefix annotation: <http://nextprot.org/rdf/annotation/> .
 @prefix evidence: <http://nextprot.org/rdf/evidence/> .
+@prefix publication: <http://nextprot.org/rdf/evidence/> .
 @prefix term: <http://nextprot.org/rdf/terminology/> .
 @prefix gene: <http://nextprot.org/rdf/gene/> .
 
@@ -37,12 +39,12 @@
       rdf:type owl:Class ;
       rdfs:comment "A concept used to classify resources."^^xsd:string ;
       rdfs:subClassOf owl:Thing;
-      owl:equivalentClass up:Concept.
+      owl:equivalentClass up:Concept;
       .
   
 :EnzymeClassification
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "Enzyme classification"^^xsd:string;
   rdfs:comment "Enzyme classification and enzyme description."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/EnzymeClassification"^^xsd:anyURI;
@@ -50,7 +52,7 @@
   
 :EvidenceCodeOntology
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "Evidence code ontology"^^xsd:string;
   rdfs:comment "Ontology to describe information that is used to support an assertion."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/EvidenceCodeOntology"^^xsd:anyURI;
@@ -58,7 +60,7 @@
   
 :Evoc
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "eVOC"^^xsd:string;
   rdfs:comment "Expressed Sequence Annotation for Humans Provides structured controlled vocabularies for the annotation of expressed sequences with respect to anatomical system, cell type, developmental stage, experimental technique, microarray platform, pathology, pooling, tissue preparation and treatment."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/Evoc"^^xsd:anyURI;
@@ -66,7 +68,7 @@
   
 :EvocAnatomicalSystem
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "eVOC Anatomical System"^^xsd:string;
   rdfs:comment "eVOC ontology for anatomical system. http://trac.genebio.com/~defaultuser/repository/anatomicalsystem.obo"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/EvocAnatomicalSystem"^^xsd:anyURI;
@@ -74,7 +76,7 @@
   
 :EvocCellType
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "eVOC Cell Type"^^xsd:string;
   rdfs:comment "eVOC ontology for cell types. http://trac.genebio.com/~defaultuser/repository/celltype.obo"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/EvocCellType"^^xsd:anyURI;
@@ -82,7 +84,7 @@
   
 :EvocDevelopmentStage
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "eVOC Development Stage"^^xsd:string;
   rdfs:comment "eVOC ontology for development stages. http://trac.genebio.com/~defaultuser/repository/developmentstage.obo"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/EvocDevelopmentStage"^^xsd:anyURI;
@@ -90,7 +92,7 @@
   
 :EvocPathology
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "eVOC Pathology"^^xsd:string;
   rdfs:comment "eVOC ontology for pathologies. http://trac.genebio.com/~defaultuser/repository/pathology.obo"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/EvocPathology"^^xsd:anyURI;
@@ -98,39 +100,39 @@
   
 :Go
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "GO"^^xsd:string;
   rdfs:comment "The Gene Ontology project provides a controlled vocabulary to describe gene and gene product attributes in any organism"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/Go"^^xsd:anyURI;
   .      
   
-:Go_biological_process
+:GoBiologicalProcess
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "Gene Ontology biological process"^^xsd:string;
   rdfs:comment "A biological process is a recognized series of events or molecular functions. A biological process is not equivalent to a pathway, although some GO terms do describe pathways. Mutant phenotypes often reflect disruptions in biological processes."^^xsd:string;
-  rdfs:seeAlso "http://www.nextprot.org/manual/Go_biological_process"^^xsd:anyURI;
+  rdfs:seeAlso "http://www.nextprot.org/manual/GoBiologicalProcess"^^xsd:anyURI;
   .      
   
-:Go_cellular_component
+:GoCellularComponent
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "Gene Ontology cellular component"^^xsd:string;
   rdfs:comment "The cellular component ontology describes locations, at the levels of subcellular structures and macromolecular complexes."^^xsd:string;
-  rdfs:seeAlso "http://www.nextprot.org/manual/Go_cellular_component"^^xsd:anyURI;
+  rdfs:seeAlso "http://www.nextprot.org/manual/GoCellularComponent"^^xsd:anyURI;
   .      
   
-:Go_molecular_function
+:GoMolecularFunction
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "Gene Ontology molecular function"^^xsd:string;
   rdfs:comment "The functions of a gene product are the jobs that it does or the &quot;abilities&quot; that it has. These may include transporting things around, binding to things, holding things together and changing one thing into another. This is different from the biological processes the gene product is involved in, which involve more than one activity. "^^xsd:string;
-  rdfs:seeAlso "http://www.nextprot.org/manual/Go_molecular_function"^^xsd:anyURI;
+  rdfs:seeAlso "http://www.nextprot.org/manual/GoMolecularFunction"^^xsd:anyURI;
   .      
   
 :Mesh
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "MeSH"^^xsd:string;
   rdfs:comment "Medical Subject Headings is the National Library of Medicine&apos;s controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/Mesh"^^xsd:anyURI;
@@ -138,7 +140,7 @@
   
 :MeshAnatomy
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "MeSH Anatomy"^^xsd:string;
   rdfs:comment "Medical Subject Headings is the National Library of Medicine&apos;s controlled vocabulary thesaurus. It consists of sets of terms naming descriptors in a hierarchical structure that permits searching at various levels of specificity."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/MeshAnatomy"^^xsd:anyURI;
@@ -146,7 +148,7 @@
   
 :Mim
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "MIM"^^xsd:string;
   rdfs:comment "OMIM is a comprehensive, authoritative, and timely compendium of human genes and genetic phenotypes."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/Mim"^^xsd:anyURI;
@@ -154,7 +156,7 @@
   
 :NciThesaurus
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "NCI Thesaurus"^^xsd:string;
   rdfs:comment "Ontology to describe information that is used to support an assertion."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/NciThesaurus"^^xsd:anyURI;
@@ -162,7 +164,7 @@
   
 :NextprotBiosequenceAnnotation
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "neXtProt biosequence annotation"^^xsd:string;
   rdfs:comment "Ontolgy for biosequence annotations is a set of terms and relationships used to describe the annotations of biological sequences"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/NextprotBiosequenceAnnotation"^^xsd:anyURI;
@@ -170,7 +172,7 @@
   
 :NextprotFamily
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "neXtProt family"^^xsd:string;
   rdfs:comment "Control vocabulary to describe the protein families"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/NextprotFamily"^^xsd:anyURI;
@@ -178,7 +180,7 @@
   
 :NextprotTissues
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "neXtProt human anatomy"^^xsd:string;
   rdfs:comment "neXtProt ontology for anatomical system"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/NextprotTissues"^^xsd:anyURI;
@@ -186,7 +188,7 @@
   
 :NonStandardAminoAcid
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "Non-standard amino acid"^^xsd:string;
   rdfs:comment "Control vocabulary for non-standard residues."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/NonStandardAminoAcid"^^xsd:anyURI;
@@ -194,7 +196,7 @@
   
 :Organelle
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "Organelle"^^xsd:string;
   rdfs:comment "Organelle in which the mature protein is targeted."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/Organelle"^^xsd:anyURI;
@@ -202,7 +204,7 @@
   
 :SequenceOntology
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "Sequence ontology"^^xsd:string;
   rdfs:comment "Subset of protein feature ontology."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/SequenceOntology"^^xsd:anyURI;
@@ -210,7 +212,7 @@
   
 :Stage
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "Bgee human developmental stages"^^xsd:string;
   rdfs:comment "Contains the developmental and metastage ontology"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/Stage"^^xsd:anyURI;
@@ -218,7 +220,7 @@
   
 :UniprotCarbohydrate
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "UniProtKB carbohydrate"^^xsd:string;
   rdfs:comment "Control vocabulary to describe the various carbohydrates added to proteins."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotCarbohydrate"^^xsd:anyURI;
@@ -226,7 +228,7 @@
   
 :UniprotCellLine
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "neXtProt cell line"^^xsd:string;
   rdfs:comment "Uniprot ontology for cell lines. http://trac.genebio.com/~defaultuser/repository/cell_lines.txt"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotCellLine"^^xsd:anyURI;
@@ -234,7 +236,7 @@
   
 :UniprotDisease
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "UniProtKB disease"^^xsd:string;
   rdfs:comment "Control vocabulary to describe the diseases. Mapping to MeSH and MIM as well as to Uniprot keywords."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotDisease"^^xsd:anyURI;
@@ -242,7 +244,7 @@
   
 :UniprotDomain
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "neXtProt domain"^^xsd:string;
   rdfs:comment "List of domains, repeat and zinc fingers extracted from similar.txt in Uniprot knowledge base. http://www.uniprot.org/docs/similar.txt"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotDomain"^^xsd:anyURI;
@@ -250,7 +252,7 @@
   
 :UniprotFamily
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "UniProtKB family"^^xsd:string;
   rdfs:comment "List of families extracted from similar.txt in Uniprot knowledge base. http://www.uniprot.org/docs/similar.txt"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotFamily"^^xsd:anyURI;
@@ -258,7 +260,7 @@
   
 :UniprotKeywords
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "UniProtKB keyword"^^xsd:string;
   rdfs:comment "List of keywords used in Uniprot knowledge base. http://www.uniprot.org/docs/keywlist.txt"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotKeywords"^^xsd:anyURI;
@@ -266,7 +268,7 @@
   
 :UniprotMetal
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "neXtProt metal"^^xsd:string;
   rdfs:comment "Control vocabulary for metal bound to protein."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotMetal"^^xsd:anyURI;
@@ -274,7 +276,7 @@
   
 :UniprotPathways
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "UniPathway"^^xsd:string;
   rdfs:comment "List of metabolic pathways in Uniprot knowledge base. http://www.uniprot.org/docs/pathlist.txt"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotPathways"^^xsd:anyURI;
@@ -282,7 +284,7 @@
   
 :UniprotPosttranslationalModifications
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "UniProtKB post-translational modification"^^xsd:string;
   rdfs:comment "List of posttranslational modifications in Uniprot knowledge base. http://www.uniprot.org/docs/ptmlist.txt"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotPosttranslationalModifications"^^xsd:anyURI;
@@ -290,7 +292,7 @@
   
 :UniprotRegionStructure
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "UniProtKB region structure"^^xsd:string;
   rdfs:comment "Control vocabulary to describe the protein region structure"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotRegionStructure"^^xsd:anyURI;
@@ -298,7 +300,7 @@
   
 :UniprotSubcellularLocation
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "UniProtKB subcellular location"^^xsd:string;
   rdfs:comment "List of subcellular location in Uniprot knowledge base. http://www.uniprot.org/docs/subcell.txt"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotSubcellularLocation"^^xsd:anyURI;
@@ -306,7 +308,7 @@
   
 :UniprotSubcellularOrientation
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "UniProtKB subcellular orientation"^^xsd:string;
   rdfs:comment "List of subcellular orientation in Uniprot knowledge base. http://www.uniprot.org/docs/subcell.txt"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotSubcellularOrientation"^^xsd:anyURI;
@@ -314,7 +316,7 @@
   
 :UniprotSubcellularTopology
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "UniProtKB subcellular topology"^^xsd:string;
   rdfs:comment "List of subcellular topology in Uniprot knowledge base. http://www.uniprot.org/docs/subcell.txt"^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotSubcellularTopology"^^xsd:anyURI;
@@ -322,7 +324,7 @@
   
 :UniprotTopology
   rdf:type owl:Class ;
-  rdfs:subClassOf :Term ;
+  rdfs:subClassOf :Term;
   rdfs:label "UniProtKB topology"^^xsd:string;
   rdfs:comment "Control vocabulary to describe the topology of regions for transmembrane proteins that span membrane compartments."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotTopology"^^xsd:anyURI;
@@ -421,7 +423,7 @@
 :MoleculeProcessing
    rdf:type owl:Class;
    rdfs:comment "Cleavage processing of the sequence"^^xsd:string;
-   rdfs:label "molecule processing"^^xsd:string 
+   rdfs:label "molecule processing"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/MoleculeProcessing"^^xsd:anyURI; 
    rdfs:subClassOf :Feature;
    .   
@@ -429,7 +431,7 @@
 :RegionOfInterest
    rdf:type owl:Class;
    rdfs:comment "Region of interest in the sequence"^^xsd:string;
-   rdfs:label "region of interest"^^xsd:string 
+   rdfs:label "region of interest"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/RegionOfInterest"^^xsd:anyURI; 
    rdfs:subClassOf :Feature;
    .   
@@ -437,7 +439,7 @@
 :Site
    rdf:type owl:Class;
    rdfs:comment "Interesting single amino acid site on the sequence"^^xsd:string;
-   rdfs:label "site"^^xsd:string 
+   rdfs:label "site"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Site"^^xsd:anyURI; 
    rdfs:subClassOf :Feature;
    .   
@@ -445,7 +447,7 @@
 :AminoAcidModification
    rdf:type owl:Class;
    rdfs:comment "Modified residues"^^xsd:string;
-   rdfs:label "amino acid modification"^^xsd:string 
+   rdfs:label "amino acid modification"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/AminoAcidModification"^^xsd:anyURI; 
    rdfs:subClassOf :Feature;
    .   
@@ -453,7 +455,7 @@
 :SecondaryStructure
    rdf:type owl:Class;
    rdfs:comment "Protein secondary structure"^^xsd:string;
-   rdfs:label "secondary structure"^^xsd:string 
+   rdfs:label "secondary structure"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/SecondaryStructure"^^xsd:anyURI; 
    rdfs:subClassOf :Feature;
    .   
@@ -461,7 +463,7 @@
 :Variant
    rdf:type owl:Class;
    rdfs:comment "Protein variant site"^^xsd:string;
-   rdfs:label "variant"^^xsd:string 
+   rdfs:label "variant"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Variant"^^xsd:anyURI; 
    rdfs:subClassOf :Feature;
    .   
@@ -469,7 +471,7 @@
 :MisdefinedRegion
    rdf:type owl:Class;
    rdfs:comment "Uncertain or uncomplete region"^^xsd:string;
-   rdfs:label "misdefined region"^^xsd:string 
+   rdfs:label "misdefined region"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/MisdefinedRegion"^^xsd:anyURI; 
    rdfs:subClassOf :Feature;
    .   
@@ -477,7 +479,7 @@
 :InitiatorMethionine
    rdf:type owl:Class;
    rdfs:comment "Cleavage of the initiator methionine"^^xsd:string;
-   rdfs:label "initiator methionine"^^xsd:string 
+   rdfs:label "initiator methionine"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/InitiatorMethionine"^^xsd:anyURI; 
    rdfs:subClassOf :MoleculeProcessing;
    .   
@@ -485,7 +487,7 @@
 :SignalPeptide
    rdf:type owl:Class;
    rdfs:comment "Sequence targeting proteins to the secretory pathway or periplasmic space"^^xsd:string;
-   rdfs:label "signal peptide"^^xsd:string 
+   rdfs:label "signal peptide"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/SignalPeptide"^^xsd:anyURI; 
    rdfs:subClassOf :MoleculeProcessing;
    .   
@@ -493,7 +495,7 @@
 :TransitPeptide
    rdf:type owl:Class;
    rdfs:comment "Extent of a transit peptide for organelle targeting"^^xsd:string;
-   rdfs:label "transit peptide"^^xsd:string 
+   rdfs:label "transit peptide"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/TransitPeptide"^^xsd:anyURI; 
    rdfs:subClassOf :MoleculeProcessing;
    .   
@@ -501,7 +503,7 @@
 :MaturationPeptide
    rdf:type owl:Class;
    rdfs:comment "Part of a protein that is cleaved during maturation or activation"^^xsd:string;
-   rdfs:label "maturation peptide"^^xsd:string 
+   rdfs:label "maturation peptide"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/MaturationPeptide"^^xsd:anyURI; 
    rdfs:subClassOf :MoleculeProcessing;
    .   
@@ -509,7 +511,7 @@
 :MatureProtein
    rdf:type owl:Class;
    rdfs:comment "Extent of an active peptide or a polypetide chain in the mature protein"^^xsd:string;
-   rdfs:label "mature protein"^^xsd:string 
+   rdfs:label "mature protein"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/MatureProtein"^^xsd:anyURI; 
    rdfs:subClassOf :MoleculeProcessing;
    .   
@@ -517,7 +519,7 @@
 :Domain
    rdf:type owl:Class;
    rdfs:comment "Position and type of each modular protein domain"^^xsd:string;
-   rdfs:label "domain"^^xsd:string 
+   rdfs:label "domain"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Domain"^^xsd:anyURI; 
    rdfs:subClassOf :RegionOfInterest;
    .   
@@ -525,7 +527,7 @@
 :Repeat
    rdf:type owl:Class;
    rdfs:comment "Positions of repeated sequence motifs or repeated domains"^^xsd:string;
-   rdfs:label "repeat"^^xsd:string 
+   rdfs:label "repeat"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Repeat"^^xsd:anyURI; 
    rdfs:subClassOf :RegionOfInterest;
    .   
@@ -533,7 +535,7 @@
 :CalciumBindingRegion
    rdf:type owl:Class;
    rdfs:comment "Position(s) of calcium binding region(s) within the protein"^^xsd:string;
-   rdfs:label "calcium-binding region"^^xsd:string 
+   rdfs:label "calcium-binding region"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/CalciumBindingRegion"^^xsd:anyURI; 
    rdfs:subClassOf :RegionOfInterest;
    .   
@@ -541,7 +543,7 @@
 :ZincFingerRegion
    rdf:type owl:Class;
    rdfs:comment "Position(s) and type(s) of zinc fingers within the protein"^^xsd:string;
-   rdfs:label "zinc finger region"^^xsd:string 
+   rdfs:label "zinc finger region"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/ZincFingerRegion"^^xsd:anyURI; 
    rdfs:subClassOf :RegionOfInterest;
    .   
@@ -549,7 +551,7 @@
 :DnaBindingRegion
    rdf:type owl:Class;
    rdfs:comment "Position and type of a DNA-binding domain"^^xsd:string;
-   rdfs:label "DNA-binding region"^^xsd:string 
+   rdfs:label "DNA-binding region"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/DnaBindingRegion"^^xsd:anyURI; 
    rdfs:subClassOf :RegionOfInterest;
    .   
@@ -557,7 +559,7 @@
 :NucleotidePhosphateBindingRegion
    rdf:type owl:Class;
    rdfs:comment "Nucleotide phosphate binding region"^^xsd:string;
-   rdfs:label "nucleotide phosphate-binding region"^^xsd:string 
+   rdfs:label "nucleotide phosphate-binding region"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/NucleotidePhosphateBindingRegion"^^xsd:anyURI; 
    rdfs:subClassOf :RegionOfInterest;
    .   
@@ -565,7 +567,7 @@
 :CoiledCoilRegion
    rdf:type owl:Class;
    rdfs:comment "Positions of regions of coiled coil within the protein"^^xsd:string;
-   rdfs:label "coiled-coil region"^^xsd:string 
+   rdfs:label "coiled-coil region"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/CoiledCoilRegion"^^xsd:anyURI; 
    rdfs:subClassOf :RegionOfInterest;
    .   
@@ -573,7 +575,7 @@
 :ShortSequenceMotif
    rdf:type owl:Class;
    rdfs:comment "Short (up to 20 amino acids) sequence motif of biological interest"^^xsd:string;
-   rdfs:label "short sequence motif"^^xsd:string 
+   rdfs:label "short sequence motif"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/ShortSequenceMotif"^^xsd:anyURI; 
    rdfs:subClassOf :RegionOfInterest;
    .   
@@ -581,7 +583,7 @@
 :CompositionallyBiasedRegion
    rdf:type owl:Class;
    rdfs:comment "Region of compositional bias in the protein"^^xsd:string;
-   rdfs:label "compositionally biased region"^^xsd:string 
+   rdfs:label "compositionally biased region"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/CompositionallyBiasedRegion"^^xsd:anyURI; 
    rdfs:subClassOf :RegionOfInterest;
    .   
@@ -589,7 +591,7 @@
 :ActiveSite
    rdf:type owl:Class;
    rdfs:comment "Amino acid(s) directly involved in the activity of an enzyme"^^xsd:string;
-   rdfs:label "active site"^^xsd:string 
+   rdfs:label "active site"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/ActiveSite"^^xsd:anyURI; 
    rdfs:subClassOf :Site;
    .   
@@ -597,7 +599,7 @@
 :MetalIonBindingSite
    rdf:type owl:Class;
    rdfs:comment "Binding site for a metal ion"^^xsd:string;
-   rdfs:label "metal ion-binding site"^^xsd:string 
+   rdfs:label "metal ion-binding site"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/MetalIonBindingSite"^^xsd:anyURI; 
    rdfs:subClassOf :Site;
    .   
@@ -605,7 +607,7 @@
 :BindingSite
    rdf:type owl:Class;
    rdfs:comment "Binding site for any chemical group (co-enzyme, prosthetic group, etc.)"^^xsd:string;
-   rdfs:label "binding site"^^xsd:string 
+   rdfs:label "binding site"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/BindingSite"^^xsd:anyURI; 
    rdfs:subClassOf :Site;
    .   
@@ -613,7 +615,7 @@
 :NonStandardAminoAcid
    rdf:type owl:Class;
    rdfs:comment "Occurence of non-standard amino acids (selenocysteine and pyrrolysine) in the protein sequence"^^xsd:string;
-   rdfs:label "non-standard amino acid"^^xsd:string 
+   rdfs:label "non-standard amino acid"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/NonStandardAminoAcid"^^xsd:anyURI; 
    rdfs:subClassOf :AminoAcidModification;
    .   
@@ -621,7 +623,7 @@
 :LipidMoietyBindingRegion
    rdf:type owl:Class;
    rdfs:comment "Lipidation: covalently attached lipid group(s)"^^xsd:string;
-   rdfs:label "lipid moiety-binding region"^^xsd:string 
+   rdfs:label "lipid moiety-binding region"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/LipidMoietyBindingRegion"^^xsd:anyURI; 
    rdfs:subClassOf :AminoAcidModification;
    .   
@@ -629,7 +631,7 @@
 :GlycosylationSite
    rdf:type owl:Class;
    rdfs:comment "Covalently attached glycan group(s)"^^xsd:string;
-   rdfs:label "glycosylation site"^^xsd:string 
+   rdfs:label "glycosylation site"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/GlycosylationSite"^^xsd:anyURI; 
    rdfs:subClassOf :AminoAcidModification;
    .   
@@ -637,7 +639,7 @@
 :DisulfideBond
    rdf:type owl:Class;
    rdfs:comment "Cysteine residues participating in disulfide bonds"^^xsd:string;
-   rdfs:label "disulfide bond"^^xsd:string 
+   rdfs:label "disulfide bond"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/DisulfideBond"^^xsd:anyURI; 
    rdfs:subClassOf :AminoAcidModification;
    .   
@@ -645,7 +647,7 @@
 :CrossLink
    rdf:type owl:Class;
    rdfs:comment "Residues participating in covalent linkage(s) between proteins"^^xsd:string;
-   rdfs:label "cross-link"^^xsd:string 
+   rdfs:label "cross-link"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/CrossLink"^^xsd:anyURI; 
    rdfs:subClassOf :AminoAcidModification;
    .   
@@ -653,7 +655,7 @@
 :Helix
    rdf:type owl:Class;
    rdfs:comment "Helical regions within the experimentally determined protein structure"^^xsd:string;
-   rdfs:label "helix"^^xsd:string 
+   rdfs:label "helix"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Helix"^^xsd:anyURI; 
    rdfs:subClassOf :SecondaryStructure;
    .   
@@ -661,7 +663,7 @@
 :Turn
    rdf:type owl:Class;
    rdfs:comment "Turns within the experimentally determined protein structure"^^xsd:string;
-   rdfs:label "turn"^^xsd:string 
+   rdfs:label "turn"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Turn"^^xsd:anyURI; 
    rdfs:subClassOf :SecondaryStructure;
    .   
@@ -669,7 +671,7 @@
 :BetaStrand
    rdf:type owl:Class;
    rdfs:comment "Beta strand regions within the experimentally determined protein structure"^^xsd:string;
-   rdfs:label "beta strand"^^xsd:string 
+   rdfs:label "beta strand"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/BetaStrand"^^xsd:anyURI; 
    rdfs:subClassOf :SecondaryStructure;
    .   
@@ -677,7 +679,7 @@
 :SequenceVariant
    rdf:type owl:Class;
    rdfs:comment "Natural variant of the protein"^^xsd:string;
-   rdfs:label "sequence variant"^^xsd:string 
+   rdfs:label "sequence variant"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/SequenceVariant"^^xsd:anyURI; 
    rdfs:subClassOf :Variant;
    .   
@@ -685,7 +687,7 @@
 :MutagenesisSite
    rdf:type owl:Class;
    rdfs:comment "Site which has been experimentally altered by mutagenesis"^^xsd:string;
-   rdfs:label "mutagenesis site"^^xsd:string 
+   rdfs:label "mutagenesis site"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/MutagenesisSite"^^xsd:anyURI; 
    rdfs:subClassOf :Variant;
    .   
@@ -693,7 +695,7 @@
 :SequenceConflict
    rdf:type owl:Class;
    rdfs:comment "Sequence discrepancies of unknown origin"^^xsd:string;
-   rdfs:label "sequence conflict"^^xsd:string 
+   rdfs:label "sequence conflict"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/SequenceConflict"^^xsd:anyURI; 
    rdfs:subClassOf :Variant;
    .   
@@ -701,7 +703,7 @@
 :UnsureResidue
    rdf:type owl:Class;
    rdfs:comment "Regions of uncertainty in the sequence"^^xsd:string;
-   rdfs:label "unsure residue"^^xsd:string 
+   rdfs:label "unsure residue"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/UnsureResidue"^^xsd:anyURI; 
    rdfs:subClassOf :MisdefinedRegion;
    .   
@@ -709,7 +711,7 @@
 :NonConsecutiveResidues
    rdf:type owl:Class;
    rdfs:comment "Indicates that two residues in a sequence are not consecutive"^^xsd:string;
-   rdfs:label "non-consecutive residues"^^xsd:string 
+   rdfs:label "non-consecutive residues"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/NonConsecutiveResidues"^^xsd:anyURI; 
    rdfs:subClassOf :MisdefinedRegion;
    .   
@@ -717,7 +719,7 @@
 :NonTerminalResidue
    rdf:type owl:Class;
    rdfs:comment "The sequence is incomplete. Indicate that a residue is not the terminal residue of the complete protein"^^xsd:string;
-   rdfs:label "non-terminal residue"^^xsd:string 
+   rdfs:label "non-terminal residue"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/NonTerminalResidue"^^xsd:anyURI; 
    rdfs:subClassOf :MisdefinedRegion;
    .   
@@ -725,7 +727,7 @@
 :Function
    rdf:type owl:Class;
    rdfs:comment "General function(s) of a protein"^^xsd:string;
-   rdfs:label "function"^^xsd:string 
+   rdfs:label "function"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Function"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -733,7 +735,7 @@
 :CatalyticActivity
    rdf:type owl:Class;
    rdfs:comment "Reaction(s) catalyzed by an enzyme"^^xsd:string;
-   rdfs:label "catalytic activity"^^xsd:string 
+   rdfs:label "catalytic activity"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/CatalyticActivity"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -741,7 +743,7 @@
 :Cofactor
    rdf:type owl:Class;
    rdfs:comment "Non-protein substance required for enzyme activity"^^xsd:string;
-   rdfs:label "cofactor"^^xsd:string 
+   rdfs:label "cofactor"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Cofactor"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -749,7 +751,7 @@
 :EnzymeRegulation
    rdf:type owl:Class;
    rdfs:comment "Enzyme regulatory mechanism"^^xsd:string;
-   rdfs:label "enzyme regulation"^^xsd:string 
+   rdfs:label "enzyme regulation"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/EnzymeRegulation"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -757,7 +759,7 @@
 :Subunit
    rdf:type owl:Class;
    rdfs:comment "Subunit structure: interaction with other protein(s)"^^xsd:string;
-   rdfs:label "subunit"^^xsd:string 
+   rdfs:label "subunit"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Subunit"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -765,7 +767,7 @@
 :Pathway
    rdf:type owl:Class;
    rdfs:comment "Associated metabolic pathways"^^xsd:string;
-   rdfs:label "pathway"^^xsd:string 
+   rdfs:label "pathway"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Pathway"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -773,7 +775,7 @@
 :SubcellularLocation
    rdf:type owl:Class;
    rdfs:comment "Subcellular location of the mature protein"^^xsd:string;
-   rdfs:label "subcellular location"^^xsd:string 
+   rdfs:label "subcellular location"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/SubcellularLocation"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -781,7 +783,7 @@
 :TissueSpecificity
    rdf:type owl:Class;
    rdfs:comment "Expression of the gene product in different tissues"^^xsd:string;
-   rdfs:label "tissue specificity"^^xsd:string 
+   rdfs:label "tissue specificity"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/TissueSpecificity"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -789,7 +791,7 @@
 :DevelopmentalStage
    rdf:type owl:Class;
    rdfs:comment "Expression of the gene product according to the cell stage and/or tissue or organism development"^^xsd:string;
-   rdfs:label "developmental stage"^^xsd:string 
+   rdfs:label "developmental stage"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/DevelopmentalStage"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -797,7 +799,7 @@
 :Induction
    rdf:type owl:Class;
    rdfs:comment "Effects of environmental factors on gene expression"^^xsd:string;
-   rdfs:label "induction"^^xsd:string 
+   rdfs:label "induction"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Induction"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -805,7 +807,7 @@
 :DomainInformation
    rdf:type owl:Class;
    rdfs:comment "Relevant information on protein domain(s)"^^xsd:string;
-   rdfs:label "domain information"^^xsd:string 
+   rdfs:label "domain information"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/DomainInformation"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -813,7 +815,7 @@
 :Ptm
    rdf:type owl:Class;
    rdfs:comment "Post-translational modifications"^^xsd:string;
-   rdfs:label "PTM"^^xsd:string 
+   rdfs:label "PTM"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Ptm"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -821,7 +823,7 @@
 :Polymorphism
    rdf:type owl:Class;
    rdfs:comment "Description of polymorphism(s)"^^xsd:string;
-   rdfs:label "polymorphism"^^xsd:string 
+   rdfs:label "polymorphism"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Polymorphism"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -829,7 +831,7 @@
 :Disease
    rdf:type owl:Class;
    rdfs:comment "Involvement in disease: disease(s) associated with protein defect(s)"^^xsd:string;
-   rdfs:label "disease"^^xsd:string 
+   rdfs:label "disease"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Disease"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -837,7 +839,7 @@
 :DisruptionPhenotype
    rdf:type owl:Class;
    rdfs:comment "Description of the effects caused by the disruption of a protein-encoding gene"^^xsd:string;
-   rdfs:label "disruption phenotype"^^xsd:string 
+   rdfs:label "disruption phenotype"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/DisruptionPhenotype"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -845,7 +847,7 @@
 :Allergen
    rdf:type owl:Class;
    rdfs:comment "Allergenic properties: information relevant to allergenic proteins"^^xsd:string;
-   rdfs:label "allergen"^^xsd:string 
+   rdfs:label "allergen"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Allergen"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -853,7 +855,7 @@
 :ToxicDose
    rdf:type owl:Class;
    rdfs:comment "Lethal, paralytic, effect dose or lethal concentration of a toxin"^^xsd:string;
-   rdfs:label "toxic dose"^^xsd:string 
+   rdfs:label "toxic dose"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/ToxicDose"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -861,7 +863,7 @@
 :Biotechnology
    rdf:type owl:Class;
    rdfs:comment "Biotechnological use: use in a biotechnological process"^^xsd:string;
-   rdfs:label "biotechnology"^^xsd:string 
+   rdfs:label "biotechnology"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Biotechnology"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -869,7 +871,7 @@
 :Pharmaceutical
    rdf:type owl:Class;
    rdfs:comment "Pharmaceutical use: use of as a pharmaceutical drug"^^xsd:string;
-   rdfs:label "pharmaceutical"^^xsd:string 
+   rdfs:label "pharmaceutical"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Pharmaceutical"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -877,7 +879,7 @@
 :Miscellaneous
    rdf:type owl:Class;
    rdfs:comment "Any relevant information that doesn&apos;t fit in any other defined sections"^^xsd:string;
-   rdfs:label "miscellaneous"^^xsd:string 
+   rdfs:label "miscellaneous"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Miscellaneous"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -885,7 +887,7 @@
 :Similarity
    rdf:type owl:Class;
    rdfs:comment "Sequence similarities: description of the sequence similaritie(s) with other proteins and family attribution"^^xsd:string;
-   rdfs:label "similarity"^^xsd:string 
+   rdfs:label "similarity"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Similarity"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -893,7 +895,7 @@
 :Caution
    rdf:type owl:Class;
    rdfs:comment "Warning about possible errors and/or grounds for confusion"^^xsd:string;
-   rdfs:label "caution"^^xsd:string 
+   rdfs:label "caution"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Caution"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -901,7 +903,7 @@
 :ExpressionInfo
    rdf:type owl:Class;
    rdfs:comment "Expression annotation to summarize expression levels measured in a series of experiments"^^xsd:string;
-   rdfs:label "expression info"^^xsd:string 
+   rdfs:label "expression info"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/ExpressionInfo"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -909,7 +911,7 @@
 :AlignmentConflict
    rdf:type owl:Class;
    rdfs:comment "differences between the sequence in swissprot and the genome"^^xsd:string;
-   rdfs:label "alignment conflict"^^xsd:string 
+   rdfs:label "alignment conflict"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/AlignmentConflict"^^xsd:anyURI; 
    rdfs:subClassOf :Variant;
    .   
@@ -917,7 +919,7 @@
 :CodingSequence
    rdf:type owl:Class;
    rdfs:comment "Coding sequence on dna sequence"^^xsd:string;
-   rdfs:label "coding sequence"^^xsd:string 
+   rdfs:label "coding sequence"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/CodingSequence"^^xsd:anyURI; 
    rdfs:subClassOf :RegionOfInterest;
    .   
@@ -925,7 +927,7 @@
 :GoMolecularFunction
    rdf:type owl:Class;
    rdfs:comment "Ontology annotation by go molecular function"^^xsd:string;
-   rdfs:label "go molecular function"^^xsd:string 
+   rdfs:label "go molecular function"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/GoMolecularFunction"^^xsd:anyURI; 
    rdfs:subClassOf :OntologyAnnotation;
    .   
@@ -933,7 +935,7 @@
 :GoBiologicalProcess
    rdf:type owl:Class;
    rdfs:comment "Ontology annotation by go biological process"^^xsd:string;
-   rdfs:label "go biological process"^^xsd:string 
+   rdfs:label "go biological process"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/GoBiologicalProcess"^^xsd:anyURI; 
    rdfs:subClassOf :OntologyAnnotation;
    .   
@@ -941,7 +943,7 @@
 :GoCellularComponent
    rdf:type owl:Class;
    rdfs:comment "Ontology annotation by go cellular component"^^xsd:string;
-   rdfs:label "go cellular component"^^xsd:string 
+   rdfs:label "go cellular component"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/GoCellularComponent"^^xsd:anyURI; 
    rdfs:subClassOf :OntologyAnnotation;
    .   
@@ -949,7 +951,7 @@
 :UniprotKeyword
    rdf:type owl:Class;
    rdfs:comment "Ontology annotation by uniprot keyword"^^xsd:string;
-   rdfs:label "uniprot keyword"^^xsd:string 
+   rdfs:label "uniprot keyword"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/UniprotKeyword"^^xsd:anyURI; 
    rdfs:subClassOf :OntologyAnnotation;
    .   
@@ -957,7 +959,7 @@
 :EnzymeClassification
    rdf:type owl:Class;
    rdfs:comment "Ontology annotation by enzyme classification"^^xsd:string;
-   rdfs:label "enzyme classification"^^xsd:string 
+   rdfs:label "enzyme classification"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/EnzymeClassification"^^xsd:anyURI; 
    rdfs:subClassOf :OntologyAnnotation;
    .   
@@ -965,7 +967,7 @@
 :Topology
    rdf:type owl:Class;
    rdfs:comment "Describes the topology of regions for transmembrane proteins that span membrane compartments."^^xsd:string;
-   rdfs:label "topology"^^xsd:string 
+   rdfs:label "topology"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/Topology"^^xsd:anyURI; 
    rdfs:subClassOf :RegionOfInterest;
    .   
@@ -973,7 +975,7 @@
 :CleavageSite
    rdf:type owl:Class;
    rdfs:comment "Cleavage site on the sequence."^^xsd:string;
-   rdfs:label "cleavage site"^^xsd:string 
+   rdfs:label "cleavage site"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/CleavageSite"^^xsd:anyURI; 
    rdfs:subClassOf :Site;
    .   
@@ -981,7 +983,7 @@
 :InteractingRegion
    rdf:type owl:Class;
    rdfs:comment "Region interacting with another macromolecule."^^xsd:string;
-   rdfs:label "interacting region"^^xsd:string 
+   rdfs:label "interacting region"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/InteractingRegion"^^xsd:anyURI; 
    rdfs:subClassOf :RegionOfInterest;
    .   
@@ -989,7 +991,7 @@
 :SubcellularLocationInfo
    rdf:type owl:Class;
    rdfs:comment "Subcellular location information of the mature protein"^^xsd:string;
-   rdfs:label "subcellular location info"^^xsd:string 
+   rdfs:label "subcellular location info"^^xsd:string;
    rdfs:seeAlso "http://www.nextprot.org/manual/SubcellularLocationInfo"^^xsd:anyURI; 
    rdfs:subClassOf :GeneralAnnotation;
    .   
@@ -1016,577 +1018,577 @@
 :hasMoleculeProcessing
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "molecule processing"^^xsd:string 
+   rdfs:label "molecule processing"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :MoleculeProcessing
+   rdfs:range :MoleculeProcessing;
    .
 
 :hasRegionOfInterest
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "region of interest"^^xsd:string 
+   rdfs:label "region of interest"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :RegionOfInterest
+   rdfs:range :RegionOfInterest;
    .
 
 :hasSite
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "site"^^xsd:string 
+   rdfs:label "site"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Site
+   rdfs:range :Site;
    .
 
 :hasAminoAcidModification
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "amino acid modification"^^xsd:string 
+   rdfs:label "amino acid modification"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :AminoAcidModification
+   rdfs:range :AminoAcidModification;
    .
 
 :hasSecondaryStructure
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "secondary structure"^^xsd:string 
+   rdfs:label "secondary structure"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :SecondaryStructure
+   rdfs:range :SecondaryStructure;
    .
 
 :hasVariant
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "variant"^^xsd:string 
+   rdfs:label "variant"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Variant
+   rdfs:range :Variant;
    .
 
 :hasMisdefinedRegion
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "misdefined region"^^xsd:string 
+   rdfs:label "misdefined region"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :MisdefinedRegion
+   rdfs:range :MisdefinedRegion;
    .
 
 :hasInitiatorMethionine
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "initiator methionine"^^xsd:string 
+   rdfs:label "initiator methionine"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :InitiatorMethionine
+   rdfs:range :InitiatorMethionine;
    .
 
 :hasSignalPeptide
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "signal peptide"^^xsd:string 
+   rdfs:label "signal peptide"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :SignalPeptide
+   rdfs:range :SignalPeptide;
    .
 
 :hasTransitPeptide
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "transit peptide"^^xsd:string 
+   rdfs:label "transit peptide"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :TransitPeptide
+   rdfs:range :TransitPeptide;
    .
 
 :hasMaturationPeptide
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "maturation peptide"^^xsd:string 
+   rdfs:label "maturation peptide"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :MaturationPeptide
+   rdfs:range :MaturationPeptide;
    .
 
 :hasMatureProtein
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "mature protein"^^xsd:string 
+   rdfs:label "mature protein"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :MatureProtein
+   rdfs:range :MatureProtein;
    .
 
 :hasDomain
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "domain"^^xsd:string 
+   rdfs:label "domain"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Domain
+   rdfs:range :Domain;
    .
 
 :hasRepeat
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "repeat"^^xsd:string 
+   rdfs:label "repeat"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Repeat
+   rdfs:range :Repeat;
    .
 
 :hasCalciumBindingRegion
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "calcium-binding region"^^xsd:string 
+   rdfs:label "calcium-binding region"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :CalciumBindingRegion
+   rdfs:range :CalciumBindingRegion;
    .
 
 :hasZincFingerRegion
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "zinc finger region"^^xsd:string 
+   rdfs:label "zinc finger region"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :ZincFingerRegion
+   rdfs:range :ZincFingerRegion;
    .
 
 :hasDnaBindingRegion
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "DNA-binding region"^^xsd:string 
+   rdfs:label "DNA-binding region"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :DnaBindingRegion
+   rdfs:range :DnaBindingRegion;
    .
 
 :hasNucleotidePhosphateBindingRegion
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "nucleotide phosphate-binding region"^^xsd:string 
+   rdfs:label "nucleotide phosphate-binding region"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :NucleotidePhosphateBindingRegion
+   rdfs:range :NucleotidePhosphateBindingRegion;
    .
 
 :hasCoiledCoilRegion
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "coiled-coil region"^^xsd:string 
+   rdfs:label "coiled-coil region"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :CoiledCoilRegion
+   rdfs:range :CoiledCoilRegion;
    .
 
 :hasShortSequenceMotif
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "short sequence motif"^^xsd:string 
+   rdfs:label "short sequence motif"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :ShortSequenceMotif
+   rdfs:range :ShortSequenceMotif;
    .
 
 :hasCompositionallyBiasedRegion
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "compositionally biased region"^^xsd:string 
+   rdfs:label "compositionally biased region"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :CompositionallyBiasedRegion
+   rdfs:range :CompositionallyBiasedRegion;
    .
 
 :hasActiveSite
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "active site"^^xsd:string 
+   rdfs:label "active site"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :ActiveSite
+   rdfs:range :ActiveSite;
    .
 
 :hasMetalIonBindingSite
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "metal ion-binding site"^^xsd:string 
+   rdfs:label "metal ion-binding site"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :MetalIonBindingSite
+   rdfs:range :MetalIonBindingSite;
    .
 
 :hasBindingSite
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "binding site"^^xsd:string 
+   rdfs:label "binding site"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :BindingSite
+   rdfs:range :BindingSite;
    .
 
 :hasNonStandardAminoAcid
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "non-standard amino acid"^^xsd:string 
+   rdfs:label "non-standard amino acid"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :NonStandardAminoAcid
+   rdfs:range :NonStandardAminoAcid;
    .
 
 :hasLipidMoietyBindingRegion
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "lipid moiety-binding region"^^xsd:string 
+   rdfs:label "lipid moiety-binding region"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :LipidMoietyBindingRegion
+   rdfs:range :LipidMoietyBindingRegion;
    .
 
 :hasGlycosylationSite
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "glycosylation site"^^xsd:string 
+   rdfs:label "glycosylation site"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :GlycosylationSite
+   rdfs:range :GlycosylationSite;
    .
 
 :hasDisulfideBond
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "disulfide bond"^^xsd:string 
+   rdfs:label "disulfide bond"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :DisulfideBond
+   rdfs:range :DisulfideBond;
    .
 
 :hasCrossLink
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "cross-link"^^xsd:string 
+   rdfs:label "cross-link"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :CrossLink
+   rdfs:range :CrossLink;
    .
 
 :hasHelix
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "helix"^^xsd:string 
+   rdfs:label "helix"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Helix
+   rdfs:range :Helix;
    .
 
 :hasTurn
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "turn"^^xsd:string 
+   rdfs:label "turn"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Turn
+   rdfs:range :Turn;
    .
 
 :hasBetaStrand
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "beta strand"^^xsd:string 
+   rdfs:label "beta strand"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :BetaStrand
+   rdfs:range :BetaStrand;
    .
 
 :hasSequenceVariant
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "sequence variant"^^xsd:string 
+   rdfs:label "sequence variant"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :SequenceVariant
+   rdfs:range :SequenceVariant;
    .
 
 :hasMutagenesisSite
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "mutagenesis site"^^xsd:string 
+   rdfs:label "mutagenesis site"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :MutagenesisSite
+   rdfs:range :MutagenesisSite;
    .
 
 :hasSequenceConflict
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "sequence conflict"^^xsd:string 
+   rdfs:label "sequence conflict"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :SequenceConflict
+   rdfs:range :SequenceConflict;
    .
 
 :hasUnsureResidue
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "unsure residue"^^xsd:string 
+   rdfs:label "unsure residue"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :UnsureResidue
+   rdfs:range :UnsureResidue;
    .
 
 :hasNonConsecutiveResidues
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "non-consecutive residues"^^xsd:string 
+   rdfs:label "non-consecutive residues"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :NonConsecutiveResidues
+   rdfs:range :NonConsecutiveResidues;
    .
 
 :hasNonTerminalResidue
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "non-terminal residue"^^xsd:string 
+   rdfs:label "non-terminal residue"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :NonTerminalResidue
+   rdfs:range :NonTerminalResidue;
    .
 
 :hasFunction
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "function"^^xsd:string 
+   rdfs:label "function"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Function
+   rdfs:range :Function;
    .
 
 :hasCatalyticActivity
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "catalytic activity"^^xsd:string 
+   rdfs:label "catalytic activity"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :CatalyticActivity
+   rdfs:range :CatalyticActivity;
    .
 
 :hasCofactor
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "cofactor"^^xsd:string 
+   rdfs:label "cofactor"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Cofactor
+   rdfs:range :Cofactor;
    .
 
 :hasEnzymeRegulation
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "enzyme regulation"^^xsd:string 
+   rdfs:label "enzyme regulation"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :EnzymeRegulation
+   rdfs:range :EnzymeRegulation;
    .
 
 :hasSubunit
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "subunit"^^xsd:string 
+   rdfs:label "subunit"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Subunit
+   rdfs:range :Subunit;
    .
 
 :hasPathway
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "pathway"^^xsd:string 
+   rdfs:label "pathway"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Pathway
+   rdfs:range :Pathway;
    .
 
 :hasSubcellularLocation
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "subcellular location"^^xsd:string 
+   rdfs:label "subcellular location"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :SubcellularLocation
+   rdfs:range :SubcellularLocation;
    .
 
 :hasTissueSpecificity
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "tissue specificity"^^xsd:string 
+   rdfs:label "tissue specificity"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :TissueSpecificity
+   rdfs:range :TissueSpecificity;
    .
 
 :hasDevelopmentalStage
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "developmental stage"^^xsd:string 
+   rdfs:label "developmental stage"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :DevelopmentalStage
+   rdfs:range :DevelopmentalStage;
    .
 
 :hasInduction
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "induction"^^xsd:string 
+   rdfs:label "induction"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Induction
+   rdfs:range :Induction;
    .
 
 :hasDomainInformation
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "domain information"^^xsd:string 
+   rdfs:label "domain information"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :DomainInformation
+   rdfs:range :DomainInformation;
    .
 
 :hasPtm
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "PTM"^^xsd:string 
+   rdfs:label "PTM"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Ptm
+   rdfs:range :Ptm;
    .
 
 :hasPolymorphism
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "polymorphism"^^xsd:string 
+   rdfs:label "polymorphism"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Polymorphism
+   rdfs:range :Polymorphism;
    .
 
 :hasDisease
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "disease"^^xsd:string 
+   rdfs:label "disease"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Disease
+   rdfs:range :Disease;
    .
 
 :hasDisruptionPhenotype
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "disruption phenotype"^^xsd:string 
+   rdfs:label "disruption phenotype"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :DisruptionPhenotype
+   rdfs:range :DisruptionPhenotype;
    .
 
 :hasAllergen
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "allergen"^^xsd:string 
+   rdfs:label "allergen"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Allergen
+   rdfs:range :Allergen;
    .
 
 :hasToxicDose
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "toxic dose"^^xsd:string 
+   rdfs:label "toxic dose"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :ToxicDose
+   rdfs:range :ToxicDose;
    .
 
 :hasBiotechnology
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "biotechnology"^^xsd:string 
+   rdfs:label "biotechnology"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Biotechnology
+   rdfs:range :Biotechnology;
    .
 
 :hasPharmaceutical
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "pharmaceutical"^^xsd:string 
+   rdfs:label "pharmaceutical"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Pharmaceutical
+   rdfs:range :Pharmaceutical;
    .
 
 :hasMiscellaneous
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "miscellaneous"^^xsd:string 
+   rdfs:label "miscellaneous"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Miscellaneous
+   rdfs:range :Miscellaneous;
    .
 
 :hasSimilarity
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "similarity"^^xsd:string 
+   rdfs:label "similarity"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Similarity
+   rdfs:range :Similarity;
    .
 
 :hasCaution
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "caution"^^xsd:string 
+   rdfs:label "caution"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Caution
+   rdfs:range :Caution;
    .
 
 :hasExpressionInfo
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "expression info"^^xsd:string 
+   rdfs:label "expression info"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :ExpressionInfo
+   rdfs:range :ExpressionInfo;
    .
 
 :hasAlignmentConflict
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "alignment conflict"^^xsd:string 
+   rdfs:label "alignment conflict"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :AlignmentConflict
+   rdfs:range :AlignmentConflict;
    .
 
 :hasCodingSequence
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "coding sequence"^^xsd:string 
+   rdfs:label "coding sequence"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :CodingSequence
+   rdfs:range :CodingSequence;
    .
 
 :hasGoMolecularFunction
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "go molecular function"^^xsd:string 
+   rdfs:label "go molecular function"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :GoMolecularFunction
+   rdfs:range :GoMolecularFunction;
    .
 
 :hasGoBiologicalProcess
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "go biological process"^^xsd:string 
+   rdfs:label "go biological process"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :GoBiologicalProcess
+   rdfs:range :GoBiologicalProcess;
    .
 
 :hasGoCellularComponent
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "go cellular component"^^xsd:string 
+   rdfs:label "go cellular component"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :GoCellularComponent
+   rdfs:range :GoCellularComponent;
    .
 
 :hasUniprotKeyword
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "uniprot keyword"^^xsd:string 
+   rdfs:label "uniprot keyword"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :UniprotKeyword
+   rdfs:range :UniprotKeyword;
    .
 
 :hasEnzymeClassification
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "enzyme classification"^^xsd:string 
+   rdfs:label "enzyme classification"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :EnzymeClassification
+   rdfs:range :EnzymeClassification;
    .
 
 :hasTopology
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "topology"^^xsd:string 
+   rdfs:label "topology"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :Topology
+   rdfs:range :Topology;
    .
 
 :hasCleavageSite
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "cleavage site"^^xsd:string 
+   rdfs:label "cleavage site"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :CleavageSite
+   rdfs:range :CleavageSite;
    .
 
 :hasInteractingRegion
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "interacting region"^^xsd:string 
+   rdfs:label "interacting region"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :InteractingRegion
+   rdfs:range :InteractingRegion;
    .
 
 :hasSubcellularLocationInfo
    a rdf:Property, owl:FunctionalProperty;
    rdfs:subPropertyOf :annotation;
-   rdfs:label "subcellular location info"^^xsd:string 
+   rdfs:label "subcellular location info"^^xsd:string; 
    rdfs:domain :Isoform ;
-   rdfs:range :SubcellularLocationInfo
+   rdfs:range :SubcellularLocationInfo;
    .
 
  
