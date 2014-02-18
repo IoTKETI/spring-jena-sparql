@@ -43,19 +43,9 @@ public class Evidences {
 	@Before
 	public void setup() {
 		m=ModelFactory.createDefaultModel();
-		m.read("expression-heavy.ttl").read("owl/np.ttl");
+		m.read("evidences-heavy.ttl").read("owl/np.ttl");
 		rdfs= ModelFactory.createRDFSModel(m);
-		
-		//
-		// preload load data
-		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-				 "PREFIX : <http://nextprot.org/rdf#> " +
-				 "SELECT * WHERE { " +
-				 "  ?tissue a :NextprotTissues . " +
-				 "}";		
-		Query query = QueryFactory.create(q);
-        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        qe.execSelect();
+
 	}
 	
 	
