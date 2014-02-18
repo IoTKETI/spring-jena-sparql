@@ -23,27 +23,11 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import evaletolab.config.WebConfig;
 
 /**
- * Use case for features queries
- * - Q3	with >=2 transmembrane regions 
- * - Q5	located in mitochondrion and that lack a transit peptide
- * - Q9	with 3 disulfide bonds and that are not hormones 
- * - Q13 with a protein kinase domain but no kinase activity 
- * - Q14 with 2 SH3 domains and 1 SH2 domain 
- * - Q15 with a PDZ domain that interact with at least 1 protein which is expressed in brain 
- * - Q16 with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain 
- * - Q18 that are acetylated and methylated and located in the nucleus 
- * - Q19 contains a signal sequence followed by a extracellular domain containing a "KRKR" motif 
- * * Q22 with no function annotated
- * * Q27 with >=1 glycosylation sites reported in PubMed:X or PubMed:Y
- * - Q32 with a coiled coil region and involved in transcription but does not contain a bZIP domain
- * - Q34 with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
- * - Q35 located in the mitochondrion and which is an enzyme
- * - Q38 with >=1 selenocysteine in their sequence
- * - Q39 with >=1 mutagenesis in a position that correspond to an annotated active site
- * - Q40 that are enzymes and with >=1 mutagenesis that "decrease" or "abolish" activity
- * - Q41 that are annotated with GO "F" terms prefixed by "Not"
- * - Q48 with >=1 variants of the type "C->" (Cys to anything else) that are linked to >=1 disease
- * - Q49 with >=1 variants of the types "A->R" or "R->A"
+ * Use case for evidences queries
+ * - Q53	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
+ * - Q57	which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
+ * - Q63	which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
+ * - Q68	with protein evidence PE=2 (transcript level)
  *  
  * @author evaleto
  *
@@ -51,7 +35,7 @@ import evaletolab.config.WebConfig;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = WebConfig.class)
-public class Features {
+public class Evidences {
 	
 	Model m;
 	InfModel rdfs;
@@ -77,50 +61,68 @@ public class Features {
 	
 	
 	/**
-	 * Q3 with >=2 transmembrane regions 
+	 * Q53	which are involved in cell adhesion according to GO with 
+	 *      an evidence not IAE and not ISS 
+	 *      - Cell adhesion [GO:0007155] 
 	 */
 	@Test
-	public void with2TransmembraneRegions(){
+	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS(){
 		// query
 		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
 				 "PREFIX : <http://nextprot.org/rdf#> " +
 				 "SELECT ?entry WHERE { " +
-				 "  ?entry  :isoform/:hasTransmembrane ?statement"+
-				 "}"+
-				 "GROUP BY ?entry HAVING(count(?statement)>=2)";			
+				 "  ?entry  :isoform/:involved/ ?statement;:in GO:0007155"+
+				 "  FILTER NOT EXISTS { ?statement :evidence/rdfs:type :IAE } "+
+				 "}";	
 	}	
-	
-	/**
-	 * Q5 located in mitochondrion and that lack a transit peptide 
-	 */
+
 	@Test
-	public void locatedInMitochondrionAndLackATransitPeptide(){
+	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_2(){
 		// query
 		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
 				 "PREFIX : <http://nextprot.org/rdf#> " +
-				 "PREFIX term: <http://nextprot.org/rdf/terminology/> ."+
 				 "SELECT ?entry WHERE { " +
-				 "  ?entry  :isoform ?isoform." +
-				 "  ?isoform/:located/rdfs:subClassOf term:SL-0173"+
-				 "  FILTER NOT EXISTS{ ?isoform/:transitpeptide/:in term:KW-0809 }"+
-				 "}"+
-				 "GROUP BY ?entry HAVING(count(?statement)>=2)";			
+				 "  ?entry  :isoform/:involved/ ?statement;:in GO:0007155."+
+				 "  ?statement :evidence/rdfs:type/owl:differentFrom :IAE;owl:differentFrom :ISS."+
+				 "}";	
+	}	
+
+	@Test
+	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_3(){
+		// query
+		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+				 "PREFIX : <http://nextprot.org/rdf#> " +
+				 "SELECT ?entry WHERE { " +
+				 "  ?entry  :isoform/:involved/ ?statement;:in GO:0007155."+
+				 "  ?statement :evidence/rdfs:type/owl:complementOf :IAE;owl:complementOf :ISS. "+
+				 "}";	
+	}	
+	
+	/**
+	 * Q57	which are located in mitochondrion with an evidence other 
+	 *      than HPA and DKFZ-GFP 
+	 */
+	@Test
+	public void locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP(){
+		// query
+		String q="";		
 
 	}	
 	
 	/**
-	 * Q9 with 3 disulfide bonds and that are not hormones 
+	 * Q63 which have >=1 RRM RNA-binding domain and either no GO "RNA binding" 
+	 *     other a GO "RNA binding" with evidence IEA or ISS 
 	 */
 	@Test
-	public void with3Disulfide(){
+	public void with1RRM_RNAbindingDomainWithEvidenceIEAorISS(){
 
 	}	
 
 	/**
-	 * Q13 with a protein kinase domain but no kinase activity
+	 * Q68 with protein evidence PE=2 (transcript level)
 	 */
 	@Test
-	public void withKinaseDomainButNotKinaseActivity(){
+	public void withProteinEvidencePE2(){
 
 	}	
 
