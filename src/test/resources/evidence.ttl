@@ -28,6 +28,8 @@
    rdfs:range :Annotation;
    .
 
+:involved owl:sameAs :hasGoBiologicalProcess.
+
 #
 # - Q68  with protein evidence PE=2 (transcript level)
 entry:NX_Q68 a :Entry;
