@@ -20,15 +20,6 @@
 #  
 #
 
-:involved
-   a rdf:Property, owl:FunctionalProperty;
-   owl:equivalentProperty :hasGoBiologicalProcess;
-   rdfs:label "functional"^^xsd:string; 
-   rdfs:domain :Isoform ;
-   rdfs:range :Annotation;
-   .
-
-:involved owl:sameAs :hasGoBiologicalProcess.
 
 #
 # - Q68  with protein evidence PE=2 (transcript level)
@@ -57,8 +48,8 @@ entry:NX_Q53 a :Entry;
   .
 
 isoform:NX_Q53-2 a :Isoform;
-  :hasGoBiologicalProcess annotation:NX_Q53-2-AN_Q53_002055;
-  :hasRegionOfInterest annotation:NX_Q53-2-AN_Q53_002154;
+  :function annotation:NX_Q53-2-AN_Q53_002055;
+  :regions annotation:NX_Q53-2-AN_Q53_002154;
   .
 annotation:NX_Q53-2-AN_Q53_002055 a :GoBiologicalProcess;
   :quality :GOLD;
@@ -81,8 +72,8 @@ entry:NX_Q53_1 a :Entry;
   .
 
 isoform:NX_Q53_1-2 a :Isoform;
-  :hasGoBiologicalProcess annotation:NX_Q53_1-2-AN_Q53_1_002055;
-  :hasGoBiologicalProcess annotation:NX_Q53_1-2-AN_Q53_1_002154;
+  :function annotation:NX_Q53_1-2-AN_Q53_1_002055;
+  :function annotation:NX_Q53_1-2-AN_Q53_1_002154;
   .
 annotation:NX_Q53_1-2-AN_Q53_1_002055 a :GoBiologicalProcess;
   :in term:GO:0007155;
@@ -110,8 +101,8 @@ entry:NX_Q53_2 a :Entry;
   .
 
 isoform:NX_Q53_2-2 a :Isoform;
-  :hasGoBiologicalProcess annotation:NX_Q53_2-2-AN_Q53_2_002055;
-  :hasGoBiologicalProcess annotation:NX_Q53_2-2-AN_Q53_2_002154;
+  :function annotation:NX_Q53_2-2-AN_Q53_2_002055;
+  :function annotation:NX_Q53_2-2-AN_Q53_2_002154;
   .
 annotation:NX_Q53_2-2-AN_Q53_2_002055 a :GoBiologicalProcess;
   :quality :GOLD;
