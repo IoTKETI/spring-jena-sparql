@@ -38,6 +38,11 @@ import evaletolab.config.WebConfig;
 @WebAppConfiguration
 @ContextConfiguration(classes = WebConfig.class)
 public class Evidences {
+	String prefix="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+			 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
+			 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
+			 "PREFIX xsd:<http://www.w3.org/2001/XMLSchema#> "+
+			 "PREFIX : <http://nextprot.org/rdf#> \n";
 	
 	Model m, schema;
 	InfModel rdfs;
@@ -69,10 +74,7 @@ public class Evidences {
 	@Test
 	public void involvedInGO0007155(){
 		// query
-		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
-				 "PREFIX : <http://nextprot.org/rdf#> " +
+		String q=prefix +
 				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
 				 "SELECT ?involvedInGO0007155 WHERE { " +
 				 "  ?involvedInGO0007155 :isoform/:function/:in term:GO:0007155"+
@@ -95,10 +97,7 @@ public class Evidences {
 	@Test
 	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS(){
 		// query
-		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
-				 "PREFIX : <http://nextprot.org/rdf#> " +
+		String q=prefix +
 				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
 				 "SELECT distinct * WHERE { " +
 				 "  ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS  :isoform/:function ?statement." +
@@ -115,10 +114,7 @@ public class Evidences {
 //	@Test
 //	public void evidence_IEA_or_ISS(){
 //		// query
-//		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-//				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-//				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
-//				 "PREFIX : <http://nextprot.org/rdf#> " +
+//		String q=prefix +
 //				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
 //				 "SELECT distinct * WHERE { " +
 //				 "  {?evidence_IEA_or_ISS :evidence/rdf:type :IEA }UNION{?evidence_IEA_or_ISS :evidence/rdf:type :ISS }"+
@@ -138,11 +134,7 @@ public class Evidences {
 	@Test
 	public void locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP(){
 		// query
-		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
-				 "PREFIX xsd:<http://www.w3.org/2001/XMLSchema#> "+
-				 "PREFIX : <http://nextprot.org/rdf#> " +
+		String q=prefix +
 				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
 				 "SELECT distinct * WHERE { " +
 				 "  ?locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP" +
