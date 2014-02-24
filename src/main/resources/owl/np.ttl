@@ -1201,6 +1201,12 @@
       ];
       .
 
+:assignedBy
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain :Evidence;
+      .
+
+
 :EXP
    rdf:type owl:Class;
    rdfs:comment "Inferred from Experiment"^^xsd:string;

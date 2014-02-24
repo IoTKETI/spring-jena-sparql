@@ -46,7 +46,10 @@ public class Evidences {
 	public void setup() {
 		m=ModelFactory.createDefaultModel();
 		schema=ModelFactory.createDefaultModel();
-		m.read("evidence.ttl").read("terminology-disease.ttl").read("publication.ttl");
+		m.read("evidence-Q53.ttl")
+		 .read("evidence-Q57.ttl")
+		 .read("terminology-disease.ttl")
+		 .read("publication.ttl");
         schema = schema.read("owl/np.ttl");
 
 //        Reasoner reasoner = ReasonerRegistry.getOWLReasoner();
@@ -87,7 +90,7 @@ public class Evidences {
 	/**
 	 * Q53	which are involved in cell adhesion according to GO with 
 	 *      an evidence not IAE and not ISS 
-	 *      - Cell adhesion [GO:0007155] 
+	 *      - Cell adhesion [GO:0007155 ] 
 	 */
 	@Test
 	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS(){
@@ -97,17 +100,33 @@ public class Evidences {
 				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
 				 "PREFIX : <http://nextprot.org/rdf#> " +
 				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-				 "SELECT ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS WHERE { " +
+				 "SELECT distinct * WHERE { " +
 				 "  ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS  :isoform/:function ?statement." +
 				 "  ?statement :in term:GO:0007155."+
 				 "  FILTER NOT EXISTS { " +
-				 "    {?statement :evidence/rdf:type :IAE }UNION{?statement :evidence/rdf:type :ISS }"+
+				 "    {?statement :evidence/rdf:type :IEA }UNION{?statement :evidence/rdf:type :ISS }"+
 				 "  } "+
 				 "}";	
 		Query query = QueryFactory.create(q);
         QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
         ResultSetFormatter.out(System.out, qe.execSelect(), query);
 	}	
+
+//	@Test
+//	public void evidence_IEA_or_ISS(){
+//		// query
+//		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+//				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
+//				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
+//				 "PREFIX : <http://nextprot.org/rdf#> " +
+//				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
+//				 "SELECT distinct * WHERE { " +
+//				 "  {?evidence_IEA_or_ISS :evidence/rdf:type :IEA }UNION{?evidence_IEA_or_ISS :evidence/rdf:type :ISS }"+
+//				 "}";	
+//		Query query = QueryFactory.create(q);
+//        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+//        ResultSetFormatter.out(System.out, qe.execSelect(), query);
+//	}	
 
 	
 
@@ -119,8 +138,23 @@ public class Evidences {
 	@Test
 	public void locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP(){
 		// query
-		String q="";		
-
+		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
+				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
+				 "PREFIX xsd:<http://www.w3.org/2001/XMLSchema#> "+
+				 "PREFIX : <http://nextprot.org/rdf#> " +
+				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
+				 "SELECT distinct * WHERE { " +
+				 "  ?locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP" +
+				 "     :isoform/:localisation ?statement." +
+				 "     ?statement :in term:SL-0173."+
+				 "  FILTER NOT EXISTS { " +
+				 "    {?statement :evidence/:assignedBy 'HPA'}UNION{?statement :evidence/:assignedBy 'DKFZ-GFP'}"+
+				 "  } "+
+				 "}";	
+		Query query = QueryFactory.create(q);
+       QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+       ResultSetFormatter.out(System.out, qe.execSelect(), query);
 	}	
 	
 	/**

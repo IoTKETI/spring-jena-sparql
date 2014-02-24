@@ -1,0 +1,95 @@
+@prefix : <http://nextprot.org/rdf#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix entry: <http://nextprot.org/rdf/entry/> .
+@prefix isoform: <http://nextprot.org/rdf/isoform/> .
+@prefix annotation: <http://nextprot.org/rdf/annotation/> .
+@prefix evidence: <http://nextprot.org/rdf/evidence/> .
+@prefix publication: <http://nextprot.org/rdf/publication/> .
+@prefix term: <http://nextprot.org/rdf/terminology/> .
+@prefix gene: <http://nextprot.org/rdf/gene/> .
+
+# Use case for evidences queries
+# - Q57  which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
+# - Q63  which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
+#  
+#
+
+
+
+
+#
+# - Q57 
+term:SL-0173 a :UniprotSubcellularLocation;
+  rdfs:label "Mitochondrion"^^xsd:string;
+  rdfs:comment "The mitochondrion is a semiautonomous, self-reproducing organelle that occurs in the cytoplasm of all cells of most, but not all, eukaryotes. Each mitochondrion is surrounded by a double limiting membrane. The inner membrane is highly invaginated, and its projections are called cristae. Mitochondria are the sites of the reactions of oxidative phosphorylation, which result in the formation of ATP. The size and coding capacity of the mitochondrial DNA varies considerably in different organisms, and encodes rRNAs, tRNAs and essential mitochondrial proteins."^^xsd:string;
+  rdfs:sameAs term:GO:0005739;
+  rdfs:sameAs term:KW-0496;
+  .  
+  
+  
+#  
+# NX_Q57 located in mitochondrion with evidences from HPA and DKFZ-GFP (!match)
+entry:NX_Q57 a :Entry;
+  :isoform isoform:NX_Q57-2;
+  :isoform isoform:NX_Q57-1;
+  .
+
+isoform:NX_Q57-2 a :Isoform;
+  :localisation annotation:NX_Q57-2-AN_Q53_002055;
+  :localisation annotation:NX_Q57-2-AN_Q53_002154;
+  .
+annotation:NX_Q57-2-AN_Q53_002055 a :SubcellularLocation;
+  :quality :GOLD;
+  :in term:SL-0173;
+  :evidence evidence:Q57-665617;
+  .      
+
+annotation:NX_Q57-2-AN_Q53_002154 a :SubcellularLocation;
+  :quality :GOLD;
+  :in term:SL-0173;
+  :evidence evidence:Q57-665618;
+  .      
+
+evidence:Q57-665617 a :IEA;
+  :negative "false"^^xsd:boolean;
+  :assignedBy "HPA";
+  .
+  
+evidence:Q57-665618 a :IC;
+  :negative "false"^^xsd:boolean;
+  :assignedBy "DKFZ-GFP";
+  .
+
+#
+# NX_Q57_1 located in mitochondrion with an evidence other than HPA and DKFZ-GFP (match)
+entry:NX_Q57_1 a :Entry;
+  :isoform isoform:NX_Q57_1-2;
+  :isoform isoform:NX_Q57_1-1;
+  .
+
+isoform:NX_Q57_1-2 a :Isoform;
+  :localisation annotation:NX_Q57_1-2-AN_Q53_1_002055;
+  :localisation annotation:NX_Q57_1-2-AN_Q53_1_002154;
+  .
+annotation:NX_Q57_1-2-AN_Q53_1_002055 a :SubcellularLocation;
+  :in term:SL-0173;
+  :evidence evidence:Q57-665617_2;
+  .      
+
+annotation:NX_Q57_1-2-AN_Q53_1_002154 a :SubcellularLocation;
+  :in term:SL-0173;
+  :evidence evidence:Q57-665617_1;
+  .      
+
+evidence:Q57-665617_1 a :ISS;
+  :negative "false"^^xsd:boolean;
+  :assignedBy "UNIPROT"^^xsd:string;
+  .
+
+evidence:Q57-665617_2 a :IC;
+  :negative "false"^^xsd:boolean;
+  .    
