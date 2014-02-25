@@ -90,7 +90,7 @@ public class Evidences {
 //        ResultSetFormatter.out(System.out, rs, query);
         int rows=0;
         while (rs.hasNext()) {
-            QuerySolution row= rs.next();
+            rs.next();
             rows++;
         }        
         assertEquals(5, rows);
@@ -109,8 +109,8 @@ public class Evidences {
 		// query
 		String q=prefix +
 				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-				 "SELECT distinct ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS WHERE { " +
-				 "  ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS  :isoform/:function ?statement." +
+				 "SELECT distinct ?entry WHERE { " +
+				 "  ?entry  :isoform/:function ?statement." +
 				 "  ?statement :in term:GO:0007155."+
 				 "  FILTER NOT EXISTS { " +
 				 "    {?statement :evidence/rdf:type :IEA }UNION{?statement :evidence/rdf:type :ISS }"+
@@ -121,7 +121,7 @@ public class Evidences {
         ResultSet rs=qe.execSelect();
         while (rs.hasNext()) {
             QuerySolution row= rs.next();
-            assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("involvedInGO0007155_WithEvidence_NotIEA_And_NotISS").toString());
+            assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("entry").toString());
         }
         
 	}	
@@ -136,8 +136,8 @@ public class Evidences {
 		// query
 		String q=prefix +
 				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-				 "SELECT distinct ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_disJointWith WHERE { " +
-				 "  ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_disJointWith  :isoform/:function ?statement." +
+				 "SELECT distinct ?entry WHERE { " +
+				 "  ?entry  :isoform/:function ?statement." +
 				 "  ?statement :in term:GO:0007155."+
 				 "  ?statement :evidence/rdf:type/owl:disjointWith :IEA,:ISS "+
 				 "}";	
@@ -146,7 +146,7 @@ public class Evidences {
         ResultSet rs=qe.execSelect();
         while (rs.hasNext()) {
             QuerySolution row= rs.next();
-            assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_disJointWith").toString());
+            assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("entry").toString());
         }
 	}	
 	
@@ -156,8 +156,8 @@ public class Evidences {
 		// query
 		String q=prefix +
 				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-				 "SELECT distinct ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_differentFrom WHERE { " +
-				 "  ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_differentFrom  :isoform/:function ?statement." +
+				 "SELECT distinct ?entry WHERE { " +
+				 "  ?entry  :isoform/:function ?statement." +
 				 "  ?statement :in term:GO:0007155."+
 				 "  ?statement :evidence/rdf:type/owl:differentFrom :IEA,:ISS "+
 				 "}";	
@@ -166,7 +166,7 @@ public class Evidences {
         ResultSet rs=qe.execSelect();
         while (rs.hasNext()) {
             QuerySolution row= rs.next();
-            assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_differentFrom").toString());
+            assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("entry").toString());
         }        
 	}		
 
@@ -185,8 +185,8 @@ public class Evidences {
 		// query
 		String q=prefix +
 				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-				 "SELECT distinct ?locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP WHERE { " +
-				 "  ?locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP" +
+				 "SELECT distinct ?entry WHERE { " +
+				 "  ?entry" +
 				 "     :isoform/:localisation ?statement." +
 				 "     ?statement :in/owl:sameAs* term:SL-0173."+
 				 "  FILTER NOT EXISTS { " +
@@ -201,18 +201,23 @@ public class Evidences {
         List<String> rows=new ArrayList<String>();
         while (rs.hasNext()) {
             QuerySolution row= rs.next();
-            rows.add(row.get("locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP").toString());
+            rows.add(row.get("entry").toString());
         }
         assertArrayEquals(expected,rows.toArray());
 	
 	}	
 	
 	/**
-	 * Q63 which have >=1 RRM RNA-binding domain and either no GO "RNA binding" 
+	 * Q63 which have >=1 RRM RNA-binding domain (DO-00581 UniprotDomain) and either no GO "RNA binding" (GO:0003723 go molecular function)
 	 *     other a GO "RNA binding" with evidence IEA or ISS 
 	 */
 	@Test
 	public void with1RRM_RNAbindingDomainWithEvidenceIEAorISS(){
+		// ?entry :isoform/:function ?statement
+		// {?statement :in DO-00581} UNION 
+		// {?statement :in term:GO:0003723;:evidence/rdf:type :IEA,:ISS}UNION
+		// {NOT EXISTS{?statement :in term:GO:0003723 }}
+		// 
 
 	}	
 
