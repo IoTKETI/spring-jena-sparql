@@ -35,78 +35,30 @@ import evaletolab.config.WebConfig;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = WebConfig.class)
-public class SPARQL_adv {
+public class Owl {
 	
 	Model m, schema;
-	InfModel rdfs;
+	InfModel owl;
 	
 	@Before
 	public void setup() {
-		m=ModelFactory.createDefaultModel().read("evidence-Q53.ttl").read("publication.ttl");
-		schema=ModelFactory.createDefaultModel().read("owl/np.ttl");;
+		m=ModelFactory.createDefaultModel().read("owl.ttl");
+		schema=ModelFactory.createDefaultModel().read("owl-schema.ttl");
         
         //
         // getTransitiveReasoner, getRDFSReasoner, getRDFSSimpleReasoner, 
         // getOWLReasoner, getOWLMiniReasoner, getOWLMicroReasoner
-        Reasoner reasoner = ReasonerRegistry.getOWLMiniReasoner();
+        Reasoner reasoner = ReasonerRegistry.getOWLMicroReasoner();
         reasoner.setParameter(ReasonerVocabulary.PROPtraceOn, false);
         reasoner.setParameter(ReasonerVocabulary.PROPderivationLogging, false);
         reasoner = reasoner.bindSchema(schema);
-        rdfs = ModelFactory.createInfModel(reasoner, m);
-	}
-
-	/**
-	 *  UNION	
-	 * 	with an evidence IAE or ISS   
-	 */
-	@Test
-	public void union_sparql_union(){
-		// query
-		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
-				 "PREFIX : <http://nextprot.org/rdf#> " +
-				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-				 "PREFIX  list: <http://jena.hpl.hp.com/ARQ/list#> "+
-				 "SELECT * WHERE { " +
-				 "  {?union_sparql_union :isoform/:function/:evidence/rdf:type :IEA}"+
-				 "UNION "+
-				 "  {?union_sparql_union :isoform/:function/:evidence/rdf:type :ISS}"+
-				 "}";	
-		
-		Query query = QueryFactory.create(q);
-        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-                
+        owl = ModelFactory.createInfModel(reasoner, m);
         
-        ResultSetFormatter.out(System.out, qe.execSelect(), query);
-	}		
 
+	}
 	
-	
-
-
 	/**
-	 * NOT IN by owl:disJointWith 	
-	 */
-	@Test
-	public void notInByDisJointWith(){
-		// query
-		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
-				 "PREFIX : <http://nextprot.org/rdf#> " +
-				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-				 "SELECT * WHERE { " +
-				 "  ?notInByDisJointWith :evidence/rdf:type ?eco." +
-				 "  ?eco owl:disjointWith :IEA"+
-				 "}";	
-		Query query = QueryFactory.create(q);
-        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        ResultSetFormatter.out(System.out, qe.execSelect(), query);
-	}		
-
-	/**
-	 * NOT IN by owl:differentFrom 	
+	 * NOT IN by using disJointWith and owl:differentFrom 	
 	 */
 	@Test
 	public void notInByDifferentFrom(){
@@ -114,19 +66,36 @@ public class SPARQL_adv {
 		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
 				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
 				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
-				 "PREFIX : <http://nextprot.org/rdf#> " +
-				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
+				 "PREFIX : <http://go.org/rdf#> " +
 				 "SELECT * WHERE { " +
-				 "  ?notInByDifferentFrom :evidence/rdf:type ?eco." +
-				 "  ?eco owl:differentFrom :IEA"+
+				 "  ?notInByDifferentFrom owl:differentFrom :A"+
 				 "}";	
 		Query query = QueryFactory.create(q);
-        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+        QueryExecution qe = QueryExecutionFactory.create(query,owl);
+        ResultSetFormatter.out(System.out, qe.execSelect(), query);
+	}	
+	
+
+	/**
+	 * NOT IN by using disJointWith and owl:differentFrom 	
+	 */
+	@Test
+	public void notInByDisjointWithA_B(){
+		// query
+		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
+				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
+				 "PREFIX : <http://go.org/rdf#> " +
+				 "SELECT * WHERE { " +
+				 "  ?notInByDisjointWithA_B owl:disjointWith :A,:B"+
+				 "}";	
+		Query query = QueryFactory.create(q);
+        QueryExecution qe = QueryExecutionFactory.create(query,owl);
         ResultSetFormatter.out(System.out, qe.execSelect(), query);
 	}	
 
 	/**
-	 * NOT IN by owl:complementOf 	
+	 * NOT IN by using disJointWith and owl:complementOf 	
 	 */
 	@Test
 	public void notInByComplementOf(){
@@ -134,14 +103,12 @@ public class SPARQL_adv {
 		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
 				 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
 				 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
-				 "PREFIX : <http://nextprot.org/rdf#> " +
-				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
+				 "PREFIX : <http://go.org/rdf#> " +
 				 "SELECT * WHERE { " +
-				 "  ?notInByComplementOf :evidence/rdfs:type ?eco." +
-				 "  ?eco owl:complementOf :IAE"+
+				 "  ?notInByComplementOf owl:complementOf :A" +
 				 "}";	
 		Query query = QueryFactory.create(q);
-        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+        QueryExecution qe = QueryExecutionFactory.create(query,owl);
         ResultSetFormatter.out(System.out, qe.execSelect(), query);
 	}	
 

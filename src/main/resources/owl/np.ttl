@@ -1200,12 +1200,10 @@
         owl:oneOf( :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD :EXP);
       ];
       .
-
-:assignedBy
-      rdf:type owl:ObjectProperty ;
-      rdfs:domain :Evidence;
-      .
-
+      
+_:x1 rdf:type owl:AllDifferent;
+    owl:distinctMembers ( :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD :EXP);
+    .      
 
 :EXP
    rdf:type owl:Class;
@@ -1213,7 +1211,7 @@
    rdfs:label "EXP"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/EXP"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :IDA
@@ -1222,7 +1220,7 @@
    rdfs:label "IDA"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/IDA"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :IPI
@@ -1231,7 +1229,7 @@
    rdfs:label "IPI"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/IPI"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :IGI
@@ -1240,7 +1238,7 @@
    rdfs:label "IGI"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/IGI"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :IEP
@@ -1249,7 +1247,7 @@
    rdfs:label "IEP"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/IEP"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :ISS
@@ -1258,7 +1256,7 @@
    rdfs:label "ISS"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/ISS"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :ISO
@@ -1267,7 +1265,7 @@
    rdfs:label "ISO"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/ISO"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :ISA
@@ -1276,7 +1274,7 @@
    rdfs:label "ISA"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/ISA"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :ISM
@@ -1285,7 +1283,7 @@
    rdfs:label "ISM"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/ISM"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISA :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :IGC
@@ -1294,7 +1292,7 @@
    rdfs:label "IGC"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/IGC"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :RCA
@@ -1303,7 +1301,7 @@
    rdfs:label "RCA"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/RCA"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :TAS
@@ -1312,7 +1310,7 @@
    rdfs:label "TAS"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/TAS"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :NAS
@@ -1321,7 +1319,7 @@
    rdfs:label "NAS"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/NAS"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :IC
@@ -1330,7 +1328,7 @@
    rdfs:label "IC"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/IC"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :ND
@@ -1339,7 +1337,7 @@
    rdfs:label "ND"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/ND"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :IEA :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :IEA, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :IEA
@@ -1348,7 +1346,7 @@
    rdfs:label "IEA"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/IEA"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :NR :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :NR, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :NR
@@ -1357,7 +1355,7 @@
    rdfs:label "NR"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/NR"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :IMP :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :IMP, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :IMP
@@ -1366,7 +1364,7 @@
    rdfs:label "IMP"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/IMP"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IBA :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IBA, :IBD, :IKR, :IRD;
    .   
 
 :IBA
@@ -1375,7 +1373,7 @@
    rdfs:label "IBA"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/IBA"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBD :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBD, :IKR, :IRD;
    .   
 
 :IBD
@@ -1384,7 +1382,7 @@
    rdfs:label "IBD"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/IBD"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IKR :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IKR, :IRD;
    .   
 
 :IKR
@@ -1393,7 +1391,7 @@
    rdfs:label "IKR"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/IKR"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IRD);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IRD;
    .   
 
 :IRD
@@ -1402,7 +1400,7 @@
    rdfs:label "IRD"^^xsd:string; 
    rdfs:seeAlso "http://www.nextprot.org/manual/IRD"^^xsd:anyURI; 
    rdfs:subClassOf :Evidence;
-   owl:disjointWith ( :EXP :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR);
+   owl:disjointWith :EXP, :IDA, :IPI, :IGI, :IEP, :ISS, :ISO, :ISA, :ISM, :IGC, :RCA, :TAS, :NAS, :IC, :ND, :IEA, :NR, :IMP, :IBA, :IBD, :IKR;
    .   
 
  

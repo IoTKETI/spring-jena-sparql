@@ -2,6 +2,9 @@ package evaletolab.rdf;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +17,7 @@ import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
+import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.InfModel;
@@ -23,7 +27,7 @@ import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.reasoner.ReasonerRegistry;
 
 import evaletolab.config.WebConfig;
-
+import static org.junit.Assert.*;
 /**
  * Use case for evidences queries
  * - Q53	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
@@ -57,11 +61,12 @@ public class Evidences {
 		 .read("publication.ttl");
         schema = schema.read("owl/np.ttl");
 
-//        Reasoner reasoner = ReasonerRegistry.getOWLReasoner();
-//        reasoner = reasoner.bindSchema(schema);
-//        rdfs = ModelFactory.createInfModel(reasoner, m);
+        //
+        // get the micro owl reasoner 
+        Reasoner reasoner = ReasonerRegistry.getOWLMicroReasoner();
+        reasoner = reasoner.bindSchema(schema);
+        rdfs = ModelFactory.createInfModel(reasoner, m);
         
-		rdfs= ModelFactory.createRDFSModel(schema, m);
 
 
 	}
@@ -81,9 +86,14 @@ public class Evidences {
 				 "}";	
 		Query query = QueryFactory.create(q);
         QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-                
-        
-        ResultSetFormatter.out(System.out, qe.execSelect(), query);
+        ResultSet rs=qe.execSelect();
+//        ResultSetFormatter.out(System.out, rs, query);
+        int rows=0;
+        while (rs.hasNext()) {
+            QuerySolution row= rs.next();
+            rows++;
+        }        
+        assertEquals(5, rows);
 	}	
 	
 
@@ -99,7 +109,7 @@ public class Evidences {
 		// query
 		String q=prefix +
 				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-				 "SELECT distinct * WHERE { " +
+				 "SELECT distinct ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS WHERE { " +
 				 "  ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS  :isoform/:function ?statement." +
 				 "  ?statement :in term:GO:0007155."+
 				 "  FILTER NOT EXISTS { " +
@@ -108,45 +118,93 @@ public class Evidences {
 				 "}";	
 		Query query = QueryFactory.create(q);
         QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        ResultSetFormatter.out(System.out, qe.execSelect(), query);
+        ResultSet rs=qe.execSelect();
+        while (rs.hasNext()) {
+            QuerySolution row= rs.next();
+            assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("involvedInGO0007155_WithEvidence_NotIEA_And_NotISS").toString());
+        }
+        
 	}	
 
-//	@Test
-//	public void evidence_IEA_or_ISS(){
-//		// query
-//		String q=prefix +
-//				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-//				 "SELECT distinct * WHERE { " +
-//				 "  {?evidence_IEA_or_ISS :evidence/rdf:type :IEA }UNION{?evidence_IEA_or_ISS :evidence/rdf:type :ISS }"+
-//				 "}";	
-//		Query query = QueryFactory.create(q);
-//        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-//        ResultSetFormatter.out(System.out, qe.execSelect(), query);
-//	}	
-
-	
-
-
 	/**
-	 * Q57	which are located in mitochondrion with an evidence other 
-	 *      than HPA and DKFZ-GFP 
+	 * Q53	which are involved in cell adhesion according to GO with 
+	 *      an evidence not IAE and not ISS 
+	 *      - Cell adhesion [GO:0007155 ] 
 	 */
 	@Test
-	public void locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP(){
+	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_disJointWith(){
 		// query
 		String q=prefix +
 				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-				 "SELECT distinct * WHERE { " +
+				 "SELECT distinct ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_disJointWith WHERE { " +
+				 "  ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_disJointWith  :isoform/:function ?statement." +
+				 "  ?statement :in term:GO:0007155."+
+				 "  ?statement :evidence/rdf:type/owl:disjointWith :IEA,:ISS "+
+				 "}";	
+		Query query = QueryFactory.create(q);
+        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+        ResultSet rs=qe.execSelect();
+        while (rs.hasNext()) {
+            QuerySolution row= rs.next();
+            assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_disJointWith").toString());
+        }
+	}	
+	
+
+	@Test
+	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_differentFrom(){
+		// query
+		String q=prefix +
+				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
+				 "SELECT distinct ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_differentFrom WHERE { " +
+				 "  ?involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_differentFrom  :isoform/:function ?statement." +
+				 "  ?statement :in term:GO:0007155."+
+				 "  ?statement :evidence/rdf:type/owl:differentFrom :IEA,:ISS "+
+				 "}";	
+		Query query = QueryFactory.create(q);
+        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+        ResultSet rs=qe.execSelect();
+        while (rs.hasNext()) {
+            QuerySolution row= rs.next();
+            assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_differentFrom").toString());
+        }        
+	}		
+
+	/**
+	 * Q57	which are located in mitochondrion with an evidence other 
+	 *      than HPA and DKFZ-GFP
+	 *      WARNING! term:SL-0173 is (this must be inferred) 
+	 *        rdfs:sameAs term:GO:0005739;
+  	 *		  rdfs:sameAs term:KW-0496; 
+	 */
+	@Test
+	public void locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP(){
+		// expected
+        String[] expected={"http://nextprot.org/rdf/entry/NX_Q57_1","http://nextprot.org/rdf/entry/NX_Q57_2"};
+        
+		// query
+		String q=prefix +
+				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
+				 "SELECT distinct ?locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP WHERE { " +
 				 "  ?locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP" +
 				 "     :isoform/:localisation ?statement." +
-				 "     ?statement :in term:SL-0173."+
+				 "     ?statement :in/owl:sameAs* term:SL-0173."+
 				 "  FILTER NOT EXISTS { " +
 				 "    {?statement :evidence/:assignedBy 'HPA'}UNION{?statement :evidence/:assignedBy 'DKFZ-GFP'}"+
 				 "  } "+
 				 "}";	
+		
 		Query query = QueryFactory.create(q);
-       QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-       ResultSetFormatter.out(System.out, qe.execSelect(), query);
+		QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+
+        ResultSet rs=qe.execSelect();
+        List<String> rows=new ArrayList<String>();
+        while (rs.hasNext()) {
+            QuerySolution row= rs.next();
+            rows.add(row.get("locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP").toString());
+        }
+        assertArrayEquals(expected,rows.toArray());
+	
 	}	
 	
 	/**

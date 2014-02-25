@@ -25,10 +25,17 @@
 # - Q57 
 term:SL-0173 a :UniprotSubcellularLocation;
   rdfs:label "Mitochondrion"^^xsd:string;
-  rdfs:comment "The mitochondrion is a semiautonomous, self-reproducing organelle that occurs in the cytoplasm of all cells of most, but not all, eukaryotes. Each mitochondrion is surrounded by a double limiting membrane. The inner membrane is highly invaginated, and its projections are called cristae. Mitochondria are the sites of the reactions of oxidative phosphorylation, which result in the formation of ATP. The size and coding capacity of the mitochondrial DNA varies considerably in different organisms, and encodes rRNAs, tRNAs and essential mitochondrial proteins."^^xsd:string;
-  rdfs:sameAs term:GO:0005739;
-  rdfs:sameAs term:KW-0496;
+  owl:sameAs term:GO:0005739;
+  owl:sameAs term:KW-0496;
   .  
+  
+term:GO:0005739 a :GoCellularComponent;
+  rdfs:label "Mitochondrion"^^xsd:string;
+  .
+  
+term:KW-0496 a :UniprotKeywords;
+  rdfs:label "Mitochondrion"^^xsd:string;
+  .
   
   
 #  
@@ -65,7 +72,7 @@ evidence:Q57-665618 a :IC;
   .
 
 #
-# NX_Q57_1 located in mitochondrion with an evidence other than HPA and DKFZ-GFP (match)
+# NX_Q57_1 located in mitochondrion (UNIPROT) with an evidence other than HPA and DKFZ-GFP (match)
 entry:NX_Q57_1 a :Entry;
   :isoform isoform:NX_Q57_1-2;
   :isoform isoform:NX_Q57_1-1;
@@ -93,3 +100,24 @@ evidence:Q57-665617_1 a :ISS;
 evidence:Q57-665617_2 a :IC;
   :negative "false"^^xsd:boolean;
   .    
+
+  #
+# NX_Q57_1 located in mitochondrion (GO) with an evidence other than HPA and DKFZ-GFP (match)
+entry:NX_Q57_2 a :Entry;
+  :isoform isoform:NX_Q57_2-2;
+  :isoform isoform:NX_Q57_2-1;
+  .
+
+isoform:NX_Q57_2-2 a :Isoform;
+  :localisation annotation:NX_Q57_2-2-AN_Q53_1_002055;
+  :localisation annotation:NX_Q57_2-2-AN_Q53_1_002154;
+  .
+annotation:NX_Q57_2-2-AN_Q53_1_002055 a :SubcellularLocation;
+  :in term:GO:0005739;
+  :evidence evidence:Q57-665617_3;
+  .      
+
+evidence:Q57-665617_3 a :ISS;
+  :negative "false"^^xsd:boolean;
+  :assignedBy "UNIPROT"^^xsd:string;
+  .

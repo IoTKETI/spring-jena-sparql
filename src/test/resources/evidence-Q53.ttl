@@ -13,11 +13,10 @@
 @prefix gene: <http://nextprot.org/rdf/gene/> .
 
 # Use case for evidences queries
-# - Q53  which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
+# - Q53  which are involved in cell adhesion according to GO with an evidence not IEA and not ISS
 # - Q68  with protein evidence PE=2 (transcript level)
 #  
 #
-
 
 #
 # - Q68  with protein evidence PE=2 (transcript level)
@@ -32,14 +31,14 @@ entry:NX_Q68
  
 
 #
-# - Q53  which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
+# - Q53  which are involved in cell adhesion according to GO with an evidence not IEA and not ISS
 term:GO:0007155 a :GoBiologicalProcess;
   rdfs:label "cell adhesion"^^xsd:string;
   rdfs:comment "The attachment of a cell, either to another cell or to an underlying substrate such as the extracellular matrix, via cell adhesion molecules."^^xsd:string;
   rdfs:subClassOf term:GO:0044763;
   .
 #  
-# NX_Q53 involved in GO:0007155 with evidence IAE and IC (!match)
+# NX_Q53 involved in GO:0007155 with evidence IEA and IC (!match)
 entry:NX_Q53 a :Entry;
   :isoform isoform:NX_Q53-2;
   :isoform isoform:NX_Q53-1;
@@ -50,7 +49,7 @@ isoform:NX_Q53-2 a :Isoform;
   :regions annotation:NX_Q53-2-AN_Q53_002154;
   .
 
-#  NX_Q53-2-AN_Q53_002055 match :IAE
+#  NX_Q53-2-AN_Q53_002055 match :IEA
 annotation:NX_Q53-2-AN_Q53_002055 a :GoBiologicalProcess;
   :quality :GOLD;
   :in term:GO:0007155;

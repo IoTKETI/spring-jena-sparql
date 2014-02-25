@@ -21,6 +21,8 @@ import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.reasoner.Reasoner;
+import com.hp.hpl.jena.reasoner.ReasonerRegistry;
 import com.hp.hpl.jena.reasoner.ValidityReport;
 import com.hp.hpl.jena.reasoner.ValidityReport.Report;
 
@@ -36,12 +38,13 @@ import evaletolab.config.WebConfig;
 @ContextConfiguration(classes = WebConfig.class)
 public class Schema {
 	
-	Model m;
+	Model m,schema;
 	InfModel rdfs;
 	
 	@Before
 	public void setup() {
-
+		schema=ModelFactory.createDefaultModel();
+		schema.read("owl/np.ttl");
 	}	
 
 	private void report(ValidityReport validity){
@@ -57,36 +60,44 @@ public class Schema {
 	}
 	
 	@Test
-	public void validateOWL(){
-		m=ModelFactory.createDefaultModel();
-		m.read("owl/np.ttl");
-		rdfs= ModelFactory.createRDFSModel(m);
-		report(rdfs.validate());		
-	
-	}	
-	
-	@Test
 	public void validateTerminology(){
 		m=ModelFactory.createDefaultModel();
-		m.read("terminology-disease.ttl").read("owl/np.ttl");
-		rdfs= ModelFactory.createRDFSModel(m);
+		m.read("terminology-disease.ttl");
+		
+        //
+        // get the micro owl reasoner 
+        Reasoner reasoner = ReasonerRegistry.getOWLMicroReasoner();
+        reasoner = reasoner.bindSchema(schema);
+        rdfs = ModelFactory.createInfModel(reasoner,m);
 		report(rdfs.validate());		
+	
 	}	
+	
+	
 
 	@Test
 	public void validatePublication(){
 		m=ModelFactory.createDefaultModel();
-		m.read("publication.ttl").read("owl/np.ttl");
-		rdfs= ModelFactory.createRDFSModel(m);
-		report(rdfs.validate());		
-	}	
+		m.read("publication.ttl");
+
+        //
+        // get the micro owl reasoner 
+        Reasoner reasoner = ReasonerRegistry.getOWLMicroReasoner();
+        reasoner = reasoner.bindSchema(schema);
+        rdfs = ModelFactory.createInfModel(reasoner,m);
+		report(rdfs.validate());		}	
 	
 	@Test
 	public void validateEvidence(){
 		m=ModelFactory.createDefaultModel();
-		m.read("evidence.ttl").read("owl/np.ttl");
-		rdfs= ModelFactory.createRDFSModel(m);
-		report(rdfs.validate());		
-	
+		m.read("evidence-Q53.ttl");
+		m.read("evidence-Q57.ttl");
+
+        //
+        // get the micro owl reasoner 
+        Reasoner reasoner = ReasonerRegistry.getOWLMicroReasoner();
+        reasoner = reasoner.bindSchema(schema);
+        rdfs = ModelFactory.createInfModel(reasoner,m);
+		report(rdfs.validate());			
 	}	
 }
