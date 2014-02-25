@@ -138,8 +138,7 @@ public class Evidences {
 				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
 				 "SELECT distinct ?entry WHERE { " +
 				 "  ?entry  :isoform/:function ?statement." +
-				 "  ?statement :in term:GO:0007155."+
-				 "  ?statement :evidence/rdf:type/owl:disjointWith :IEA,:ISS "+
+				 "  ?statement :in term:GO:0007155;:evidence/rdf:type/owl:disjointWith :IEA,:ISS"+
 				 "}";	
 		Query query = QueryFactory.create(q);
         QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
@@ -158,8 +157,7 @@ public class Evidences {
 				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
 				 "SELECT distinct ?entry WHERE { " +
 				 "  ?entry  :isoform/:function ?statement." +
-				 "  ?statement :in term:GO:0007155."+
-				 "  ?statement :evidence/rdf:type/owl:differentFrom :IEA,:ISS "+
+				 "  ?statement :in term:GO:0007155;:evidence/rdf:type/owl:differentFrom :IEA,:ISS"+
 				 "}";	
 		Query query = QueryFactory.create(q);
         QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
