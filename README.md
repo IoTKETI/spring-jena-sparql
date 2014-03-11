@@ -1,8 +1,21 @@
-Study of protein queries with spring-mvc and jena 
-=================================================
+Study of nextprot sparql queries with spring-mvc and jena 
+=========================================================
 
-This project will help to build an RDF schema by iteration and tests. The schema creation mainly focues on the user queries. 
-It demonstrates the use of spring 3.2 Java Servlet container initialization, with Jena(RDF) and Sorl(Lucene) together ready to tests our use cases.
+This project will help to build a closed world RDF schema by iteration and tests. The schema creation mainly focus on the user queries. It has nothing to do with semantic data in open world. It mainly focus on the user and understandable SPARQL queries. 
+> For example, All proteins which are located in **mitochondrion** with an evidence other than **HPA** and **DKFZ-GFP**
+```SPARQL
+  ?proteins :isoform/:located ?statement.
+    ?statement :in/:childOf term:SL-0173 #Mitochondrion ; 
+               :evidence/:assignedBy :HPA,:DKFZ-GFP
+```  
+
+
+It demonstrates the use of a triplestore (open-virtuoso) with Jena and spring-mvc. The purpose of the schema will help the user to write SPARQL with a contextual suggestion that follow this idea.
+ * user enter text: **mitochondrion**
+ * Solr will search for types: **UniprotKB (SL-0173), Go Cellular Component (GO:0005739), UniprotKW (KW-0496)**
+ * sparql introspection will suggest something smart based on the context... (TODO)
+
+
 
 * [initial rdf schema](https://github.com/evaletolab/spring-jena-sparql/tree/master/src/main/resources/owl)
 
