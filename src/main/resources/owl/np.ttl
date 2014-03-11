@@ -9,9 +9,12 @@
 @prefix isoform: <http://nextprot.org/rdf/isoform/> .
 @prefix annotation: <http://nextprot.org/rdf/annotation/> .
 @prefix evidence: <http://nextprot.org/rdf/evidence/> .
-@prefix publication: <http://nextprot.org/rdf/evidence/> .
+@prefix xref: <http://nextprot.org/rdf/xref/> .
+@prefix publication: <http://nextprot.org/rdf/publication/> .
 @prefix term: <http://nextprot.org/rdf/terminology/> .
 @prefix gene: <http://nextprot.org/rdf/gene/> .
+@prefix source: <http://nextprot.org/rdf/source/> .
+@prefix db: <http://nextprot.org/rdf/db/> .
 
 <http://np.org/rdf>
       rdf:type owl:Ontology ;
@@ -32,7 +35,30 @@
       rdfs:subClassOf owl:Thing ;
       .
 
+# quality qualifiers
+:GOLD
+      rdf:type owl:Class ;
+      rdfs:comment "High level of confidence"^^xsd:string ;
+      rdfs:subClassOf owl:Thing ;
+      owl:disJointWith :SILVER, :BRONZE;
+      .
 
+:SILVER
+      rdf:type owl:Class ;
+      rdfs:comment "Medium level of confidence"^^xsd:string ;
+      rdfs:subClassOf owl:Thing ;
+      owl:disJointWith :GOLD, :BRONZE;
+      .
+      
+:BRONZE
+      rdf:type owl:Class ;
+      rdfs:comment "Low level of confidence"^^xsd:string ;
+      rdfs:subClassOf owl:Thing ;
+      owl:disJointWith :SILVER, :GOLD;
+      .
+      
+
+      
 #TODO generate specific owl for the publication hierarchy       
 :Publication
       rdf:type owl:Class ;
@@ -47,6 +73,11 @@
       rdfs:subClassOf owl:Thing;
       owl:equivalentClass up:Concept;
       .
+      
+:subPartOf
+      a rdf:Property, owl:TransitiveProperty ;
+      .
+
   
 :EnzymeClassification
   rdf:type owl:Class ;
@@ -335,6 +366,7 @@
   rdfs:comment "Control vocabulary to describe the topology of regions for transmembrane proteins that span membrane compartments."^^xsd:string;
   rdfs:seeAlso "http://www.nextprot.org/manual/UniprotTopology"^^xsd:anyURI;
   .      
+
 #
 # Define super classes for annotations
 #
@@ -1009,9 +1041,10 @@
  
 
 :annotation
-      rdf:type owl:ObjectProperty, owl:SymmetricProperty ;
+      a rdf:Property ;
       rdfs:domain :Isoform ;
-      rdfs:range :Annotation.
+      rdfs:range :Annotation;
+      .
 
 #TODO precise which Ontology is available for this relation and list other relations depending 
 #     the ontology
@@ -1023,7 +1056,7 @@
       
       
 :processing
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "molecule processing"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1033,7 +1066,7 @@
    .
 
 :regions
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "region of interest"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1043,7 +1076,7 @@
    .
 
 :site
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "site"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1053,7 +1086,7 @@
    .
 
 :modifiedResidue
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "amino acid modification"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1063,7 +1096,7 @@
    .
 
 :structure
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "secondary structure"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1073,7 +1106,7 @@
    .
 
 :variant
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "variant"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1083,7 +1116,7 @@
    .
 
 :misdefinedRegion
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "misdefined region"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1093,7 +1126,7 @@
    .
 
 :mutation
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "mutagenesis site"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1103,7 +1136,7 @@
    .
 
 :function
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "function"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1113,7 +1146,7 @@
    .
 
 :interactions
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "subunit"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1123,7 +1156,7 @@
    .
 
 :localisation
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "subcellular location"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1133,7 +1166,7 @@
    .
 
 :expression
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "tissue specificity"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1143,7 +1176,7 @@
    .
 
 :sequence
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "domain information"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1153,7 +1186,7 @@
    .
 
 :medical
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "polymorphism"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1163,7 +1196,7 @@
    .
 
 :families
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "similarity"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1173,7 +1206,7 @@
    .
 
 :topology
-   a rdf:Property, owl:FunctionalProperty;
+   a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "topology"^^xsd:string; 
    rdfs:domain :Isoform ;
@@ -1201,9 +1234,37 @@
       ];
       .
       
+      
+:assignedBy
+      a rdf:Property, owl:FunctionalProperty ;
+      rdfs:domain :Evidence ;
+      rdfs:range :Source
+      .
+      
+:Integrated
+      rdf:type owl:Class ;
+      rdfs:comment "level of integration"^^xsd:string ;
+      owl:disjointWith :Selected,:Single;
+      .
+
+:Selected
+      rdf:type owl:Class ;
+      rdfs:comment "level of integration"^^xsd:string ;
+      owl:disjointWith :Integrated,:Single;
+      .
+
+:Single
+      rdf:type owl:Class ;
+      rdfs:comment "level of integration"^^xsd:string ;
+      owl:disjointWith :Selected,:Integrated;
+      .
+      
+      
+      
+# with this axioms you can query with : ?subject owl:differentFrom :IDA,:EXP
 _:x1 rdf:type owl:AllDifferent;
     owl:distinctMembers ( :IDA :IPI :IGI :IEP :ISS :ISO :ISA :ISM :IGC :RCA :TAS :NAS :IC :ND :IEA :NR :IMP :IBA :IBD :IKR :IRD :EXP);
-    .      
+    .   
 
 :EXP
    rdf:type owl:Class;
@@ -1404,4 +1465,545 @@ _:x1 rdf:type owl:AllDifferent;
    .   
 
  
+
+#
+# Define Expresion specialisation
+# 
+   
+:Positive
+      rdf:type owl:Class ;
+      rdfs:comment "Positive expression"^^xsd:string ;
+      owl:disjointWith :Low,:Medium,:High,:Negative;
+      .
+      
+:High
+      rdf:type owl:Class ;
+      rdfs:comment "High level of expression"^^xsd:string ;
+      rdfs:subClassOf :Positive ;
+      owl:disjointWith :Low,:Medium,:Negative,:Positive;
+      .
+
+:Medium
+      rdf:type owl:Class ;
+      rdfs:comment "High level of expression"^^xsd:string ;
+      rdfs:subClassOf :Positive ;
+      owl:disjointWith :Low,:Negative,:High,:Positive;
+      .
+:Low
+      rdf:type owl:Class ;
+      rdfs:comment "High level of expression"^^xsd:string ;
+      rdfs:subClassOf :Positive ;
+      owl:disjointWith :Negative,:Medium,:High,:Positive;
+      .
+
+:Negative
+      rdf:type owl:Class ;
+      rdfs:comment "High level of expression"^^xsd:string ;
+      owl:disjointWith :Low,:Medium,:High,:Positive;
+      .      
+
+#
+# what about not detected?
+:NotDetected owl:sameAs :Negative.
+
+
+      
+#:expressed      
+#:highlyExpressed
+#:notHighlyExpressed     
+#:notExpressed
+
+
+ #
+# Define Datasource
+# 
+:Source
+      rdf:type owl:Class ;
+      rdfs:comment "Originator of the data"^^xsd:string ;
+      rdfs:subClassOf owl:Thing;
+      .
+  
+source:Bgee
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information imported from dataBase for Gene Expression Evolution"^^xsd:string;
+  .      
+  
+source:CCDS
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Consensus CDS project"^^xsd:string;
+  .      
+  
+source:IntAct
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information generated by IntAct"^^xsd:string;
+  .      
+  
+source:EMBL-EBI
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "European Molecular Biology Laboratory / European Bioinformatics Institute"^^xsd:string;
+  .      
+  
+source:OBO
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "OBO supports community members who are developing and publishing ontologies in the biomedical domain."^^xsd:string;
+  rdfs:seeAlso "http://obofoundry.org/"^^xsd:anyURI;
+  .      
+  
+source:GO
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information generated by Gene Ontology"^^xsd:string;
+  .      
+  
+source:HPRD
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Human Protein Reference Database"^^xsd:string;
+  .      
+  
+source:String
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information generated by String"^^xsd:string;
+  .      
+  
+source:KEGG_PTW
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Link to KEGG pathways"^^xsd:string;
+  .      
+  
+source:MGI
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Data from the Mouse orthologs database"^^xsd:string;
+  .      
+  
+source:MeSH
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information generated by Medical Subject Headings"^^xsd:string;
+  .      
+  
+source:NCBI
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "National Center for Biotechnology Information"^^xsd:string;
+  .      
+  
+source:PIR
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Protein Information Resource"^^xsd:string;
+  .      
+  
+source:eVOC
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information generated by eVOC ontology"^^xsd:string;
+  .      
+  
+source:Ensembl
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information imported from Ensembl"^^xsd:string;
+  rdfs:seeAlso "http://www.ensembl.org"^^xsd:anyURI;
+  .      
+  
+source:InterPro
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information generated by InterPro"^^xsd:string;
+  .      
+  
+source:NextProt
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information generated automacally or manually by neXtProt"^^xsd:string;
+  .      
+  
+source:NextProt_integration
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Data integrated by neXtProt from various sources"^^xsd:string;
+  .      
+  
+source:PeptideAtlas
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Human peptide sequences and identifiers from PeptideAtlas"^^xsd:string;
+  .      
+  
+source:Prosite
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information generated by Prosite"^^xsd:string;
+  .      
+  
+source:PubMed
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information imported from PubMed"^^xsd:string;
+  .      
+  
+source:Uniprot
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information imported from Uniprot"^^xsd:string;
+  rdfs:seeAlso "http://www.uniprot.org"^^xsd:anyURI;
+  .      
+  
+source:AgBase
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "AgBase is a curated resource for functional analysis of agricultural plant and animal gene products."^^xsd:string;
+  rdfs:seeAlso "http://agbase.msstate.edu/"^^xsd:anyURI;
+  .      
+  
+source:BHF-UCL
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "British Heart Foundation - University College London"^^xsd:string;
+  rdfs:seeAlso "http://wiki.geneontology.org/index.php/BHF-UCL"^^xsd:anyURI;
+  .      
+  
+source:DFLAT
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Developmental FunctionaL Annotation at Tufts"^^xsd:string;
+  rdfs:seeAlso "http://dflat.cs.tufts.edu/data.htm"^^xsd:anyURI;
+  .      
+  
+source:dictyBase
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Dictyostelium discoideum"^^xsd:string;
+  rdfs:seeAlso "http://dictybase.org/"^^xsd:anyURI;
+  .      
+  
+source:GDB
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Human Genome Database"^^xsd:string;
+  rdfs:seeAlso "http://www.gdb.org"^^xsd:anyURI;
+  .      
+  
+source:GOC
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "inferred annotations from GO OBO v1.2"^^xsd:string;
+  rdfs:seeAlso "http://www.geneontology.org"^^xsd:anyURI;
+  .      
+  
+source:HGNC
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "HUGO Gene Nomenclature Committee"^^xsd:string;
+  rdfs:seeAlso "http://www.gene.ucl.ac.uk/nomenclature"^^xsd:anyURI;
+  .      
+  
+source:LIFEdb
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "LIFEdb"^^xsd:string;
+  rdfs:seeAlso "http://www.lifedb.de"^^xsd:anyURI;
+  .      
+  
+source:PINC
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Proteome Inc."^^xsd:string;
+  .      
+  
+source:RefGenome
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "GO Consortium Reference Genomes project"^^xsd:string;
+  rdfs:seeAlso "http://www.geneontology.org/GO.refgenome.shtml"^^xsd:anyURI;
+  .      
+  
+source:Roslin_Institute
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Roslin Institute"^^xsd:string;
+  rdfs:seeAlso "http://rgd.mcw.edu"^^xsd:anyURI;
+  .      
+  
+source:Cosmic
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Catalogue Of Somatic Mutations In Cancer"^^xsd:string;
+  rdfs:seeAlso "http://www.sanger.ac.uk/genetics/CGP/cosmic/"^^xsd:anyURI;
+  .      
+  
+source:dbSNP
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Short genetic variations database"^^xsd:string;
+  rdfs:seeAlso "www.ncbi.nlm.nih.gov/SNP/"^^xsd:anyURI;
+  .      
+  
+source:UniPathway
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "A resource for the exploration of metabolic pathways"^^xsd:string;
+  rdfs:seeAlso "http://www.grenoble.prabi.fr/obiwarehouse/unipathway"^^xsd:anyURI;
+  .      
+  
+source:NTNU_SB
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "NTNU_SB ontology"^^xsd:string;
+  .      
+  
+source:Dyp
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the Dyp database"^^xsd:string;
+  .      
+  
+source:GFP-cDNAEMBL
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "GFP-cDNA Localisation Project (EMBL)"^^xsd:string;
+  .      
+  
+source:Human_protein_atlas
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Expression data imported from Human protein atlas"^^xsd:string;
+  rdfs:seeAlso "http://www.proteinatlas.org"^^xsd:anyURI;
+  .      
+  
+source:Human_protein_atlas_subcellular_localization
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Subcellular localization data imported from Human protein atlas"^^xsd:string;
+  rdfs:seeAlso "http://www.proteinatlas.org"^^xsd:anyURI;
+  .      
+  
+source:MDATA_0004_2011
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted from the submission MDATA_0004_2011"^^xsd:string;
+  .      
+  
+source:PeptideAtlas_human_brain
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information generated by PeptideAtlas, project human brain"^^xsd:string;
+  .      
+  
+source:PeptideAtlas_human_plasma
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information generated by PeptideAtlas, project human plasma"^^xsd:string;
+  .      
+  
+source:PeptideAtlas_human_urine
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information generated by PeptideAtlas, project human urine"^^xsd:string;
+  .      
+  
+source:PeptideAtlas_human_others
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information generated by PeptideAtlas, project human others"^^xsd:string;
+  .      
+  
+source:PMID_18614565
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 18614565"^^xsd:string;
+  .      
+  
+source:PMID_19608861
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 19608861"^^xsd:string;
+  .      
+  
+source:PMID_20068231
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 20068231"^^xsd:string;
+  .      
+  
+source:PMID_20140087
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 20140087"^^xsd:string;
+  .      
+  
+source:PMID_20570859
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 20570859"^^xsd:string;
+  .      
+  
+source:PMID_20687582
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 20687582"^^xsd:string;
+  .      
+  
+source:PMID_20797634
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 20797634"^^xsd:string;
+  .      
+  
+source:PMID_20972266
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 20972266"^^xsd:string;
+  .      
+  
+source:PMID_21139048
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 21139048"^^xsd:string;
+  .      
+  
+source:PMID_21406692
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 21406692"^^xsd:string;
+  .      
+  
+source:PMID_21645671
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 21645671"^^xsd:string;
+  .      
+  
+source:MDATA_0023_2012
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Proteomics information extracted from the submission MDATA_0023_2012"^^xsd:string;
+  .      
+  
+source:FlyBase
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "A database for drosophila genetics and molecular biology."^^xsd:string;
+  rdfs:seeAlso "http://flybase.org/"^^xsd:anyURI;
+  .      
+  
+source:PMID_22148984
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 22148984"^^xsd:string;
+  .      
+  
+source:PMID_22199227
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 22199227"^^xsd:string;
+  .      
+  
+source:PMID_22468782
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 22468782"^^xsd:string;
+  .      
+  
+source:PMID_22865923
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 22865923"^^xsd:string;
+  .      
+  
+source:ParkinsonsUK-UCL
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Parkinsons Disease Gene Ontology Initiative"^^xsd:string;
+  .      
+  
+source:PMID_23312004
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 23312004"^^xsd:string;
+  .      
+  
+source:MDATA_0033_2013
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted from the submission MDATA_0033_2013"^^xsd:string;
+  .      
+  
+source:PMID_23584533
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 23584533"^^xsd:string;
+  .      
+  
+source:PMID_23153008
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 23153008"^^xsd:string;
+  .      
+  
+source:PMID_23266961
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 23266961"^^xsd:string;
+  .      
+  
+source:PeptideAtlas_human_kidney
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information generated by PeptideAtlas, project human liver"^^xsd:string;
+  .      
+  
+source:PeptideAtlas_human_liver
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information generated by PeptideAtlas, project human liver"^^xsd:string;
+  .      
+  
+source:MTBbase
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Collection and Refinement of Physiological Data on Mycobacterium tuberculosis"^^xsd:string;
+  rdfs:seeAlso "http://www.ark.in-berlin.de/Site/MTBbase.html"^^xsd:anyURI;
+  .      
+  
+source:WormBase
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "A comprehensive resource for genetics, genomics and biology of C. elegans and related nematodes"^^xsd:string;
+  rdfs:seeAlso "http://http://www.wormbase.org"^^xsd:anyURI;
+  .      
+  
+source:PMID_19413330
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 19413330"^^xsd:string;
+  .      
+  
+source:PMID_21890473
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 21890473"^^xsd:string;
+  .      
+  
+source:PMID_23236377
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "Information extracted form the PubMed publication 23236377"^^xsd:string;
+  .      
+  
+source:Antibodypedia
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Source;
+  rdfs:comment "A searchable database of antibodies against human proteins"^^xsd:string;
+  rdfs:seeAlso "http://www.antibodypedia.com"^^xsd:anyURI;
+  .      
  
