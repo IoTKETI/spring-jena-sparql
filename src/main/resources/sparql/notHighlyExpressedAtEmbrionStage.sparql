@@ -1,0 +1,9 @@
+#Proteins that are not highly expressed in liver at embrion stage
+PREFIX : <http://nextprot.org/rdf#>
+PREFIX term: <http://nextprot.org/rdf/terminology/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT distinct ?entry WHERE {
+  ?entry :isoform/:expression ?statement.
+  ?statement :in/:subPartOf  term:TS-0564;
+             :evidence/:expressionLevel/owl:disjointWith :High.
+}
