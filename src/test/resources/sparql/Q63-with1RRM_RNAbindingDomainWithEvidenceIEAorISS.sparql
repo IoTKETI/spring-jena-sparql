@@ -1,0 +1,6 @@
+# Q63 which have >=1 RRM RNA-binding domain (DO-00581 UniprotDomain) and either no GO "RNA binding" (GO:0003723 go molecular function)
+#     other a GO "RNA binding" with evidence IEA or ISS 
+// ?entry :isoform/:function ?statement
+// {?statement :in DO-00581} UNION 
+// {?statement :in term:GO:0003723;:evidence/rdf:type :IEA,:ISS}UNION
+// {NOT EXISTS{?statement :in term:GO:0003723 }}

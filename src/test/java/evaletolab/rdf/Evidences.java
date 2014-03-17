@@ -27,13 +27,13 @@ import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.reasoner.ReasonerRegistry;
 
 import evaletolab.config.WebConfig;
+import evaletolab.tool.FileUtil;
 import static org.junit.Assert.*;
 /**
  * Use case for evidences queries
  * - Q53	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
  * - Q57	which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
  * - Q63	which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
- * - Q68	with protein evidence PE=2 (transcript level)
  *  
  * @author evaleto
  *
@@ -42,11 +42,6 @@ import static org.junit.Assert.*;
 @WebAppConfiguration
 @ContextConfiguration(classes = WebConfig.class)
 public class Evidences {
-	String prefix="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-			 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"+
-			 "PREFIX owl: <http://www.w3.org/2002/07/owl#> "+
-			 "PREFIX xsd:<http://www.w3.org/2001/XMLSchema#> "+
-			 "PREFIX : <http://nextprot.org/rdf#> \n";
 	
 	Model m, schema;
 	InfModel rdfs;
@@ -67,35 +62,7 @@ public class Evidences {
         reasoner = reasoner.bindSchema(schema);
         rdfs = ModelFactory.createInfModel(reasoner, m);
         
-
-
 	}
-	
-	/**
-	 * PREPARE QUERY Q53
-	 * 	which are involved in cell adhesion according to GO  
-	 *      - Cell adhesion [GO:0007155] 
-	 */
-	@Test
-	public void involvedInGO0007155(){
-		// query
-		String q=prefix +
-				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-				 "SELECT ?involvedInGO0007155 WHERE { " +
-				 "  ?involvedInGO0007155 :isoform/:function/:in term:GO:0007155"+
-				 "}";	
-		Query query = QueryFactory.create(q);
-        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        ResultSet rs=qe.execSelect();
-//        ResultSetFormatter.out(System.out, rs, query);
-        int rows=0;
-        while (rs.hasNext()) {
-            rs.next();
-            rows++;
-        }        
-        assertEquals(5, rows);
-	}	
-	
 
 
 	
@@ -103,23 +70,23 @@ public class Evidences {
 	 * Q53	which are involved in cell adhesion according to GO with 
 	 *      an evidence not IAE and not ISS 
 	 *      - Cell adhesion [GO:0007155 ] 
+	 * @throws Exception 
 	 */
 	@Test
-	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS(){
-		// query
-		String q=prefix +
-				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-				 "SELECT distinct ?entry WHERE { " +
-				 "  ?entry  :isoform/:function ?statement." +
-				 "  ?statement :in term:GO:0007155."+
-				 "  FILTER NOT EXISTS { " +
-				 "    {?statement :evidence/rdf:type :IEA }UNION{?statement :evidence/rdf:type :ISS }"+
-				 "  } "+
-				 "}";	
+	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS() throws Exception{
+		//
+		// specific query
+		String q=FileUtil.getResourceAsString("sparql/Q53-1-involvedInGO0007155_WithEvidence_NotIEA_And_NotISS.sparql");
+
+		//
+		// execute query
 		Query query = QueryFactory.create(q);
         QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        ResultSet rs=qe.execSelect();
-        while (rs.hasNext()) {
+        ResultSet rs = qe.execSelect();
+
+        //
+        // validate result
+		while (rs.hasNext()) {
             QuerySolution row= rs.next();
             assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("entry").toString());
         }
@@ -130,19 +97,21 @@ public class Evidences {
 	 * Q53	which are involved in cell adhesion according to GO with 
 	 *      an evidence not IAE and not ISS 
 	 *      - Cell adhesion [GO:0007155 ] 
+	 * @throws Exception 
 	 */
 	@Test
-	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_disJointWith(){
-		// query
-		String q=prefix +
-				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-				 "SELECT distinct ?entry WHERE { " +
-				 "  ?entry  :isoform/:function ?statement." +
-				 "  ?statement :in term:GO:0007155;:evidence/rdf:type/owl:disjointWith :IEA,:ISS"+
-				 "}";	
+	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_disJointWith() throws Exception{
+		// specific query
+		String q=FileUtil.getResourceAsString("sparql/Q53-2-involvedInGO0007155_WithEvidence_NotIEA_And_NotISS.sparql");
+
+		//
+		// execute query
 		Query query = QueryFactory.create(q);
         QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        ResultSet rs=qe.execSelect();
+        ResultSet rs = qe.execSelect();
+
+        //
+        // validate result
         while (rs.hasNext()) {
             QuerySolution row= rs.next();
             assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("entry").toString());
@@ -151,17 +120,18 @@ public class Evidences {
 	
 
 	@Test
-	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_differentFrom(){
-		// query
-		String q=prefix +
-				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-				 "SELECT distinct ?entry WHERE { " +
-				 "  ?entry  :isoform/:function ?statement." +
-				 "  ?statement :in term:GO:0007155;:evidence/rdf:type/owl:differentFrom :IEA,:ISS"+
-				 "}";	
+	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_differentFrom() throws Exception{
+		// specific query
+		String q=FileUtil.getResourceAsString("sparql/Q53-1-involvedInGO0007155_WithEvidence_NotIEA_And_NotISS.sparql");
+
+		//
+		// execute query
 		Query query = QueryFactory.create(q);
         QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        ResultSet rs=qe.execSelect();
+        ResultSet rs = qe.execSelect();
+
+        //
+        // validate result
         while (rs.hasNext()) {
             QuerySolution row= rs.next();
             assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("entry").toString());
@@ -174,28 +144,24 @@ public class Evidences {
 	 *      WARNING! term:SL-0173 is (this must be inferred) 
 	 *        rdfs:sameAs term:GO:0005739;
   	 *		  rdfs:sameAs term:KW-0496; 
+	 * @throws Exception 
 	 */
 	@Test
-	public void locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP(){
+	public void locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP() throws Exception{
 		// expected
         String[] expected={"http://nextprot.org/rdf/entry/NX_Q57_1","http://nextprot.org/rdf/entry/NX_Q57_2"};
         
-		// query
-		String q=prefix +
-				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
-				 "SELECT distinct ?entry WHERE { " +
-				 "  ?entry" +
-				 "     :isoform/:localisation ?statement." +
-				 "     ?statement :in/owl:sameAs* term:SL-0173."+
-				 "  FILTER NOT EXISTS { " +
-				 "    {?statement :evidence/:assignedBy 'HPA'}UNION{?statement :evidence/:assignedBy 'DKFZ-GFP'}"+
-				 "  } "+
-				 "}";	
-		
-		Query query = QueryFactory.create(q);
-		QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+		// specific query
+		String q=FileUtil.getResourceAsString("sparql/Q57-locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP.sparql");
 
-        ResultSet rs=qe.execSelect();
+		//
+		// execute query
+		Query query = QueryFactory.create(q);
+        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+        ResultSet rs = qe.execSelect();
+
+        //
+        // validate result
         List<String> rows=new ArrayList<String>();
         while (rs.hasNext()) {
             QuerySolution row= rs.next();
@@ -208,22 +174,19 @@ public class Evidences {
 	/**
 	 * Q63 which have >=1 RRM RNA-binding domain (DO-00581 UniprotDomain) and either no GO "RNA binding" (GO:0003723 go molecular function)
 	 *     other a GO "RNA binding" with evidence IEA or ISS 
+	 * @throws Exception 
 	 */
 	@Test
-	public void with1RRM_RNAbindingDomainWithEvidenceIEAorISS(){
-		// ?entry :isoform/:function ?statement
-		// {?statement :in DO-00581} UNION 
-		// {?statement :in term:GO:0003723;:evidence/rdf:type :IEA,:ISS}UNION
-		// {NOT EXISTS{?statement :in term:GO:0003723 }}
-		// 
+	public void with1RRM_RNAbindingDomainWithEvidenceIEAorISS() throws Exception{
+		// specific query
+		String q=FileUtil.getResourceAsString("sparql/Q63-with1RRM_RNAbindingDomainWithEvidenceIEAorISS.sparql");
 
+		//
+		// execute query
+		Query query = QueryFactory.create(q);
+        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+        ResultSet rs = qe.execSelect();
 	}	
 
-	/**
-	 * Q68 with protein evidence PE=2 (transcript level)
-	 */
-	@Test
-	public void withProteinEvidencePE2(){
 
-	}	
 }

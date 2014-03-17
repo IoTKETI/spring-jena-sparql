@@ -52,9 +52,6 @@ public class Expression {
 		m=ModelFactory.createDefaultModel();
 		m.read("owl/np.ttl");
 		rdfs= ModelFactory.createRDFSModel(m);
-		
-		
-
 	}
 	
 
@@ -73,10 +70,8 @@ public class Expression {
 		// specific query
 		String q=FileUtil.getResourceAsString("sparql/notHighlyExpressedAtEmbrionStage.sparql");
 
-
 		//
 		// execute query
-		System.out.println(q);
 		Query query = QueryFactory.create(q);
 		long start=System.currentTimeMillis();
         QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
