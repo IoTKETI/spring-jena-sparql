@@ -25,16 +25,17 @@ import evaletolab.tool.FileUtil;
 
 /**
  * Use case for expression queries
- * -  Proteins that are not highly expressed in liver at embrion stage
- * -  Proteins that are expressed in liver and involved in transport
- * -  Proteins >=1000 amino acids and located in nucleus and expression in nervous system
- * -  Proteins highly expressed at IHC level in heart
- * -  Proteins highly expressed in* brain but not expressed in* testis
- * -  Proteins which are expressed in brain according to IHC but not expressed in brain according to microarray
- * -  Simple join with aggregate group field 
- * -  Proteins whose genes are on chromosome N that are expressed only a single tissue/organ
- * -  Proteins which are expressed in liver according to IHC data but not found in HUPO liver proteome set
- * -  Proteins with a PDZ domain that interact with at least 1 protein which is expressed in brain
+ * 
+ * QX  Proteins that are not highly expressed in liver at embrion stage
+ * Q4  highly expressed in brain but not expressed in testis
+ * Q11 that are expressed in liver and involved in transport 
+ * Q15 with a PDZ domain that interact with at least 1 protein which is expressed in brain 
+ * Q17 >=1000 amino acids and located in nucleus and expression in nervous system 
+ * Q20 with >=2 HPA antibodies whose genes are located on chromosome 21 and that are highly expressed at IHC level in heart
+ * Q50 which are expressed in brain according to IHC but not expressed in brain according to microarray
+ * Q77 which are expressed in liver according to IHC data but not found in HUPO liver proteome set
+ * Q83 whose genes are on chromosome N that are expressed only a single tissue/organ
+ * Q89 which are located in nucleus and expressed in brain and only have orthologs/paralogs in primates
  * 
  * @author evaleto
  *
