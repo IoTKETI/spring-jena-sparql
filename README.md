@@ -6,7 +6,7 @@ This project will help to build a closed world RDF schema by iteration and tests
 ```SPARQL
   ?proteins :isoform/:located ?statement.
     ?statement :in/:childOf term:SL-0173 #Mitochondrion ; 
-               :evidence/:assignedBy :HPA,:DKFZ-GFP
+               :evidence/:assignedBy/owl:disJointWith :HPA,:DKFZ-GFP
 ```  
 
 
