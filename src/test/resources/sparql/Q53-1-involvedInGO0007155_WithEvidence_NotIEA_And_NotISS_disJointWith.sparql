@@ -1,9 +1,0 @@
-#Q53  which are involved in cell adhesion according to GO with 
-#     an evidence not IAE and not ISS
-#using owl:disjointWith partition 
- 
-PREFIX term: <http://nextprot.org/rdf/terminology/>
-SELECT distinct ?entry WHERE {
- ?entry  :isoform/:function ?statement.
- ?statement :in term:GO:0007155;:evidence/rdf:type/owl:disjointWith :IEA,:ISS
-}

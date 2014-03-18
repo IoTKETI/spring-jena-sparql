@@ -4,6 +4,25 @@ PREFIX term: <http://nextprot.org/rdf/terminology/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 SELECT distinct ?entry WHERE {
   ?entry :isoform/:expression ?statement.
-  ?statement :in/:subPartOf  term:TS-0564;
-             :evidence/:expressionLevel/owl:disjointWith :High.
+  ?statement :in/:childOf  term:TS-0564;:evidence ?withEvidence.
+  ?withEvidence :expressionLevel/owl:disjointWith :High;:experimentalContext/:developmentalStage term:HsapDO_0000002.
 }
+
+
+#evidence:80772998 a :EXP;
+#  :negative "true"^^xsd:boolean;
+#  :quality :GOLD;
+#  :xrefdb db:HPA;
+#  :assignedBy source:Human_protein_atlas;
+#  :expressionLevel :Negative;
+#  :experimentalContext context:790;
+#  :assocType "evidence"^^xsd:string;
+#  . 
+  
+#context:1 a ExperimentalContext;
+#  :tissue term:TS-0229;
+#  :detectionMethod term:ECO_0000220;
+#  :developmentalStage term:HsapDO_0000005;
+#  :metadata publication:734cbcb0b30d49e54c098611a439dd18;
+#  .      
+  

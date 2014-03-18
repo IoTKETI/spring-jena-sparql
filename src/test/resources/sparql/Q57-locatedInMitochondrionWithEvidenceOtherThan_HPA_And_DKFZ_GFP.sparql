@@ -3,13 +3,15 @@
 # WARNING! term:SL-0173 is (this must be inferred) 
 #        rdfs:sameAs term:GO:0005739;
 #        rdfs:sameAs term:KW-0496; 
+
 PREFIX : <http://nextprot.org/rdf#>
 PREFIX term: <http://nextprot.org/rdf/terminology/>
-PREFIX source: <http://nextprot.org/rdf/source/>
+PREFIX db: <http://nextprot.org/rdf/db/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
-SELECT  ?entry    WHERE {
+SELECT  ?entry  WHERE {
   ?entry :isoform/:localisation ?statement.
-    ?statement :in/:subPartOf term:SL-0173; 
-               :evidence/:xrefdb in(db:HPA db:GFP-cDNA)
+    ?statement :in/:childOf term:SL-0173
+    FILTER NOT EXISTS{
+      ?statement :evidence/:xrefdb db:HPA,db:GFP-cDNA
+    }      
 }
-

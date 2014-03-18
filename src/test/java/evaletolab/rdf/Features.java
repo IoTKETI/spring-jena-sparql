@@ -21,6 +21,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 import evaletolab.config.WebConfig;
+import evaletolab.tool.FileUtil;
 
 /**
  * Use case for features queries
@@ -62,122 +63,116 @@ public class Features {
 		m.read("expression-heavy.ttl").read("owl/np.ttl");
 		rdfs= ModelFactory.createRDFSModel(m);
 		
-		//
-		// preload load data
-		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-				 "PREFIX : <http://nextprot.org/rdf#> " +
-				 "SELECT * WHERE { " +
-				 "  ?tissue a :NextprotTissues . " +
-				 "}";		
-		Query query = QueryFactory.create(q);
-        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        qe.execSelect();
+
 	}
 	
 	
 	
 	/**
 	 * Q3 with >=2 transmembrane regions 
+	 * @throws Exception 
 	 */
 	@Test
-	public void with2TransmembraneRegions(){
-		// query
-		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-				 "PREFIX : <http://nextprot.org/rdf#> " +
-				 "SELECT ?entry WHERE { " +
-				 "  ?entry  :isoform/:hasTransmembrane ?statement"+
-				 "}"+
-				 "GROUP BY ?entry HAVING(count(?statement)>=2)";			
+	public void with2TransmembraneRegions() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q3-with2TransmembraneRegions.sparql");
+		System.out.println(q);
 	}	
 	
 	/**
 	 * Q5 located in mitochondrion and that lack a transit peptide 
+	 * @throws Exception 
 	 */
 	@Test
-	public void locatedInMitochondrionAndLackATransitPeptide(){
-		// query
-		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-				 "PREFIX : <http://nextprot.org/rdf#> " +
-				 "PREFIX term: <http://nextprot.org/rdf/terminology/> ."+
-				 "SELECT ?entry WHERE { " +
-				 "  ?entry  :isoform ?isoform." +
-				 "  ?isoform/:located/rdfs:subClassOf term:SL-0173"+
-				 "  FILTER NOT EXISTS{ ?isoform/:transitpeptide/:in term:KW-0809 }"+
-				 "}"+
-				 "GROUP BY ?entry HAVING(count(?statement)>=2)";			
-
+	public void locatedInMitochondrionAndLackATransitPeptide() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q3-locatedInMitochondrionAndLackATransitPeptide.sparql");
+		System.out.println(q);	
 	}	
 	
 	/**
 	 * Q9 with 3 disulfide bonds and that are not hormones 
+	 * @throws Exception 
 	 */
 	@Test
-	public void with3Disulfide(){
+	public void with3DisulfideBondsAndNotHormones() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q9-with3DisulfideBondsAndNotHormones.sparql");
+		System.out.println(q);	
 
 	}	
 
 	/**
 	 * Q13 with a protein kinase domain but no kinase activity
+	 * uniprot query, database:(type:nextprot) AND annotation:(type:"positional domain" "protein kinase") NOT ec:2.7.-.-
+	 * @throws Exception 
 	 */
 	@Test
-	public void withKinaseDomainButNotKinaseActivity(){
-
+	public void withKinaseDomainButNotKinaseActivity() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q13-withKinaseDomainButNotKinaseActivity.sparql");
+		System.out.println(q);	
 	}	
 
 	/**
 	 * Q14 with 2 SH3 domains and 1 SH2 domain
+	 * uniprot query,  database:(type:nextprot) AND annotation:(type:similarity "contains 2 SH3 domains") AND annotation:(type:similarity "contains 1 SH2")
+	 * @throws Exception 
 	 */
 	@Test
-	public void with2SH3And1SHD2(){
-
+	public void with2SH3And1SHD2() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q14-with2SH3And1SHD2.sparql");
+		System.out.println(q);	
 	}	
 	
-	/**
-	 * Q15 with a PDZ domain that interact with at least 1 protein which is expressed in brain
-	 *  --> hierarchical Terms for Nervous System
-	 */
-	@Test
-	public void withPDZthatInteractWithProteinExpressedInBrain(){
 
-	}	
 	
 	/**
 	 * Q16 with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain
+	 * @throws Exception 
 	 */
 	@Test
-	public void withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature(){
-
+	public void withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q16-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
+		System.out.println(q);	
 	}
 	
 	/**
 	 * Q18 that are acetylated and methylated and located in the nucleus
+	 * uniprot query, database:(type:nextprot) AND keyword:"Acetylated [KW-0007|KW-0007]" AND keyword:"Methylated [KW-0488|KW-0488]" AND annotation:(type:location nucleus)
+	 * @throws Exception 
 	 */
 	@Test
-	public void thatAreAcetylatedAndMethylated(){
-
+	public void thatAreAcetylatedAndMethylated() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q18-thatAreAcetylatedAndMethylated.sparql");
+		System.out.println(q);	
 	}
 	
 	/**
 	 * Q19 contains a signal sequence followed by a extracellular domain containing a "KRKR" motif
+	 * @throws Exception 
 	 */
 	@Test
-	public void containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif(){
-
+	public void containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q19-containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif.sparql");
+		System.out.println(q);	
 	}
 	
 	/**
 	 * Q32 with a coiled coil region and involved in transcription but does not contain a bZIP domain
+	 * uniprot query, database:(type:nextprot) AND keyword:"Transcription [KW-0804]" AND annotation:(type:coiled) NOT annotation:(type:"positional domain" bzip)
+	 * @throws Exception 
 	 */
 	@Test
-	public void withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP(){
-
+	public void withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q32-withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP.sparql");
+		System.out.println(q);	
 	}
 	
 	/**
 	 * Q34 with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
+	 * @throws Exception 
 	 */
 	@Test
-	public void withHomeoboxAndWithVariantsInTheHomeobox(){
+	public void withHomeoboxAndWithVariantsInTheHomeobox() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q34-withHomeoboxAndWithVariantsInTheHomeobox.sparql");
+		System.out.println(q);	
 
 	}		
 	

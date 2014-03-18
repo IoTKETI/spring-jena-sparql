@@ -1,14 +1,11 @@
 package evaletolab.rdf;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -94,17 +91,19 @@ public class Expression {
 	 */
 	@Test
 	public void expressedInLiverAndInvolvedInTransport() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/expressedInLiverAndInvolvedInTransport.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q11-expressedInLiverAndInvolvedInTransport.sparql");
 		System.out.println(q);
 	}
 	
 	/**
 	 * Q17, Proteins >=1000 amino acids and located in nucleus and expression in nervous system
 	 *  --> hierarchical Terms for Nervous System
+	 * @throws Exception 
 	 */
 	@Test
-	public void expressedInNervousSystem(){
-
+	public void gt1000aaAndLocatedInNucleusAndExpressedInNervousSystem() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q17-gt1000aaAndLocatedInNucleusAndExpressedInNervousSystem.sparql");
+		System.out.println(q);
 	}		
 	
 	/**
@@ -116,7 +115,7 @@ public class Expression {
 	 */
 	@Test
 	public void highlyExpressedInBrainButNotInTestis() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/highlyExpressedInBrainButNotInTestis.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q4-highlyExpressedInBrainButNotInTestis.sparql");
 		System.out.println(q);
 	}			
 	
@@ -127,7 +126,7 @@ public class Expression {
 	 */
 	@Test
 	public void expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/highlyExpressedInBrainButNotInTestis.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q50-expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray.sparql");
 		System.out.println(q);
 	}			
 	
@@ -137,7 +136,7 @@ public class Expression {
 	 */
 	@Test
 	public void expressedOnASingleTissue() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/expressedOnASingleTissue.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q83-expressedOnASingleTissue.sparql");
 		System.out.println(q);
 	}		
 	
@@ -147,25 +146,31 @@ public class Expression {
 	 */
 	@Test
 	public void expressedInLiverAccordingIHCButNotInHUPOLiverProteom() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/expressedInLiverAccordingIHCButNotInHUPOLiverProteom.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q77-expressedInLiverAccordingIHCButNotInHUPOLiverProteom.sparql");
 		System.out.println(q);
 	}	
 	
 	/**
 	 * Q15, Proteins with a PDZ domain that interact with at least 1 protein which is expressed in brain
 	 *  --> hierarchical terms for Brain
+	 * @throws Exception 
 	 */
 	@Test
-	public void PDZdomainthatInteractWithProteinExpresssedInBrain(){
+	public void PDZdomainthatInteractWithProteinExpresssedInBrain() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q15-PDZdomainthatInteractWithProteinExpresssedInBrain.sparql");
+		System.out.println(q);
 
 	}	
 	
 	/**
 	 * Q20, Proteins with >=2 HPA antibodies whose genes are located on chromosome 21 and that are 
 	 *      highly expressed at IHC level in heart
+	 * @throws Exception 
 	 */
 	@Test
-	public void highlyExpresssedInHeartAtIHCLevel(){
+	public void HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q20-HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel.sparql");
+		System.out.println(q);
 
 	}	
 }

@@ -1,6 +1,26 @@
 # Q63 which have >=1 RRM RNA-binding domain (DO-00581 UniprotDomain) and either no GO "RNA binding" (GO:0003723 go molecular function)
 #     other a GO "RNA binding" with evidence IEA or ISS 
-// ?entry :isoform/:function ?statement
-// {?statement :in DO-00581} UNION 
-// {?statement :in term:GO:0003723;:evidence/rdf:type :IEA,:ISS}UNION
-// {NOT EXISTS{?statement :in term:GO:0003723 }}
+
+PREFIX : <http://nextprot.org/rdf#>
+PREFIX term: <http://nextprot.org/rdf/terminology/>
+SELECT distinct ?entry  WHERE {
+ ?entry :isoform ?iso
+ {
+#>=1 RRM RNA-binding domain 
+  ?iso :regions/:in term:DO-00581.
+
+#GO "RNA binding" with evidence IEA or ISS 
+  FILTER NOT EXISTS {
+   ?iso :function/:in term:GO_0003723
+  }
+ }UNION{
+#>=1 RRM RNA-binding domain 
+  ?iso :regions/:in term:DO-00581.
+
+#GO "RNA binding" with evidence IEA or ISS 
+  ?iso :function ?s1.
+  ?s1 :in term:GO_0003723;:evidence/rdf:type ?type.
+  values ?type {:IEA :ISS} 
+
+ }
+}

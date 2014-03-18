@@ -122,7 +122,7 @@ public class Evidences {
 	@Test
 	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_differentFrom() throws Exception{
 		// specific query
-		String q=FileUtil.getResourceAsString("sparql/Q53-1-involvedInGO0007155_WithEvidence_NotIEA_And_NotISS.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q53-3-involvedInGO0007155_WithEvidence_NotIEA_And_NotISS.sparql");
 
 		//
 		// execute query
