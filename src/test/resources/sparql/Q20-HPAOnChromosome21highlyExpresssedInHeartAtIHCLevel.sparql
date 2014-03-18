@@ -1,0 +1,16 @@
+# Q20, Proteins with >=2 HPA antibodies whose genes are located on chromosome 21 and that are 
+#      highly expressed at IHC level in heart
+
+# ECO_0000045 IHC        spatial pattern of protein expression evidence
+# ECO_0000104 EST        microarray RNA expression level evidence
+# ECO_0000220 microarray sequencing assay evidence
+
+PREFIX : <http://nextprot.org/rdf#>
+PREFIX term: <http://nextprot.org/rdf/terminology/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT distinct ?entry WHERE {
+# expressed in brain according to IHC
+  ?entry :isoform/:expression ?s1.
+  ?s1 :in/:childOf  term:TS-0445;:evidence/:experimentalContext/:detectionMethod term:ECO_0000045.
+}
+  

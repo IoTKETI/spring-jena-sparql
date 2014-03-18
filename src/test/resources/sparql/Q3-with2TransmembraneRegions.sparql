@@ -1,0 +1,8 @@
+#Q3 with >=2 transmembrane regions
+PREFIX : <http://nextprot.org/rdf#>
+PREFIX term: <http://nextprot.org/rdf/terminology/>
+select distinct ?entry where{
+ ?statement a :TransmembraneRegion.
+ ?entry :isoform/:topology ?statement
+}GROUP BY ?entry HAVING(count( ?statement)>=2)
+

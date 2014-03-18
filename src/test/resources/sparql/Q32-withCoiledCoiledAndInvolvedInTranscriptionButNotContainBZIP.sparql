@@ -1,0 +1,9 @@
+#Q32 with a coiled coil region and involved in transcription 
+#    but does not contain a bZIP domain
+PREFIX : <http://nextprot.org/rdf#>
+PREFIX term: <http://nextprot.org/rdf/terminology/>
+select distinct ?entry where {
+ ?entry :isoform ?iso.
+ ?iso :region ?region;:function term:GO_12345;:region term:DO-1234.
+ ?region a :CoiledCoilRegion;:in  
+}

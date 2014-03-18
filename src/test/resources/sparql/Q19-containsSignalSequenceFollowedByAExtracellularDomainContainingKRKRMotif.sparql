@@ -1,0 +1,17 @@
+#Q19 contains a signal sequence followed by a extracellular domain 
+#    containing a "KRKR" motif 
+PREFIX : <http://nextprot.org/rdf#>
+PREFIX term: <http://nextprot.org/rdf/terminology/>
+SELECT distinct ?entry WHERE {
+#KRKR motif and extracellular domain
+  ?entry :classifiedWith term:KW-0165.
+  ?entry :isoform/:topology ?topo.
+    ?topo :in term:CVTO_0002;:start ?start.
+
+# signal peptide 
+  ?entry :isoform/:processing ?signal.
+  ?signal a :SignalPeptide;:end ?end.
+  
+# motif start after signal peptide
+  FILTER(?start = ?end+1)    
+}

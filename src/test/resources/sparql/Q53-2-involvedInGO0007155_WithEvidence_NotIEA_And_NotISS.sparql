@@ -1,0 +1,12 @@
+#Q53  which are involved in cell adhesion according to GO with 
+#     an evidence not IAE and not ISS
+PREFIX : <http://nextprot.org/rdf#>
+PREFIX term: <http://nextprot.org/rdf/terminology/>
+SELECT distinct ?entry WHERE {
+ ?entry  :isoform/:function ?statement.
+ ?statement :in term:GO_0007155.
+  FILTER NOT EXISTS {
+    ?statement :evidence/rdf:type ?type
+    values ?type {:IEA :ISS}
+  }
+}

@@ -1,0 +1,10 @@
+#Q9 with 3 disulfide bonds and that are not hormones 
+PREFIX : <http://nextprot.org/rdf#>
+PREFIX term: <http://nextprot.org/rdf/terminology/>
+SELECT distinct ?entry  WHERE {
+ ?statement a :DisulfideBond.
+ ?entry :isoform/:modifiedResidue ?statement
+ FILTER NOT EXISTS {
+   ?entry :classifiedWith term:KW-0372 
+ }
+}
