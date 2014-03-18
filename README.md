@@ -16,9 +16,17 @@ It demonstrates the use of a triplestore (open-virtuoso) with Jena and spring-mv
  * sparql introspection will suggest something smart based on the context... (TODO)
 
 
-
+###RDFS and queries,
 * [initial rdf schema](https://github.com/evaletolab/spring-jena-sparql/tree/master/src/main/resources/owl)
 * [view all sparql queries](https://github.com/evaletolab/spring-jena-sparql/tree/master/src/test/resources/sparql)
+
+###Get your triplestore instance 
+* install open-virtuoso,
+* get nextprot triples, 
+* install virtuoso jena driver,
+** get the jar,
+** mvn install:install-file -Dfile=<path-to-file> -DgroupId=<group-id> \
+-DartifactId=<artifact-id> -Dversion=<version> -Dpackaging=<packaging>
 
 ###Use case for evidences
  * Q53	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
