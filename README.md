@@ -19,6 +19,12 @@ It demonstrates the use of a triplestore (open-virtuoso) with Jena and spring-mv
 
 * [initial rdf schema](https://github.com/evaletolab/spring-jena-sparql/tree/master/src/main/resources/owl)
 
+###Use case for evidences
+ * Q53	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
+ * Q57	which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
+ * Q63	which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
+ * Q68	with protein evidence PE=2 (transcript level)
+
 ###Use case for expression
  * QX  Proteins that are not highly expressed in liver at embrion stage
  * Q4  highly expressed in brain but not expressed in testis
@@ -55,11 +61,6 @@ It demonstrates the use of a triplestore (open-virtuoso) with Jena and spring-mv
 
 ###Use case for general annotations
 ###Use case for PTM queries
-###Use case for evidences
- * Q53	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
- * Q57	which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
- * Q63	which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
- * Q68	with protein evidence PE=2 (transcript level)
 
 
 It is compatible with tomcat and jetty maven plugins.
