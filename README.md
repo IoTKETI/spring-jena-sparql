@@ -18,6 +18,7 @@ It demonstrates the use of a triplestore (open-virtuoso) with Jena and spring-mv
 
 
 * [initial rdf schema](https://github.com/evaletolab/spring-jena-sparql/tree/master/src/main/resources/owl)
+* [view all sparql queries](https://github.com/evaletolab/spring-jena-sparql/tree/master/src/test/resources/sparql)
 
 ###Use case for evidences
  * Q53	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
