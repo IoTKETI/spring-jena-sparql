@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "ch.evaletolab.controller" })
+@ComponentScan(basePackages = { "evaletolab.controller" })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Override
