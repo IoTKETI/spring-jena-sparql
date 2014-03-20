@@ -73,7 +73,7 @@ public class SparqlController {
 			System.out.println(name+" - "+request.getAttribute(name));
 		}
 		
-		System.out.println(query);
+//		System.out.println(query);
 //		Enumeration<String> h=request.getHeaderNames();
 //		while(h.hasMoreElements()){
 //			String name=h.nextElement();
