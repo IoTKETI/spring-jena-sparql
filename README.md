@@ -1,12 +1,12 @@
-Study of nextprot sparql queries with spring-mvc and jena 
-=========================================================
+Advenced SPARQL for nextprot with spring-mvc, jena and virtuoso 
+===============================================================
 
 This project will help to build a closed world RDF schema by iteration and tests. The schema creation mainly focus on the user queries. It has nothing to do with semantic data in open world. It mainly focus on the user and understandable SPARQL queries. 
 > For example, All proteins which are located in **mitochondrion** with an evidence other than **HPA** and **DKFZ-GFP**
 ```SPARQL
   ?proteins :isoform/:located ?statement.
     ?statement :in/:childOf term:SL-0173 #Mitochondrion ; 
-               :withEvidence/:from/owl:disJointWith :HPA,:DKFZ-GFP
+               :withEvidence/:fromXref/owl:disJointWith :HPA,:DKFZ-GFP
 ```  
 
 
