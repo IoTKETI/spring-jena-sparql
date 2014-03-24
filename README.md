@@ -20,9 +20,8 @@ It demonstrates the use of a triplestore (open-virtuoso) with Jena and spring-mv
 * install open-virtuoso,
 * get nextprot triples, 
 * install virtuoso jena driver,
-  * get the jar,
-  * mvn install:install-file -Dfile=<path-to-file> -DgroupId=<group-id> \
--DartifactId=<artifact-id> -Dversion=<version> -Dpackaging=<packaging>
+  * [get the Jena2 provider jar](http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/VOSDownload#Jena%20Provider),
+  * mvn install:install-file -Dfile=virt_jena2.jar -DgroupId=virtuoso.jena2 -DartifactId=virtuoso-jena2 -Dversion=2.10.x -Dpackaging=jar
   * TODO
 * Configure triplestore endpoint
   * TODO
