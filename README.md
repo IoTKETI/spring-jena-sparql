@@ -42,13 +42,13 @@ $ mvn jetty:run
 
 ![SNORQL](src/main/webapp/resources/img/snorql.png "snorql frontend")
 
-###Use case for [evidences](src/test/evaletolab/rdf/Evidences.java)
+###Use case for [evidences](src/test/java/evaletolab/rdf/Evidences.java)
  * Q53	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
  * Q57	which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
  * Q63	which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
  * Q68	with protein evidence PE=2 (transcript level)
 
-###Use case for [expression](src/test/evaletolab/rdf/Expression.java)
+###Use case for [expression](src/test/java/evaletolab/rdf/Expression.java)
  * QX  Proteins that are not highly expressed in liver at embrion stage
  * Q4  highly expressed in brain but not expressed in testis
  * Q11 that are expressed in liver and involved in transport 
@@ -60,7 +60,7 @@ $ mvn jetty:run
  * Q83 whose genes are on chromosome N that are expressed only a single tissue/organ
  * Q89 which are located in nucleus and expressed in brain and only have orthologs/paralogs in primates
 
-###Use case for [sequence annotations](src/test/evaletolab/rdf/Features.java)
+###Use case for [sequence annotations](src/test/java/evaletolab/rdf/Features.java)
  * Q3	Proteins with >=2 transmembrane regions 
  * Q5	Proteins located in mitochondrion and that lack a transit peptide
  * Q9	Proteins with 3 disulfide bonds and that are not hormones 
