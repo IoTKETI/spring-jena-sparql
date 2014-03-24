@@ -1,4 +1,4 @@
-Advenced SPARQL for nextprot with spring-mvc, jena and virtuoso 
+Advanced SPARQL for nextprot with spring-mvc, jena and virtuoso 
 ===============================================================
 
 This project will help to build a closed world RDF schema by iteration and tests. The schema creation mainly focus on the user queries. It has nothing to do with semantic data in open world. It mainly focus on the user and understandable SPARQL queries. 
@@ -16,28 +16,39 @@ It demonstrates the use of a triplestore (open-virtuoso) with Jena and spring-mv
 * [initial rdf schema](https://github.com/evaletolab/spring-jena-sparql/tree/master/src/main/resources/owl)
 * [view all sparql queries](https://github.com/evaletolab/spring-jena-sparql/tree/master/src/test/resources/sparql)
 
-###Get your triplestore instance 
+###Get your own triplestore instance 
 * install open-virtuoso,
 * get nextprot triples, 
-* install virtuoso jena driver,
-  * [get the Jena2 provider jar](http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/VOSDownload#Jena%20Provider),
-  * mvn install:install-file -Dfile=virt_jena2.jar -DgroupId=virtuoso.jena2 -DartifactId=virtuoso-jena2 -Dversion=2.10.x -Dpackaging=jar
-  * TODO
+* install virtuoso jena driver ([download Jena2 provider and jdbc4  jars](http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/VOSDownload#Jena%20Provider)),
+```shell
+$mvn install:install-file -Dfile=virt_jena2.jar -DgroupId=virtuoso.jena2 -DartifactId=virtuoso-jena2 -Dversion=2.10.x
+$mvn install:install-file -Dfile=virtjdbc4.jar -DgroupId=virtuoso.jdbc4 -DartifactId=virtuoso-jdbc4 -Dversion=4.0
+```
 * Configure triplestore endpoint
-  * TODO
+  * in file [main.properties](src/main/resources/config/main.properties) configure your own virtuoso instance or use the public nextprot sparql endpoint
+  * if you dont have a virtuoso instance, you can use the public access of nextprot sparql. To do that, you have to uncomment the variable 'sparql.endpoint' in the config/main.properties
+  * __NOTE: the public access of nextprot sparql is scheduled for June 2014__
+
+###Test  your configuration: run a single TestClasse
+```shell
+$mvn -Dtest=Integrity test
+```
 
 ###Walking the graph
-> mvn jetty:run
+The class [SparqlController.java](src/main/java/evaletolab/controller/SparqlController.java) implement the basic proxying with the triplestore. With a native Jena2 driver, you have the ability to mix, in a single SPARQL query, data from your native datastore and magic properties from Jena ARQ.
+```shell
+$ mvn jetty:run
+```
 
 ![SNORQL](https://raw.github.com/evaletolab/spring-jena-sparql/master/src/main/webapp/resources/img/snorql.png "snorql frontend")
 
-###Use case for evidences
+###Use case for [evidences](https://raw.github.com/evaletolab/spring-jena-sparql/master/test/evaletolab/rdf/Evidences.java)
  * Q53	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
  * Q57	which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
  * Q63	which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
  * Q68	with protein evidence PE=2 (transcript level)
 
-###Use case for expression
+###Use case for [expression](src/test/evaletolab/rdf/Expression.java)
  * QX  Proteins that are not highly expressed in liver at embrion stage
  * Q4  highly expressed in brain but not expressed in testis
  * Q11 that are expressed in liver and involved in transport 
@@ -49,7 +60,7 @@ It demonstrates the use of a triplestore (open-virtuoso) with Jena and spring-mv
  * Q83 whose genes are on chromosome N that are expressed only a single tissue/organ
  * Q89 which are located in nucleus and expressed in brain and only have orthologs/paralogs in primates
 
-###Use case for sequence annotations
+###Use case for [sequence annotations](https://raw.github.com/evaletolab/spring-jena-sparql/master/test/evaletolab/rdf/Features.java)
  * Q3	Proteins with >=2 transmembrane regions 
  * Q5	Proteins located in mitochondrion and that lack a transit peptide
  * Q9	Proteins with 3 disulfide bonds and that are not hormones 
