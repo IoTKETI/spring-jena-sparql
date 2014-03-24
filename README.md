@@ -25,7 +25,7 @@ $mvn install:install-file -Dfile=virt_jena2.jar -DgroupId=virtuoso.jena2 -Dartif
 $mvn install:install-file -Dfile=virtjdbc4.jar -DgroupId=virtuoso.jdbc4 -DartifactId=virtuoso-jdbc4 -Dversion=4.0
 ```
 * Configure triplestore endpoint
-  * in file [main.properties](https://github.com/evaletolab/spring-jena-sparql/tree/master/src/main/resources/config/main.properties) configure your own virtuoso instance or use the public nextprot sparql endpoint
+  * in file [main.properties](src/main/resources/config/main.properties) configure your own virtuoso instance or use the public nextprot sparql endpoint
   * if you dont have a virtuoso instance, you can use the public access of nextprot sparql. To do that, you have to uncomment the variable 'sparql.endpoint' in the config/main.properties
   * __NOTE: the public access of nextprot sparql is scheduled for June 2014__
 
@@ -48,7 +48,7 @@ $ mvn jetty:run
  * Q63	which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
  * Q68	with protein evidence PE=2 (transcript level)
 
-###Use case for [expression](https://raw.github.com/evaletolab/spring-jena-sparql/master/test/evaletolab/rdf/Expression.java)
+###Use case for [expression](src/test/evaletolab/rdf/Expression.java)
  * QX  Proteins that are not highly expressed in liver at embrion stage
  * Q4  highly expressed in brain but not expressed in testis
  * Q11 that are expressed in liver and involved in transport 
