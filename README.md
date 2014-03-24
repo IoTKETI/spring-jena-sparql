@@ -35,7 +35,7 @@ $mvn -Dtest=Integrity test
 ```
 
 ###Walking the graph
-The class [SparqlController.java](src/main/java/evaletolab/controller/SparqlController.java) implement the basic proxying with the triplestore. With a native Jena2 driver, you have the ability to mix, in a single SPARQL query, data from your native datastore and magick properties from Jena ARQ.
+The class [SparqlController.java](src/main/java/evaletolab/controller/SparqlController.java) implement the basic proxying with the triplestore. With a native Jena2 driver, you have the ability to mix, in a single SPARQL query, data from your native datastore and magic properties from Jena ARQ.
 ```shell
 $ mvn jetty:run
 ```
