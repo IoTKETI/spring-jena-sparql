@@ -1,33 +1,28 @@
 package evaletolab.rdf;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Properties;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import virtuoso.jena.driver.VirtGraph;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
-import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.reasoner.Reasoner;
-import com.hp.hpl.jena.reasoner.ReasonerRegistry;
 
 import evaletolab.config.WebConfig;
-import static org.junit.Assert.*;
 /**
  * Use case for intigrity queries
  * - count Entries 
@@ -44,13 +39,36 @@ import static org.junit.Assert.*;
 @ContextConfiguration(classes = WebConfig.class)
 public class Integrity {
 
-	private String endpoint="http://cactusprime:4040/bigdata/sparql";
+	@Autowired
+	private Properties config;
+	
+	private String endpoint;
 	
 	Model model, schema;
-	InfModel rdfs;
+	boolean isNative=false;
 	
 	@Before
-	public void setup() {
+	public void setup() throws Exception {
+		
+
+		//
+		// trying to use virtuoso with the native driver 
+		if (config.containsKey("virtuoso.url")){
+
+			
+			VirtGraph graph = new VirtGraph("http://nextprot.org/rdf", 
+					config.getProperty("virtuoso.url"), 
+					config.getProperty("virtuoso.user"), 
+					config.getProperty("virtuoso.password")
+			);
+			model=ModelFactory.createModelForGraph(graph);
+			isNative=true;
+			return;
+		}
+		
+		//
+		// else we use the apsql endpoint (that doesn't support ARQ)
+		endpoint=config.getProperty("sparql.endpoint");
 	}
 	
 	
@@ -81,7 +99,6 @@ public class Integrity {
 		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-//        int rows=0;while (rs.hasNext()) {rs.next();rows++;}
         
         assertTrue("countEntries (20'130)",rs.next().get("c").asLiteral().getInt()>=20130);
 	}	
@@ -100,6 +117,7 @@ public class Integrity {
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         assertTrue("countGenes (22'715)",rs.next().get("c").asLiteral().getInt()>=22715);
+        
 
 	}
 	
@@ -177,7 +195,7 @@ public class Integrity {
  				"PREFIX term: <http://nextprot.org/rdf/terminology/>\n" + 
 				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + 
 				"SELECT (count(distinct ?entry)as ?c) WHERE {\n" + 
-				"  ?entry :isoform/:annotation/:in/:subPartOf  term:TS-0564.\n" + 
+				"  ?entry :isoform/:annotation/:in/:childOf  term:TS-0564.\n" + 
 				"}";	
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -196,7 +214,7 @@ public class Integrity {
  				"PREFIX term: <http://nextprot.org/rdf/terminology/>\n" + 
 				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + 
 				"SELECT (count(distinct ?entry)as ?c) WHERE {\n" + 
-				"  ?entry :isoform/:annotation/:in/:subPartOf  term:TS-0564.\n" + 
+				"  ?entry :isoform/:annotation/:in/:childOf  term:TS-0564.\n" + 
 				"}";	
 
 		QueryExecution qe = createQueryExecution(q);

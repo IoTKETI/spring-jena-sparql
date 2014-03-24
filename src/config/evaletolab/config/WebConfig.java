@@ -1,10 +1,13 @@
 package evaletolab.config;
 
+import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -66,4 +69,18 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		messageSource.setCacheSeconds(0);
 		return messageSource;
 	}
+	
+	@Bean(name="config")
+	public PropertiesFactoryBean propertiesFactoryBean(){
+		PropertiesFactoryBean property= new PropertiesFactoryBean();
+		
+//		Resource[] resources = new ClassPathResource[ ]
+//				    { new ClassPathResource( "foo.properties" ) };
+		
+		Resource location=new ClassPathResource("config/main.properties");
+		property.setLocation(location);
+		property.setIgnoreResourceNotFound(true);
+		return property;
+	}
+		
 }
