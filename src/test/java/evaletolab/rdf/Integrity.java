@@ -37,50 +37,17 @@ import evaletolab.config.WebConfig;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = WebConfig.class)
-public class Integrity {
+public class Integrity extends TripleStore{
 
 	@Autowired
 	private Properties config;
 	
-	private String endpoint;
-	
-	Model model, schema;
-	boolean isNative=false;
-	
 	@Before
 	public void setup() throws Exception {
-		
-
 		//
-		// trying to use virtuoso with the native driver 
-		if (config.containsKey("virtuoso.url")){
-
-			
-			VirtGraph graph = new VirtGraph("http://nextprot.org/rdf", 
-					config.getProperty("virtuoso.url"), 
-					config.getProperty("virtuoso.user"), 
-					config.getProperty("virtuoso.password")
-			);
-			model=ModelFactory.createModelForGraph(graph);
-			isNative=true;
-			return;
-		}
-		
-		//
-		// else we use the apsql endpoint (that doesn't support ARQ)
-		endpoint=config.getProperty("sparql.endpoint");
+		// open session in triplestore
+		open();
 	}
-	
-	
-
-	private QueryExecution createQueryExecution(String query){
-		if(model!=null){
-			Query q = QueryFactory.create(query);
-	        return QueryExecutionFactory.create(q,model);			
-		}
-		return QueryExecutionFactory.sparqlService(endpoint,query);
-	}
-	
 	
 	
 	/**

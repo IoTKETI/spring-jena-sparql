@@ -1,8 +1,11 @@
 package evaletolab.rdf;
 
+import java.util.Properties;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -40,17 +43,18 @@ import evaletolab.tool.FileUtil;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = WebConfig.class)
-public class Expression {
+public class Expression extends TripleStore{
 	
-	Model m;
-	InfModel rdfs;
+	@Autowired
+	private Properties config;
 	
 	@Before
-	public void setup() {
-		m=ModelFactory.createDefaultModel();
-		m.read("owl/np.ttl");
-		rdfs= ModelFactory.createRDFSModel(m);
+	public void setup() throws Exception {
+		//
+		// open session in triplestore
+		open();
 	}
+	
 	
 
 	
@@ -70,14 +74,10 @@ public class Expression {
 
 		//
 		// execute query
-		Query query = QueryFactory.create(q);
-		long start=System.currentTimeMillis();
-        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
+		QueryExecution qe = createQueryExecution(q);
         ResultSet rs = qe.execSelect();
         //
         // check ResultSet content
-        System.out.println("notHiglyExpressed "+(System.currentTimeMillis()-start)+" ms");
-        ResultSetFormatter.out(System.out, rs, query);	
 	}	
 	
 	
@@ -92,7 +92,10 @@ public class Expression {
 	@Test
 	public void expressedInLiverAndInvolvedInTransport() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q11-expressedInLiverAndInvolvedInTransport.sparql");
-		System.out.println(q);
+		//
+		// execute query
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs = qe.execSelect();
 	}
 	
 	/**
@@ -103,7 +106,10 @@ public class Expression {
 	@Test
 	public void gt1000aaAndLocatedInNucleusAndExpressedInNervousSystem() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q17-gt1000aaAndLocatedInNucleusAndExpressedInNervousSystem.sparql");
-		System.out.println(q);
+		//
+		// execute query
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs = qe.execSelect();
 	}		
 	
 	/**
@@ -116,7 +122,10 @@ public class Expression {
 	@Test
 	public void highlyExpressedInBrainButNotInTestis() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q4-highlyExpressedInBrainButNotInTestis.sparql");
-		System.out.println(q);
+		//
+		// execute query
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs = qe.execSelect();
 	}			
 	
 	/**
@@ -127,7 +136,10 @@ public class Expression {
 	@Test
 	public void expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q50-expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray.sparql");
-		System.out.println(q);
+		//
+		// execute query
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs = qe.execSelect();
 	}			
 	
 	/**
@@ -137,7 +149,10 @@ public class Expression {
 	@Test
 	public void expressedOnASingleTissue() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q83-expressedOnASingleTissue.sparql");
-		System.out.println(q);
+		//
+		// execute query
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs = qe.execSelect();
 	}		
 	
 	/**
@@ -147,7 +162,10 @@ public class Expression {
 	@Test
 	public void expressedInLiverAccordingIHCButNotInHUPOLiverProteom() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q77-expressedInLiverAccordingIHCButNotInHUPOLiverProteom.sparql");
-		System.out.println(q);
+		//
+		// execute query
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs = qe.execSelect();
 	}	
 	
 	/**
@@ -158,7 +176,10 @@ public class Expression {
 	@Test
 	public void PDZdomainthatInteractWithProteinExpresssedInBrain() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q15-PDZdomainthatInteractWithProteinExpresssedInBrain.sparql");
-		System.out.println(q);
+		//
+		// execute query
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs = qe.execSelect();
 
 	}	
 	
@@ -170,7 +191,10 @@ public class Expression {
 	@Test
 	public void HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q20-HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel.sparql");
-		System.out.println(q);
+		//
+		// execute query
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs = qe.execSelect();
 
 	}	
 }

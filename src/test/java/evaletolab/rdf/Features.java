@@ -2,9 +2,12 @@ package evaletolab.rdf;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Properties;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -52,18 +55,16 @@ import evaletolab.tool.FileUtil;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = WebConfig.class)
-public class Features {
+public class Features extends TripleStore{
 	
-	Model m;
-	InfModel rdfs;
+	@Autowired
+	private Properties config;
 	
 	@Before
-	public void setup() {
-		m=ModelFactory.createDefaultModel();
-		m.read("expression-heavy.ttl").read("owl/np.ttl");
-		rdfs= ModelFactory.createRDFSModel(m);
-		
-
+	public void setup() throws Exception {
+		//
+		// open session in triplestore
+		open();
 	}
 	
 	
@@ -75,7 +76,8 @@ public class Features {
 	@Test
 	public void with2TransmembraneRegions() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q3-with2TransmembraneRegions.sparql");
-		System.out.println(q);
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
 	}	
 	
 	/**
@@ -85,7 +87,8 @@ public class Features {
 	@Test
 	public void locatedInMitochondrionAndLackATransitPeptide() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q3-locatedInMitochondrionAndLackATransitPeptide.sparql");
-		System.out.println(q);	
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
 	}	
 	
 	/**
@@ -95,7 +98,8 @@ public class Features {
 	@Test
 	public void with3DisulfideBondsAndNotHormones() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q9-with3DisulfideBondsAndNotHormones.sparql");
-		System.out.println(q);	
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
 
 	}	
 
@@ -107,7 +111,8 @@ public class Features {
 	@Test
 	public void withKinaseDomainButNotKinaseActivity() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q13-withKinaseDomainButNotKinaseActivity.sparql");
-		System.out.println(q);	
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
 	}	
 
 	/**
@@ -118,7 +123,8 @@ public class Features {
 	@Test
 	public void with2SH3And1SHD2() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q14-with2SH3And1SHD2.sparql");
-		System.out.println(q);	
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
 	}	
 	
 
@@ -130,7 +136,8 @@ public class Features {
 	@Test
 	public void withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q16-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
-		System.out.println(q);	
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
 	}
 	
 	/**
@@ -141,7 +148,8 @@ public class Features {
 	@Test
 	public void thatAreAcetylatedAndMethylated() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q18-thatAreAcetylatedAndMethylated.sparql");
-		System.out.println(q);	
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
 	}
 	
 	/**
@@ -151,7 +159,8 @@ public class Features {
 	@Test
 	public void containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q19-containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif.sparql");
-		System.out.println(q);	
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
 	}
 	
 	/**
@@ -162,7 +171,8 @@ public class Features {
 	@Test
 	public void withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q32-withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP.sparql");
-		System.out.println(q);	
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
 	}
 	
 	/**
@@ -172,15 +182,76 @@ public class Features {
 	@Test
 	public void withHomeoboxAndWithVariantsInTheHomeobox() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q34-withHomeoboxAndWithVariantsInTheHomeobox.sparql");
-		System.out.println(q);	
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
 
 	}		
 	
 	/**
 	 * Q38 with >=1 selenocysteine in their sequence
+	 * @throws Exception 
 	 */
 	@Test
-	public void withSelenocysteineInTheirSequence(){
-
+	public void withSelenocysteineInTheirSequence() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q38.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
 	}		
+	
+	/**
+	 * Q39 with >=1 mutagenesis in a position that correspond to an annotated active site
+	 * @throws Exception 
+	 */
+	@Test
+	public void with1MutagenesisInAPositionThatCorrespondToAnAnnotatedActiveSite() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q39.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+	}		
+
+	/**
+	 * Q40 that are enzymes and with >=1 mutagenesis that "decrease" or "abolish" activity
+	 * @throws Exception 
+	 */
+	@Test
+	public void tahtAreEnzymesAndWith1mutagenesisThatDecreaseOrAbolishActivity() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q40.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+	}		
+	
+	/**
+	 * Q41 that are annotated with GO "F" terms prefixed by "Not"
+	 * @throws Exception 
+	 */
+	@Test
+	public void thatAreAnnotatedWithGO_F_termsPrefixedByNot() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q41.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+	}		
+	
+	
+	/**
+	 * Q48 with >=1 variants of the type "C->" (Cys to anything else) that are linked to >=1 disease
+	 * @throws Exception 
+	 */
+	@Test
+	public void with1VariantOfType_CtoAnythingElse_thatAreTo1Disease() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q48.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+	}		
+	
+	/**
+	 * Q49 with >=1 variants of the types "A->R" or "R->A"
+	 * @throws Exception 
+	 */
+	@Test
+	public void with1VariantOfTheTypesA_R_or_R_A() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q49.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+	}		
+
 }
