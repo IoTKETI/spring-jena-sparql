@@ -4,10 +4,12 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -41,27 +43,16 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = WebConfig.class)
-public class Evidences {
-	
-	Model m, schema;
-	InfModel rdfs;
+public class Evidences extends TripleStore{
+
+	@Autowired
+	private Properties config;
 	
 	@Before
-	public void setup() {
-		m=ModelFactory.createDefaultModel();
-		schema=ModelFactory.createDefaultModel();
-		m.read("evidence-Q53.ttl")
-		 .read("evidence-Q57.ttl")
-		 .read("terminology-disease.ttl")
-		 .read("publication.ttl");
-        schema = schema.read("owl/np.ttl");
-
-        //
-        // get the micro owl reasoner 
-        Reasoner reasoner = ReasonerRegistry.getOWLMicroReasoner();
-        reasoner = reasoner.bindSchema(schema);
-        rdfs = ModelFactory.createInfModel(reasoner, m);
-        
+	public void setup() throws Exception {
+		//
+		// open session in triplestore
+		open();
 	}
 
 
@@ -80,10 +71,8 @@ public class Evidences {
 
 		//
 		// execute query
-		Query query = QueryFactory.create(q);
-        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        ResultSet rs = qe.execSelect();
-
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
         //
         // validate result
 		while (rs.hasNext()) {
@@ -106,10 +95,8 @@ public class Evidences {
 
 		//
 		// execute query
-		Query query = QueryFactory.create(q);
-        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        ResultSet rs = qe.execSelect();
-
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
         //
         // validate result
         while (rs.hasNext()) {
@@ -126,9 +113,8 @@ public class Evidences {
 
 		//
 		// execute query
-		Query query = QueryFactory.create(q);
-        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        ResultSet rs = qe.execSelect();
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
 
         //
         // validate result
@@ -156,9 +142,8 @@ public class Evidences {
 
 		//
 		// execute query
-		Query query = QueryFactory.create(q);
-        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        ResultSet rs = qe.execSelect();
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
 
         //
         // validate result
@@ -183,9 +168,8 @@ public class Evidences {
 
 		//
 		// execute query
-		Query query = QueryFactory.create(q);
-        QueryExecution qe = QueryExecutionFactory.create(query,rdfs);
-        ResultSet rs = qe.execSelect();
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
 	}	
 
 
