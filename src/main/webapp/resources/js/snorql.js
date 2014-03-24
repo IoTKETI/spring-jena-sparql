@@ -114,26 +114,30 @@ function Snorql() {
         
    	    var exp = /^\s*(?:PREFIX\s+\w*:\s+<[^>]*>\s*)*(\w+)\s*.*/i;
    	    var match = exp.exec(querytext);
+   	    
    	    if (match) {
 	        if (match[1].toUpperCase() == 'ASK') {
 	        	service.setOutput('boolean');
 	        	var successFunc = function(value) {
-	                dummy.displayBooleanResult(value, resultTitle);
+	                dummy.displayBooleanResult(value, resultTitle, (new Date().getTime() - startQuery));
 	            };
 	        } else if (match[1].toUpperCase() == 'CONSTRUCT' || match[1].toUpperCase() == 'DESCRIBE'){ // construct describe
 	    		service.setOutput('rdf'); // !json
 	    		var successFunc = function(model) {
-	                dummy.displayRDFResult(model, resultTitle);
+	                dummy.displayRDFResult(model, resultTitle, (new Date().getTime() - startQuery));
 	            };
 	        } else {
 	        	service.setRequestHeader('Accept', 'application/sparql-results+json,*/*');
 	        	service.setOutput('json');
 	        	var successFunc = function(json) {
-	        		dummy.displayJSONResult(json, resultTitle);
+	        		dummy.displayJSONResult(json, resultTitle, (new Date().getTime() - startQuery));
 	        	};
 	        }
    	    }
    	    
+   	    var startQuery = new Date().getTime();
+      	document.getElementById("time").innerHTML="searching ...";     	    
+
         service.query(query, {
             success: successFunc,
             failure: function(report) {
@@ -261,7 +265,8 @@ function Snorql() {
         this._display(pre, 'result');
     }
 
-    this.displayBooleanResult = function(value, resultTitle) {
+    this.displayBooleanResult = function(value, resultTitle, time) {
+      	document.getElementById("time").innerHTML="<p>computed in "+(time/1000.0)+" <b>[s]</b> (0)</p>";     	    
         var div = document.createElement('div');
         var title = document.createElement('h2');
         title.appendChild(document.createTextNode(resultTitle));
@@ -274,7 +279,8 @@ function Snorql() {
         this._updateGraph(this._graph); // refresh links in new result
     }
     
-    this.displayRDFResult = function(model, resultTitle) {
+    this.displayRDFResult = function(model, resultTitle, time) {
+      	document.getElementById("time").innerHTML="<p>computed in "+(time/1000.0)+" <b>[s]</b> (0)</p>";     	    
         var div = document.createElement('div');
         var title = document.createElement('h2');
         title.appendChild(document.createTextNode(resultTitle));
@@ -284,7 +290,8 @@ function Snorql() {
         this._updateGraph(this._graph); // refresh links in new result - necessary for boolean?
     }
     
-    this.displayJSONResult = function(json, resultTitle) {
+    this.displayJSONResult = function(json, resultTitle, time) {
+      	document.getElementById("time").innerHTML="<p>computed in "+(time/1000.0)+" <b>[s]</b> (0)</p>";     	    
         var div = document.createElement('div');
         var title = document.createElement('h2');
         title.appendChild(document.createTextNode(resultTitle));

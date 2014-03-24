@@ -64,7 +64,7 @@
       </div></form>
       <div>
         <textarea name="query" rows="9" cols="80" id="querytext"></textarea>
-        Results:
+        Results: <div id="time"></div>
         <select id="selectoutput" onchange="snorql.updateOutputMode()">
           <option selected="selected" value="browse">Browse</option>
           <option value="json">as JSON</option>
