@@ -10,11 +10,7 @@ This project will help to build a closed world RDF schema by iteration and tests
 ```  
 
 
-It demonstrates the use of a triplestore (open-virtuoso) with Jena and spring-mvc. The purpose of the schema will help the user to write SPARQL with a contextual suggestion that follow this idea.
- * user enter text: **mitochondrion**
- * Solr will search for types: **UniprotKB (SL-0173), Go Cellular Component (GO:0005739), UniprotKW (KW-0496)**
- * sparql introspection will suggest something smart based on the context... (TODO)
-
+It demonstrates the use of a triplestore (open-virtuoso) with Jena and spring-mvc. The purpose of the schema will help the user to write SPARQL with a contextual introspection.
 
 ###RDFS and queries,
 * [initial rdf schema](https://github.com/evaletolab/spring-jena-sparql/tree/master/src/main/resources/owl)
@@ -24,9 +20,17 @@ It demonstrates the use of a triplestore (open-virtuoso) with Jena and spring-mv
 * install open-virtuoso,
 * get nextprot triples, 
 * install virtuoso jena driver,
-** get the jar,
-** mvn install:install-file -Dfile=<path-to-file> -DgroupId=<group-id> \
+  * get the jar,
+  * mvn install:install-file -Dfile=<path-to-file> -DgroupId=<group-id> \
 -DartifactId=<artifact-id> -Dversion=<version> -Dpackaging=<packaging>
+  * TODO
+* Configure triplestore endpoint
+  * TODO
+
+###Walking the graph
+> mvn jetty:run
+
+![SNORQL](https://raw.github.com/evaletolab/spring-jena-sparql/master/src/main/webapp/resources/img/snorql.png "snorql frontend")
 
 ###Use case for evidences
  * Q53	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
