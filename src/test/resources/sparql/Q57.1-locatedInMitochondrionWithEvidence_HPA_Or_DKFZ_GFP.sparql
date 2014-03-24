@@ -11,6 +11,6 @@ PREFIX owl: <http://www.w3.org/2002/07/owl#>
 SELECT  ?entry   WHERE {
   ?entry :isoform/:localisation ?statement.
     ?statement :in/:childOf term:SL-0173;
-               :evidence/:xrefdb ?source.
+               :evidence/:fromXref ?source.
   VALUES ?source { db:HPA db:GFP-cDNA}
 }

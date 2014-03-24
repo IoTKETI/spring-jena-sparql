@@ -12,7 +12,7 @@ SELECT distinct ?entry WHERE {
 #evidence:80772998 a :EXP;
 #  :negative "true"^^xsd:boolean;
 #  :quality :GOLD;
-#  :xrefdb db:HPA;
+#  :fromXref db:HPA;
 #  :assignedBy source:Human_protein_atlas;
 #  :expressionLevel :Negative;
 #  :experimentalContext context:790;
