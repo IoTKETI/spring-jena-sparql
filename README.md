@@ -44,19 +44,19 @@ $ mvn jetty:run
 
 ###Use case for [evidences](src/test/java/evaletolab/rdf/Evidences.java)
  * [Q53](src/test/resources/sparql/Q53-1-involvedInGO0007155_WithEvidence_NotIEA_And_NotISS.sparql)	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
- * Q57	which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
- * Q63	which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
+ * [Q57](src/test/resources/sparql/Q57-locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP.sparql)	which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
+ * [Q63](src/test/resources/sparql/Q63-with1RRM_RNAbindingDomainWithEvidenceIEAorISS.sparql)	which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
  * Q68	with protein evidence PE=2 (transcript level)
 
 ###Use case for [expression](src/test/java/evaletolab/rdf/Expression.java)
  * QX  Proteins that are not highly expressed in liver at embrion stage
- * Q4  highly expressed in brain but not expressed in testis
- * Q11 that are expressed in liver and involved in transport 
- * Q15 with a PDZ domain that interact with at least 1 protein which is expressed in brain 
- * Q17 >=1000 amino acids and located in nucleus and expression in nervous system 
- * Q20 with >=2 HPA antibodies whose genes are located on chromosome 21 and that are highly expressed at IHC level in heart
- * Q50 which are expressed in brain according to IHC but not expressed in brain according to microarray
- * Q77 which are expressed in liver according to IHC data but not found in HUPO liver proteome set
+ * [Q4](src/test/resources/sparql/Q4-highlyExpressedInBrainButNotInTestis.sparql)  highly expressed in brain but not expressed in testis
+ * [Q11](src/test/resources/sparql/Q11-expressedInLiverAndInvolvedInTransport.sparql) that are expressed in liver and involved in transport 
+ * Q[15](src/test/resources/sparql/Q15-PDZdomainthatInteractWithProteinExpresssedInBrain.sparql) with a PDZ domain that interact with at least 1 protein which is expressed in brain 
+ * [Q17](src/test/resources/sparql/Q17-gt1000aaAndLocatedInNucleusAndExpressedInNervousSystem.sparql) >=1000 amino acids and located in nucleus and expression in nervous system 
+ * [Q20](src/test/resources/sparql/Q20-HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel.sparql) with >=2 HPA antibodies whose genes are located on chromosome 21 and that are highly expressed at IHC level in heart
+ * [Q50](src/test/resources/sparql/Q50-expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray.sparql) which are expressed in brain according to IHC but not expressed in brain according to microarray
+ * [Q77](src/test/resources/sparql/Q77-expressedInLiverAccordingIHCButNotInHUPOLiverProteom.sparql) which are expressed in liver according to IHC data but not found in HUPO liver proteome set
  * Q83 whose genes are on chromosome N that are expressed only a single tissue/organ
  * Q89 which are located in nucleus and expressed in brain and only have orthologs/paralogs in primates
 
