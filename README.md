@@ -46,7 +46,6 @@ $ mvn jetty:run
 * [Q53](src/test/resources/sparql/Q53-1-involvedInGO0007155_WithEvidence_NotIEA_And_NotISS.sparql)	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
 * [Q57](src/test/resources/sparql/Q57-locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP.sparql)	which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
 * [Q63](src/test/resources/sparql/Q63-with1RRM_RNAbindingDomainWithEvidenceIEAorISS.sparql)	which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
-* Q68	with protein evidence PE=2 (transcript level)
 
 ###Use case for [expression](src/test/java/evaletolab/rdf/Expression.java)
 * QX  Proteins that are not highly expressed in liver at embrion stage
@@ -70,8 +69,7 @@ $ mvn jetty:run
 * [Q16](src/test/resources/sparql/Q16-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql) Proteins with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain 
 * [Q18](src/test/resources/sparql/Q18-thatAreAcetylatedAndMethylated.sparql) Proteins that are acetylated and methylated and located in the nucleus 
 * [Q19](src/test/resources/sparql/Q19-containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif.sparql) Proteins contains a signal sequence followed by a extracellular domain containing a "KRKR" motif 
- * Q22 Proteins with no function annotated
- * Q27 Proteins with >=1 glycosylation sites reported in PubMed:X or PubMed:Y
+* Q27 Proteins with >=1 glycosylation sites reported in PubMed:X or PubMed:Y
 * [Q32](src/test/resources/sparql/Q32-withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP.sparql) Proteins with a coiled coil region and involved in transcription but does not contain a bZIP domain
 * [Q34](src/test/resources/sparql/Q34-withHomeoboxAndWithVariantsInTheHomeobox.sparql) Proteins with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
 * [Q35](src/test/resources/sparql/Q35.sparql) Proteins located in the mitochondrion and which is an enzyme
@@ -83,6 +81,10 @@ $ mvn jetty:run
 * [Q49](src/test/resources/sparql/Q49.sparql) Proteins with >=1 variants of the types "A->R" or "R->A"
 
 ###Use case for general annotations
+* [Q68](src/test/resources/sparql/Q68.sparql)	with protein evidence PE=2 (transcript level)
+* [Q22](src/test/resources/sparql/Q22.sparql) Proteins with no function annotated
+* [Q65](src/test/resources/sparql/Q65.sparql) Proteins with >1 catalytic activity 
+* [Q73](src/test/resources/sparql/Q73.sparql) Proteins with no domain 
 ###Use case for PTM queries
 
 
