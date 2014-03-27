@@ -1,10 +1,8 @@
-# Q48 with >=1 variants of the type "C->" (Cys to anything else) 
-#     that are linked to >=1 disease
-# medical, 
-#     is oneOf (:Biotechnology :Disease :Pharmaceutical :Polymorphism )
+# Q40 that are enzymes and with >=1 mutagenesis that "decrease" or "abolish" activity 
 PREFIX : <http://nextprot.org/rdf#>
-SELECT distinct ?entry ?v ?disease WHERE  {
-  ?entry :isoform ?iso.
-  ?iso :variant ?statement;:medical ?disease.
-  ?statement :original 'C'^^xsd:string;:variation ?v
+SELECT distinct ?entry ?comment WHERE  {
+  ?entry :classifiedWith/rdf:type :EnzymeClassification. 
+  ?entry :isoform/:mutation ?statement.
+    ?statement rdf:type :MutagenesisSite;rdfs:comment ?comment
+  FILTER regex(?comment, '(decrease|abolish).*activity','i')
 }
