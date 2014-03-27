@@ -129,7 +129,8 @@ function Snorql() {
 	        } else {
 	        	service.setRequestHeader('Accept', 'application/sparql-results+json,*/*');
 	        	service.setOutput('json');
-	        	var successFunc = function(json) {
+	        	var successFunc = function(json, data) {
+	        		console.log(json,data)
 	        		dummy.displayJSONResult(json, resultTitle, (new Date().getTime() - startQuery));
 	        	};
 	        }
@@ -291,10 +292,16 @@ function Snorql() {
     }
     
     this.displayJSONResult = function(json, resultTitle, time) {
-      	document.getElementById("time").innerHTML="<p>computed in "+(time/1000.0)+" <b>[s]</b> (0)</p>";     	    
+    	if (!json.results){
+    		document.getElementById("time").innerHTML="";
+    		this.displayErrorMessage(json)
+    		return;
+    	}
+    	var len=json.results.bindings.length||0;
+      	document.getElementById("time").innerHTML=len+" <p>computed in "+(time/1000.0)+" <b>[s]</b> (0)</p>";     	    
         var div = document.createElement('div');
         var title = document.createElement('h2');
-        title.appendChild(document.createTextNode(resultTitle));
+        title.appendChild(document.createTextNode("ERROR"));
         div.appendChild(title);
         if (json.results.bindings.length == 0) {
             var p = document.createElement('p');

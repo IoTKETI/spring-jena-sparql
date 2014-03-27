@@ -278,10 +278,10 @@ SPARQL.Query = function(service, priority) {
 			try {
 				return eval('(' + text + ')');
 			} catch (e) {
-				return null;
+				return text;
 			}
 		}
-		return null; 
+		return text; 
 	}	
 	
 	function clone_obj(o) { 

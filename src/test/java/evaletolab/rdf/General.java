@@ -20,6 +20,7 @@ import evaletolab.tool.FileUtil;
  * Use case for features queries
  * Q68 with protein evidence PE=2 (transcript level)
  * Q22 Proteins with no function annotated
+ * Q64 which are enzymes with an incomplete EC number
  * Q65 Proteins with >1 catalytic activity 
  * Q73 Proteins with no domain 
  *  
@@ -64,7 +65,17 @@ public class General extends TripleStore{
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
 	}	
-		
+
+	/**
+	 * Q64 which are enzymes with an incomplete EC number 
+	 * @throws Exception 
+	 */
+	@Test
+	public void whichAreEnzymesWithAnIncompleteEC() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q64.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+	}		
 	/**
 	 * Q65 Proteins with >1 catalytic activity 
 	 * @throws Exception 
