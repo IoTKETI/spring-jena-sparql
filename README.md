@@ -80,7 +80,7 @@ $ mvn jetty:run
 * [Q48](src/test/resources/sparql/Q48.sparql) Proteins with >=1 variants of the type "C->" (Cys to anything else) that are linked to >=1 disease
 * [Q49](src/test/resources/sparql/Q49.sparql) Proteins with >=1 variants of the types "A->R" or "R->A"
 
-###Use case for general annotations
+###Use case for general [annotations](src/test/java/evaletolab/rdf/General.java)
 * [Q68](src/test/resources/sparql/Q68.sparql)	with protein evidence PE=2 (transcript level)
 * [Q22](src/test/resources/sparql/Q22.sparql) Proteins with no function annotated
 * [Q65](src/test/resources/sparql/Q65.sparql) Proteins with >1 catalytic activity 
