@@ -301,7 +301,7 @@ function Snorql() {
       	document.getElementById("time").innerHTML=len+" <p>computed in "+(time/1000.0)+" <b>[s]</b> (0)</p>";     	    
         var div = document.createElement('div');
         var title = document.createElement('h2');
-        title.appendChild(document.createTextNode("ERROR"));
+        title.appendChild(document.createTextNode(resultTitle));
         div.appendChild(title);
         if (json.results.bindings.length == 0) {
             var p = document.createElement('p');
