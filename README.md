@@ -57,24 +57,24 @@ $ mvn jetty:run
  * [Q20](src/test/resources/sparql/Q20-HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel.sparql) with >=2 HPA antibodies whose genes are located on chromosome 21 and that are highly expressed at IHC level in heart
  * [Q50](src/test/resources/sparql/Q50-expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray.sparql) which are expressed in brain according to IHC but not expressed in brain according to microarray
  * [Q77](src/test/resources/sparql/Q77-expressedInLiverAccordingIHCButNotInHUPOLiverProteom.sparql) which are expressed in liver according to IHC data but not found in HUPO liver proteome set
- * Q83 whose genes are on chromosome N that are expressed only a single tissue/organ
+ * [Q83](./src/test/resources/sparql/Q83-expressedOnASingleTissue.sparql) whose genes are on chromosome N that are expressed only a single tissue/organ
  * Q89 which are located in nucleus and expressed in brain and only have orthologs/paralogs in primates
 
 ###Use case for [sequence annotations](src/test/java/evaletolab/rdf/Features.java)
- * Q3	Proteins with >=2 transmembrane regions 
- * Q5	Proteins located in mitochondrion and that lack a transit peptide
- * Q9	Proteins with 3 disulfide bonds and that are not hormones 
- * Q13 Proteins with a protein kinase domain but no kinase activity 
- * Q14 Proteins with 2 SH3 domains and 1 SH2 domain 
- * Q15 Proteins with a PDZ domain that interact with at least 1 protein which is expressed in brain 
- * Q16 Proteins with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain 
- * Q18 Proteins that are acetylated and methylated and located in the nucleus 
- * Q19 Proteins contains a signal sequence followed by a extracellular domain containing a "KRKR" motif 
+ * [Q3](src/test/resources/sparql/Q3-with2TransmembraneRegions.sparql)	Proteins with >=2 transmembrane regions 
+ * [Q5](src/test/resources/sparql/Q5-locatedInMitochondrionAndLackATransitPeptide.sparql)	Proteins located in mitochondrion and that lack a transit peptide
+ * [Q9](src/test/resources/sparql/Q9-with3DisulfideBondsAndNotHormones.sparql)	Proteins with 3 disulfide bonds and that are not hormones 
+ * [Q13](src/test/resources/sparql/Q13-withKinaseDomainButNotKinaseActivity.sparql) Proteins with a protein kinase domain but no kinase activity 
+ * [Q14](src/test/resources/sparql/Q14-with2SH3And1SHD2.sparql) Proteins with 2 SH3 domains and 1 SH2 domain 
+ * [Q15](src/test/resources/sparql/Q15-PDZdomainthatInteractWithProteinExpresssedInBrain.sparql) Proteins with a PDZ domain that interact with at least 1 protein which is expressed in brain 
+ * [Q16](src/test/resources/sparql/Q16-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql) Proteins with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain 
+ * [Q18](src/test/resources/sparql/Q18-thatAreAcetylatedAndMethylated.sparql) Proteins that are acetylated and methylated and located in the nucleus 
+ * [Q19](src/test/resources/sparql/Q19-containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif.sparql) Proteins contains a signal sequence followed by a extracellular domain containing a "KRKR" motif 
  * * Q22 Proteins with no function annotated
  * * Q27 Proteins with >=1 glycosylation sites reported in PubMed:X or PubMed:Y
- * Q32 Proteins with a coiled coil region and involved in transcription but does not contain a bZIP domain
- * Q34 Proteins with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
- * Q35 Proteins located in the mitochondrion and which is an enzyme
+ * [Q32](src/test/resources/sparql/Q32-withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP.sparql) Proteins with a coiled coil region and involved in transcription but does not contain a bZIP domain
+ * [Q34](src/test/resources/sparql/Q34-withHomeoboxAndWithVariantsInTheHomeobox.sparql) Proteins with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
+ * [Q35](...) Proteins located in the mitochondrion and which is an enzyme
  * Q38 Proteins with >=1 selenocysteine in their sequence
  * Q39 Proteins with >=1 mutagenesis in a position that correspond to an annotated active site
  * Q40 Proteins that are enzymes and with >=1 mutagenesis that "decrease" or "abolish" activity
