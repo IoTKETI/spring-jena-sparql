@@ -189,6 +189,7 @@ public class Features extends TripleStore{
 	
 	/**
 	 * Q38 with >=1 selenocysteine in their sequence
+	 * uniprot search, database:(type:nextprot) AND annotation:(type:non_std)
 	 * @throws Exception 
 	 */
 	@Test
