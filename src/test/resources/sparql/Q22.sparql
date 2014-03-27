@@ -1,0 +1,22 @@
+# Q22 Proteins with no function annotated 
+# uniprot search, not possible, with grep (no CC_FUNCTION + no GO...F: + no GO...P:) -> 3109 entries
+# :function is owl:oneOf (:OntologyAnnotation :GoMolecularFunction :GoBiologicalProcess 
+#                          :UniprotKeyword :EnzymeClassification :Allergen :CatalyticActivity 
+#                          :Caution :Cofactor :EnzymeRegulation :Function :Pathway :ToxicDose 
+#                         )
+# hit 5187 
+PREFIX : <http://nextprot.org/rdf#>
+SELECT  distinct ?entry   WHERE  {
+  ?entry :isoform ?iso.
+  OPTIONAL{?iso :function/rdf:type ?function;:function/rdf:type :Function}
+  FILTER (!BOUND(?function))
+}
+
+
+#hit 2804  (allEntry - allFunctions) ( 20102-14947 = 5155, what is wrong?)
+#SELECT distinct ?entry WHERE  {
+## all entries - 20102
+#  ?entry :isoform/:function ?function.
+## minus all entries with a :Function - 14947
+#  MINUS {?entry :isoform/:function/rdf:type  :Function}
+#}ORDER BY ?entry

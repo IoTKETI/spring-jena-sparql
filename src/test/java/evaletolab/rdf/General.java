@@ -18,10 +18,10 @@ import evaletolab.tool.FileUtil;
 
 /**
  * Use case for features queries
- * [Q68](src/test/resources/sparql/Q68.sparql)	with protein evidence PE=2 (transcript level)
- * [Q22](src/test/resources/sparql/Q22.sparql) Proteins with no function annotated
- * [Q65](src/test/resources/sparql/Q65.sparql) Proteins with >1 catalytic activity 
- * [Q73](src/test/resources/sparql/Q73.sparql) Proteins with no domain 
+ * Q68 with protein evidence PE=2 (transcript level)
+ * Q22 Proteins with no function annotated
+ * Q65 Proteins with >1 catalytic activity 
+ * Q73 Proteins with no domain 
  *  
  * @author evaleto
  *
@@ -42,9 +42,8 @@ public class General extends TripleStore{
 	}
 	
 	
-	
 	/**
-	 * [Q68](src/test/resources/sparql/Q68.sparql)	with protein existence PE=2 (transcript level) 
+	 * Q68 with protein existence PE=2 (transcript level) 
 	 * @throws Exception 
 	 */
 	@Test
@@ -53,6 +52,38 @@ public class General extends TripleStore{
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
 	}	
+			
+	
+	/**
+	 * Q22 Proteins with no function annotated 
+	 * @throws Exception 
+	 */
+	@Test
+	public void proteinWithNoFunction() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q22.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+	}	
 		
-
+	/**
+	 * Q65 Proteins with >1 catalytic activity 
+	 * @throws Exception 
+	 */
+	@Test
+	public void proteinWithCatalitycActivity() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q65.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+	}	
+	
+	/**
+	 * Q73 Proteins with no domain 
+	 * @throws Exception 
+	 */
+	@Test
+	public void proteinWithNoDomain() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q73.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+	}		
 }

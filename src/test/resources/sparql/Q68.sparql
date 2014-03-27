@@ -1,0 +1,5 @@
+# Q68 with protein existence PE=2 (transcript level)
+PREFIX : <http://nextprot.org/rdf#>
+SELECT distinct ?entry  WHERE  {
+  ?entry :existence :Evidence_at_transcript_level
+}
