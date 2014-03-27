@@ -1,0 +1,9 @@
+# Q35 Proteins located in the mitochondrion and which is an enzyme
+PREFIX : <http://nextprot.org/rdf#>
+PREFIX term: <http://nextprot.org/rdf/terminology/>
+SELECT distinct  ?entry ?go WHERE  {
+# we should care about ?go
+  term:SL-0173 :related ?go.
+  ?entry :classifiedWith/rdf:type :EnzymeClassification.
+  ?entry :isoform/:localisation/:in term:SL-0173  
+}
