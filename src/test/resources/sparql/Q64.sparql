@@ -1,6 +1,6 @@
 # Q64 which are enzymes with an incomplete EC number 
 PREFIX : <http://nextprot.org/rdf#>
-SELECT  (count(distinct ?entry ) as ?c)  WHERE  {
+SELECT  distinct ?entry   WHERE  {
   ?ec a :EnzymeClassification.
   ?entry :classifiedWith ?ec.
   FILTER regex(?ec, '-'^^xsd:string)

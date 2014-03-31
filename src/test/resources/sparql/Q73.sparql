@@ -1,7 +1,7 @@
 # Q73 Proteins with no domain  (got 13917 entries??) 
 # eg. Q22 
 PREFIX : <http://nextprot.org/rdf#>
-SELECT  (count(distinct ?entry) as ?c)   WHERE  {
+SELECT  distinct ?entry   WHERE  {
   ?entry :isoform ?iso.
   OPTIONAL{?iso :regions/rdf:type ?region;:regions/rdf:type :Domain}
   FILTER (!BOUND(?region))

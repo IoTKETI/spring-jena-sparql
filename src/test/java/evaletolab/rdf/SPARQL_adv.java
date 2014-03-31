@@ -48,7 +48,7 @@ public class SPARQL_adv {
         //
         // getTransitiveReasoner, getRDFSReasoner, getRDFSSimpleReasoner, 
         // getOWLReasoner, getOWLMiniReasoner, getOWLMicroReasoner
-        Reasoner reasoner = ReasonerRegistry.getOWLMiniReasoner();
+        Reasoner reasoner = ReasonerRegistry.getOWLMicroReasoner();
         reasoner.setParameter(ReasonerVocabulary.PROPtraceOn, false);
         reasoner.setParameter(ReasonerVocabulary.PROPderivationLogging, false);
         reasoner = reasoner.bindSchema(schema);
@@ -108,7 +108,7 @@ public class SPARQL_adv {
 	/**
 	 * NOT IN by owl:differentFrom 	
 	 */
-	@Test
+	//@Test
 	public void notInByDifferentFrom(){
 		// query
 		String q="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
