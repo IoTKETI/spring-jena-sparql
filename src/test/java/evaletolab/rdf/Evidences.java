@@ -73,12 +73,12 @@ public class Evidences extends TripleStore{
 		// execute query
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
         //
         // validate result
-		while (rs.hasNext()) {
-            QuerySolution row= rs.next();
-            assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("entry").toString());
-        }
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=179);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));
         
 	}	
 
@@ -97,12 +97,12 @@ public class Evidences extends TripleStore{
 		// execute query
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
         //
         // validate result
-        while (rs.hasNext()) {
-            QuerySolution row= rs.next();
-            assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("entry").toString());
-        }
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=179);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));
 	}	
 	
 
@@ -115,13 +115,12 @@ public class Evidences extends TripleStore{
 		// execute query
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-
+        
         //
         // validate result
-        while (rs.hasNext()) {
-            QuerySolution row= rs.next();
-            assertEquals("http://nextprot.org/rdf/entry/NX_Q53_2", row.get("entry").toString());
-        }        
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=179);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));
 	}		
 
 	/**
@@ -133,26 +132,20 @@ public class Evidences extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP() throws Exception{
-		// expected
-        String[] expected={"http://nextprot.org/rdf/entry/NX_Q57_1","http://nextprot.org/rdf/entry/NX_Q57_2"};
-        
+	public void locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP() throws Exception{        
 		// specific query
 		String q=FileUtil.getResourceAsString("sparql/Q57-locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP.sparql");
-
 		//
 		// execute query
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-
+        
         //
         // validate result
-        List<String> rows=new ArrayList<String>();
-        while (rs.hasNext()) {
-            QuerySolution row= rs.next();
-            rows.add(row.get("entry").toString());
-        }
-        assertArrayEquals(expected,rows.toArray());
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=239);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P09622"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P11182"));
 	
 	}	
 	
@@ -170,6 +163,13 @@ public class Evidences extends TripleStore{
 		// execute query
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=174);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q13310"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q9UBU9"));
 	}	
 
 

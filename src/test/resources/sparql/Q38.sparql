@@ -1,5 +1,6 @@
 # Q38 with >=1 selenocysteine in their sequence
 # uniprot search, database:(type:nextprot) AND annotation:(type:non_std)
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX : <http://nextprot.org/rdf#>
 SELECT distinct ?entry WHERE  {
   ?entry :isoform/:modifiedResidue/rdf:type :NonStandardAminoAcid

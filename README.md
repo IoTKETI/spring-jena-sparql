@@ -81,8 +81,10 @@ $ mvn jetty:run
 * [Q49](src/test/resources/sparql/Q49.sparql) Proteins with >=1 variants of the types "A->R" or "R->A"
 
 ###Use case for general [annotations](src/test/java/evaletolab/rdf/General.java)
-* [Q68](src/test/resources/sparql/Q68.sparql)	with protein evidence PE=2 (transcript level)
 * [Q22](src/test/resources/sparql/Q22.sparql) Proteins with no function annotated
+* [Q31](src/test/resources/sparql/Q31.sparql) Proteins with >=10 "splice" isoforms
+* [Q32](src/test/resources/sparql/Q32.sparql) Proteins with a coiled coil region and involved in transcription but does not contain a bZIP domain
+* [Q68](src/test/resources/sparql/Q68.sparql)	with protein evidence PE=2 (transcript level)
 * [Q65](src/test/resources/sparql/Q65.sparql) Proteins with >1 catalytic activity 
 * [Q73](src/test/resources/sparql/Q73.sparql) Proteins with no domain 
 ###Use case for PTM queries

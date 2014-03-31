@@ -1,6 +1,6 @@
 # Q63 which have >=1 RRM RNA-binding domain (DO-00581 UniprotDomain) and either no GO "RNA binding" (GO:0003723 go molecular function)
 #     other a GO "RNA binding" with evidence IEA or ISS 
-
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX : <http://nextprot.org/rdf#>
 PREFIX term: <http://nextprot.org/rdf/terminology/>
 SELECT distinct ?entry  WHERE {

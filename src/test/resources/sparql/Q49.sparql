@@ -2,7 +2,7 @@
 # :variant is 
 #  owl:oneOf (:Variant :AlignmentConflict *:SequenceConflict* :SequenceVariant )
 PREFIX : <http://nextprot.org/rdf#>
-SELECT distinct ?entry ?original WHERE  {
+SELECT distinct ?entry WHERE  {
   ?entry :isoform/:variant ?statement.
   {?statement :original 'A'^^xsd:string;:variation 'R'^^xsd:string;:original ?original}
   UNION

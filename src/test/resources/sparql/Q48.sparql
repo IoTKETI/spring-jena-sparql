@@ -3,8 +3,8 @@
 # medical, 
 #     is oneOf (:Biotechnology :Disease :Pharmaceutical :Polymorphism )
 PREFIX : <http://nextprot.org/rdf#>
-SELECT distinct ?entry ?v ?disease WHERE  {
+SELECT distinct ?entry ?v  WHERE  {
   ?entry :isoform ?iso.
-  ?iso :variant ?statement;:medical ?disease.
+  ?iso :variant ?statement;:medical/rdf:type :Disease.
   ?statement :original 'C'^^xsd:string;:variation ?v
 }

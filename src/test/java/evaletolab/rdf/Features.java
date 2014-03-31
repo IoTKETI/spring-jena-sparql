@@ -1,7 +1,9 @@
 package evaletolab.rdf;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.util.List;
 import java.util.Properties;
 
 import org.junit.Before;
@@ -28,26 +30,25 @@ import evaletolab.tool.FileUtil;
 
 /**
  * Use case for features queries
- * - Q3	with >=2 transmembrane regions 
- * - Q5	located in mitochondrion and that lack a transit peptide
- * - Q9	with 3 disulfide bonds and that are not hormones 
- * - Q13 with a protein kinase domain but no kinase activity 
- * - Q14 with 2 SH3 domains and 1 SH2 domain 
- * - Q15 with a PDZ domain that interact with at least 1 protein which is expressed in brain 
- * - Q16 with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain 
- * - Q18 that are acetylated and methylated and located in the nucleus 
- * - Q19 contains a signal sequence followed by a extracellular domain containing a "KRKR" motif 
- * * Q22 with no function annotated
- * * Q27 with >=1 glycosylation sites reported in PubMed:X or PubMed:Y
- * - Q32 with a coiled coil region and involved in transcription but does not contain a bZIP domain
- * - Q34 with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
- * - Q35 located in the mitochondrion and which is an enzyme
- * - Q38 with >=1 selenocysteine in their sequence
- * - Q39 with >=1 mutagenesis in a position that correspond to an annotated active site
- * - Q40 that are enzymes and with >=1 mutagenesis that "decrease" or "abolish" activity
- * - Q41 that are annotated with GO "F" terms prefixed by "Not"
- * - Q48 with >=1 variants of the type "C->" (Cys to anything else) that are linked to >=1 disease
- * - Q49 with >=1 variants of the types "A->R" or "R->A"
+ * Q3	with >=2 transmembrane regions 
+ * Q5	located in mitochondrion and that lack a transit peptide
+ * Q9	with 3 disulfide bonds and that are not hormones 
+ * Q13 with a protein kinase domain but no kinase activity 
+ * Q14 with 2 SH3 domains and 1 SH2 domain 
+ * Q15 with a PDZ domain that interact with at least 1 protein which is expressed in brain 
+ * Q16 with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain 
+ * Q18 that are acetylated and methylated and located in the nucleus 
+ * Q19 contains a signal sequence followed by a extracellular domain containing a "KRKR" motif 
+ ** Q27 with >=1 glycosylation sites reported in PubMed:X or PubMed:Y
+ * Q32 with a coiled coil region and involved in transcription but does not contain a bZIP domain
+ * Q34 with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
+ * Q35 located in the mitochondrion and which is an enzyme
+ * Q38 with >=1 selenocysteine in their sequence
+ * Q39 with >=1 mutagenesis in a position that correspond to an annotated active site
+ * Q40 that are enzymes and with >=1 mutagenesis that "decrease" or "abolish" activity
+ * Q41 that are annotated with GO "F" terms prefixed by "Not"
+ * Q48 with >=1 variants of the type "C->" (Cys to anything else) that are linked to >=1 disease
+ * Q49 with >=1 variants of the types "A->R" or "R->A"
  *  
  * @author evaleto
  *
@@ -78,6 +79,13 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q3-with2TransmembraneRegions.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=3742);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q2QL34"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_A6NFC5"));        
 	}	
 	
 	/**
@@ -86,9 +94,15 @@ public class Features extends TripleStore{
 	 */
 	@Test
 	public void locatedInMitochondrionAndLackATransitPeptide() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q3-locatedInMitochondrionAndLackATransitPeptide.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q5-locatedInMitochondrionAndLackATransitPeptide.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=28);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P29353"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P78537"));            
 	}	
 	
 	/**
@@ -100,7 +114,12 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q9-with3DisulfideBondsAndNotHormones.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=3141);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P09622"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P0CF51"));   
 	}	
 
 	/**
@@ -113,6 +132,12 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q13-withKinaseDomainButNotKinaseActivity.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=491);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P0C1S8"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_O14920"));   
 	}	
 
 	/**
@@ -125,6 +150,13 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q14-with2SH3And1SHD2.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=9);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P52735"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P16333"));    
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_O75791"));    
 	}	
 	
 
@@ -138,6 +170,11 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q16-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=1);
 	}
 	
 	/**
@@ -150,10 +187,18 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q18-thatAreAcetylatedAndMethylated.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=139);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P15056"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P48382"));  
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q9NYF8"));  
 	}
 	
 	/**
 	 * Q19 contains a signal sequence followed by a extracellular domain containing a "KRKR" motif
+	 * WARNING 5s query
 	 * @throws Exception 
 	 */
 	@Test
@@ -161,6 +206,14 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q19-containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=31);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P21754"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P53708"));  
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P60508"));          
 	}
 	
 	/**
@@ -170,13 +223,22 @@ public class Features extends TripleStore{
 	 */
 	@Test
 	public void withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q32-withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q32.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=180);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q9Y5B9"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q13352"));  
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q8TDY2"));            
 	}
 	
 	/**
 	 * Q34 with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
+	 * WARNING 5s query
 	 * @throws Exception 
 	 */
 	@Test
@@ -184,7 +246,13 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q34-withHomeoboxAndWithVariantsInTheHomeobox.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=225);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_A6NJ46"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P09629"));          
 	}		
 	
 	/**
@@ -197,10 +265,19 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q38.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=26);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_O60613"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P63302"));                
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q9C0D9"));                
 	}		
 	
 	/**
 	 * Q39 with >=1 mutagenesis in a position that correspond to an annotated active site
+	 * WARNING 2s query
 	 * @throws Exception 
 	 */
 	@Test
@@ -208,10 +285,19 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q39.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=356);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q2T9J0"));                
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q9NUW8"));   
 	}		
 
 	/**
 	 * Q40 that are enzymes and with >=1 mutagenesis that "decrease" or "abolish" activity
+	 * WARNING 3s query	  
 	 * @throws Exception 
 	 */
 	@Test
@@ -219,6 +305,13 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q40.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=696);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q5T1C6"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q9HCK8"));           
 	}		
 	
 	/**
@@ -230,6 +323,13 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q41.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=198);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P14210"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P12270"));            
 	}		
 	
 	
@@ -242,6 +342,13 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q48.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=1738);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q9Y587"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P09622"));         
 	}		
 	
 	/**
@@ -253,6 +360,13 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q49.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=266);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_O14828"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P29323"));           
 	}		
 
 }

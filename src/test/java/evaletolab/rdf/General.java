@@ -1,5 +1,8 @@
 package evaletolab.rdf;
 
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 import java.util.Properties;
 
 import org.junit.Before;
@@ -18,10 +21,12 @@ import evaletolab.tool.FileUtil;
 
 /**
  * Use case for features queries
- * Q68 with protein evidence PE=2 (transcript level)
  * Q22 Proteins with no function annotated
+ * Q31 with >=10 "splice" isoforms
+ * Q32 with a coiled coil region and involved in transcription but does not contain a bZIP domain
  * Q64 which are enzymes with an incomplete EC number
  * Q65 Proteins with >1 catalytic activity 
+ * Q68 with protein evidence PE=2 (transcript level)
  * Q73 Proteins with no domain 
  *  
  * @author evaleto
@@ -52,6 +57,12 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q68.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=10000);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));        
 	}	
 			
 	
@@ -64,8 +75,49 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q22.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=10000);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));              
 	}	
 
+	/**
+	 * Q31 with >=10 "splice" isoforms
+	 */
+	@Test
+	public void protein10SpliceIsoforms() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q31.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        // 81 entries<1s
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=10000);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));              
+	}
+	
+	/**
+	 * Q32 with a coiled coil region and involved in transcription but does not contain a bZIP domain
+	 * uniprot=database:(type:nextprot) AND keyword:"Transcription [KW-0804]" AND annotation:(type:coiled) NOT annotation:(type:"positional domain" bzip)
+	 */
+	@Test
+	public void withCoiledCoilAndInvolvedInTranscriptionButWithoutAbZipDomain() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q32.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        // 179 entries < 1s
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=10000);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));              
+	}	
+	
 	/**
 	 * Q64 which are enzymes with an incomplete EC number 
 	 * @throws Exception 
@@ -75,6 +127,12 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q64.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=10000);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));              
 	}		
 	/**
 	 * Q65 Proteins with >1 catalytic activity 
@@ -85,6 +143,12 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q65.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=10000);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));              
 	}	
 	
 	/**
@@ -96,5 +160,11 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q73.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=10000);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));              
 	}		
 }

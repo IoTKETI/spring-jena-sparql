@@ -16,6 +16,8 @@
 @prefix source: <http://nextprot.org/rdf/source/> .
 @prefix db: <http://nextprot.org/rdf/db/> .
 @prefix context: <http://nextprot.org/rdf/context/> .
+@prefix interaction: <http://nextprot.org/rdf/interaction/> .
+
 
 <http://np.org/rdf>
       rdf:type owl:Ontology ;
@@ -34,6 +36,35 @@
       rdf:type owl:Class ;
       rdfs:comment "Specific information of a protein isoform."^^xsd:string ;
       rdfs:subClassOf owl:Thing ;
+      .
+
+# Isoform annotation specificity qualifier
+
+:Isoform_annotation_specificity_qualifier
+      rdf:type owl:Class ;
+      rdfs:subClassOf owl:Thing ;
+      rdfs:comment "Specificity qualifiers are used to describe the isoform specificity of an annotation"^^xsd:string ;
+      .
+      
+:UNKNOWN
+      rdf:Type owl:Class ;
+      rdfs:comment "Not applicable or not known."^^xsd:string ;
+      rdfs:subClassOf :Isoform_annotation_specificity_qualifier;
+      owl:disJointWith :SPECIFIC, :BY_DEFAULT;
+      .
+
+:SPECIFIC
+      rdf:Type owl:Class ;
+      rdfs:comment "the annotation is explicitly linked to this isoform in swissprot."^^xsd:string ;
+      rdfs:subClassOf :Isoform_annotation_specificity_qualifier;
+      owl:disJointWith :UNKNOWN, :BY_DEFAULT;
+      .
+
+:BY_DEFAULT
+      rdf:Type owl:Class ;
+      rdfs:comment "the annotation is by default propagated from the master to the isoform."^^xsd:string ;
+      rdfs:subClassOf :Isoform_annotation_specificity_qualifier;
+      owl:disJointWith :SPECIFIC, :UNKNOWN;
       .
 
 # quality qualifiers
@@ -58,6 +89,52 @@
       owl:disJointWith :SILVER, :GOLD;
       .
       
+# protein existance
+:PE
+      rdf:type owl:Class ;
+      rdfs:subClassOf owl:Thing ;
+      .
+
+:Evidence_at_protein_level
+      rdf:type owl:Class ;
+      :level "1"^^xsd:integer ;
+      rdfs:label "Evidence at protein level"^^xsd:string ;
+      rdfs:subClassOf :PE ;
+      owl:disJointWith :Evidence_at_transcript_level, :Inferred_from_homology, :Predicted, :Uncertain;
+      .
+
+:Evidence_at_transcript_level
+      rdf:type owl:Class ;
+      :level "2"^^xsd:integer ;
+      rdfs:label "Evidence at transcript level"^^xsd:string ;
+      rdfs:subClassOf :PE ;
+      owl:disJointWith :Evidence_at_protein_level, :Inferred_from_homology, :Predicted, :Uncertain;
+      .
+
+:Inferred_from_homology
+      rdf:type owl:Class ;
+      :level "3"^^xsd:integer ;
+      rdfs:label "Inferred from homology"^^xsd:string ;
+      rdfs:subClassOf :PE ;
+      owl:disJointWith :Evidence_at_protein_level, :Evidence_at_transcript_level, :Predicted, :Uncertain;
+      .
+      
+:Predicted
+      rdf:type owl:Class ;
+      :level "4"^^xsd:integer ;
+      rdfs:label "Predicted"^^xsd:string ;
+      rdfs:subClassOf :PE ;
+      owl:disJointWith :Evidence_at_protein_level, :Evidence_at_transcript_level, :Inferred_from_homology, :Uncertain;
+      .
+
+:Uncertain
+      rdf:type owl:Class ;
+      :level "5"^^xsd:integer ;
+      rdfs:label "Uncertain"^^xsd:string ;
+      rdfs:subClassOf :PE ;
+      owl:disJointWith :Evidence_at_protein_level, :Evidence_at_transcript_level, :Inferred_from_homology, :Predicted;
+      .
+      
 
       
 #TODO generate specific owl for the publication hierarchy       
@@ -77,7 +154,6 @@
       
 :childOf
       a rdf:Property, owl:TransitiveProperty ;
-      rdfs:subPropertyOf rdfs:subClassOf;
       rdfs:domain :Term ;
       rdfs:range :Term;
       .
@@ -96,7 +172,6 @@
 
 # ECO_0000220 microarray =>sequencing assay evidence
 :Microarray rdfs:subClassOf term:ECO_0000220.
-  .      
 
 
   
@@ -1166,13 +1241,13 @@
    ];
    .
 
-:interactions
+:interaction
    a rdf:Property;
    rdfs:subPropertyOf :annotation;
    rdfs:label "subunit"^^xsd:string; 
    rdfs:domain :Isoform ;
    rdfs:range  [ a owl:Class;
-     owl:oneOf (:Miscellaneous :Subunit :SelfAssociation :BinaryInteraction :Complex );
+     owl:oneOf (:Subunit :SelfAssociation :BinaryInteraction :Complex );
    ];
    .
 
@@ -1213,6 +1288,16 @@
    rdfs:domain :Isoform ;
    rdfs:range  [ a owl:Class;
      owl:oneOf (:Biotechnology :Disease :Pharmaceutical :Polymorphism );
+   ];
+   .
+
+:annotation
+   a rdf:Property;
+   rdfs:subPropertyOf :annotation;
+   rdfs:label "miscellaneous"^^xsd:string; 
+   rdfs:domain :Isoform ;
+   rdfs:range  [ a owl:Class;
+     owl:oneOf (:Annotation :Miscellaneous );
    ];
    .
 
@@ -3772,4 +3857,13 @@ source:Antibodypedia
       rdfs:comment "Experimental variables related to evidences"^^xsd:string ;
       rdfs:subClassOf owl:Thing;
       .
- 
+#
+# Define protein interaction
+# 
+:ProteinInteraction
+      rdf:type owl:Class ;
+      rdfs:comment "Protein to protein interactions"^^xsd:string ;
+      rdfs:subClassOf owl:Thing;
+      .
+
+
