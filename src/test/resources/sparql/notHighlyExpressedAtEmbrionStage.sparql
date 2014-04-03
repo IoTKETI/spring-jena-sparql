@@ -1,4 +1,4 @@
-#Proteins that are not highly expressed in liver at embrion stage
+#Proteins that are not highly expressed in liver at embryo stage
 PREFIX : <http://nextprot.org/rdf#>
 PREFIX term: <http://nextprot.org/rdf/terminology/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
@@ -8,21 +8,3 @@ SELECT distinct ?entry WHERE {
   ?withEvidence :expressionLevel/owl:disjointWith :High;:experimentalContext/:developmentalStage term:HsapDO_0000002.
 }
 
-
-#evidence:80772998 a :EXP;
-#  :negative "true"^^xsd:boolean;
-#  :quality :GOLD;
-#  :fromXref db:HPA;
-#  :assignedBy source:Human_protein_atlas;
-#  :expressionLevel :Negative;
-#  :experimentalContext context:790;
-#  :assocType "evidence"^^xsd:string;
-#  . 
-  
-#context:1 a ExperimentalContext;
-#  :tissue term:TS-0229;
-#  :detectionMethod term:ECO_0000220;
-#  :developmentalStage term:HsapDO_0000005;
-#  :metadata publication:734cbcb0b30d49e54c098611a439dd18;
-#  .      
-  

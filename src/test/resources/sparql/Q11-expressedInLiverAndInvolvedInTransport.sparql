@@ -1,6 +1,5 @@
 #Q11, Proteins that are expressed in liver and involved in transport
-PREFIX : <http://nextprot.org/rdf#>
-PREFIX term: <http://nextprot.org/rdf/terminology/>
+#     (transport,term:GO_0006810, term:KW-0813) 
 SELECT distinct ?entry WHERE {
   ?entry :isoform/:expression/:in/:childOf term:TS-0564;
          :classifiedWith term:KW-0813.
