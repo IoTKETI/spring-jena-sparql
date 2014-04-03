@@ -1,1 +1,6 @@
 # Q17, Proteins >=1000 amino acids and located in nucleus and expression in nervous system
+SELECT distinct ?entry WHERE  {
+  ?entry :isoform ?iso.
+  ?iso :localisation/:in/:childOf term:SL-0191;:expression/:in/:childOf term:TS-1313;:sequence/:length ?len.
+  FILTER (?len>1000)
+}

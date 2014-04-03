@@ -19,6 +19,7 @@ public class TripleStore {
 	@Autowired
 	public Properties config;
 	
+	
 	private String endpoint;
 	private Model model;
 	private boolean isNative=false;
@@ -96,5 +97,9 @@ public class TripleStore {
 	
 	public String getEndpoint(){
 		return endpoint;
+	}
+	
+	public String getPrefix(){
+		return prefix;
 	}
 }

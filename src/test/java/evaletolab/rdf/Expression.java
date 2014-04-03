@@ -131,6 +131,7 @@ public class Expression extends TripleStore{
 	/**
 	 * Q50, Proteins which are expressed in brain according to IHC 
 	 *      but not expressed in brain according to microarray
+	 * WARNING query time >25s when not splitting with isoform     
 	 * @throws Exception 
 	 */
 	@Test

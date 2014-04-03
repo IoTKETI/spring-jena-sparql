@@ -6,13 +6,15 @@ PREFIX : <http://nextprot.org/rdf#>
 PREFIX term: <http://nextprot.org/rdf/terminology/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 SELECT distinct ?entry WHERE {
-# expressed in brain according to IHC
-  ?entry :isoform/:expression ?s1.
-  ?s1 :in/:childOf  term:TS-0095;:evidence/:experimentalContext/:detectionMethod term:ECO_0000045.
-  
+  ?entry :isoform ?iso.
+  ?iso :expression ?s1;:expression ?s2.
+
 # not expressed in brain according to microarray 
-  ?entry :isoform/:expression ?s2.
   ?s2 :in/:childOf  term:TS-0095;:evidence/:expressionLevel :Negative;:evidence/:experimentalContext/:detectionMethod term:ECO_0000220.
+  
+# expressed in brain according to IHC
+  ?s1 :in/:childOf  term:TS-0095;:evidence/:experimentalContext/:detectionMethod term:ECO_0000045.
+
 }
 
 

@@ -1,6 +1,6 @@
 package evaletolab.rdf;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.Properties;
 
@@ -42,6 +42,43 @@ public class Integrity extends TripleStore{
 		open();
 	}
 	
+
+	
+	/**
+	 * nb terminology classes
+	 */
+	
+	@Test
+	public void countTerminologyClass(){
+		String q="SELECT DISTINCT ?class\n" + 
+				"WHERE { [] a ?class. ?class rdfs:subClassOf :Term }\n" + 
+				"ORDER BY ?class";		
+		
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        assertEquals("countTerminologyClass (37)",rs.next().get("c").asLiteral().getInt(),37);
+	}	
+	
+	/**
+	 * classes intersection between Term and Annotation
+	 */
+	
+	@Test
+	public void countIntersectBetweenAnnotationAndTerminologyClass(){
+		
+		String q="SELECT (count(distinct ?class) as ?c) WHERE{\n" + 
+				"   ?class rdfs:subClassOf* :Term.\n" + 
+				"   ?class rdfs:subClassOf* :Annotation.\n" + 
+				"}ORDER BY ?class";
+		
+		
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        assertEquals("countIntersectBetweenAnnotationAndTerminologyClass (0)",rs.next().get("c").asLiteral().getInt(),0);
+	}	
+	
 	
 	/**
 	 * nb entries (20'130)
@@ -51,8 +88,7 @@ public class Integrity extends TripleStore{
 	
 	@Test
 	public void countEntries(){
-		String q="PREFIX : <http://nextprot.org/rdf#>\n" + 
-				 "SELECT (count(distinct ?entry)as ?c) WHERE { \n" + 
+		String q="SELECT (count(distinct ?entry)as ?c) WHERE { \n" + 
 				 "  ?entry a :Entry.\n" + 
 				 "}";
 		
@@ -70,8 +106,7 @@ public class Integrity extends TripleStore{
 	 */
 	@Test
 	public void countGenes(){
-		String q="PREFIX : <http://nextprot.org/rdf#>\n" + 
-				 "SELECT (count(distinct ?entry)as ?c) WHERE { \n" + 
+		String q="SELECT (count(distinct ?entry)as ?c) WHERE { \n" + 
 				 "  ?entry a :Gene.\n" + 
 				 "}";
 		QueryExecution qe = createQueryExecution(q);
@@ -88,8 +123,7 @@ public class Integrity extends TripleStore{
 	 */
 	@Test
 	public void countAntobodies(){
-		String q="PREFIX : <http://nextprot.org/rdf#>\n" + 
-				 "SELECT (count(distinct ?entry)as ?c) WHERE { \n" + 
+		String q="SELECT (count(distinct ?entry)as ?c) WHERE { \n" + 
 				 "  ?entry a :Antobody.\n" + 
 				 "}";
 	}			
@@ -102,8 +136,7 @@ public class Integrity extends TripleStore{
 	 */
 	@Test
 	public void countPeptides(){
-		String q="PREFIX : <http://nextprot.org/rdf#>\n" + 
-				 "SELECT (count(distinct ?entry)as ?c) WHERE { \n" + 
+		String q="SELECT (count(distinct ?entry)as ?c) WHERE { \n" + 
 				 "  ?entry a :Peptide.\n" + 
 				 "}";
 	}
@@ -115,8 +148,7 @@ public class Integrity extends TripleStore{
 	 */
 	@Test
 	public void countIsoforms(){
-		String q="PREFIX : <http://nextprot.org/rdf#>\n" + 
-				 "SELECT (count(distinct ?entry)as ?c) WHERE { \n" + 
+		String q="SELECT (count(distinct ?entry)as ?c) WHERE { \n" + 
 				 "  ?entry a :Isoform.\n" + 
 				 "}";
 		
@@ -133,9 +165,7 @@ public class Integrity extends TripleStore{
 	 */
 	@Test
 	public void countAnnotationExpression(){
-		String q="PREFIX : <http://nextprot.org/rdf#>\n" + 
- 				"PREFIX term: <http://nextprot.org/rdf/terminology/>\n" + 
-				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + 
+		String q= 
 				"SELECT  (count(distinct ?a)as ?c) WHERE { \n" + 
 				"  ?a a :Annotation.\n" + 
 				"  [] :expression ?a\n" + 
@@ -145,63 +175,6 @@ public class Integrity extends TripleStore{
         assertTrue("countAnnotationExpression (3'108'020)",rs.next().get("c").asLiteral().getInt()>=3108020);
 	}	
 
-	/**
-	 * - Brain (TS-0095) relevant For 18202 entries 
-	 *   NX_P61604,NX_Q15029,NX_Q07973
-	 */
-	@Test
-	public void countProteinsRelevantForBrain_TS_0095(){
-		String q="PREFIX : <http://nextprot.org/rdf#>\n" + 
- 				"PREFIX term: <http://nextprot.org/rdf/terminology/>\n" + 
-				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + 
-				"SELECT (count(distinct ?entry)as ?c) WHERE {\n" + 
-				"  ?entry :isoform/:annotation/:in/:childOf  term:TS-0564.\n" + 
-				"}";	
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        assertTrue("countProteinsRelevantForBrain_TS_0095 (18202)",rs.next().get("c").asLiteral().getInt()>=18202);
-	}	
-	
-	
-	/**
-	 * - Liver (TS-0564) relevant For 17848 entries 
-	 *   NX_P61604,NX_Q15029,NX_Q07973
-	 */
-	@Test
-	public void countProteinsRelevantForLiver_TS_0564(){
-		String q="PREFIX : <http://nextprot.org/rdf#>\n" + 
- 				"PREFIX term: <http://nextprot.org/rdf/terminology/>\n" + 
-				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + 
-				"SELECT (count(distinct ?entry)as ?c) WHERE {\n" + 
-				"  ?entry :isoform/:annotation/:in/:childOf  term:TS-0564.\n" + 
-				"}";	
 
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        assertTrue("countProteinsRelevantForLiver_TS_0564 (17848)",rs.next().get("c").asLiteral().getInt()>=17848);
-	}	
-	
-
-
-	
-	/**
-	 * proteins :classifiedWith Transport (KW-0813) is relevant for 1859 entries
-	 * NX_Q9H0U6, NX_P08195, NX_P46098
-	 */
-	//@Test
-	public void countProteinsRelevantForKW_0813(){
-		String q="PREFIX : <http://nextprot.org/rdf#>\n" + 
- 				"PREFIX term: <http://nextprot.org/rdf/terminology/>\n" + 
-				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + 
-				"SELECT (count(distinct ?entry)as ?c) WHERE {\n" + 
-				"  ?entry :classifiedWith  term:KW-0813.\n" + 
-				"}";
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        assertTrue("countProteinsRelevantForKW_0813 (1859)",rs.next().get("c").asLiteral().getInt()>=17848);
-        
-	}	
 
 }
