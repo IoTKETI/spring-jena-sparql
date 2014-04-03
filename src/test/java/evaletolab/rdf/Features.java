@@ -166,11 +166,40 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q16-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
+	public void withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature1() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q16-1-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=1);
+	}
+	
+	/**
+	 * Q16 with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain
+	 * @throws Exception 
+	 */
+	@Test
+	public void withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature2() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q16-2-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=1);
+	}
+	
+	/**
+	 * Q16 with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain
+	 * @throws Exception 
+	 */
+	@Test
+	public void withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature3() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q16-3-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
         //
         // validate result
 		List<String> uri=getURIs(rs);
