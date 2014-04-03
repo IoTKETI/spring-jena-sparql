@@ -95,9 +95,15 @@ function Snorql() {
                     'ORDER BY (!BOUND(?hasValue)) ?property ?hasValue ?isValueOf';
         }
         if (queryString.match(/query=/)) {
+            function completeQuery(query){
+            	if(!/(select|insert|update)/ig.test(query)){
+            		query="select * where { "+query+"}";
+            	}
+            	return query;
+            }        	
             var resultTitle = 'SPARQL results:';
             querytext = this._betterUnescape(queryString.match(/query=([^&]*)/)[1]);
-            var query = prefixes + querytext;
+            var query = prefixes + completeQuery(querytext);
         }
         if (!querytext) {
             querytext = query;
@@ -113,7 +119,7 @@ function Snorql() {
         var dummy = this;
         
    	    var exp = /^\s*(?:PREFIX\s+\w*:\s+<[^>]*>\s*)*(\w+)\s*.*/i;
-   	    var match = exp.exec(querytext);
+   	    var match = exp.exec(completeQuery(querytext));
    	    
    	    if (match) {
 	        if (match[1].toUpperCase() == 'ASK') {
@@ -130,7 +136,6 @@ function Snorql() {
 	        	service.setRequestHeader('Accept', 'application/sparql-results+json,*/*');
 	        	service.setOutput('json');
 	        	var successFunc = function(json, data) {
-	        		console.log(json,data)
 	        		dummy.displayJSONResult(json, resultTitle, (new Date().getTime() - startQuery));
 	        	};
 	        }
@@ -236,13 +241,15 @@ function Snorql() {
         document.location = this._browserBase;
     }
 
+
+    
     this.submitQuery = function() {
         var mode = this._selectedOutputMode();
         if (mode == 'browse') {
             document.getElementById('queryform').action = this._browserBase;
             document.getElementById('query').value = document.getElementById('querytext').value;
         } else {
-            document.getElementById('query').value = this._getPrefixes() + document.getElementById('querytext').value;
+            document.getElementById('query').value = this._getPrefixes() + (document.getElementById('querytext').value);
             document.getElementById('queryform').action = this._endpoint;
         }
         document.getElementById('jsonoutput').disabled = (mode != 'json');

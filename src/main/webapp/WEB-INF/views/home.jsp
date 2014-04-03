@@ -6,12 +6,23 @@
   <head>
     <title>Snorql: A SPARQL Explorer</title>
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/js/highlight/codemirror.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/js/highlight/elegant.css" />
     <script type="text/javascript" src="/resources/js/sparql.js"></script>
     <script type="text/javascript" src="/resources/js/namespaces.js"></script>
     <script type="text/javascript" src="/resources/js/snorql.js"></script>
+    <script type="text/javascript" src="/resources/js/highlight/codemirror.js"></script>
+    <script type="text/javascript" src="/resources/js/highlight/matchbrackets.js"></script>
+    <script type="text/javascript" src="/resources/js/highlight/sparql.js"></script>
     <script>
     $(function(){
-    	snorql.start()
+      CodeMirror.fromTextArea(document.getElementById("querytext"), {
+        mode: "application/x-sparql-query",
+        matchBrackets: true,
+        theme:'elegant'
+      });
+      snorql.start()
+    	
     });
     </script>
 
@@ -63,7 +74,7 @@
         <input type="hidden" name="graph" value="" id="graph-uri" disabled="disabled" />
       </div></form>
       <div>
-        <textarea name="query" rows="9" cols="80" id="querytext"></textarea>
+        <textarea name="query" rows="1" cols="80" id="querytext"></textarea>
         Results: <div id="time"></div>
         <select id="selectoutput" onchange="snorql.updateOutputMode()">
           <option selected="selected" value="browse">Browse</option>
