@@ -163,6 +163,7 @@ public class Features extends TripleStore{
 	
 	/**
 	 * Q16 with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain
+	 * WARNING time>50s
 	 * @throws Exception 
 	 */
 	@Test

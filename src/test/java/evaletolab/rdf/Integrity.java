@@ -1,7 +1,10 @@
 package evaletolab.rdf;
 
 import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
+import java.util.List;
 import java.util.Properties;
 
 import org.junit.Before;
@@ -14,6 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
+
 
 import evaletolab.config.WebConfig;
 /**
@@ -50,16 +54,45 @@ public class Integrity extends TripleStore{
 	
 	@Test
 	public void countTerminologyClass(){
-		String q="SELECT DISTINCT ?class\n" + 
-				"WHERE { [] a ?class. ?class rdfs:subClassOf :Term }\n" + 
-				"ORDER BY ?class";		
+		String q="SELECT distinct ?class\n" + 
+				"WHERE { ?class rdfs:subClassOf :Term }ORDER BY ?class";		
 		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
-        assertEquals("countTerminologyClass (37)",rs.next().get("c").asLiteral().getInt(),37);
+        //
+        // validate result
+		List<String> uri=getURIs(rs,"class");
+        assertEquals("countTerminologyClass (36)",rs.getRowNumber(),36);
 	}	
 	
+	@Test
+	public void countNotUsedTerminologyClass(){
+		String q="SELECT distinct ?class\n" + 
+				"WHERE { ?class rdfs:subClassOf :Term " +
+				"        FILTER NOT EXISTS {[] a ?class}}ORDER BY ?class";		
+		
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs,"class");
+        assertEquals("countNotUsedTerminologyClass (7)",rs.getRowNumber(),7);
+	}		
+	@Test
+	public void countAnnotationClass(){
+		String q="SELECT distinct ?class\n" + 
+				"WHERE {?class rdfs:subClassOf* :Annotation }ORDER BY ?class";		
+		
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs,"class");
+        assertEquals("countAnnotationClass (76)",rs.getRowNumber(),76);
+	}		
 	/**
 	 * classes intersection between Term and Annotation
 	 */
@@ -67,7 +100,7 @@ public class Integrity extends TripleStore{
 	@Test
 	public void countIntersectBetweenAnnotationAndTerminologyClass(){
 		
-		String q="SELECT (count(distinct ?class) as ?c) WHERE{\n" + 
+		String q="SELECT distinct ?class WHERE{\n" + 
 				"   ?class rdfs:subClassOf* :Term.\n" + 
 				"   ?class rdfs:subClassOf* :Annotation.\n" + 
 				"}ORDER BY ?class";
@@ -75,8 +108,11 @@ public class Integrity extends TripleStore{
 		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        //
+        // validate result
+		List<String> uri=getURIs(rs,"class");
         
-        assertEquals("countIntersectBetweenAnnotationAndTerminologyClass (0)",rs.next().get("c").asLiteral().getInt(),0);
+        assertEquals("countIntersectBetweenAnnotationAndTerminologyClass (0)",rs.getRowNumber(),0);
 	}	
 	
 	
@@ -96,7 +132,7 @@ public class Integrity extends TripleStore{
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
-        assertTrue("countEntries (20'130)",rs.next().get("c").asLiteral().getInt()>=20130);
+        assertThat("countEntries (20'130)",20130.0,closeTo(rs.next().get("c").asLiteral().getInt(),10));
 	}	
 	
 	/**
@@ -111,7 +147,7 @@ public class Integrity extends TripleStore{
 				 "}";
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-        assertTrue("countGenes (22'715)",rs.next().get("c").asLiteral().getInt()>=22715);
+        assertThat("countGenes (22'715)",22715.0,closeTo(rs.next().get("c").asLiteral().getInt(),10.0));
         
 
 	}
@@ -154,7 +190,7 @@ public class Integrity extends TripleStore{
 		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-        assertTrue("countIsoforms (39'651)",rs.next().get("c").asLiteral().getInt()>=39651);
+        assertThat("countIsoforms (39'651)",39651.0,closeTo(rs.next().get("c").asLiteral().getInt(),10.0));
 
 
 	}	
@@ -172,7 +208,7 @@ public class Integrity extends TripleStore{
 				"}";	
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-        assertTrue("countAnnotationExpression (3'108'020)",rs.next().get("c").asLiteral().getInt()>=3108020);
+        assertThat("countAnnotationExpression (3'108'020)",3108020,greaterThanOrEqualTo(rs.next().get("c").asLiteral().getInt()));
 	}	
 
 
