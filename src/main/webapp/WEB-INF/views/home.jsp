@@ -32,9 +32,9 @@
     <div id="header">
       <h1 id="title">Snorql: A SPARQL Explorer</h1>
       <ul>
-        <li><a href="/rdf/entry/NX_O95406/overview">/rdf/entry/NX_O95406/overview</a></li>
-        <li><a href="/rdf/entry/annotations/NX_O95406/Function_Annotation">/rdf/entry/annotations/NX_O95406/Function_Annotation</a></li>
-        <li><a href="http://swissprot.isb-sib.ch/wiki/display/cal/Amos%27+search+examples">Amos' search examples</a></li>
+        <li><a href="/rdf/entry/NX_O95406">/rdf/entry/NX_O95406/overview</a></li>
+        <li><a href="/rdf/entry/annotations/NX_O95406/Function">/rdf/entry/annotations/NX_O95406/Function_Annotation</a></li>
+        <li><a href="http://swissprot.isb-sib.ch/wiki/display/cal/Amos%27+search+examples+%28V2.0%29">Amos' search examples</a></li>
       </ul>
     </div>
 

@@ -97,7 +97,7 @@ function Snorql() {
         if (queryString.match(/query=/)) {
             function completeQuery(query){
             	if(!/(select|insert|update)/ig.test(query)){
-            		query="select * where { "+query+"}";
+            		query="SELECT DISTINCT * WHERE { "+query+"}";
             	}
             	return query;
             }        	

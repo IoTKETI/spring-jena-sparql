@@ -22,7 +22,6 @@ import evaletolab.tool.FileUtil;
 /**
  * Use case for features queries
  * Q3	with >=2 transmembrane regions 
- * Q5	located in mitochondrion and that lack a transit peptide
  * Q9	with 3 disulfide bonds and that are not hormones 
  * Q13 with a protein kinase domain but no kinase activity 
  * Q14 with 2 SH3 domains and 1 SH2 domain 
@@ -79,23 +78,7 @@ public class Features extends TripleStore{
         assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_A6NFC5"));        
 	}	
 	
-	/**
-	 * Q5 located in mitochondrion and that lack a transit peptide 
-	 * @throws Exception 
-	 */
-	@Test
-	public void locatedInMitochondrionAndLackATransitPeptide() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q5-locatedInMitochondrionAndLackATransitPeptide.sparql");
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        //
-        // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=28);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P29353"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P78537"));            
-	}	
-	
+
 	/**
 	 * Q9 with 3 disulfide bonds and that are not hormones 
 	 * @throws Exception 

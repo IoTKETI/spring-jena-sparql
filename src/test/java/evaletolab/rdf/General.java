@@ -21,6 +21,12 @@ import evaletolab.tool.FileUtil;
 
 /**
  * Use case for features queries
+ * Q1 that are phosphorylated and located in the cytoplasm
+ * Q2 that are located both in the cytoplasm and in the nucleus
+ * Q5 located in mitochondrion and that lack a transit peptide
+ * Q6 whose genes are on chromosome 2 and linked with a disease
+ * Q7 linked to diseases that are associated with cardiovascular aspects
+ * Q8 whose genes are x bp away from the location of the gene of protein Y
  * Q22 Proteins with no function annotated
  * Q31 with >=10 "splice" isoforms
  * Q32 with a coiled coil region and involved in transcription but does not contain a bZIP domain
@@ -47,7 +53,110 @@ public class General extends TripleStore{
 		open();
 	}
 	
+	/**
+	 * Q1 that are phosphorylated and located in the cytoplasm 
+	 * @throws Exception 
+	 */
+	@Test
+	public void thatArePhosphorylatedAndLocatedInTheCytoplasm() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q1.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=10000);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));        
+	}		
+
 	
+	
+	/**
+	 * Q2 that are located both in the cytoplasm and in the nucleus 
+	 * @throws Exception 
+	 */
+	@Test
+	public void thatAreLocatedBothInTheCytoplasmAndInTheNucleus() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q2.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=10000);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));        
+	}	
+	
+	/**
+	 * Q5 located in mitochondrion and that lack a transit peptide 
+	 * @throws Exception 
+	 */
+	@Test
+	public void locatedInMitochondrionAndLackATransitPeptide() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q5.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=28);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P29353"));
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P78537"));            
+	}	
+			
+	
+	/**
+	 * Q6 whose genes are on chromosome 2 and linked with a disease 
+	 * @throws Exception 
+	 */
+	@Test
+	public void whoseGenesAreOnChromosome2AndLinkedWithADisease() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q6.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=10000);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));        
+	}		
+	
+	/**
+	 * Q7 linked to diseases that are associated with cardiovascular aspects 
+	 * @throws Exception 
+	 */
+	@Test
+	public void linkedToDiseasesThatAreAssociatedWithCardiovascularAspects() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q7.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=10000);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));        
+	}		
+	
+	/**
+	 * Q8 whose genes are x bp away from the location of the gene of protein Y 
+	 * @throws Exception 
+	 */
+	@Test
+	public void whoseGenesAreXbpAwayFromTheLocationOfGeneOfProteinY() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q8.sparql");
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getURIs(rs);
+        assertTrue( rs.getRowNumber()>=10000);
+        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));        
+	}		
 	/**
 	 * Q68 with protein existence PE=2 (transcript level) 
 	 * @throws Exception 
