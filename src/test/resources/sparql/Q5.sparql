@@ -1,0 +1,7 @@
+#Q5 located in mitochondrion and that lack a transit peptide
+PREFIX : <http://nextprot.org/rdf#>
+PREFIX term: <http://nextprot.org/rdf/terminology/>
+select distinct ?entry where{
+ ?entry :isoform/:localisation/:in/:childOf term:SL-0173
+  FILTER NOT EXISTS{ ?entry :classifiedWith term:KW-0809 }
+}

@@ -1,0 +1,7 @@
+#Q8 whose genes are x bp away from the location of the gene of protein Y
+select distinct ?entry where {
+   entry:NX_P04637 :gene/:begin ?s.
+
+   ?entry :gene/:begin  ?gs.
+   FILTER( ?gs > (?s -50000) && ?gs <= (?s +50000))
+}

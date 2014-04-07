@@ -1,0 +1,5 @@
+#Q2 that are located both in the cytoplasm and in the nucleus
+select distinct ?entry where {
+  ?entry :isoform ?iso.
+    ?iso :localisation/:in/:childOf term:SL-0086,term:SL-0191
+}

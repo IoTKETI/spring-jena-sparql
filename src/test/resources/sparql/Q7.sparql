@@ -1,0 +1,11 @@
+#Q7 linked to diseases that are associated with cardiovascular aspects
+SELECT ?entry ?label WHERE {
+# get all disease with cardiovascular aspect
+  ?cardioChild :childOf term:D002318;rdfs:label ?label. 
+
+# looking for uniprot disease linked to cardiovascular disease
+  ?term :related ?cardioChild.
+
+# get all entries that are disease and are associated with cardiovascular aspects
+  ?entry :isoform/:medical/:in ?term.
+}
