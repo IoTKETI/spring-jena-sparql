@@ -1,11 +1,7 @@
 #Q53  which are involved in cell adhesion according to GO with 
 #     an evidence not IAE and not ISS
 #using owl:differentFrom partition (that should be manually inferred) 
-PREFIX : <http://nextprot.org/rdf#>
-PREFIX term: <http://nextprot.org/rdf/terminology/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
 SELECT distinct ?entry WHERE {
  ?entry  :isoform/:function ?statement.
- ?statement :in term:GO_0007155;:evidence/rdf:type/owl:differentFrom :IEA,:ISS
+ ?statement :in term:GO_0007155;:evidence/:code/owl:differentFrom :IEA,:ISS
 }

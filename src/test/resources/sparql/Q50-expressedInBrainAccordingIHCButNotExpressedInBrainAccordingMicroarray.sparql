@@ -2,9 +2,6 @@
 #     but not expressed in brain according to microarray
 # ECO_0000045 as IHC, ECO_0000104 as EST and ECO_0000220 as microarray
 
-PREFIX : <http://nextprot.org/rdf#>
-PREFIX term: <http://nextprot.org/rdf/terminology/>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
 SELECT distinct ?entry WHERE {
   ?entry :isoform ?iso.
   ?iso :expression ?s1;:expression ?s2.

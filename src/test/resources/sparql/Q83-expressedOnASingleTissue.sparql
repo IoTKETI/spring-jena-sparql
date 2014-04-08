@@ -1,23 +1,16 @@
 #Q83, Proteins whose genes are on chromosome N that are expressed 
 #     only a single tissue/organ
-
-PREFIX : <http://nextprot.org/rdf#>
-PREFIX term: <http://nextprot.org/rdf/terminology/>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
 SELECT  ?entry  (count(?tissue)as ?c)  WHERE {
   ?entry :gene/:chromosome "19"^^xsd:string;:isoform/:expression/:in/rdfs:label  ?tissue.
 }group by ?entry    ORDER BY  ?c limit 5
 
-PREFIX : <http://nextprot.org/rdf#>
-PREFIX term: <http://nextprot.org/rdf/terminology/>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-select  ?entry ?ac ?tissueCount where { 
-  {SELECT  ?entry  (count(?tissue)as ?tissueCount)  WHERE {
-    ?entry :gene/:chromosome "19"^^xsd:string;:isoform/:expression/:in  ?tissue.
-  }group by ?entry    ORDER BY  ?tissueCount limit 5}
-  
-?entry :isoform/:expression/:in/rdfs:label ?ac
-  
-}group by ?entry ?ac ORDER BY  ?tissueCount 
+#select  ?entry ?ac ?tissueCount where { 
+#  {SELECT  ?entry  (count(?tissue)as ?tissueCount)  WHERE {
+#    ?entry :gene/:chromosome "19"^^xsd:string;:isoform/:expression/:in  ?tissue.
+#  }group by ?entry    ORDER BY  ?tissueCount limit 5}
+#  
+#?entry :isoform/:expression/:in/rdfs:label ?ac
+#  
+#}group by ?entry ?ac ORDER BY  ?tissueCount 
 
 

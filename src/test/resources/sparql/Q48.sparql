@@ -2,7 +2,6 @@
 #     that are linked to >=1 disease
 # medical, 
 #     is oneOf (:Biotechnology :Disease :Pharmaceutical :Polymorphism )
-PREFIX : <http://nextprot.org/rdf#>
 SELECT distinct ?entry ?v  WHERE  {
   ?entry :isoform ?iso.
   ?iso :variant ?statement;:medical/rdf:type :Disease.

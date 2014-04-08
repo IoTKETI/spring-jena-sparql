@@ -1,8 +1,5 @@
 #Q32 with a coiled coil region and involved in transcription 
 #    but does not contain a bZIP domain
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX : <http://nextprot.org/rdf#>
-PREFIX term: <http://nextprot.org/rdf/terminology/>
 select distinct ?entry where {
  ?entry :isoform ?iso;:classifiedWith term:KW-0804.
  ?iso :regions/rdf:type :CoiledCoilRegion.

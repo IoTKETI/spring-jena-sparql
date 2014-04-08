@@ -1,5 +1,4 @@
 # Q39 with >=1 mutagenesis in a position that correspond to an annotated active site 
-PREFIX : <http://nextprot.org/rdf#>
 SELECT distinct ?entry WHERE  {
   ?entry :classifiedWith/rdf:type :EnzymeClassification;:isoform ?iso.
   ?iso :mutation ?muta;:site ?site.

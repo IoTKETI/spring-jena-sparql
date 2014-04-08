@@ -1,7 +1,5 @@
 #Q19 contains a signal sequence followed by a extracellular domain 
 #    containing a "KRKR" motif 
-PREFIX : <http://nextprot.org/rdf#>
-PREFIX term: <http://nextprot.org/rdf/terminology/>
 SELECT distinct ?entry WHERE {
 #KRKR motif and extracellular domain
   ?entry :classifiedWith term:KW-0165.

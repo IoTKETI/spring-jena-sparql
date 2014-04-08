@@ -1,5 +1,4 @@
 # Q40 that are enzymes and with >=1 mutagenesis that "decrease" or "abolish" activity 
-PREFIX : <http://nextprot.org/rdf#>
 SELECT distinct ?entry ?comment WHERE  {
   ?entry :classifiedWith/rdf:type :EnzymeClassification. 
   ?entry :isoform/:mutation ?statement.

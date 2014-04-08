@@ -1,6 +1,4 @@
 #Q4, Proteins highly expressed in brain but not expressed in testis
-PREFIX : <http://nextprot.org/rdf#>
-PREFIX term: <http://nextprot.org/rdf/terminology/>
 SELECT distinct ?entry WHERE {
 # highly expressed in brain
   ?entry :isoform/:expression ?s1.

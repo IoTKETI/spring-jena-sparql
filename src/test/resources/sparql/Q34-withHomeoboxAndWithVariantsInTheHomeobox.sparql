@@ -1,6 +1,4 @@
 #Q34 with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
-PREFIX : <http://nextprot.org/rdf#>
-PREFIX term: <http://nextprot.org/rdf/terminology/>
 SELECT distinct ?entry  WHERE {
     ?entry :isoform ?iso.
     

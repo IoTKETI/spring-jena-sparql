@@ -1,5 +1,4 @@
 # Q31 with >=10 "splice" isoforms 
-PREFIX : <http://nextprot.org/rdf#>
 SELECT  distinct ?entry   WHERE  {
   ?entry :isoform ?iso.
 } GROUP BY ?entry HAVING(count(?iso)>=10)

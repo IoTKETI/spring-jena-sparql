@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -101,6 +102,11 @@ public class SparqlController {
 		return "/home";
 	}
 	
+	@RequestMapping(value = "/entry/{ac}/{type}", method = RequestMethod.GET)
+    public String entry(@PathVariable("ac") String ac,@PathVariable("type") String type) {	
+		return "/entry";
+	}
+		
 	
 	@RequestMapping(value = "/sparql",  produces="application/json")
     public @ResponseBody String spaql(HttpServletRequest request, HttpServletResponse response,

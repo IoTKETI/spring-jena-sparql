@@ -1,7 +1,6 @@
 # Q49 with >=1 variants of the types "A->R" or "R->A"
 # :variant is 
 #  owl:oneOf (:Variant :AlignmentConflict *:SequenceConflict* :SequenceVariant )
-PREFIX : <http://nextprot.org/rdf#>
 SELECT distinct ?entry WHERE  {
   ?entry :isoform/:variant ?statement.
   {?statement :original 'A'^^xsd:string;:variation 'R'^^xsd:string;:original ?original}
