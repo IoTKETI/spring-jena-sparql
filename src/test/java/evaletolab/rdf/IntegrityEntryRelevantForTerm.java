@@ -44,7 +44,7 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
 	
 	
 	/**
-	 * SL-0173 È Mitochondrion
+	 * SL-0173 > Mitochondrion
 	 */
 	
 	@Test
@@ -60,7 +60,7 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
 	}	
 	
 	/**
-	 * term:GO_0005739 È Mitochondrion term:KW-0496 
+	 * term:GO_0005739 > Mitochondrion term:KW-0496 
 	 */
 	
 	@Test
@@ -78,7 +78,7 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
  
 	
 	/**
-	 * unionof term:KW-0496 È Mitochondrion  
+	 * unionof term:KW-0496 > Mitochondrion  
 	 */
 	
 	@Test
@@ -94,7 +94,7 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
 	}	 
 
 	/**
-	 * term:KW-0496, term:GO_0005739 È Mitochondrion  
+	 * term:KW-0496, term:GO_0005739 > Mitochondrion  
 	 */
 	
 	@Test
