@@ -21,6 +21,30 @@ function Snorql() {
     this._graph = null;
     this._xsltDOM = null;
 
+    this.entry = function(){
+        this.setBrowserBase(document.location.href.replace(/\?.*/, ''));
+        this._displayEndpointURL();
+        this._displayPoweredBy();
+        this.setNamespaces(namespacePrefixes);
+        var dummy = this;
+        var match = document.location.href.match(/entry\/(.*)\/?(.*)?/);
+        var path="/sparql/"+match[0]+"?output=json";
+        var ac=match[1];
+        
+   	    var startQuery = new Date().getTime();
+      	document.getElementById("time").innerHTML="searching ...";     	    
+        var resultTitle = 'List proteins data';
+
+      	
+    	var successFunc = function(json, data) {
+    		dummy.displayJSONResult(json, resultTitle, (new Date().getTime() - startQuery));
+    	};
+      	
+    	$.getJSON( path, successFunc)
+      	
+    	
+    }
+    
     this.start = function() {
         // TODO: Extract a QueryType class
         this.setBrowserBase(document.location.href.replace(/\?.*/, ''));
@@ -94,13 +118,15 @@ function Snorql() {
                     '}\n' +
                     'ORDER BY (!BOUND(?hasValue)) ?property ?hasValue ?isValueOf';
         }
+        function completeQuery(query){
+        	if(!/(select|insert|update)/ig.test(query)){
+        		query="SELECT DISTINCT * WHERE { "+query+"}";
+        	}
+        	return query;
+        } 
+        
         if (queryString.match(/query=/)) {
-            function completeQuery(query){
-            	if(!/(select|insert|update)/ig.test(query)){
-            		query="SELECT DISTINCT * WHERE { "+query+"}";
-            	}
-            	return query;
-            }        	
+       	
             var resultTitle = 'SPARQL results:';
             querytext = this._betterUnescape(queryString.match(/query=([^&]*)/)[1]);
             var query = prefixes + completeQuery(querytext);
@@ -396,7 +422,7 @@ function SPARQLResultFormatter(json, namespaces) {
         } else if (varName == 'class') {
             return function(uri) { return '?class=' + encodeURIComponent(uri); };
         } else {
-            return function(uri) { return '?describe=' + encodeURIComponent(uri); };
+            return function(uri) { return '/?describe=' + encodeURIComponent(uri); };
         }
     }
 

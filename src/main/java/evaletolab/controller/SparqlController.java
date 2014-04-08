@@ -32,9 +32,10 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 import evaletolab.service.NextprotFunctionRegistry;
+import evaletolab.tool.FileUtil;
 
 @Controller
-public class SparqlController {
+public class SparqlController extends TripleStore{
 	@Autowired
 	public Properties config;
 	
@@ -43,38 +44,7 @@ public class SparqlController {
 	static boolean isNative=false;
 	
 	static NextprotFunctionRegistry registry=new NextprotFunctionRegistry();
-	public void open(){
-		if (endpoint!=null || isNative)
-			return;
-		
-		//
-		// trying to use virtuoso with the native driver 
-		if (config.containsKey("virtuoso.url")){
 
-			
-			VirtGraph graph = new VirtGraph("http://nextprot.org/rdf", 
-					config.getProperty("virtuoso.url"), 
-					config.getProperty("virtuoso.user"), 
-					config.getProperty("virtuoso.password")
-			);
-			model=ModelFactory.createModelForGraph(graph);
-			isNative=true;
-			return;
-		}
-		
-		//
-		// else we use the apsql endpoint (that doesn't support ARQ)
-		endpoint=config.getProperty("sparql.endpoint");		
-	}	
-	
-	public QueryExecution createQueryExecution(String query){
-		if(isNative){
-			Query q = QueryFactory.create(query);
-	        return QueryExecutionFactory.create(q,model);			
-		}
-		return QueryExecutionFactory.sparqlService(endpoint,query);
-	}
-	
 	
     public  String sparqlSelect(String q) {
     	open();
@@ -102,11 +72,28 @@ public class SparqlController {
 		return "/home";
 	}
 	
-	@RequestMapping(value = "/entry/{ac}/{type}", method = RequestMethod.GET)
-    public String entry(@PathVariable("ac") String ac,@PathVariable("type") String type) {	
+	@RequestMapping(value = "/entry/{ac}", method = RequestMethod.GET)
+    public  String entry(HttpServletRequest request, HttpServletResponse response,
+    		@PathVariable("ac") String ac,
+    		@RequestParam(value="output", required=false) String output) throws Exception {
+
+
+		
 		return "/entry";
 	}
+	
+	@RequestMapping(value = "/sparql/entry/{ac}", method = RequestMethod.GET)
+    public @ResponseBody String entryData(HttpServletRequest request, HttpServletResponse response,
+    		@PathVariable("ac") String ac,
+    		@RequestParam(value="output", required=false) String output) throws Exception {
 		
+		String q=FileUtil.getResourceAsString("sparql/entry.sparql").replaceAll("NX_VALUE", ac);;
+
+		if (output!=null && output.equalsIgnoreCase("json")){
+			response.setHeader("Accept", "application/sparql-results+json");
+		}
+		return sparqlSelect(getPrefix()+q);
+	}
 	
 	@RequestMapping(value = "/sparql",  produces="application/json")
     public @ResponseBody String spaql(HttpServletRequest request, HttpServletResponse response,
