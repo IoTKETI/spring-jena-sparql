@@ -2,6 +2,8 @@ package evaletolab.rdf;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -15,6 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
+import com.sun.tools.javac.code.Attribute.Array;
 
 import evaletolab.config.WebConfig;
 import evaletolab.tool.FileUtil;
@@ -60,6 +63,7 @@ public class General extends TripleStore{
 	@Test
 	public void thatArePhosphorylatedAndLocatedInTheCytoplasm() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q1.sparql");
+		String result="";
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
@@ -67,7 +71,7 @@ public class General extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=10000);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));        
+        assertTrue(uri.contains("P22303"));        
 	}		
 
 	
@@ -79,14 +83,22 @@ public class General extends TripleStore{
 	@Test
 	public void thatAreLocatedBothInTheCytoplasmAndInTheNucleus() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q2.sparql");
+
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
         //
         // validate result
 		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=10000);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));        
+		// uniprot list : 
+		// - isoform false positive O15553, O60502 
+		List<String> up= Arrays.asList(FileUtil.getResourceAsString("sparql/result/Q2.up").split("\\n"));		
+        assertTrue( rs.getRowNumber()>=1000);
+        for(String ac:up){
+        	assertTrue(ac, uri.contains(ac));
+        }
+
+                
 	}	
 	
 	/**
@@ -102,8 +114,8 @@ public class General extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=28);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P29353"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P78537"));            
+        assertTrue(uri.contains("P29353"));
+        assertTrue(uri.contains("P78537"));            
 	}	
 			
 	
@@ -121,7 +133,7 @@ public class General extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=10000);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));        
+        assertTrue(uri.contains("P22303"));        
 	}		
 	
 	/**
@@ -138,7 +150,7 @@ public class General extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=10000);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));        
+        assertTrue(uri.contains("P22303"));        
 	}		
 	
 	/**
@@ -155,7 +167,7 @@ public class General extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=10000);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));        
+        assertTrue(uri.contains("P22303"));        
 	}		
 	/**
 	 * Q68 with protein existence PE=2 (transcript level) 
@@ -171,7 +183,7 @@ public class General extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=10000);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));        
+        assertTrue(uri.contains("P22303"));        
 	}	
 			
 	
@@ -189,7 +201,7 @@ public class General extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=10000);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));              
+        assertTrue(uri.contains("P22303"));              
 	}	
 
 	/**
@@ -206,7 +218,7 @@ public class General extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=10000);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));              
+        assertTrue(uri.contains("P22303"));              
 	}
 	
 	/**
@@ -224,7 +236,7 @@ public class General extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=10000);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));              
+        assertTrue(uri.contains("P22303"));              
 	}	
 	
 	/**
@@ -241,7 +253,7 @@ public class General extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=10000);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));              
+        assertTrue(uri.contains("P22303"));              
 	}		
 	/**
 	 * Q65 Proteins with >1 catalytic activity 
@@ -257,7 +269,7 @@ public class General extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=10000);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));              
+        assertTrue(uri.contains("P22303"));              
 	}	
 	
 	/**
@@ -274,6 +286,6 @@ public class General extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=10000);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));              
+        assertTrue(uri.contains("P22303"));              
 	}		
 }

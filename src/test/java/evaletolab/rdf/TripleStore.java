@@ -70,15 +70,14 @@ public class TripleStore {
 	}
 	
 	public List<String> getURIs(ResultSet rs){
-		return getURIs(rs,"entry");
+		return getURIs(rs,"entry","NX_");
 	}
 	
-	public List<String> getURIs(ResultSet rs, String variable){
+	public List<String> getURIs(ResultSet rs, String variable, String replace){
 		List<String> uri=new ArrayList<String>();		
         while(rs.hasNext()){
         	QuerySolution qs=rs.next();
-        	uri.add(qs.getResource(variable).getURI());
-        	System.out.println();
+        	uri.add(qs.getResource(variable).getLocalName().replace(replace,""));
         }		
         return uri;
 	}

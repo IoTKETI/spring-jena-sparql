@@ -2,4 +2,4 @@
 select distinct ?entry where {
   ?entry :isoform ?iso.
     ?iso :localisation/:in/:childOf term:SL-0086,term:SL-0191
-}
+}order by ?entry

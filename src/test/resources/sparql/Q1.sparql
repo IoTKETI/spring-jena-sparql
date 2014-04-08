@@ -1,4 +1,4 @@
 #Q1 that are phosphorylated and located in the cytoplasm
 select distinct ?entry where {
   ?entry :classifiedWith term:KW-0597;:isoform/:localisation/:in/:childOf term:SL-0086
-}
+}order by ?entry

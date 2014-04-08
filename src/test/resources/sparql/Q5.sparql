@@ -2,4 +2,4 @@
 select distinct ?entry where{
  ?entry :isoform/:localisation/:in/:childOf term:SL-0173
   FILTER NOT EXISTS{ ?entry :classifiedWith term:KW-0809 }
-}
+}order by ?entry

@@ -62,7 +62,7 @@ public class Integrity extends TripleStore{
         
         //
         // validate result
-		List<String> uri=getURIs(rs,"class");
+		List<String> uri=getURIs(rs,"class","");
         assertEquals("countTerminologyClass (36)",rs.getRowNumber(),36);
 	}	
 	
@@ -77,7 +77,7 @@ public class Integrity extends TripleStore{
         
         //
         // validate result
-		List<String> uri=getURIs(rs,"class");
+		List<String> uri=getURIs(rs,"class","");
         assertEquals("countNotUsedTerminologyClass (7)",rs.getRowNumber(),7);
 	}		
 	@Test
@@ -90,7 +90,7 @@ public class Integrity extends TripleStore{
         
         //
         // validate result
-		List<String> uri=getURIs(rs,"class");
+		List<String> uri=getURIs(rs,"class","");
         assertEquals("countAnnotationClass (76)",rs.getRowNumber(),76);
 	}		
 	/**
@@ -110,7 +110,7 @@ public class Integrity extends TripleStore{
         ResultSet rs=qe.execSelect();
         //
         // validate result
-		List<String> uri=getURIs(rs,"class");
+		List<String> uri=getURIs(rs,"class","");
         
         assertEquals("countIntersectBetweenAnnotationAndTerminologyClass (0)",rs.getRowNumber(),0);
 	}	
