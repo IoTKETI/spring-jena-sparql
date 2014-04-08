@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/resources/js/highlight/codemirror.css" />
     <link rel="stylesheet" type="text/css" href="/resources/js/highlight/elegant.css" />
+    <script type="text/javascript" src="/resources/js/kew.js"></script>
     <script type="text/javascript" src="/resources/js/sparql.js"></script>
     <script type="text/javascript" src="/resources/js/namespaces.js"></script>
     <script type="text/javascript" src="/resources/js/snorql.js"></script>

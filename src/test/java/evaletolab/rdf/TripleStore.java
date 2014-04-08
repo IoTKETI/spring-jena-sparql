@@ -48,7 +48,7 @@ public class TripleStore {
 			"PREFIX context: <http://nextprot.org/rdf/context/>\n";
 
 	public void open(){
-
+   
 		//
 		// trying to use virtuoso with the native driver 
 		if (config.containsKey("virtuoso.url")){

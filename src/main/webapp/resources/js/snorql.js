@@ -341,8 +341,8 @@ function Snorql() {
             p.className = 'empty';
             p.appendChild(document.createTextNode('[no results]'));
             div.appendChild(p);
-        } else {
-            div.appendChild(new SPARQLResultFormatter(json, this._namespaces).toDOM());
+        } else {        	
+            div.appendChild(new SPARQLResultFormatter(json, this._namespaces).toDOM());        		
         }
         this._display(div, 'result');
         this._updateGraph(this._graph); // refresh links in new result
@@ -398,6 +398,20 @@ SPARQLResultFormatter: Renders a SPARQL/JSON result set into an HTML table.
 var namespaces = { 'xsd': '', 'foaf': 'http://xmlns.com/foaf/0.1' };
 var formatter = new SPARQLResultFormatter(json, namespaces);
 var tableObject = formatter.toDOM();
+
+        var x, me=this;
+        function buildArray(offset,limit,cb){
+	        for (var i = offset; i < limit; i++) {
+        		table.appendChild(me._createTableRow(me._results[i], i));
+	        }
+        	cb&&cb(table)
+        }
+        
+        for (x = 0; x < this._results.length/5000; x++){
+        	buildArray(x,5000+x)
+        }
+        buildArray(x,me._results.length%5000+x)
+
 */
 function SPARQLResultFormatter(json, namespaces) {
     this._json = json;
@@ -410,7 +424,9 @@ function SPARQLResultFormatter(json, namespaces) {
         table.className = 'queryresults';
         table.appendChild(this._createTableHeader());
         for (var i = 0; i < this._results.length; i++) {
-            table.appendChild(this._createTableRow(this._results[i], i));
+//            	setTimeout(function(){        	
+            		table.appendChild(this._createTableRow(this._results[i], i));
+//            	});
         }
         return table;
     }
