@@ -1,9 +1,9 @@
 Advanced SPARQL for nextprot with spring-mvc, jena and virtuoso 
 ===============================================================
-The purpose of this document is to give an original way to build and test the new advanced search engine for nextprot. neXtProt is an on-line knowledge platform on human proteins. It is based on a top-down data integration process, materialized in central SQL engine (postgres). The complexity of data is mainly due to the specific nature of the bioinformatics. Plus, nextprot tend to integrate, with a top-down process, a large amount of data provided by independs groups (bottom-up process). Currently, all nextprot data are not really usable because of the lack of an advanced queries engine.
-This project proposes a solution to build an advanced query engine, based on the use cases provided by our (main) users. We have currently 91 queries that describe all perspectives of data for the first release. This is our first milestone, it mainly focus on those queries. 
+The purpose of this document is to give an original way to build and test the new advanced search engine for neXtProt. neXtProt is an on-line knowledge platform on human proteins. It is based on a top-down data integration process, materialized in a central SQL engine (postgres). neXtProt tends to integrate, with a top-down process, a large amount of data provided by independant groups (bottom-up process). Currently, all neXtProt data can't easily  interrogated because of the lack of an advanced query engine. The nature of bioinformatics data makes the creation of a transversal query engine difficult.
+This project proposes a solution to build an advanced query engine, based on the use cases provided by our (main) users. We currently have 91 queries that describe all perspectives of data for the first release. This is our first milestone, it mainly focuses on those queries. 
 
-**This project will help to build a closed world RDF schema by iterations and tests. The schema creation mainly focus on the user queries. It has nothing to do with semantic data in open world. It mainly focus on understandable SPARQL queries.**
+**This project will help to build a closed world RDF schema by iterations and tests. The schema creation mainly focuses on the user queries. It has nothing to do with semantic data in open world. It emphasizes on understandable SPARQL queries.**
 > For example, All proteins which are located in **mitochondrion** with an evidence other than **HPA** and **DKFZ-GFP**
 ```SPARQL
   ?proteins :isoform/:localisation ?statement.
@@ -12,7 +12,7 @@ This project proposes a solution to build an advanced query engine, based on the
 ```  
 
 
-This project also demonstrates how to use and configure a triplestore (open-virtuoso, fuseky) with Jena and spring-mvc. Following the instructions, you should be able to build your own nextprot mirror
+This project also demonstrates how to use and configure a triplestore (open-virtuoso, fuseki) with Jena and spring-mvc. Following the instructions, you should be able to build your own neXtProt mirror
 
 ###RDFS and queries,
 * [initial rdf schema](src/main/resources/owl)
