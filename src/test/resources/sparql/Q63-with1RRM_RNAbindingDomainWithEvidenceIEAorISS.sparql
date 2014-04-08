@@ -4,7 +4,7 @@ SELECT distinct ?entry  WHERE {
  ?entry :isoform ?iso
  {
 #>=1 RRM RNA-binding domain 
-  ?iso :regions/:in term:DO-00581.
+  ?iso :region/:in term:DO-00581.
 
 #GO "RNA binding" with evidence IEA or ISS 
   FILTER NOT EXISTS {
@@ -12,7 +12,7 @@ SELECT distinct ?entry  WHERE {
   }
  }UNION{
 #>=1 RRM RNA-binding domain 
-  ?iso :regions/:in term:DO-00581.
+  ?iso :region/:in term:DO-00581.
 
 #GO "RNA binding" with evidence IEA or ISS 
   ?iso :function ?s1.

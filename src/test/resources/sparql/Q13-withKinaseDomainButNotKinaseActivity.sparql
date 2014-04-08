@@ -2,7 +2,7 @@
 PREFIX : <http://nextprot.org/rdf#>
 PREFIX term: <http://nextprot.org/rdf/terminology/>
 SELECT distinct ?entry WHERE {
-  ?entry :isoform/:regions/:in term:DO-00529.
+  ?entry :isoform/:region/:in term:DO-00529.
   FILTER NOT EXISTS{
    ?entry :isoform/:classifiedWith/:childOf term:2.7.-.-
   }

@@ -1,4 +1,4 @@
-#Q3 with >=2 transmembrane regions
+#Q3 with >=2 transmembrane region
 select distinct ?entry where{
  ?statement a :TransmembraneRegion.
  ?entry :isoform/:topology ?statement

@@ -3,7 +3,7 @@ SELECT distinct ?entry  WHERE {
     ?entry :isoform ?iso.
     
 # with >=1 homeobox domain    
-    ?iso  :regions  ?st1.
+    ?iso  :region  ?st1.
     ?st1 :in term:DO-00312;:start ?start;:end ?end.
 
 # with >=1 variant

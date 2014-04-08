@@ -2,8 +2,8 @@
 #    but does not contain a bZIP domain
 select distinct ?entry where {
  ?entry :isoform ?iso;:classifiedWith term:KW-0804.
- ?iso :regions/rdf:type :CoiledCoilRegion.
+ ?iso :region/rdf:type :CoiledCoilRegion.
  FILTER NOT EXISTS{
-   ?iso :regions term:DO-00078
+   ?iso :region term:DO-00078
  }
 }
