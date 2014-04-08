@@ -1,16 +1,18 @@
 Advanced SPARQL for nextprot with spring-mvc, jena and virtuoso 
 ===============================================================
+The purpose of this document is to give an original way to build and test the new advanced search engine for nextprot. neXtProt is an on-line knowledge platform on human proteins. It is based on a top-down data integration process, materialized in central SQL engine (postgres). The complexity of data is mainly due to the specific nature of the bioinformatics. Plus, nextprot tend to integrate, with a top-down process, a large amount of data provided by independs groups (bottom-up process). Currently, all nextprot data are not really usable because of the lack of an advanced queries engine.
+This project proposes a solution to build an advanced query engine, based on the use cases provided by our (main) users. We have currently 91 queries that describe all perspectives of data for the first release. This is our first milestone, it mainly focus on those queries. 
 
-This project will help to build a closed world RDF schema by iteration and tests. The schema creation mainly focus on the user queries. It has nothing to do with semantic data in open world. It mainly focus on the user and understandable SPARQL queries. 
+This project will help to build a closed world RDF schema by iterations and tests. The schema creation mainly focus on the user queries. It has nothing to do with semantic data in open world. It mainly focus on understandable SPARQL queries. 
 > For example, All proteins which are located in **mitochondrion** with an evidence other than **HPA** and **DKFZ-GFP**
 ```SPARQL
-  ?proteins :isoform/:located ?statement.
+  ?proteins :isoform/:localisation ?statement.
     ?statement :in/:childOf term:SL-0173 #Mitochondrion ; 
-               :withEvidence/:fromXref/owl:disJointWith :HPA,:DKFZ-GFP
+               :withEvidence/:fromXref/:notIn :HPA,:DKFZ-GFP
 ```  
 
 
-It demonstrates the use of a triplestore (open-virtuoso) with Jena and spring-mvc. The purpose of the schema will help the user to write SPARQL with a contextual introspection.
+This project also demonstrates how to use and configure a triplestore (open-virtuoso, fuseky) with Jena and spring-mvc. Following the instructions, you should be able to build your own nextprot mirror
 
 ###RDFS and queries,
 * [initial rdf schema](src/main/resources/owl)
@@ -81,6 +83,12 @@ $ mvn jetty:run
 * [Q49](src/test/resources/sparql/Q49.sparql) Proteins with >=1 variants of the types "A->R" or "R->A"
 
 ###Use case for general [annotations](src/test/java/evaletolab/rdf/General.java)
+* [Q1](src/test/resources/sparql/Q1.sparql) that are phosphorylated and located in the cytoplasm 
+* [Q2](src/test/resources/sparql/Q2.sparql) that are located both in the cytoplasm and in the nucleus
+* [Q5](src/test/resources/sparql/Q5.sparql) located in mitochondrion and that lack a transit peptide
+* [Q6](src/test/resources/sparql/Q6.sparql) whose genes are on chromosome 2 and linked with a disease
+* [Q7](src/test/resources/sparql/Q7.sparql) linked to diseases that are associated with cardiovascular aspects
+* [Q8](src/test/resources/sparql/Q8.sparql) whose genes are x bp away from the location of the gene of protein Y
 * [Q22](src/test/resources/sparql/Q22.sparql) Proteins with no function annotated
 * [Q31](src/test/resources/sparql/Q31.sparql) Proteins with >=10 "splice" isoforms
 * [Q32](src/test/resources/sparql/Q32.sparql) Proteins with a coiled coil region and involved in transcription but does not contain a bZIP domain
