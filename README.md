@@ -14,13 +14,15 @@ This project proposes a solution to build an advanced query engine, based on the
 
 This project also demonstrates how to use and configure a triplestore (open-virtuoso, fuseki) with Jena and spring-mvc. Following the instructions, you should be able to build your own neXtProt mirror
 
+<!--
 ###RDFS and queries,
 * [initial rdf schema](src/main/resources/owl)
 * [view all sparql queries](src/test/resources/sparql)
+-->
 
 ###Get your own triplestore instance 
-* install open-virtuoso,
-* get nextprot triples, 
+* install open-virtuoso 7.x (redhat, ubuntu),
+* get the neXtProt triples, 
 * install virtuoso jena driver ([download Jena2 provider and jdbc4  jars](http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/VOSDownload#Jena%20Provider)),
 ```shell
 $mvn install:install-file -Dfile=virt_jena2.jar -DgroupId=virtuoso.jena2 -DartifactId=virtuoso-jena2 -Dversion=2.10.x
