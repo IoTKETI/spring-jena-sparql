@@ -37,6 +37,11 @@ $mvn install:install-file -Dfile=virtjdbc4.jar -DgroupId=virtuoso.jdbc4 -Dartifa
 ```shell
 $mvn -Dtest=Integrity test
 ```
+###Run all rdf tests
+* [view all sparql test](src/test/java/evaletolab/rdf)
+```shell
+$mvn -Dtest=evaletolab.rdf.* test
+```
 
 ###Walking the graph
 The class [SparqlController.java](src/main/java/evaletolab/controller/SparqlController.java) implement the basic proxying with the triplestore. With a native Jena2 driver, you have the ability to mix, in a single SPARQL query, data from your native datastore and magic properties from Jena ARQ.
