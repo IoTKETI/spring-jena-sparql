@@ -5,11 +5,18 @@ This project proposes a solution to build an advanced query engine, based on the
 
 **This project will help to build a closed world RDF schema by iterations and tests. The schema creation mainly focuses on the user queries. It has nothing to do with semantic data in open world. It emphasizes on understandable SPARQL queries.**
 > For example, All proteins which are located in **mitochondrion** with an evidence other than **HPA** and **DKFZ-GFP**
+
 ```SPARQL
   ?proteins :isoform/:localisation ?statement.
     ?statement :in/:childOf term:SL-0173 #Mitochondrion ; 
                :withEvidence/:fromXref/:notIn :HPA,:DKFZ-GFP
-```  
+```
+> Or you can get all regions/domains (eg. name, positions and terminology) of a protein 
+
+```SPARQL
+  entry:NX_P06213 :isoform/:region ?region.
+    ?region rdfs:label ?name;:start ?start;:end ?end;:in ?term
+```
 
 
 This project also demonstrates how to use and configure a triplestore (open-virtuoso, fuseki) with Jena and spring-mvc. Following the instructions, you should be able to build your own neXtProt mirror
