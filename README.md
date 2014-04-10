@@ -17,6 +17,7 @@ This project proposes a solution to build an advanced query engine, based on the
   entry:NX_P06213 :isoform/:region ?region.
     ?region rdfs:label ?name;:start ?start;:end ?end;:in ?term
 ```
+> and plot the result
 ![SNORQL](src/main/webapp/resources/img/regions.png)
 
 This project also demonstrates how to use and configure a triplestore (open-virtuoso, fuseki) with Jena and spring-mvc. Following the instructions, you should be able to build your own neXtProt mirror
