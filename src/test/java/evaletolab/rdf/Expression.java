@@ -62,7 +62,7 @@ public class Expression extends TripleStore{
 	 * Proteins that are not highly expressed in liver at embrion stage (count=11'272)
 	 * --> hierarchical Liver (TS-0564) with 17848 entries
 	 *     NX_P61604,NX_Q15029,NX_Q07973
-	 * --> not highly expressed =>  :expressionLevel/owl:disjointWith :High.
+	 * --> not highly expressed =>  :expressionLevel/:notIn :High.
 	 * @throws Exception 
 	 * 
 	 */

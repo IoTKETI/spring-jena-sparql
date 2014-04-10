@@ -98,7 +98,7 @@ public class SPARQL_adv {
 				 "PREFIX term: <http://nextprot.org/rdf/terminology/> " +
 				 "SELECT * WHERE { " +
 				 "  ?notInByDisJointWith :evidence/rdf:type ?eco." +
-				 "  ?eco owl:disjointWith :IEA"+
+				 "  ?eco :notIn :IEA"+
 				 "}";	
 		Query query = QueryFactory.create(q);
         QueryExecution qe = QueryExecutionFactory.create(query,rdfs);

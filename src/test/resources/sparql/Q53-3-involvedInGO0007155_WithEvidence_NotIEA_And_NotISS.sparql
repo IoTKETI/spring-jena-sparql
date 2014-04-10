@@ -3,5 +3,5 @@
 #using owl:differentFrom partition (that should be manually inferred) 
 SELECT distinct ?entry WHERE {
  ?entry  :isoform/:function ?statement.
- ?statement :in term:GO_0007155;:evidence/:code/owl:differentFrom :IEA,:ISS
+ ?statement :in term:GO_0007155;:withEvidence/:code/owl:differentFrom :IEA,:ISS
 }

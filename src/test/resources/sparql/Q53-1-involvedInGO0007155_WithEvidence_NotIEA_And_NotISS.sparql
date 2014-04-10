@@ -1,7 +1,7 @@
 #Q53  which are involved in cell adhesion according to GO with 
 #     an evidence not IAE and not ISS
-#using owl:disjointWith partition 
+#using :notIn partition 
 SELECT distinct ?entry WHERE {
  ?entry  :isoform/:function ?statement.
- ?statement :in term:GO_0007155;:evidence/:code/owl:disjointWith :IEA,:ISS
+ ?statement :in term:GO_0007155;:withEvidence/:code/:notIn :IEA,:ISS
 }

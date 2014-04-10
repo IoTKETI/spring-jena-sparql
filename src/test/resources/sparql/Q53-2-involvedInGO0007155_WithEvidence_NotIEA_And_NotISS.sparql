@@ -4,7 +4,7 @@ SELECT distinct ?entry WHERE {
  ?entry  :isoform/:function ?statement.
  ?statement :in term:GO_0007155.
   FILTER NOT EXISTS {
-    ?statement :evidence/:code ?type
+    ?statement :withEvidence/:code ?type
     values ?type {:IEA :ISS}
   }
 }

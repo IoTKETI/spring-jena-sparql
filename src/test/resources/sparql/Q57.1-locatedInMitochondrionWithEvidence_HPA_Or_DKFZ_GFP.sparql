@@ -6,6 +6,6 @@
 SELECT  ?entry   WHERE {
   ?entry :isoform/:localisation ?statement.
     ?statement :in/:childOf term:SL-0173;
-               :evidence/:fromXref ?source.
+               :withEvidence/:fromXref ?source.
   VALUES ?source { db:HPA db:GFP-cDNA}
 }

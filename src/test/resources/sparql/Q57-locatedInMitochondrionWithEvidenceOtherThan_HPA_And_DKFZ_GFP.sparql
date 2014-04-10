@@ -7,6 +7,6 @@ SELECT  ?entry  WHERE {
   ?entry :isoform/:localisation ?statement.
     ?statement :in/:childOf term:SL-0173
     FILTER NOT EXISTS{
-      ?statement :evidence/:fromXref db:HPA,db:GFP-cDNA
+      ?statement :withEvidence/:fromXref db:HPA,db:GFP-cDNA
     }      
 }

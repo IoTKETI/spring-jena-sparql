@@ -2,9 +2,9 @@
 SELECT distinct ?entry WHERE {
 # highly expressed in brain
   ?entry :isoform/:expression ?s1.
-  ?s1 :in/:childOf  term:TS-0095;:evidence/:expressionLevel :High.
+  ?s1 :in/:childOf  term:TS-0095;:withEvidence/:expressionLevel :High.
 
 # not expressed in testis
   ?entry :isoform/:expression ?s2.
-  ?s2 :in/:childOf  term:TS-1030;:evidence/:expressionLevel :Negative.
+  ?s2 :in/:childOf  term:TS-1030;:withEvidence/:expressionLevel :Negative.
 }order by ?entry 

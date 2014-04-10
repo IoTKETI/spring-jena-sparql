@@ -1,6 +1,13 @@
 package evaletolab.controller;
 
+import static us.monoid.web.Resty.data;
+import static us.monoid.web.Resty.*;
+
+import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +26,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import us.monoid.web.Resty;
+import us.monoid.web.TextResource;
 import virtuoso.jena.driver.VirtGraph;
 
 
@@ -94,10 +103,29 @@ public class SparqlController extends TripleStore{
 		}
 		return sparqlSelect(getPrefix()+q);
 	}
+
+	
+	@RequestMapping(value = "/uniprot", method = RequestMethod.GET)
+    public @ResponseBody List<String> uniprot(HttpServletRequest request, HttpServletResponse response,
+    		@RequestParam(value="query", required=false) String query) throws Exception {
+
+		System.out.println("uniprot query="+query);
+		TextResource rs=new Resty().text("http://www.uniprot.org/uniprot", 
+				form(data("query",enc(query)),data("format","list"))
+		);
+		rs.withHeader("Accept", "text/plain");
+		String body=rs.toString();	
+		
+		List<String> acs=new LinkedList<String>(Arrays.asList(body.split("\n")));
+		return acs;
+	}
+	
 	
 	@RequestMapping(value = "/sparql",  produces="application/json")
     public @ResponseBody String spaql(HttpServletRequest request, HttpServletResponse response,
-    		@RequestParam(value="query", required=false) String query, @RequestParam(value="outout", required=false) String output) {
+    		@RequestParam(value="query", required=false) String query, 
+    		@RequestParam(value="outout", required=false) String output,
+    		@RequestParam(value="uniprot", required=false) String uniprot) {
 		if (output!=null && output.equalsIgnoreCase("json")){
 			response.setHeader("Accept", "application/sparql-results+json");			
 		}

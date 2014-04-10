@@ -1,5 +1,5 @@
 # Q41 that are annotated with GO "F" terms prefixed by "Not" 
 SELECT distinct ?entry  WHERE  {
   ?entry :isoform/:function ?statement.
-  ?statement a :GoMolecularFunction;:evidence/:negative "true"^^xsd:boolean.
+  ?statement a :GoMolecularFunction;:withEvidence/:negative "true"^^xsd:boolean.
 }

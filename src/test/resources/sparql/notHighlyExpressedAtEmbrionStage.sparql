@@ -1,7 +1,7 @@
 #Proteins that are not highly expressed in liver at embryo stage
 SELECT distinct ?entry WHERE {
   ?entry :isoform/:expression ?statement.
-  ?statement :in/:childOf  term:TS-0564;:evidence ?withEvidence.
-  ?withEvidence :expressionLevel/owl:disjointWith :High;:experimentalContext/:developmentalStage term:HsapDO_0000002.
+  ?statement :in/:childOf  term:TS-0564;:withEvidence ?evidence.
+  ?evidence :expressionLevel/:notIn :High;:experimentalContext/:developmentalStage term:HsapDO_0000002.
 }
 
