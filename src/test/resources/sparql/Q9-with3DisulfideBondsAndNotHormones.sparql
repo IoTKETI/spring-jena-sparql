@@ -5,4 +5,4 @@ SELECT distinct ?entry  WHERE {
  FILTER NOT EXISTS {
    ?entry :classifiedWith term:KW-0372 
  }
-}
+}group by ?entry HAVING(count(?statement)=3)

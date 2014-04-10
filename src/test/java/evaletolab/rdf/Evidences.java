@@ -76,9 +76,9 @@ public class Evidences extends TripleStore{
         
         //
         // validate result
-		List<String> uri=getURIs(rs);
+		List<String> uri=getURIs(rs);System.out.println(uri);
         assertTrue( rs.getRowNumber()>=179);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));
+        assertTrue(uri.contains("P22303"));
         
 	}	
 
@@ -102,7 +102,7 @@ public class Evidences extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=179);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));
+        assertTrue(uri.contains("P22303"));
 	}	
 	
 
@@ -120,7 +120,7 @@ public class Evidences extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=179);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));
+        assertTrue(uri.contains("P22303"));
 	}		
 
 	/**
@@ -144,8 +144,8 @@ public class Evidences extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=239);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P09622"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P11182"));
+        assertTrue(uri.contains("P09622"));
+        assertTrue(uri.contains("P11182"));
 	
 	}	
 	
@@ -168,8 +168,8 @@ public class Evidences extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=174);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q13310"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q9UBU9"));
+        assertTrue(uri.contains("Q13310"));
+        assertTrue(uri.contains("Q9UBU9"));
 	}	
 
 

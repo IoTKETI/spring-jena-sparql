@@ -74,8 +74,8 @@ public class Features extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=3742);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q2QL34"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_A6NFC5"));        
+        assertTrue(uri.contains("Q2QL34"));
+        assertTrue(uri.contains("A6NFC5"));        
 	}	
 	
 
@@ -92,8 +92,8 @@ public class Features extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=3141);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P09622"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P0CF51"));   
+        assertTrue(uri.contains("P09622"));
+        assertTrue(uri.contains("P0CF51"));   
 	}	
 
 	/**
@@ -110,8 +110,8 @@ public class Features extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=491);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P0C1S8"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_O14920"));   
+        assertTrue(uri.contains("P0C1S8"));
+        assertTrue(uri.contains("O14920"));   
 	}	
 
 	/**
@@ -128,9 +128,9 @@ public class Features extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=9);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P52735"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P16333"));    
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_O75791"));    
+        assertTrue(uri.contains("P52735"));
+        assertTrue(uri.contains("P16333"));    
+        assertTrue(uri.contains("O75791"));    
 	}	
 	
 
@@ -195,9 +195,9 @@ public class Features extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=139);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P15056"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P48382"));  
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q9NYF8"));  
+        assertTrue(uri.contains("P15056"));
+        assertTrue(uri.contains("P48382"));  
+        assertTrue(uri.contains("Q9NYF8"));  
 	}
 	
 	/**
@@ -215,9 +215,9 @@ public class Features extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=31);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P21754"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P53708"));  
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P60508"));          
+        assertTrue(uri.contains("P21754"));
+        assertTrue(uri.contains("P53708"));  
+        assertTrue(uri.contains("P60508"));          
 	}
 	
 	/**
@@ -235,9 +235,9 @@ public class Features extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=180);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q9Y5B9"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q13352"));  
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q8TDY2"));            
+        assertTrue(uri.contains("Q9Y5B9"));
+        assertTrue(uri.contains("Q13352"));  
+        assertTrue(uri.contains("Q8TDY2"));            
 	}
 	
 	/**
@@ -255,8 +255,8 @@ public class Features extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=225);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_A6NJ46"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P09629"));          
+        assertTrue(uri.contains("A6NJ46"));
+        assertTrue(uri.contains("P09629"));          
 	}		
 	
 	/**
@@ -274,9 +274,9 @@ public class Features extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=26);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_O60613"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P63302"));                
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q9C0D9"));                
+        assertTrue(uri.contains("O60613"));
+        assertTrue(uri.contains("P63302"));                
+        assertTrue(uri.contains("Q9C0D9"));                
 	}		
 	
 	/**
@@ -294,9 +294,9 @@ public class Features extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=356);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P22303"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q2T9J0"));                
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q9NUW8"));   
+        assertTrue(uri.contains("P22303"));
+        assertTrue(uri.contains("Q2T9J0"));                
+        assertTrue(uri.contains("Q9NUW8"));   
 	}		
 
 	/**
@@ -314,8 +314,8 @@ public class Features extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=696);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q5T1C6"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q9HCK8"));           
+        assertTrue(uri.contains("Q5T1C6"));
+        assertTrue(uri.contains("Q9HCK8"));           
 	}		
 	
 	/**
@@ -332,8 +332,8 @@ public class Features extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=198);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P14210"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P12270"));            
+        assertTrue(uri.contains("P14210"));
+        assertTrue(uri.contains("P12270"));            
 	}		
 	
 	
@@ -351,8 +351,8 @@ public class Features extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=1738);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_Q9Y587"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P09622"));         
+        assertTrue(uri.contains("Q9Y587"));
+        assertTrue(uri.contains("P09622"));         
 	}		
 	
 	/**
@@ -369,8 +369,8 @@ public class Features extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs);
         assertTrue( rs.getRowNumber()>=266);
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_O14828"));
-        assertTrue(uri.contains("http://nextprot.org/rdf/entry/NX_P29323"));           
+        assertTrue(uri.contains("O14828"));
+        assertTrue(uri.contains("P29323"));           
 	}		
 
 }
