@@ -15,7 +15,7 @@ This project proposes a solution to build an advanced query engine, based on the
 
 ```SPARQL
   entry:NX_P06213 :isoform/:region ?region.
-    ?region rdfs:label ?name;:start ?start;:end ?end;:in ?term
+    ?region rdfs:comment ?name;:start ?start;:end ?end;:in ?term
 ```
 > and plot the result
 ![SNORQL](src/main/webapp/resources/img/regions.png)
