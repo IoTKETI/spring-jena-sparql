@@ -17,7 +17,7 @@ This project proposes a solution to build an advanced query engine, based on the
   entry:NX_P06213 :isoform/:region ?region.
     ?region rdfs:label ?name;:start ?start;:end ?end;:in ?term
 ```
-
+![SNORQL](src/main/webapp/resources/img/region.png)
 
 This project also demonstrates how to use and configure a triplestore (open-virtuoso, fuseki) with Jena and spring-mvc. Following the instructions, you should be able to build your own neXtProt mirror
 
@@ -54,6 +54,7 @@ $mvn -Dtest=evaletolab.rdf.* test
 The class [SparqlController.java](src/main/java/evaletolab/controller/SparqlController.java) implement the basic proxying with the triplestore. With a native Jena2 driver, you have the ability to mix, in a single SPARQL query, data from your native datastore and magic properties from Jena ARQ.
 ```shell
 $ mvn jetty:run
+$ ff localhost:6969
 ```
 
 ![SNORQL](src/main/webapp/resources/img/snorql.png "snorql frontend")
