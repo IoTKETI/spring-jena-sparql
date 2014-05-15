@@ -1,5 +1,6 @@
-#Q19 contains a signal sequence followed by a extracellular domain 
-#    containing a "KRKR" motif 
+#title:Q19 contains a signal sequence followed by a extracellular domain  containing a "KRKR" motif
+#pending
+#ac:O14672,O71037,P06213,P06756,P08514,P08648,P19438,P21754,P23229,P26006 
 SELECT distinct ?entry WHERE {
 #KRKR motif and extracellular domain
   ?entry :classifiedWith term:KW-0165.

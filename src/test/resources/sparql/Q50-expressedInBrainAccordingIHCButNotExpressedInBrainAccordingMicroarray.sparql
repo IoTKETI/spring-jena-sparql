@@ -1,17 +1,15 @@
-#Q50, Proteins which are expressed in brain according to IHC 
+#title:Q50, Proteins which are expressed in brain according to IHC 
 #     but not expressed in brain according to microarray
 # ECO_0000045 as IHC, ECO_0000104 as EST and ECO_0000220 as microarray
-
+#pending
+#ac:
 SELECT distinct ?entry WHERE {
   ?entry :isoform ?iso.
-  ?iso :expression ?s1;:expression ?s2.
-
+    ?iso :expression ?s1,?s2.
 # not expressed in brain according to microarray 
   ?s2 :in/:childOf  term:TS-0095;:withEvidence/:expressionLevel :Negative;:withEvidence/:experimentalContext/:detectionMethod term:ECO_0000220.
-  
 # expressed in brain according to IHC
   ?s1 :in/:childOf  term:TS-0095;:withEvidence/:experimentalContext/:detectionMethod term:ECO_0000045.
-
 }
 
 

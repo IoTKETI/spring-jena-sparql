@@ -1,0 +1,9 @@
+#title:Q25 with >=50 interactors and not involved in a disease 
+#pending
+#ac:A0AVK6,A0FGR8,A0FGR9,A1A4S6,A5D8V7,A5PKW4,A5YKK6,A7E2Y1,A7KAX9,A7MCY6
+select distinct ?entry  where {
+  ?entry :isoform ?iso.
+  ?iso :interaction/:with ?interaction .
+  FILTER NOT EXISTS {   ?iso :medical/rdf:type :Disease. }
+  FILTER NOT EXISTS {   ?isoform :variant/:disease ?linkedDisease . }
+}group by ?entry ?iso having (count(?interaction) >= 50) order by ?entry

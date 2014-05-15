@@ -1,5 +1,6 @@
-#Q11, Proteins that are expressed in liver and involved in transport
+#title:Q11, Proteins that are expressed in liver and involved in transport
 #     (transport,term:GO_0006810, term:KW-0813) 
+#ac:A0AV02,A0PJK1,A1A5C7,A4IF30,A5D8V6,A5X5Y0,A6NIM6,A8K7I4,A8MTZ0,A9QM74
 SELECT distinct ?entry WHERE {
   ?entry :isoform/:expression/:in/:childOf term:TS-0564;
          :classifiedWith term:KW-0813.

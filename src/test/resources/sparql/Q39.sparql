@@ -1,6 +1,8 @@
-# Q39 with >=1 mutagenesis in a position that correspond to an annotated active site 
+#title:Q39 with >=1 mutagenesis in a position that correspond to an annotated active site
+#pending
+#ac:O00115,O00308,O00391,O00762,O14757,O14773,O15033,O15294,O15393,O15527
 SELECT distinct ?entry WHERE  {
-  ?entry :classifiedWith/rdf:type :EnzymeClassification;:isoform ?iso.
+  ?entry :classifiedWith/rdf:type :EnzymeClassificationOntology;:isoform ?iso.
   ?iso :mutation ?muta;:site ?site.
     ?muta rdf:type :MutagenesisSite;:start ?mutaPos.
     ?site rdf:type :ActiveSite;:start ?sitePos.

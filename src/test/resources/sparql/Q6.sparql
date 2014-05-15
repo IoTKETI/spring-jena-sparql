@@ -1,5 +1,6 @@
-#Q6 whose genes are on chromosome 2 and linked with a disease
+#title:Q6 whose genes are on chromosome 2 and linked with a disease
+#ac:O00287,O14788,O15198,O75503,O95409,O95452,P00742,P02462,P05165
 select distinct ?entry where {
-   ?entry :gene/:chromosome  "2"^^xsd:string;
+   ?entry :gene/:chromosome  "13"^^xsd:string;
           :isoform/:medical/rdf:type :Disease.
 }

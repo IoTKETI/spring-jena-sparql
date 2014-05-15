@@ -1,5 +1,6 @@
-#Q32 with a coiled coil region and involved in transcription 
-#    but does not contain a bZIP domain
+#title:Q32 with a coiled coil region and involved in transcription but does not contain a bZIP domain
+#pending
+#ac:A6H8Y1,D6RGH6,O00291,O14529,O14686,O14776,O15164,O60281,O60284,O60341
 select distinct ?entry where {
  ?entry :isoform ?iso;:classifiedWith term:KW-0804.
  ?iso :region/rdf:type :CoiledCoilRegion.

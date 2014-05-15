@@ -33,9 +33,10 @@ import evaletolab.tool.FileUtil;
 import static org.junit.Assert.*;
 /**
  * Use case for evidences queries
- * - Q53	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
- * - Q57	which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
- * - Q63	which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
+ * - Q27 with >=1 glycosylation sites reported in PubMed:X or PubMed:Y
+ * - Q53 which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
+ * - Q57 which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
+ * - Q63 which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
  *  
  * @author evaleto
  *
@@ -55,7 +56,31 @@ public class Evidences extends TripleStore{
 		open();
 	}
 
+	/**
+	 * Q27 with >=1 glycosylation sites reported in PubMed:X or PubMed:Y 
+	 * @throws Exception 
+	 */
+	@Test
+	public void withGlycosylationSitesReportedInPubmedXOrPubmedY() throws Exception{
+		//
+		// specific query
+		String q=FileUtil.getResourceAsString("sparql/Q27.sparql");
 
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
+	}	
 	
 	/**
 	 * Q53	which are involved in cell adhesion according to GO with 
@@ -71,14 +96,18 @@ public class Evidences extends TripleStore{
 
 		//
 		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
         //
         // validate result
-		List<String> uri=getURIs(rs);System.out.println(uri);
-        assertTrue( rs.getRowNumber()>=179);
-        assertTrue(uri.contains("P22303"));
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
         
 	}	
 
@@ -95,14 +124,18 @@ public class Evidences extends TripleStore{
 
 		//
 		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=179);
-        assertTrue(uri.contains("P22303"));
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 	}	
 	
 
@@ -113,14 +146,18 @@ public class Evidences extends TripleStore{
 
 		//
 		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=179);
-        assertTrue(uri.contains("P22303"));
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 	}		
 
 	/**
@@ -135,17 +172,21 @@ public class Evidences extends TripleStore{
 	public void locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP() throws Exception{        
 		// specific query
 		String q=FileUtil.getResourceAsString("sparql/Q57-locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP.sparql");
+
 		//
 		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=239);
-        assertTrue(uri.contains("P09622"));
-        assertTrue(uri.contains("P11182"));
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 	
 	}	
 	
@@ -161,15 +202,18 @@ public class Evidences extends TripleStore{
 
 		//
 		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=174);
-        assertTrue(uri.contains("Q13310"));
-        assertTrue(uri.contains("Q9UBU9"));
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 	}	
 
 

@@ -1,7 +1,8 @@
-#Q8 whose genes are x bp away from the location of the gene of protein Y
+#title:Q8 whose genes are x bp away from the location of the gene of protein Y
 select distinct ?entry where {
-   entry:NX_P04637 :gene/:begin ?s.
-
-   ?entry :gene/:begin  ?gs.
+#example with P53
+   entry:NX_P04637 :gene/:begin ?s;:gene/:chromosome ?chr.
+   ?entry :gene/:begin  ?gs;:gene/:chromosome ?chr.
    FILTER( ?gs > (?s -50000) && ?gs <= (?s +50000))
 }
+#ac:P04278,P04637,P14415,Q15768,Q96F10,Q9BUR4

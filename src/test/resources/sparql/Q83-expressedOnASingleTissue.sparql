@@ -1,5 +1,5 @@
-#Q83, Proteins whose genes are on chromosome N that are expressed 
-#     only a single tissue/organ
+#title:Q83, Proteins whose genes are on chromosome N that are expressed only a single tissue/organ
+#pending
 SELECT  ?entry  (count(?tissue)as ?c)  WHERE {
   ?entry :gene/:chromosome "19"^^xsd:string;:isoform/:expression/:in/rdfs:label  ?tissue.
 }group by ?entry    ORDER BY  ?c limit 5

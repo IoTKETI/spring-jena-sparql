@@ -1,8 +1,8 @@
-#Q18 that are acetylated and methylated and located in the nucleus 
-SELECT distinct ?entry WHERE {
-# in nucleus
-  ?entry :isoform/:localisation/:in term:SL-0191.
-# acetylated and methylated  
-  ?entry :classifiedWith term:KW-0007.
-  ?entry :classifiedWith term:KW-0488.
+#title:Q18 that are acetylated and methylated and located in the nucleus
+#pending
+#ac:O00159,O14979,O43524,O60506,O60814,O75530,O75925,P01112,P02545 
+select distinct ?entry where {
+  ?entry :isoform/:localisation/:in /:childOf term:SL-0191.
+# acetylated and methylated
+  ?entry :classifiedWith term:KW-0007,term:KW-0488.
 }

@@ -1,8 +1,11 @@
-#Q9 with 3 disulfide bonds and that are not hormones 
+#title:Q9 with 3 disulfide bonds and that are not hormones 
+#pending
+#ac:A4D1T9,A6NC86,A6NDD2,A6NDV4,A6NGN9,A8MWS1,A8MWY0,A8MXU0,B1AKI9,D3W0D1
 SELECT distinct ?entry  WHERE {
  ?statement a :DisulfideBond.
- ?entry :isoform/:modifiedResidue ?statement
+ ?entry :isoform ?iso.
+ ?iso :modifiedResidue ?statement
  FILTER NOT EXISTS {
    ?entry :classifiedWith term:KW-0372 
  }
-}group by ?entry HAVING(count(?statement)=3)
+}group by ?entry ?iso HAVING(count(?statement)=3)

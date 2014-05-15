@@ -1,8 +1,7 @@
-# Q35 Proteins located in the mitochondrion and which is an enzyme
-SELECT distinct  ?entry  WHERE  {
-# we should care about related terms hierarchy 
-# term:SL-0173 :related/:childOf* ?mito.
-  ?entry :classifiedWith/rdf:type :EnzymeClassification.
-  ?entry :isoform/:localisation/:in/:childOf term:SL-0173  
+#title:Q35 Proteins located in the mitochondrion and which is an enzyme
+#pending
+#ac:A6NK06,A6NK58,A8MUP2,A8MXV4,O00141,O00142,O00154,O00217,O00411,O14734,O15270,O15498,O43462,O43688,O94923,O95302,O95747
+SELECT distinct  ?entry   WHERE  {
+  ?entry :classifiedWith/rdf:type :EnzymeClassificationOntology.
+  ?entry :isoform/:localisation/:in/:childOf term:SL-0173
 }
-

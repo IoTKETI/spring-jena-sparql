@@ -1,0 +1,7 @@
+#
+# get all properties for one entry
+SELECT distinct * WHERE {
+ {select ?relation ?value where { entry:NX_VALUE ?relation ?value. }}
+ UNION
+ {select ?relation ?value ?inTerm where{entry:NX_VALUE :isoform ?iso. ?iso ?relation ?value. ?value :in ?inTerm}order by ?relation ?value}
+}

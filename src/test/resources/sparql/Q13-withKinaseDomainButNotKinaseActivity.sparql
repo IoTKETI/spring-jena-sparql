@@ -1,9 +1,8 @@
-#Q13 with a protein kinase domain but no kinase activity
-PREFIX : <http://nextprot.org/rdf#>
-PREFIX term: <http://nextprot.org/rdf/terminology/>
+#title:Q13 with a protein kinase domain but no kinase activity
+#ac:O15197,O43187,P16066,P20594,P25092,P51841,Q02846,Q05823,Q13308,Q496M5
 SELECT distinct ?entry WHERE {
   ?entry :isoform/:region/:in term:DO-00529.
   FILTER NOT EXISTS{
-   ?entry :isoform/:classifiedWith/:childOf term:2.7.-.-
+    ?entry :classifiedWith/:childOf term:2_7_-_-
   }
 }

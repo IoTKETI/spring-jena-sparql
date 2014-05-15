@@ -1,5 +1,6 @@
-# Q63 which have >=1 RRM RNA-binding domain (DO-00581 UniprotDomain) and either no GO "RNA binding" (GO:0003723 go molecular function)
-#     other a GO "RNA binding" with evidence IEA or ISS 
+#title:Q63 which have >=1 RRM RNA-binding domain (DO-00581 UniprotDomain) and either no GO "RNA binding" (GO:0003723 go molecular function) other a GO "RNA binding" with evidence IEA or ISS
+#pending
+#ac:A0AV96,A6NDY0,A6NEQ0,A6NFN3,A6PVI3,O14979,O15042,O15047,O15056,O43426 
 SELECT distinct ?entry  WHERE {
  ?entry :isoform ?iso
  {

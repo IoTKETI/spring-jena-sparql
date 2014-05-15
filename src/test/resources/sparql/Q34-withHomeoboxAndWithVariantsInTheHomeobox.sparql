@@ -1,4 +1,6 @@
-#Q34 with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
+#title:Q34 with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
+#pending
+#ac:A2RU54,A6NCS4,A6NFQ7,A6NHT5,A6NJ46,A6NJG6,A6NJT0,A6NLW8,A6NMT0,A6NNA5
 SELECT distinct ?entry  WHERE {
     ?entry :isoform ?iso.
     

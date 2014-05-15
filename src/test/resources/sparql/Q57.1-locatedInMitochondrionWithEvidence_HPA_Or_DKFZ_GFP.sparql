@@ -1,11 +1,12 @@
-# Q57  which are located in mitochondrion with an evidence other 
-#      than HPA and DKFZ-GFP
+#title:Q57  which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
 # WARNING! term:SL-0173 is (this must be inferred) 
 #        rdfs:sameAs term:GO:0005739;
 #        rdfs:sameAs term:KW-0496; 
-SELECT  ?entry   WHERE {
+#pending
+#ac:A2AJT9,A6NDV4,A6NFY7,A6NK06,A6NK58,A8K5M9,A8MUP2,A8MXV4,B7ZC32 
+SELECT  ?entry  WHERE {
   ?entry :isoform/:localisation ?statement.
-    ?statement :in/:childOf term:SL-0173;
-               :withEvidence/:fromXref ?source.
-  VALUES ?source { db:HPA db:GFP-cDNA}
+    ?statement :in/:childOf term:SL-0173
+    FILTER NOT EXISTS{?statement :withEvidence/:fromXref db:GFP-cDNA}      
+    FILTER NOT EXISTS{?statement :withEvidence/:fromXref db:HPA}      
 }

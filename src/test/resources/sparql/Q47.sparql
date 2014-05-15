@@ -1,0 +1,7 @@
+#title:Q47 with a gene name CLDN*
+#ac:A6NM45,C9JDP6,O00501,O14493,O15551,O75508,O95471,O95484,O95500,O95832 
+SELECT distinct ?entry ?v  WHERE  {
+  ?entry :isoform ?iso.
+  ?iso :variant ?statement;:medical/rdf:type :Disease.
+  ?statement :original 'C'^^xsd:string;:variation ?v
+}

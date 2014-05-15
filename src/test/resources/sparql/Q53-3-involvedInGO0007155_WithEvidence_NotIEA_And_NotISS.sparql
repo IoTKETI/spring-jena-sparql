@@ -1,6 +1,7 @@
-#Q53  which are involved in cell adhesion according to GO with 
+#title:Q53  which are involved in cell adhesion according to GO with 
 #     an evidence not IAE and not ISS
-#using owl:differentFrom partition (that should be manually inferred) 
+#using owl:differentFrom partition (that should be manually inferred)
+#ac:O00192,O14498,O14522,O14936,O15357,O43294,O43312,O43529,O60462,O60486 
 SELECT distinct ?entry WHERE {
  ?entry  :isoform/:function ?statement.
  ?statement :in term:GO_0007155;:withEvidence/:code/owl:differentFrom :IEA,:ISS

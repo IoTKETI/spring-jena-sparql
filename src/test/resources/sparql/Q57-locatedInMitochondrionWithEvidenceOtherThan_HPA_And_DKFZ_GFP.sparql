@@ -1,8 +1,10 @@
-# Q57  which are located in mitochondrion with an evidence other 
+#title:Q57  which are located in mitochondrion with an evidence other 
 #      than HPA and DKFZ-GFP
 # WARNING! term:SL-0173 is (this must be inferred) 
 #        rdfs:sameAs term:GO:0005739;
-#        rdfs:sameAs term:KW-0496; 
+#        rdfs:sameAs term:KW-0496;
+#pending
+#ac:A1XBS5,O00159,O00755,O14734,O14972,O15270,O15417,O15446,O15498,O43149 
 SELECT  ?entry  WHERE {
   ?entry :isoform/:localisation ?statement.
     ?statement :in/:childOf term:SL-0173

@@ -1,6 +1,8 @@
-#Q3 with >=2 transmembrane region
+#title:Q3 with >=37 transmembrane region
 select distinct ?entry where{
- ?statement a :TransmembraneRegion.
- ?entry :isoform/:topology ?statement
-}GROUP BY ?entry HAVING(count( ?statement)>=2)
+ ?entry :isoform ?iso.
+   ?statement a :TransmembraneRegion.
+   ?iso :topology ?statement
+}GROUP BY ?entry ?iso HAVING(count( ?statement)>=37)
+#ac:Q9H5I5
 

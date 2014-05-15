@@ -1,5 +1,5 @@
-# Q38 with >=1 selenocysteine in their sequence
-# uniprot search, database:(type:nextprot) AND annotation:(type:non_std)
+#title:Q38 with >=1 selenocysteine in their sequence
+#ac:O60613,P07203,P18283,P22352,P36969,P49895,P49908,P55073,P59796,P59797
 SELECT distinct ?entry WHERE  {
   ?entry :isoform/:modifiedResidue/rdf:type :NonStandardAminoAcid
 }

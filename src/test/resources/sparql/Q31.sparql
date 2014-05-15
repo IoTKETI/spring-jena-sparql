@@ -1,4 +1,6 @@
-# Q31 with >=10 "splice" isoforms 
+#title:Q31 with >=10 "splice" isoforms 
+#pending
+#ac:O00453,O00499,O15320,O15350,O15519,O43251,O43497,O43521,O43852,O60716
 SELECT  distinct ?entry   WHERE  {
   ?entry :isoform ?iso.
 } GROUP BY ?entry HAVING(count(?iso)>=10)

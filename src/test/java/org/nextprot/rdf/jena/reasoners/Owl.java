@@ -1,4 +1,4 @@
-package evaletolab.rdf;
+package org.nextprot.rdf.jena.reasoners;
 
 import org.junit.Before;
 import org.junit.Test;

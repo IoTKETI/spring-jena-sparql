@@ -1,5 +1,6 @@
-# Q20, Proteins with >=2 HPA antibodies whose genes are located on chromosome 21 and that are 
-#      highly expressed at IHC level in heart
+#title:Q20, Proteins with >=2 HPA antibodies whose genes are located on chromosome 21 and that are highly expressed at IHC level in heart
+#pending
+#ac:A0A183,A0AUZ9,A0AV02,A0AV96,A0AVI4,A0AVT1,A0FGR8,A0FGR9,A0MZ66,A0PG75
 SELECT distinct ?entry WHERE {
 # expressed in brain according to IHC
   ?entry :isoform/:expression ?s1.

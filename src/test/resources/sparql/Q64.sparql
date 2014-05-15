@@ -1,8 +1,9 @@
-# Q64 which are enzymes with an incomplete EC number 
-PREFIX : <http://nextprot.org/rdf#>
+#title:Q64 which are enzymes with an incomplete EC number
+#pending
+#ac:A0PJE2,A0PJZ3,A1A4Y4,A1L0T0,A1L453,A1Z1Q3,A2A288,A2A3K4,A2VDF0,A4D126 
 SELECT  distinct ?entry   WHERE  {
-  ?ec a :EnzymeClassification.
+  ?ec a :EnzymeClassificationOntology.
   ?entry :classifiedWith ?ec.
-  FILTER regex(?ec, '-'^^xsd:string)
+  FILTER regex(?ec, "-"^^xsd:string)
 }
 

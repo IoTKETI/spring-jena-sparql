@@ -63,7 +63,8 @@ public class Integrity extends TripleStore{
         //
         // validate result
 		List<String> uri=getURIs(rs,"class","");
-        assertEquals("countTerminologyClass (36)",rs.getRowNumber(),36);
+        assertThat("countTerminologyClass (36)",37.0,closeTo(rs.next().get("c").asLiteral().getInt(),1));
+        
 	}	
 	
 	@Test
@@ -78,7 +79,7 @@ public class Integrity extends TripleStore{
         //
         // validate result
 		List<String> uri=getURIs(rs,"class","");
-        assertEquals("countNotUsedTerminologyClass (7)",rs.getRowNumber(),7);
+        assertEquals("countNotUsedTerminologyClass (7)",8,rs.getRowNumber());
 	}		
 	@Test
 	public void countAnnotationClass(){
@@ -112,7 +113,7 @@ public class Integrity extends TripleStore{
         // validate result
 		List<String> uri=getURIs(rs,"class","");
         
-        assertEquals("countIntersectBetweenAnnotationAndTerminologyClass (0)",rs.getRowNumber(),0);
+        assertEquals("countIntersectBetweenAnnotationAndTerminologyClass (0)",0,rs.getRowNumber());
 	}	
 	
 	
@@ -132,7 +133,7 @@ public class Integrity extends TripleStore{
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
-        assertThat("countEntries (20'130)",20130.0,closeTo(rs.next().get("c").asLiteral().getInt(),10));
+        assertThat("countEntries (20'130)",20130.0,closeTo(rs.next().get("c").asLiteral().getInt(),5));
 	}	
 	
 	/**
@@ -147,7 +148,7 @@ public class Integrity extends TripleStore{
 				 "}";
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-        assertThat("countGenes (22'715)",22715.0,closeTo(rs.next().get("c").asLiteral().getInt(),10.0));
+        assertThat("countGenes (22'715)",22725.0,closeTo(rs.next().get("c").asLiteral().getInt(),10.0));
         
 
 	}
@@ -190,7 +191,7 @@ public class Integrity extends TripleStore{
 		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-        assertThat("countIsoforms (39'651)",39651.0,closeTo(rs.next().get("c").asLiteral().getInt(),10.0));
+        assertThat("countIsoforms (39'651)",39661.0,closeTo(rs.next().get("c").asLiteral().getInt(),10.0));
 
 
 	}	

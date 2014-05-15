@@ -1,9 +1,8 @@
-# Q49 with >=1 variants of the types "A->R" or "R->A"
-# :variant is 
-#  owl:oneOf (:Variant :AlignmentConflict *:SequenceConflict* :SequenceVariant )
+#title:Q49 with >=1 variants of the types "A->R" or "R->A"
+#ac:O00222,O00330,O14556,O14639,O14827,O14828,O15061,O15164,O15357,O43822
 SELECT distinct ?entry WHERE  {
   ?entry :isoform/:variant ?statement.
-  {?statement :original 'A'^^xsd:string;:variation 'R'^^xsd:string;:original ?original}
+  {?statement :original "A"^^xsd:string;:variation "R"^^xsd:string}
   UNION
-  {?statement :original 'R'^^xsd:string;:variation 'A'^^xsd:string;:original ?original}
+  {?statement :original "R"^^xsd:string;:variation "A"^^xsd:string}
 }

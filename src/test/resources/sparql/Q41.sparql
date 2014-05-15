@@ -1,4 +1,6 @@
-# Q41 that are annotated with GO "F" terms prefixed by "Not" 
+#title:Q41 that are annotated with GO "F" terms prefixed by "Not"
+#pending
+#ac:A1A5B4,O00712,O15078,O15164,O15247,O15457,O43196,O43435,O43820,O60673
 SELECT distinct ?entry  WHERE  {
   ?entry :isoform/:function ?statement.
   ?statement a :GoMolecularFunction;:withEvidence/:negative "true"^^xsd:boolean.

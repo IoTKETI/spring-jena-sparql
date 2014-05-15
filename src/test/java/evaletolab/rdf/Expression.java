@@ -1,5 +1,8 @@
 package evaletolab.rdf;
 
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 import java.util.Properties;
 
 import org.junit.Before;
@@ -92,11 +95,22 @@ public class Expression extends TripleStore{
 	@Test
 	public void expressedInLiverAndInvolvedInTransport() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q11-expressedInLiverAndInvolvedInTransport.sparql");
+
 		//
 		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs = qe.execSelect();
-	}
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
+    }
 	
 	/**
 	 * Q17, Proteins >=1000 amino acids and located in nucleus and expression in nervous system
@@ -108,8 +122,18 @@ public class Expression extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q17-gt1000aaAndLocatedInNucleusAndExpressedInNervousSystem.sparql");
 		//
 		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs = qe.execSelect();
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 	}		
 	
 	/**
@@ -124,8 +148,18 @@ public class Expression extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q4-highlyExpressedInBrainButNotInTestis.sparql");
 		//
 		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs = qe.execSelect();
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 	}			
 	
 	/**
@@ -139,8 +173,18 @@ public class Expression extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q50-expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray.sparql");
 		//
 		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs = qe.execSelect();
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 	}			
 	
 	/**
@@ -152,8 +196,18 @@ public class Expression extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q83-expressedOnASingleTissue.sparql");
 		//
 		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs = qe.execSelect();
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 	}		
 	
 	/**
@@ -165,8 +219,18 @@ public class Expression extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q77-expressedInLiverAccordingIHCButNotInHUPOLiverProteom.sparql");
 		//
 		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs = qe.execSelect();
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 	}	
 	
 	/**
@@ -179,8 +243,18 @@ public class Expression extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q15-PDZdomainthatInteractWithProteinExpresssedInBrain.sparql");
 		//
 		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs = qe.execSelect();
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 
 	}	
 	
@@ -194,8 +268,18 @@ public class Expression extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q20-HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel.sparql");
 		//
 		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs = qe.execSelect();
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 
 	}	
 }

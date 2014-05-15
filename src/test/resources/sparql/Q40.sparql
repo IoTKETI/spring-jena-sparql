@@ -1,7 +1,8 @@
-# Q40 that are enzymes and with >=1 mutagenesis that "decrease" or "abolish" activity 
-SELECT distinct ?entry ?comment WHERE  {
-  ?entry :classifiedWith/rdf:type :EnzymeClassification. 
+#title:Q40 that are enzymes and with >=1 mutagenesis that "decrease" or "abolish" activity 
+#ac:A1Z1Q3,A2RUC4,O00141,O00329,O00418,O00429,O00443,O00487,O00571,O14744
+SELECT distinct ?entry  WHERE  {
+  ?entry :classifiedWith/rdf:type :EnzymeClassificationOntology.
   ?entry :isoform/:mutation ?statement.
     ?statement rdf:type :MutagenesisSite;rdfs:comment ?comment
-  FILTER regex(?comment, '(decrease|abolish).*activity','i')
+  FILTER regex(?comment, "(decrease|abolish).*activity","i")
 }

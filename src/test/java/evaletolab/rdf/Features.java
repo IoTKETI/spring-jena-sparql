@@ -23,6 +23,7 @@ import evaletolab.tool.FileUtil;
  * Use case for features queries
  * Q3	with >=2 transmembrane regions 
  * Q9	with 3 disulfide bonds and that are not hormones 
+ * Q10 that are glycosylated and not located in the membrane
  * Q13 with a protein kinase domain but no kinase activity 
  * Q14 with 2 SH3 domains and 1 SH2 domain 
  * Q15 with a PDZ domain that interact with at least 1 protein which is expressed in brain 
@@ -67,15 +68,20 @@ public class Features extends TripleStore{
 	@Test
 	public void with2TransmembraneRegions() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q3-with2TransmembraneRegions.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=3742);
-        assertTrue(uri.contains("Q2QL34"));
-        assertTrue(uri.contains("A6NFC5"));        
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));      
 	}	
 	
 
@@ -86,14 +92,43 @@ public class Features extends TripleStore{
 	@Test
 	public void with3DisulfideBondsAndNotHormones() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q9-with3DisulfideBondsAndNotHormones.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=3141);
-        assertTrue(uri.contains("P09622"));
-        assertTrue(uri.contains("P0CF51"));   
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));  
+	}	
+	
+	/**
+	 * Q10 that are glycosylated and not located in the membrane 
+	 * @throws Exception 
+	 */
+	@Test
+	public void thatAreGlycosylatedAndNotLocatedInTheMembrane() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q10.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac)); 
 	}	
 
 	/**
@@ -104,14 +139,20 @@ public class Features extends TripleStore{
 	@Test
 	public void withKinaseDomainButNotKinaseActivity() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q13-withKinaseDomainButNotKinaseActivity.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=491);
-        assertTrue(uri.contains("P0C1S8"));
-        assertTrue(uri.contains("O14920"));   
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));  
 	}	
 
 	/**
@@ -122,15 +163,20 @@ public class Features extends TripleStore{
 	@Test
 	public void with2SH3And1SHD2() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q14-with2SH3And1SHD2.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=9);
-        assertTrue(uri.contains("P52735"));
-        assertTrue(uri.contains("P16333"));    
-        assertTrue(uri.contains("O75791"));    
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));   
 	}	
 	
 
@@ -143,12 +189,20 @@ public class Features extends TripleStore{
 	@Test
 	public void withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature1() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q16-1-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=1);
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 	}
 	
 	/**
@@ -158,12 +212,20 @@ public class Features extends TripleStore{
 	@Test
 	public void withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature2() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q16-2-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=1);
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 	}
 	
 	/**
@@ -173,12 +235,20 @@ public class Features extends TripleStore{
 	@Test
 	public void withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature3() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q16-3-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=1);
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 	}
 	
 	/**
@@ -189,15 +259,20 @@ public class Features extends TripleStore{
 	@Test
 	public void thatAreAcetylatedAndMethylated() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q18-thatAreAcetylatedAndMethylated.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
+        
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=139);
-        assertTrue(uri.contains("P15056"));
-        assertTrue(uri.contains("P48382"));  
-        assertTrue(uri.contains("Q9NYF8"));  
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));
 	}
 	
 	/**
@@ -208,16 +283,20 @@ public class Features extends TripleStore{
 	@Test
 	public void containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q19-containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=31);
-        assertTrue(uri.contains("P21754"));
-        assertTrue(uri.contains("P53708"));  
-        assertTrue(uri.contains("P60508"));          
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));         
 	}
 	
 	/**
@@ -228,16 +307,20 @@ public class Features extends TripleStore{
 	@Test
 	public void withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q32.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=180);
-        assertTrue(uri.contains("Q9Y5B9"));
-        assertTrue(uri.contains("Q13352"));  
-        assertTrue(uri.contains("Q8TDY2"));            
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));         
 	}
 	
 	/**
@@ -248,15 +331,20 @@ public class Features extends TripleStore{
 	@Test
 	public void withHomeoboxAndWithVariantsInTheHomeobox() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q34-withHomeoboxAndWithVariantsInTheHomeobox.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=225);
-        assertTrue(uri.contains("A6NJ46"));
-        assertTrue(uri.contains("P09629"));          
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));       
 	}		
 	
 	/**
@@ -267,16 +355,20 @@ public class Features extends TripleStore{
 	@Test
 	public void withSelenocysteineInTheirSequence() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q38.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=26);
-        assertTrue(uri.contains("O60613"));
-        assertTrue(uri.contains("P63302"));                
-        assertTrue(uri.contains("Q9C0D9"));                
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));               
 	}		
 	
 	/**
@@ -287,16 +379,20 @@ public class Features extends TripleStore{
 	@Test
 	public void with1MutagenesisInAPositionThatCorrespondToAnAnnotatedActiveSite() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q39.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-
+        
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=356);
-        assertTrue(uri.contains("P22303"));
-        assertTrue(uri.contains("Q2T9J0"));                
-        assertTrue(uri.contains("Q9NUW8"));   
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));   
 	}		
 
 	/**
@@ -307,15 +403,20 @@ public class Features extends TripleStore{
 	@Test
 	public void tahtAreEnzymesAndWith1mutagenesisThatDecreaseOrAbolishActivity() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q40.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-
+        
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=696);
-        assertTrue(uri.contains("Q5T1C6"));
-        assertTrue(uri.contains("Q9HCK8"));           
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));         
 	}		
 	
 	/**
@@ -325,15 +426,20 @@ public class Features extends TripleStore{
 	@Test
 	public void thatAreAnnotatedWithGO_F_termsPrefixedByNot() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q41.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-
+        
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=198);
-        assertTrue(uri.contains("P14210"));
-        assertTrue(uri.contains("P12270"));            
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));          
 	}		
 	
 	
@@ -344,15 +450,20 @@ public class Features extends TripleStore{
 	@Test
 	public void with1VariantOfType_CtoAnythingElse_thatAreTo1Disease() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q48.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-
+        
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=1738);
-        assertTrue(uri.contains("Q9Y587"));
-        assertTrue(uri.contains("P09622"));         
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));     
 	}		
 	
 	/**
@@ -362,15 +473,20 @@ public class Features extends TripleStore{
 	@Test
 	public void with1VariantOfTheTypesA_R_or_R_A() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q49.sparql");
+		//
+		// execute query
+		String acs=getQueryMetaAc(q);
+		int count=getQueryMetaCount(q);
+		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-
+        
         //
         // validate result
-		List<String> uri=getURIs(rs);
-        assertTrue( rs.getRowNumber()>=266);
-        assertTrue(uri.contains("O14828"));
-        assertTrue(uri.contains("P29323"));           
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(uri.contains(ac));          
 	}		
 
 }

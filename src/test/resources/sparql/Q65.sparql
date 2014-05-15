@@ -1,13 +1,7 @@
-# Q65 Proteins with >1 catalytic activity 
-#PREFIX : <http://nextprot.org/rdf#>
-#PREFIX term: <http://nextprot.org/rdf/terminology/>
-#SELECT  (count(distinct ?entry ) as ?c)  WHERE  {
-#  ?entry :classifiedWith term:KW-0511.
-#}
-# 350 results, should be verified
-PREFIX : <http://nextprot.org/rdf#>
-PREFIX term: <http://nextprot.org/rdf/terminology/>
+#title:Q65 Proteins with >1 catalytic activity
+#pending
+#ac:A1Z1Q3,A4D256,A6NGU5,O00217,O00748,O00763,O14638,O14744,O14756,O14975
 SELECT distinct ?entry    WHERE  {
-  ?ec a :EnzymeClassification.
+  ?ec a :EnzymeClassificationOntology.
   ?entry :classifiedWith ?ec
 }GROUP BY ?entry HAVING (count(?ec)>1)

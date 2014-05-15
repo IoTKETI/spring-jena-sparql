@@ -1,9 +1,6 @@
-# Q73 Proteins with no domain  (got 13917 entries??) 
-# eg. Q22 
-PREFIX : <http://nextprot.org/rdf#>
-SELECT  distinct ?entry   WHERE  {
-  ?entry :isoform ?iso.
-  OPTIONAL{?iso :region/rdf:type ?region;:region/rdf:type :Domain}
-  FILTER (!BOUND(?region))
+#title:Q73 Proteins with no domain  
+#ac:A0A183,A0AUZ9,A0AV02,A0AVF1,A0AVI4,A0AVK6,A0AVT1,A0JLT2,A0JNW5,A0MZ66 
+select distinct ?entry where{
+  ?entry a :Entry .
+  FILTER NOT EXISTS { ?entry :isoform / :region/rdf:type :Domain}
 }
-

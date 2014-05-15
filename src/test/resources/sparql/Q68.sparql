@@ -1,4 +1,6 @@
-# Q68 with protein existence PE=2 (transcript level)
+#title:Q68 with protein existence PE=2 (transcript level)
+#pending
+#ac:A0A183,A0AVI2,A0PG75,A0PJX2,A0PJY2,A0PK05,A0PK11,A0ZSE6
 SELECT distinct ?entry  WHERE  {
   ?entry :existence :Evidence_at_transcript_level
 }

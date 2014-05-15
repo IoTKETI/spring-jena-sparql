@@ -1,0 +1,7 @@
+#title:Q26 interacting with >=1 protein located in the mitochondrion
+#pending
+#ac:A0JLT2,A0PJW6,A2A2Y4,O00193,O00198,O00217,O00220,O00221,O00231,O00254
+select distinct ?entry where {
+  ?entry :isoform/:interaction/:with ?interaction.
+   ?interaction  :isoform/:localisation/:in/:childOf term:SL-0173
+}group by ?entry ?interaction
