@@ -9,9 +9,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import virtuoso.jena.driver.VirtGraph;
 
@@ -89,7 +87,8 @@ public class TripleStore {
 	 * generate meta content as comment in the sparql query 
 	 * @return
 	 */
-	private static String generateTestId() {
+	private String generateTestId() {
+
 		String newstring = new SimpleDateFormat("yyyyMMdd-HHmmss").format(new Date());
 		String testId = "TEST-SPARQL-QUERIES-" + newstring;
 		return testId;

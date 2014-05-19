@@ -79,15 +79,30 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
 	}	
 	
  
+	/**
+	 * mitochondrie is available in KW-0496 (UniprotKeyword), SL-0173 (SubCell), GO_0005739 (GoCell)
+	 * - GoCell and SubCell are hierarchical
+	 * - kw is a classification
+	 */
+	@Test
+	public void termPropagation(){
+		String q="select distinct ?class ?p  ?term WHERE {  term:SL-0173 :related ?term.  [] ?p ?term;rdf:type ?class FILTER(?p!=:related) }group by ?term ?p ?class ";
+				
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //assertThat("countMitochondrionKw (1'546)",1546.0,closeTo(rs.next().get("c").asLiteral().getInt(),10));
+	}	 
+
+	
 	
 	/**
-	 * unionof term:KW-0496 > Mitochondrion  
+	 * count term:KW-0496 > Mitochondrion  
 	 */
-	
 	@Test
 	public void countMitochondrionKW(){
 		String q="SELECT (count(distinct  ?entry) as ?c)  WHERE  {\n" + 
-				 "  ?entry :isoform/:localisation/:in/:childOf term:KW-0496\n" + 
+				 "  ?entry :classifiedWith term:KW-0496\n" + 
 				 "}";
 				
 		QueryExecution qe = createQueryExecution(q);
@@ -103,15 +118,16 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
 	@Test
 	public void countMitochondrionKWorGOorSL(){
 		String q="SELECT (count(distinct  ?entry) as ?c)  WHERE  {\n" + 
-				"  {?entry :isoform/:localisation/:in/:childOf* term:SL-0173}\n" + 
+				"  term:SL-0173 :related ?term.\n"+
+				"  {?entry :isoform/:localisation/:in/:childOf ?term}\n" + 
 				"  UNION\n" + 
-				"  {?entry :isoform/:localisation/:in/:childOf* term:GO_0005739}\n" + 
+				"  {?entry :classifiedWith term:KW-0496}\n" + 
 				"}";
 				
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
-        assertThat("countMitochondrionKw (1'765)",1765.0,closeTo(rs.next().get("c").asLiteral().getInt(),10));
+        assertThat("countMitochondrionKw (1'992)",1992.0,closeTo(rs.next().get("c").asLiteral().getInt(),10));
 	}	
 		
 
@@ -138,7 +154,7 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
 	@Test
 	public void countProteinsRelevantForLiver_TS_0564(){
 		String q="SELECT (count(distinct ?entry)as ?c) WHERE {\n" + 
-				 "  ?entry :isoform/:annotation/:in/:childOf  term:TS-0564.\n" + 
+				 "  ?entry :isoform/:expression/:in/:childOf  term:TS-0564.\n" + 
 				 "}";	
 
 		QueryExecution qe = createQueryExecution(q);

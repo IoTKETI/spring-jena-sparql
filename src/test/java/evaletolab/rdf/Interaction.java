@@ -24,6 +24,7 @@ import evaletolab.tool.FileUtil;
  * Use case for interactions queries
  * Q24 with >1 reported gold interaction
  * Q25 with >=50 interactors and not involved in a disease  
+ * Q26 interacting with >=1 protein located in the mitochondrion  
  * @author evaleto
  *
  */
@@ -47,7 +48,7 @@ public class Interaction extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void witnInteractionsReportedGold() throws Exception{
+	public void Q24_witnInteractionsReportedGold() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q24.sparql");
 		//
 		// execute query
@@ -70,7 +71,7 @@ public class Interaction extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void with50InteractorsAndNotInvolvedInADisease() throws Exception{
+	public void Q25_with50InteractorsAndNotInvolvedInADisease() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q25.sparql");
 		//
 		// execute query
@@ -93,7 +94,7 @@ public class Interaction extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void withInteractionsLocatedInTheMitochondrion() throws Exception{
+	public void Q26_withInteractionsLocatedInTheMitochondrion() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q26.sparql");
 		//
 		// execute query

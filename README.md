@@ -98,6 +98,11 @@ $ ff localhost:6969
 * [Q48](src/test/resources/sparql/Q48.sparql) Proteins with >=1 variants of the type "C->" (Cys to anything else) that are linked to >=1 disease
 * [Q49](src/test/resources/sparql/Q49.sparql) Proteins with >=1 variants of the types "A->R" or "R->A"
 
+###Use case for general [annotations](src/test/java/evaletolab/rdf/Interaction.java)
+* [Q24](src/test/resources/sparql/Q24.sparql) with >1 reported gold interaction
+* [Q25](src/test/resources/sparql/Q25.sparql) with >=50 interactors and not involved in a disease
+* [Q26](src/test/resources/sparql/Q26.sparql) interacting with >=1 protein located in the mitochondrion
+  
 ###Use case for general [annotations](src/test/java/evaletolab/rdf/General.java)
 * [Q1](src/test/resources/sparql/Q1.sparql) that are phosphorylated and located in the cytoplasm 
 * [Q2](src/test/resources/sparql/Q2.sparql) that are located both in the cytoplasm and in the nucleus

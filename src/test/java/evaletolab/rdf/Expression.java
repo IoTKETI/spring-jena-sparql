@@ -93,7 +93,7 @@ public class Expression extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void expressedInLiverAndInvolvedInTransport() throws Exception{
+	public void Q11_expressedInLiverAndInvolvedInTransport() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q11-expressedInLiverAndInvolvedInTransport.sparql");
 
 		//
@@ -118,7 +118,7 @@ public class Expression extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void gt1000aaAndLocatedInNucleusAndExpressedInNervousSystem() throws Exception{
+	public void Q17_gt1000aaAndLocatedInNucleusAndExpressedInNervousSystem() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q17-gt1000aaAndLocatedInNucleusAndExpressedInNervousSystem.sparql");
 		//
 		// execute query
@@ -144,7 +144,7 @@ public class Expression extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void highlyExpressedInBrainButNotInTestis() throws Exception{
+	public void Q4_highlyExpressedInBrainButNotInTestis() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q4-highlyExpressedInBrainButNotInTestis.sparql");
 		//
 		// execute query
@@ -169,7 +169,7 @@ public class Expression extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray() throws Exception{
+	public void Q50_expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q50-expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray.sparql");
 		//
 		// execute query
@@ -192,7 +192,7 @@ public class Expression extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void expressedOnASingleTissue() throws Exception{
+	public void Q83_xpressedOnASingleTissue() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q83-expressedOnASingleTissue.sparql");
 		//
 		// execute query
@@ -215,7 +215,7 @@ public class Expression extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void expressedInLiverAccordingIHCButNotInHUPOLiverProteom() throws Exception{
+	public void Q77_expressedInLiverAccordingIHCButNotInHUPOLiverProteom() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q77-expressedInLiverAccordingIHCButNotInHUPOLiverProteom.sparql");
 		//
 		// execute query
@@ -239,7 +239,7 @@ public class Expression extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void PDZdomainthatInteractWithProteinExpresssedInBrain() throws Exception{
+	public void Q15_PDZdomainthatInteractWithProteinExpresssedInBrain() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q15-PDZdomainthatInteractWithProteinExpresssedInBrain.sparql");
 		//
 		// execute query
@@ -264,7 +264,7 @@ public class Expression extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel() throws Exception{
+	public void Q20_HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q20-HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel.sparql");
 		//
 		// execute query

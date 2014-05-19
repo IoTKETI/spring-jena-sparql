@@ -66,7 +66,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void with2TransmembraneRegions() throws Exception{
+	public void Q3_with2TransmembraneRegions() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q3-with2TransmembraneRegions.sparql");
 		//
 		// execute query
@@ -90,7 +90,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void with3DisulfideBondsAndNotHormones() throws Exception{
+	public void Q9_with3DisulfideBondsAndNotHormones() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q9-with3DisulfideBondsAndNotHormones.sparql");
 		//
 		// execute query
@@ -113,7 +113,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void thatAreGlycosylatedAndNotLocatedInTheMembrane() throws Exception{
+	public void Q10_thatAreGlycosylatedAndNotLocatedInTheMembrane() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q10.sparql");
 		//
 		// execute query
@@ -137,7 +137,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void withKinaseDomainButNotKinaseActivity() throws Exception{
+	public void Q13_withKinaseDomainButNotKinaseActivity() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q13-withKinaseDomainButNotKinaseActivity.sparql");
 		//
 		// execute query
@@ -161,7 +161,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void with2SH3And1SHD2() throws Exception{
+	public void wQ14_ith2SH3And1SHD2() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q14-with2SH3And1SHD2.sparql");
 		//
 		// execute query
@@ -187,7 +187,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature1() throws Exception{
+	public void Q16_withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature1() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q16-1-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
 		//
 		// execute query
@@ -210,7 +210,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature2() throws Exception{
+	public void Q16_withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature2() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q16-2-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
 		//
 		// execute query
@@ -233,7 +233,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature3() throws Exception{
+	public void Q16_withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature3() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q16-3-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
 		//
 		// execute query
@@ -257,7 +257,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void thatAreAcetylatedAndMethylated() throws Exception{
+	public void Q18_thatAreAcetylatedAndMethylated() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q18-thatAreAcetylatedAndMethylated.sparql");
 		//
 		// execute query
@@ -281,7 +281,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif() throws Exception{
+	public void Q19_containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q19-containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif.sparql");
 		//
 		// execute query
@@ -305,7 +305,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP() throws Exception{
+	public void Q32_withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q32.sparql");
 		//
 		// execute query
@@ -329,7 +329,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void withHomeoboxAndWithVariantsInTheHomeobox() throws Exception{
+	public void Q34_withHomeoboxAndWithVariantsInTheHomeobox() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q34-withHomeoboxAndWithVariantsInTheHomeobox.sparql");
 		//
 		// execute query
@@ -353,7 +353,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void withSelenocysteineInTheirSequence() throws Exception{
+	public void Q38_withSelenocysteineInTheirSequence() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q38.sparql");
 		//
 		// execute query
@@ -377,7 +377,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void with1MutagenesisInAPositionThatCorrespondToAnAnnotatedActiveSite() throws Exception{
+	public void Q39_with1MutagenesisInAPositionThatCorrespondToAnAnnotatedActiveSite() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q39.sparql");
 		//
 		// execute query
@@ -401,7 +401,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void tahtAreEnzymesAndWith1mutagenesisThatDecreaseOrAbolishActivity() throws Exception{
+	public void Q40_thatAreEnzymesAndWith1mutagenesisThatDecreaseOrAbolishActivity() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q40.sparql");
 		//
 		// execute query
@@ -424,7 +424,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void thatAreAnnotatedWithGO_F_termsPrefixedByNot() throws Exception{
+	public void Q41_thatAreAnnotatedWithGO_F_termsPrefixedByNot() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q41.sparql");
 		//
 		// execute query
@@ -448,7 +448,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void with1VariantOfType_CtoAnythingElse_thatAreTo1Disease() throws Exception{
+	public void Q48_with1VariantOfType_CtoAnythingElse_thatAreTo1Disease() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q48.sparql");
 		//
 		// execute query
@@ -471,7 +471,7 @@ public class Features extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void with1VariantOfTheTypesA_R_or_R_A() throws Exception{
+	public void Q49_with1VariantOfTheTypesA_R_or_R_A() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q49.sparql");
 		//
 		// execute query

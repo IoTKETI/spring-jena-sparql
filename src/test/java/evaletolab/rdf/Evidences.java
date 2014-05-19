@@ -61,7 +61,7 @@ public class Evidences extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void withGlycosylationSitesReportedInPubmedXOrPubmedY() throws Exception{
+	public void Q27_withGlycosylationSitesReportedInPubmedXOrPubmedY() throws Exception{
 		//
 		// specific query
 		String q=FileUtil.getResourceAsString("sparql/Q27.sparql");
@@ -89,7 +89,7 @@ public class Evidences extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS() throws Exception{
+	public void Q53_involvedInGO0007155_WithEvidence_NotIEA_And_NotISS() throws Exception{
 		//
 		// specific query
 		String q=FileUtil.getResourceAsString("sparql/Q53-1-involvedInGO0007155_WithEvidence_NotIEA_And_NotISS.sparql");
@@ -118,7 +118,7 @@ public class Evidences extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_disJointWith() throws Exception{
+	public void Q53_involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_disJointWith() throws Exception{
 		// specific query
 		String q=FileUtil.getResourceAsString("sparql/Q53-2-involvedInGO0007155_WithEvidence_NotIEA_And_NotISS.sparql");
 
@@ -140,7 +140,7 @@ public class Evidences extends TripleStore{
 	
 
 	@Test
-	public void involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_differentFrom() throws Exception{
+	public void Q53_involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_differentFrom() throws Exception{
 		// specific query
 		String q=FileUtil.getResourceAsString("sparql/Q53-3-involvedInGO0007155_WithEvidence_NotIEA_And_NotISS.sparql");
 
@@ -169,7 +169,7 @@ public class Evidences extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP() throws Exception{        
+	public void Q57_locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP() throws Exception{        
 		// specific query
 		String q=FileUtil.getResourceAsString("sparql/Q57-locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP.sparql");
 
@@ -197,7 +197,7 @@ public class Evidences extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void with1RRM_RNAbindingDomainWithEvidenceIEAorISS() throws Exception{
+	public void Q63_with1RRM_RNAbindingDomainWithEvidenceIEAorISS() throws Exception{
 		// specific query
 		String q=FileUtil.getResourceAsString("sparql/Q63-with1RRM_RNAbindingDomainWithEvidenceIEAorISS.sparql");
 

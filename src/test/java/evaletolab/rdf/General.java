@@ -62,7 +62,7 @@ public class General extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void thatArePhosphorylatedAndLocatedInTheCytoplasm() throws Exception{
+	public void Q1_thatArePhosphorylatedAndLocatedInTheCytoplasm() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q1.sparql");
 		//
 		// execute query
@@ -87,7 +87,7 @@ public class General extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void thatAreLocatedBothInTheCytoplasmAndInTheNucleus() throws Exception{
+	public void Q2_thatAreLocatedBothInTheCytoplasmAndInTheNucleus() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q2.sparql");
 		//
 		// execute query
@@ -112,7 +112,7 @@ public class General extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void locatedInMitochondrionAndLackATransitPeptide() throws Exception{
+	public void Q5_locatedInMitochondrionAndLackATransitPeptide() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q5.sparql");
 		//
 		// execute query
@@ -136,7 +136,7 @@ public class General extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void whoseGenesAreOnChromosome2AndLinkedWithADisease() throws Exception{
+	public void Q6_whoseGenesAreOnChromosome2AndLinkedWithADisease() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q6.sparql");
 		//
 		// execute query
@@ -159,7 +159,7 @@ public class General extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void linkedToDiseasesThatAreAssociatedWithCardiovascularAspects() throws Exception{
+	public void Q7_linkedToDiseasesThatAreAssociatedWithCardiovascularAspects() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q7.sparql");
 		//
 		// execute query
@@ -182,7 +182,7 @@ public class General extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void whoseGenesAreXbpAwayFromTheLocationOfGeneOfProteinY() throws Exception{
+	public void Q8_whoseGenesAreXbpAwayFromTheLocationOfGeneOfProteinY() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q8.sparql");
 		//
 		// execute query
@@ -205,7 +205,7 @@ public class General extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void withAgeneNameCLDNstar() throws Exception{
+	public void Q47_withAgeneNameCLDNstar() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q47.sparql");
 		//
 		// execute query
@@ -228,7 +228,7 @@ public class General extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void withProteinExistencePE2() throws Exception{
+	public void Q68_withProteinExistencePE2() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q68.sparql");
 		//
 		// execute query
@@ -252,7 +252,7 @@ public class General extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void proteinWithNoFunction() throws Exception{
+	public void Q22_proteinWithNoFunction() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q22.sparql");
 		//
 		// execute query
@@ -274,7 +274,7 @@ public class General extends TripleStore{
 	 * Q31 with >=10 "splice" isoforms
 	 */
 	@Test
-	public void protein10SpliceIsoforms() throws Exception{
+	public void Q31_protein10SpliceIsoforms() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q31.sparql");
 		//
 		// execute query
@@ -297,7 +297,7 @@ public class General extends TripleStore{
 	 * uniprot=database:(type:nextprot) AND keyword:"Transcription [KW-0804]" AND annotation:(type:coiled) NOT annotation:(type:"positional domain" bzip)
 	 */
 	@Test
-	public void withCoiledCoilAndInvolvedInTranscriptionButWithoutAbZipDomain() throws Exception{
+	public void Q32_withCoiledCoilAndInvolvedInTranscriptionButWithoutAbZipDomain() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q32.sparql");
 		//
 		// execute query
@@ -320,7 +320,7 @@ public class General extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void whichAreEnzymesWithAnIncompleteEC() throws Exception{
+	public void Q64_whichAreEnzymesWithAnIncompleteEC() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q64.sparql");
 		//
 		// execute query
@@ -342,7 +342,7 @@ public class General extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void proteinWithCatalitycActivity() throws Exception{
+	public void Q65_proteinWithCatalitycActivity() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q65.sparql");
 		//
 		// execute query
@@ -365,7 +365,7 @@ public class General extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void proteinWithNoDomain() throws Exception{
+	public void Q73_proteinWithNoDomain() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q73.sparql");
 		//
 		// execute query
