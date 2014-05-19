@@ -58,7 +58,7 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
-        assertThat("countMitochondrionSL (1'315)",1315.0,closeTo(rs.next().get("c").asLiteral().getInt(),5));
+        assertThat("countMitochondrionSL (1'315)",1315.0,closeTo(rs.next().get("c").asLiteral().getInt(),10));
 
 	}	
 	
@@ -75,7 +75,7 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
-        assertThat("countMitochondrionGo (1'526)",1526.0,closeTo(rs.next().get("c").asLiteral().getInt(),5));
+        assertThat("countMitochondrionGo (1'526)",1526.0,closeTo(rs.next().get("c").asLiteral().getInt(),10));
 	}	
 	
  
@@ -93,7 +93,7 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
-        assertThat("countMitochondrionKw (1'546)",1546.0,closeTo(rs.next().get("c").asLiteral().getInt(),5));
+        assertThat("countMitochondrionKw (1'546)",1546.0,closeTo(rs.next().get("c").asLiteral().getInt(),10));
 	}	 
 
 	/**
@@ -111,7 +111,7 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
-        assertThat("countMitochondrionKw (1'765)",1765.0,closeTo(rs.next().get("c").asLiteral().getInt(),5));
+        assertThat("countMitochondrionKw (1'765)",1765.0,closeTo(rs.next().get("c").asLiteral().getInt(),10));
 	}	
 		
 
@@ -127,7 +127,7 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
 		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-        assertThat("countProteinsRelevantForBrain_TS_0095 (18202)",18202.0,closeTo(rs.next().get("c").asLiteral().getInt(),5));
+        assertThat("countProteinsRelevantForBrain_TS_0095 (18202)",18202.0,closeTo(rs.next().get("c").asLiteral().getInt(),10));
 	}	
 	
 	
@@ -143,7 +143,7 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
 
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-        assertThat("countProteinsRelevantForLiver_TS_0564 (18'894)",18894.0,closeTo(rs.next().get("c").asLiteral().getInt(),5));
+        assertThat("countProteinsRelevantForLiver_TS_0564 (18'894)",18894.0,closeTo(rs.next().get("c").asLiteral().getInt(),10));
 	}	
 	
 
@@ -161,7 +161,7 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
 		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
-        assertThat("countProteinsRelevantForKW_0813 (1'868)",1868.0,closeTo(rs.next().get("c").asLiteral().getInt(),5));        
+        assertThat("countProteinsRelevantForKW_0813 (1'868)",1868.0,closeTo(rs.next().get("c").asLiteral().getInt(),10));        
 	}	
 
 }

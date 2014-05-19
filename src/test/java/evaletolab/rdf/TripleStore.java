@@ -2,11 +2,16 @@ package evaletolab.rdf;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import virtuoso.jena.driver.VirtGraph;
 
@@ -147,7 +152,7 @@ public class TripleStore {
 	 * @return
 	 */
 	public List<String> getLiterals(ResultSet rs){
-		return getURIs(rs,"entry","NX_");
+		return getLiterals(rs,"entry","NX_");
 	}
 	
 	/**
@@ -157,12 +162,13 @@ public class TripleStore {
 	 * @param replace
 	 * @return
 	 */
-	public List<String> getURIs(ResultSet rs, String variable, String replace){
+	public List<String> getLiterals(ResultSet rs, String variable, String replace){
 		List<String> uri=new ArrayList<String>();		
         while(rs.hasNext()){
         	QuerySolution qs=rs.next();
         	uri.add(qs.getResource(variable).getLocalName().replace(replace,""));
-        }		
+        }
+        Collections.sort(uri);
         return uri;
 	}
 
@@ -194,4 +200,6 @@ public class TripleStore {
 	public String getPrefix(){
 		return prefix;
 	}
+
+	
 }

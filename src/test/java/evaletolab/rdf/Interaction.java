@@ -62,7 +62,7 @@ public class Interaction extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));      
+        	assertTrue(ac,uri.contains(ac.trim()));      
 	}			
 	
 	/**
@@ -85,7 +85,7 @@ public class Interaction extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));
+        	assertTrue(ac,uri.contains(ac.trim()));
 	}	
 	
 	/**
@@ -108,7 +108,7 @@ public class Interaction extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));
+        	assertTrue(ac,uri.contains(ac.trim()));
 	}	
 		
 }

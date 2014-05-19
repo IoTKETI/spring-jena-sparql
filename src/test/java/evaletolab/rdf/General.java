@@ -77,7 +77,7 @@ public class General extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));      
+        	assertTrue(ac,uri.contains(ac.trim()));      
 	}		
 
 	
@@ -102,7 +102,7 @@ public class General extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));
+        	assertTrue(ac,uri.contains(ac.trim()));
 
                 
 	}	
@@ -127,7 +127,7 @@ public class General extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));           
+        	assertTrue(ac,uri.contains(ac.trim()));           
 	}	
 			
 	
@@ -151,7 +151,7 @@ public class General extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));       
+        	assertTrue(ac,uri.contains(ac.trim()));       
 	}		
 	
 	/**
@@ -174,7 +174,7 @@ public class General extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));       
+        	assertTrue(ac,uri.contains(ac.trim()));       
 	}		
 	
 	/**
@@ -197,7 +197,7 @@ public class General extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));     
+        	assertTrue(ac,uri.contains(ac.trim()));     
 	}	
 
 	/**
@@ -220,7 +220,7 @@ public class General extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));       
+        	assertTrue(ac,uri.contains(ac.trim()));       
 	}	
 	
 	/**
@@ -243,7 +243,7 @@ public class General extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));       
+        	assertTrue(ac,uri.contains(ac.trim()));       
 	}	
 			
 	
@@ -267,7 +267,7 @@ public class General extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));              
+        	assertTrue(ac,uri.contains(ac.trim()));              
 	}	
 
 	/**
@@ -289,7 +289,7 @@ public class General extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));            
+        	assertTrue(ac,uri.contains(ac.trim()));            
 	}
 	
 	/**
@@ -312,7 +312,7 @@ public class General extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));           
+        	assertTrue(ac,uri.contains(ac.trim()));           
 	}	
 	
 	/**
@@ -335,7 +335,7 @@ public class General extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));             
+        	assertTrue(ac,uri.contains(ac.trim()));             
 	}		
 	/**
 	 * Q65 Proteins with >1 catalytic activity 
@@ -357,7 +357,7 @@ public class General extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));             
+        	assertTrue(ac,uri.contains(ac.trim()));             
 	}	
 	
 	/**
@@ -380,6 +380,6 @@ public class General extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));             
+        	assertTrue(ac,uri.contains(ac.trim()));             
 	}		
 }

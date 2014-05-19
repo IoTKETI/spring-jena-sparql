@@ -54,15 +54,14 @@ public class Integrity extends TripleStore{
 	
 	@Test
 	public void countTerminologyClass(){
-		String q="SELECT distinct ?class\n" + 
-				"WHERE { ?class rdfs:subClassOf :Term }ORDER BY ?class";		
+		String q="SELECT distinct ?class WHERE { ?class rdfs:subClassOf :Term }ORDER BY ?class";		
 		
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
         //
         // validate result
-		List<String> uri=getURIs(rs,"class","");
+		List<String> uri=getLiterals(rs,"class","");
         assertThat("countTerminologyClass (36)",37.0,closeTo(rs.next().get("c").asLiteral().getInt(),1));
         
 	}	
@@ -78,7 +77,7 @@ public class Integrity extends TripleStore{
         
         //
         // validate result
-		List<String> uri=getURIs(rs,"class","");
+		List<String> uri=getLiterals(rs,"class","");
         assertEquals("countNotUsedTerminologyClass (7)",8,rs.getRowNumber());
 	}		
 	@Test
@@ -91,7 +90,7 @@ public class Integrity extends TripleStore{
         
         //
         // validate result
-		List<String> uri=getURIs(rs,"class","");
+		List<String> uri=getLiterals(rs,"class","");
         assertEquals("countAnnotationClass (76)",rs.getRowNumber(),76);
 	}		
 	/**
@@ -111,7 +110,7 @@ public class Integrity extends TripleStore{
         ResultSet rs=qe.execSelect();
         //
         // validate result
-		List<String> uri=getURIs(rs,"class","");
+		List<String> uri=getLiterals(rs,"class","");
         
         assertEquals("countIntersectBetweenAnnotationAndTerminologyClass (0)",0,rs.getRowNumber());
 	}	

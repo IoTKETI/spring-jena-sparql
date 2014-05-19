@@ -79,7 +79,7 @@ public class Evidences extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));
+        	assertTrue(ac,uri.contains(ac.trim()));
 	}	
 	
 	/**
@@ -107,7 +107,7 @@ public class Evidences extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));
+        	assertTrue(ac,uri.contains(ac.trim()));
         
 	}	
 
@@ -135,7 +135,7 @@ public class Evidences extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));
+        	assertTrue(ac,uri.contains(ac.trim()));
 	}	
 	
 
@@ -157,7 +157,7 @@ public class Evidences extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));
+        	assertTrue(ac,uri.contains(ac.trim()));
 	}		
 
 	/**
@@ -185,8 +185,9 @@ public class Evidences extends TripleStore{
         // validate result
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
+        System.out.println(acs+" = "+uri);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));
+        	assertTrue(ac,uri.contains(ac.trim()));
 	
 	}	
 	
@@ -213,7 +214,7 @@ public class Evidences extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(uri.contains(ac));
+        	assertTrue(ac,uri.contains(ac.trim()));
 	}	
 
 
