@@ -50,7 +50,7 @@ public class PTM extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q24.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);

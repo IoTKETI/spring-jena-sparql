@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
@@ -33,7 +36,7 @@ public class TripleStore {
 	
 	//
 	// identify the current test
-	private String instanceSignature;
+	private String instanceSignature = "";
 	
 	private String prefix="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" + 
 			"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + 
@@ -79,61 +82,74 @@ public class TripleStore {
 		//
 		// else we use the apsql endpoint (that doesn't support ARQ)
 		endpoint=config.getProperty("sparql.endpoint");
-		instanceSignature="#id:"+generateTestId()+" host:"+endpoint+"\n";
+		instanceSignature="#id:"+generateTestId()+" endpoint:"+endpoint+"\n";
 	}
 	
 	
 	/**
-	 * generate meta content as comment in the sparql query 
+	 * generate meta content for sparql query logs 
 	 * @return
 	 */
 	private String generateTestId() {
-
-		String newstring = new SimpleDateFormat("yyyyMMdd-HHmmss").format(new Date());
-		String testId = "TEST-SPARQL-QUERIES-" + newstring;
+		String version = getTripleVersion()+"-";
+		String newstring = new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date());
+		String testId = "SPARQL-" + version + newstring;
 		return testId;
 	}
 
 	/**
 	 * read meta info 'ac' in sparql query comment
-	 * ac variable define the values we want to get as result 
+	 *  - endpoint of sparql service 
+	 *  - id of the query
+	 *  - title of the query
+	 *  - ac variable define the Proteins we request as result
+	 *  - count variable define the size of the result 
 	 * @param query
 	 * @return
 	 */
-	public String getQueryMetaAc(String query){
-		String split[]=query.split("#ac:");
-		if (split.length==0)
-			return "";
-		return split[1].replaceAll("\\n.*", "");
+
+
+
+	public Map<String,String> getMetaInfo(String query){
+		Map<String,String> meta=new HashMap<String, String>();
+		//
+		// get id and host
+		Matcher m=Pattern.compile("#id:([^ ]+).?endpoint:([^\\n]*)",Pattern.DOTALL | Pattern.MULTILINE).matcher(query);
+		if(m.find()){
+			meta.put("id", m.group(1));
+			meta.put("endpoint", m.group(2));
+		}
+		
+		//
+		// get acs
+		m=Pattern.compile("[# ]?ac:([^ \\n]*)",Pattern.DOTALL | Pattern.MULTILINE).matcher(query);
+		if(m.find()){
+			meta.put("acs", m.group(1));
+		}
+
+		//
+		// get count
+		m=Pattern.compile("[# ]?count:([^\\n]*)",Pattern.DOTALL | Pattern.MULTILINE).matcher(query);
+		meta.put("count", "0");
+		if(m.find()){
+			meta.put("count", m.group(1));
+		}
+		
+		//
+		// get title
+		m=Pattern.compile("#title:([^\\n]*)",Pattern.DOTALL | Pattern.MULTILINE).matcher(query);
+		if(m.find()){
+			meta.put("title", m.group(1));
+		}
+		return meta;		
 	}
 	
-	/**
-	 * read meta info 'count' in sparql query comment
-	 * count variable define the size of the result 
-	 * @param query
-	 * @return
-	 */
 	public int getQueryMetaCount(String query){
-		String split[]=query.split("#count:");
-		if (split.length<2)
-			return 0;
-		return Integer.parseInt(split[1].replaceAll("\\n.*", ""));
+		String c=getMetaInfo(query).get("count");
+		if(c==null)return 0;
+		return Integer.parseInt(c);
 	}
-
-	/**
-	 * read meta info 'title' in sparql query comment
-	 * title variable define the query title 
-	 * @param query
-	 * @return
-	 */
-	public String getQueryMetaTitle(String query){
-		Pattern p = Pattern.compile("^#title:(.+)$",Pattern.DOTALL | Pattern.MULTILINE);
-		String split[]=query.split("#title:");
-		if (split.length==0)
-			return "";
-		return split[1].replaceAll("\\n.*", "");
-	}
-
+	
 	/**
 	 * read meta info 'pending' in sparql query comment
 	 * pending is the status of the query quality check
@@ -171,10 +187,20 @@ public class TripleStore {
         return uri;
 	}
 
+	public String getTripleVersion(){
+		try{
+			ResultSet rs= createQueryExecution("select ?version where{ :Version rdfs:comment ?version }").execSelect();
+			String v=rs.next().get("version").asLiteral().getString();
+			return v;
+		}catch (Exception e){
+		}
+		return "";
+	}
 	
 	public QueryExecution createQueryExecution(String query ){
-		if (isQueryPending(query))
-			System.out.println("PENDING: "+getQueryMetaTitle(query));
+		if (isQueryPending(query)){
+			System.out.println("PENDING: "+getMetaInfo(query).get("title"));
+		}
 		
 		if(isNative){
 			Query q = QueryFactory.create(prefix+instanceSignature+query);

@@ -70,7 +70,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q3-with2TransmembraneRegions.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -94,7 +94,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q9-with3DisulfideBondsAndNotHormones.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -117,7 +117,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q10.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -141,7 +141,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q13-withKinaseDomainButNotKinaseActivity.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -165,7 +165,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q14-with2SH3And1SHD2.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -191,7 +191,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q16-1-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -214,7 +214,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q16-2-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -237,7 +237,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q16-3-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -261,7 +261,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q18-thatAreAcetylatedAndMethylated.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -285,7 +285,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q19-containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -309,7 +309,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q32.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -333,7 +333,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q34-withHomeoboxAndWithVariantsInTheHomeobox.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -357,7 +357,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q38.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -381,7 +381,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q39.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -405,7 +405,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q40.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -428,7 +428,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q41.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -452,7 +452,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q48.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -475,7 +475,7 @@ public class Features extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q49.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);

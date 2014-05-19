@@ -66,7 +66,7 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q1.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -91,7 +91,7 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q2.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -116,7 +116,7 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q5.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -140,7 +140,7 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q6.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -163,7 +163,7 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q7.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -186,7 +186,7 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q8.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -209,7 +209,7 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q47.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -232,7 +232,7 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q68.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -256,7 +256,7 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q22.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -278,7 +278,7 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q31.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -301,7 +301,7 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q32.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -324,7 +324,7 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q64.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -346,7 +346,7 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q65.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -369,7 +369,7 @@ public class General extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q73.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);

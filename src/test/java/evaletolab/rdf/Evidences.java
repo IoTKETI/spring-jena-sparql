@@ -68,7 +68,7 @@ public class Evidences extends TripleStore{
 
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -96,7 +96,7 @@ public class Evidences extends TripleStore{
 
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -124,7 +124,7 @@ public class Evidences extends TripleStore{
 
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -146,7 +146,7 @@ public class Evidences extends TripleStore{
 
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -175,7 +175,7 @@ public class Evidences extends TripleStore{
 
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -203,7 +203,7 @@ public class Evidences extends TripleStore{
 
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);

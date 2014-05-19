@@ -98,7 +98,7 @@ public class Expression extends TripleStore{
 
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -122,7 +122,7 @@ public class Expression extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q17-gt1000aaAndLocatedInNucleusAndExpressedInNervousSystem.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -148,7 +148,7 @@ public class Expression extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q4-highlyExpressedInBrainButNotInTestis.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -173,7 +173,7 @@ public class Expression extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q50-expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -196,7 +196,7 @@ public class Expression extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q83-expressedOnASingleTissue.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -219,7 +219,7 @@ public class Expression extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q77-expressedInLiverAccordingIHCButNotInHUPOLiverProteom.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -243,7 +243,7 @@ public class Expression extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q15-PDZdomainthatInteractWithProteinExpresssedInBrain.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
@@ -268,7 +268,7 @@ public class Expression extends TripleStore{
 		String q=FileUtil.getResourceAsString("sparql/Q20-HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel.sparql");
 		//
 		// execute query
-		String acs=getQueryMetaAc(q);
+		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
 		
 		QueryExecution qe = createQueryExecution(q);
