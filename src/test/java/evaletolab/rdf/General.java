@@ -2,8 +2,6 @@ package evaletolab.rdf;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -17,9 +15,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
-import com.sun.tools.javac.code.Attribute.Array;
 
 import evaletolab.config.WebConfig;
+import evaletolab.controller.TripleStore;
 import evaletolab.tool.FileUtil;
 
 /**

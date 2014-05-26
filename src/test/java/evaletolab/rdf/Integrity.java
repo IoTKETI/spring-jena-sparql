@@ -1,8 +1,9 @@
 package evaletolab.rdf;
 
-import static org.junit.Assert.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 import java.util.Map;
@@ -19,8 +20,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
 
-
 import evaletolab.config.WebConfig;
+import evaletolab.controller.TripleStore;
 /**
  * Use case for intigrity queries
  * - count Entries 

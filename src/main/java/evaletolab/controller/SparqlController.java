@@ -1,11 +1,20 @@
 package evaletolab.controller;
 
+import java.io.Console;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,6 +67,21 @@ public class SparqlController extends TripleStore{
 		return "/home";
 	}
 	
+	@RequestMapping(value = "/sparql/queries", method = RequestMethod.GET)
+    public @ResponseBody List<Map<String,String>> queries(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		List<Map<String,String>> result=new ArrayList<Map<String,String>>();
+		Set<String> sparqls =new Reflections("sparql", new ResourcesScanner()).getResources(Pattern.compile(".*\\.sparql"));
+		Map<String,String> meta=new HashMap<String, String>();
+		for(String q:sparqls){
+			String query=FileUtil.getResourceAsString(q);
+			meta.put("title", getMetaInfo(query).get("title"));
+			meta.put("query", query);
+			result.add(meta);
+			meta=new HashMap<String, String>();
+		}
+		return result;
+	}	
+	
 	@RequestMapping(value = "/entry/{ac}", method = RequestMethod.GET)
     public  String entry(HttpServletRequest request, HttpServletResponse response,
     		@PathVariable("ac") String ac,
@@ -73,7 +97,7 @@ public class SparqlController extends TripleStore{
     		@PathVariable("ac") String ac,
     		@RequestParam(value="output", required=false) String output) throws Exception {
 		
-		String q=FileUtil.getResourceAsString("sparql/entry.sparql").replaceAll("NX_VALUE", ac);;
+		String q=FileUtil.getResourceAsString("sparql.services/entry.sparql").replaceAll("NX_VALUE", ac);;
 
 		if (output!=null && output.equalsIgnoreCase("json")){
 			response.setHeader("Accept", "application/sparql-results+json");

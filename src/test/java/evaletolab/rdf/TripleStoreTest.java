@@ -1,10 +1,7 @@
 package evaletolab.rdf;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertEquals;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -16,11 +13,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.ResultSet;
-
-
 import evaletolab.config.WebConfig;
+import evaletolab.controller.TripleStore;
 /**
  * Use case for intigrity queries
  * - count Entries 
@@ -103,6 +97,18 @@ public class TripleStoreTest extends TripleStore{
 		assertEquals("title","Q1 that are phosphorylated and located in the cytoplasm", m.get("title"));
 		assertEquals("acs","A1A4S6,A1KZ92,A1L020", m.get("acs"));	
 		assertEquals("count","4", m.get("count"));	
-	}		
-
+	}	
+	
+	@Test
+	public void queryMeta_title(){
+		String q="#title:Q41 that are annotated with GO \"F\" terms prefixed by \"Not\"\n" + 
+				"#pending\n" + 
+				"#ac:A1A5B4,O00712,O15078,O15164,O15247,O15457,O43196,O43435,O43820,O60673\n" + 
+				"SELECT distinct ?entry  WHERE  {\n" + 
+				"  ?entry :isoform/:function ?statement.\n" + 
+				"  ?statement a :GoMolecularFunction;:withEvidence/:negative \"true\"^^xsd:boolean.\n" + 
+				"}";
+		Map<String, String> m=getMetaInfo(q);
+		assertEquals("title","Q41 that are annotated with GO \"F\" terms prefixed by \"Not\"", m.get("title"));
+	}
 }

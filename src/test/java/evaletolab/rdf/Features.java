@@ -17,6 +17,7 @@ import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
 
 import evaletolab.config.WebConfig;
+import evaletolab.controller.TripleStore;
 import evaletolab.tool.FileUtil;
 
 /**
