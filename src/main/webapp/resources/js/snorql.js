@@ -12,7 +12,7 @@ function Snorql() {
     // modify this._endpoint to point to your SPARQL endpoint
     this._endpoint = '/sparql';//document.location.href.match(/^([^?]*)snorql\//)[1] + 'sparql';
     // modify these to your likeing
-    this._poweredByLink = 'http://cactusprime:8890/sparql';
+    this._poweredByLink = 'http://np.org';
     this._poweredByLabel = 'nextprot Server';
     this._enableNamedGraphs = false;
 
@@ -42,6 +42,22 @@ function Snorql() {
       	
     	$.getJSON( path, successFunc)
       	
+    	
+    }
+    this.loadQueries=function(selector){
+    	var opts=[]
+    	$.getJSON( "/sparql/queries", function(queries){
+    		var $select=$(selector);opts
+			$select.append("<option value='' disabled='true'>-- select a query exmaple --</option>")
+    		for (var i in queries.sort()){
+    			$select.append("<option value='"+queries[i].query.replace(/(#ac[^\n]+|#pending[^\n]+)/,'')+"'>"+queries[i].title+"</option>")
+    			opts.push(queries[i])
+    		}
+    	})
+    	
+    	$(selector).change(function(e,query){
+    		document.getElementById('querytext').value=$(this).val();
+    	})
     	
     }
     

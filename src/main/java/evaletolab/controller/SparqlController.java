@@ -71,6 +71,7 @@ public class SparqlController extends TripleStore{
     public @ResponseBody List<Map<String,String>> queries(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<Map<String,String>> result=new ArrayList<Map<String,String>>();
 		Set<String> sparqls =new Reflections("sparql", new ResourcesScanner()).getResources(Pattern.compile(".*\\.sparql"));
+		//java.util.Collections.sort(sparqls);
 		Map<String,String> meta=new HashMap<String, String>();
 		for(String q:sparqls){
 			String query=FileUtil.getResourceAsString(q);

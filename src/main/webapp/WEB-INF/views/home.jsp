@@ -16,6 +16,7 @@
     <script type="text/javascript" src="/resources/js/highlight/sparql.js"></script>
     <script>
     $(function(){
+    	snorql.loadQueries("#queries")
       snorql.start()
 //       CodeMirror.fromTextArea(document.getElementById("querytext"), {
 //         mode: "application/x-sparql-query",
@@ -30,10 +31,7 @@
 
   <body >
     <div id="header">
-      <h1 id="title">Snorql: A SPARQL Explorer</h1>
-      <ul>
-        <li><a href="http://swissprot.isb-sib.ch/wiki/display/cal/Amos%27+search+examples+%28V2.0%29">Amos' search examples</a></li>
-      </ul>
+      <h1 id="title">Snorql: Amos' search examples</h1>
     </div>
 
     <div class="section" style="float: right; width: 8em">
@@ -61,6 +59,13 @@
         <a href="javascript:snorql.switchToDefaultGraph()">Switch back to default graph</a>
       </p>
     </div>
+    
+    <div class="section" style="margin-right: 12em">
+      <h2 style="display: inline">Select an example</h2>
+      <div>
+        <select id="queries" style="font-size: 110%; padding: 5px; border: 1px solid #ddd;width:90%"></select>
+      </div>
+    </div>    
 
     <div class="section" style="margin-right: 12em">
       <h2>SPARQL:</h2>
