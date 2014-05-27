@@ -1,4 +1,4 @@
-#Proteins that are not highly expressed in liver at embryo stage
+#title:Proteins that are not highly expressed in liver at embryo stage
 SELECT distinct ?entry WHERE {
   ?entry :isoform/:expression ?statement.
   ?statement :in/:childOf  term:TS-0564;:withEvidence ?evidence.

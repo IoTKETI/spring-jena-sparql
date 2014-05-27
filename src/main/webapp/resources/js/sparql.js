@@ -298,7 +298,7 @@ SPARQL.Query = function(service, priority) {
 		if (which in cb) {
 			if (cb.scope) {
                 cb[which].apply(cb.scope, [arg, user_data]);
-			} else { 
+			} else{
 				cb[which](arg, user_data); 
 			}
 		}

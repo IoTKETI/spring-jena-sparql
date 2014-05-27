@@ -46,17 +46,21 @@ function Snorql() {
     }
     this.loadQueries=function(selector){
     	var opts=[]
-    	$.getJSON( "/sparql/queries", function(queries){
+        var match = document.location.href.match(/\?query=(.*)/);
+        var title = match ? this._betterUnescape(match[1]).match(/#title:([^ ]*)/) : '';
+        
+        $.getJSON( "/sparql/queries", function(queries){
     		var $select=$(selector);opts
-			$select.append("<option value='' disabled='true'>-- select a query exmaple --</option>")
     		for (var i in queries.sort()){
-    			$select.append("<option value='"+queries[i].query.replace(/(#ac[^\n]+|#pending[^\n]+)/,'')+"'>"+queries[i].title+"</option>")
+    			var q=queries[i].query.replace(/(#ac[^\n]+|#pending[^\n]*)/g,'');
+    			var m=q.match(/#title:([^ ]*)/)
+    			$select.append("<option selected='"+(title&&m&&m[0]==title[0])+"' value='"+encodeURIComponent(q)+"'>"+queries[i].title+"</option>")
     			opts.push(queries[i])
     		}
     	})
     	
     	$(selector).change(function(e,query){
-    		document.getElementById('querytext').value=$(this).val();
+    		document.getElementById('querytext').value=decodeURIComponent($(this).val());
     	})
     	
     }
@@ -162,7 +166,9 @@ function Snorql() {
         
    	    var exp = /^\s*(?:PREFIX\s+\w*:\s+<[^>]*>\s*)*(\w+)\s*.*/i;
    	    var match = exp.exec(completeQuery(querytext));
-   	    
+    	var successFunc = function(json, data) {
+    		dummy.displayJSONResult(json, resultTitle, (new Date().getTime() - startQuery));
+    	};
    	    if (match) {
 	        if (match[1].toUpperCase() == 'ASK') {
 	        	service.setOutput('boolean');
@@ -177,9 +183,6 @@ function Snorql() {
 	        } else {
 	        	service.setRequestHeader('Accept', 'application/sparql-results+json,*/*');
 	        	service.setOutput('json');
-	        	var successFunc = function(json, data) {
-	        		dummy.displayJSONResult(json, resultTitle, (new Date().getTime() - startQuery));
-	        	};
 	        }
    	    }
    	    

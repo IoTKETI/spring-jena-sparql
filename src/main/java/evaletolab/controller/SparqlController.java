@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
@@ -67,14 +68,23 @@ public class SparqlController extends TripleStore{
 		return "/home";
 	}
 	
+	/**
+	 * this controller send the set of sparql queries used for integration testing.
+	 * @return
+	 * @throws Exception  
+	 */
 	@RequestMapping(value = "/sparql/queries", method = RequestMethod.GET)
-    public @ResponseBody List<Map<String,String>> queries(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public @ResponseBody List<Map<String,String>> queries() throws Exception {
 		List<Map<String,String>> result=new ArrayList<Map<String,String>>();
-		Set<String> sparqls =new Reflections("sparql", new ResourcesScanner()).getResources(Pattern.compile(".*\\.sparql"));
-		//java.util.Collections.sort(sparqls);
+		Set<String> sparqls =new TreeSet<String>();
+		sparqls.addAll(new Reflections("sparql", new ResourcesScanner()).getResources(Pattern.compile("[^/]*\\.sparql")));
 		Map<String,String> meta=new HashMap<String, String>();
 		for(String q:sparqls){
 			String query=FileUtil.getResourceAsString(q);
+			if(getMetaInfo(query).get("title")==null){
+				System.out.println("-----------------> removing query : "+q);
+				continue;
+			}
 			meta.put("title", getMetaInfo(query).get("title"));
 			meta.put("query", query);
 			result.add(meta);

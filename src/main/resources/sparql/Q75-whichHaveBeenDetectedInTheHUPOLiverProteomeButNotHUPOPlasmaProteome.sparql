@@ -1,2 +1,8 @@
-#Q75  which have been detected in the HUPO liver proteome set 
-#     but not the HUPO plasma proteome set
+#title:Q75  which have been detected in the HUPO liver proteome set but not the HUPO plasma proteome set
+select distinct ?entry where {
+  ?entry a :Entry .
+  ?entry :isoform / :mapping / :withEvidence / :assignedBy source:PeptideAtlas_human_liver .
+  FILTER NOT EXISTS {
+    ?entry :isoform / :mapping / :withEvidence / :assignedBy source:PeptideAtlas_human_plasma .
+  }
+}
