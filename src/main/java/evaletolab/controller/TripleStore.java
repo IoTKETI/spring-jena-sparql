@@ -76,7 +76,7 @@ public class TripleStore {
 					config.getProperty("virtuoso.password")
 			);
 			model=ModelFactory.createModelForGraph(graph);
-			instanceSignature="#id:"+generateTestId()+" host:"+config.getProperty("virtuoso.url")+"\n";
+			instanceSignature=generateTestId();
 			isNative=true;
 			return;
 		}
@@ -87,7 +87,7 @@ public class TripleStore {
 		if (config.containsKey("sparql.proxied"))
 			proxied=" endpoint:"+config.getProperty("sparql.proxied")+"\n";
 		
-		instanceSignature="#id:"+generateTestId()+proxied;
+		instanceSignature=generateTestId();
 	}
 	
 	
@@ -194,7 +194,7 @@ public class TripleStore {
 
 	public String getTripleVersion(){
 		try{
-			ResultSet rs= createQueryExecution("select ?version where{ :Version rdfs:comment ?version }").execSelect();
+			ResultSet rs= createQueryExecution("select ?version where{ :Version :git ?version }").execSelect();
 			String v=rs.next().get("version").asLiteral().getString();			
 			return v;
 		}catch (Exception e){
@@ -203,7 +203,7 @@ public class TripleStore {
 	}
 	
 	public QueryExecution createQueryExecution(String query ){
-		Query q = QueryFactory.create(prefix+instanceSignature+query);
+		Query q = QueryFactory.create(prefix+query);
 
 		if (isQueryPending(query)){
 			System.out.println("PENDING: "+getMetaInfo(query).get("title"));
@@ -212,9 +212,10 @@ public class TripleStore {
 		if(isNative){	
 	        return QueryExecutionFactory.create(q,model);			
 		}
-        QueryEngineHTTP engine=(QueryEngineHTTP)QueryExecutionFactory.sparqlService(endpoint, prefix+instanceSignature+query);
+        QueryEngineHTTP engine=(QueryEngineHTTP)QueryExecutionFactory.sparqlService(endpoint, prefix+query);
+        String title=getMetaInfo(query).get("title");
         engine.addParam("testid", instanceSignature);
-        engine.addParam("title", getMetaInfo(query).get("title"));
+        engine.addParam("title", (title!=null)?title:"unknown");
 //		engine.setSelectContentType(WebContent.contentTypeResultsJSON) ;
 		return engine;
 	}
