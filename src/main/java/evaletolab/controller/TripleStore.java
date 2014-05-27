@@ -212,7 +212,9 @@ public class TripleStore {
 		if(isNative){	
 	        return QueryExecutionFactory.create(q,model);			
 		}
-        QueryEngineHTTP engine=QueryExecutionFactory.createServiceRequest(endpoint, q);
+        QueryEngineHTTP engine=(QueryEngineHTTP)QueryExecutionFactory.sparqlService(endpoint, prefix+instanceSignature+query);
+        engine.addParam("testid", instanceSignature);
+        engine.addParam("title", getMetaInfo(query).get("title"));
 //		engine.setSelectContentType(WebContent.contentTypeResultsJSON) ;
 		return engine;
 	}
