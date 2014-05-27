@@ -38,8 +38,9 @@ public class TripleStore {
 	
 	//
 	// identify the current test
-	private String instanceSignature = "";
-	
+	private  String instanceSignature = "";
+	private  static String date = new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date());
+
 	private String prefix="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" + 
 			"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + 
 			"PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" + 
@@ -97,8 +98,7 @@ public class TripleStore {
 	 */
 	private String generateTestId() {
 		String version = getTripleVersion()+"-";
-		String newstring = new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date());
-		String testId = "SPARQL-" + version + newstring;
+		String testId = "SPARQL-" + version + date;
 		return testId;
 	}
 
@@ -215,7 +215,7 @@ public class TripleStore {
         QueryEngineHTTP engine=(QueryEngineHTTP)QueryExecutionFactory.sparqlService(endpoint, prefix+query);
         String title=getMetaInfo(query).get("title");
         engine.addParam("testid", instanceSignature);
-        engine.addParam("title", (title!=null)?title:"unknown");
+        engine.addParam("title", (title!=null)?title.replaceAll(",", ""):"unknown");
 //		engine.setSelectContentType(WebContent.contentTypeResultsJSON) ;
 		return engine;
 	}

@@ -50,20 +50,6 @@ public class Integrity extends TripleStore{
 	
 
 	
-	@Test
-	public void queryMeta_Id_Host_Title_variation1(){
-		String q="#id:SPARQL--20140519-1714 endpoint:http://uat-web2:8890/sparql\n" +
-				 "\n"+
-				 "#title:Q1 that are phosphorylated and located in the cytoplasm\n" + 
-				 "select distinct ?entry where { ?entry a :Entry}limit 1";
-		Map<String, String> m=getMetaInfo(q);
-		assertEquals("id","SPARQL--20140519-1714", m.get("id"));
-		assertEquals("endpoint","http://uat-web2:8890/sparql", m.get("endpoint"));
-		assertEquals("title","Q1 that are phosphorylated and located in the cytoplasm", m.get("title"));
-		assertEquals("acs",null, m.get("acs"));
-		
-	}	
-	
 	/**
 	 * nb terminology classes
 	 */
