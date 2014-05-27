@@ -166,6 +166,7 @@ function Snorql() {
    	    var exp = /^\s*(?:PREFIX\s+\w*:\s+<[^>]*>\s*)*(\w+)\s*.*/i;
    	    var match = exp.exec(completeQuery(querytext));
     	var successFunc = function(json, data) {
+    		console.log(json)
     		dummy.displayJSONResult(json, resultTitle, (new Date().getTime() - startQuery));
     	};
    	    if (match) {

@@ -8,9 +8,8 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.sparql.function.FunctionRegistry;
+import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.sparql.pfunction.PropertyFunctionRegistry;
 
 public class NextprotFunctionRegistry {
@@ -45,11 +44,9 @@ public class NextprotFunctionRegistry {
 	public String convertResultSetToJSON(ResultSet resultSet) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ResultSetFormatter.outputAsJSON(baos, resultSet);
-		// resultSet.reset();
 		try {
 			return baos.toString("UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			// should never happen as UTF-8 is supported
 			throw new Error(e);
 		}
 	}
@@ -57,11 +54,9 @@ public class NextprotFunctionRegistry {
 	public String convertResultSetToXML(ResultSet resultSet) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ResultSetFormatter.outputAsXML(baos, resultSet);
-		// resultSet.reset();
 		try {
 			return baos.toString("UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			// should never happen as UTF-8 is supported
 			throw new Error(e);
 		}
 	}	

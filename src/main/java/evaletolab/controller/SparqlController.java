@@ -1,6 +1,5 @@
 package evaletolab.controller;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -52,6 +51,7 @@ public class SparqlController extends TripleStore{
 			
 			ResultSet rs = qe.execSelect();
 			result=registry.convertResultSetToJSON(rs);
+			qe.close();
 		} 
 		catch(Exception e) {
 			return (e.getMessage());
@@ -122,25 +122,25 @@ public class SparqlController extends TripleStore{
     public @ResponseBody String sparql(HttpServletRequest request, HttpServletResponse response,
     		@RequestParam(value="query", required=false) String query, 
     		@RequestParam(value="output", required=false) String output) {
-		if (output!=null && output.equalsIgnoreCase("json")){
-			response.setHeader("Accept", "application/sparql-results+json");			
-		}
-		if (output!=null && output.equalsIgnoreCase("json")){
+
+		// default
+		response.setHeader("Accept", "application/sparql-results+json");			
+		if (output!=null && output.equalsIgnoreCase("xml")){
 			response.setHeader("Accept", "application/sparql-results+xml");			
 		}
 		
-		Enumeration<String> e=request.getAttributeNames();
-		while(e.hasMoreElements()){
-			String name=e.nextElement();
-			System.out.println(name+" - "+request.getAttribute(name));
-		}
+//		Enumeration<String> e=request.getAttributeNames();
+//		while(e.hasMoreElements()){
+//			String name=e.nextElement();
+//			System.out.println(name+" - "+request.getAttribute(name));
+//		}
 		
-//		System.out.println(query);
 //		Enumeration<String> h=request.getHeaderNames();
 //		while(h.hasMoreElements()){
 //			String name=h.nextElement();
-//			System.out.println(name+" - "+request.getHeaders(name));
+//			System.out.println(name+" - "+request.getHeader(name).toString());
 //		}
+//		System.out.println("content-type "+request.getContentType());
 
 		
 //		Model rdf = registry.getDefault();

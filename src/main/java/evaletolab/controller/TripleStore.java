@@ -13,6 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
+import org.apache.jena.riot.WebContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import virtuoso.jena.driver.VirtGraph;
 
@@ -24,6 +25,7 @@ import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP;
 
 public class TripleStore {
 	@Autowired
@@ -193,7 +195,7 @@ public class TripleStore {
 	public String getTripleVersion(){
 		try{
 			ResultSet rs= createQueryExecution("select ?version where{ :Version rdfs:comment ?version }").execSelect();
-			String v=rs.next().get("version").asLiteral().getString();
+			String v=rs.next().get("version").asLiteral().getString();			
 			return v;
 		}catch (Exception e){
 		}
@@ -201,15 +203,18 @@ public class TripleStore {
 	}
 	
 	public QueryExecution createQueryExecution(String query ){
+		Query q = QueryFactory.create(prefix+instanceSignature+query);
+
 		if (isQueryPending(query)){
 			System.out.println("PENDING: "+getMetaInfo(query).get("title"));
 		}
 		
-		if(isNative){
-			Query q = QueryFactory.create(prefix+instanceSignature+query);
+		if(isNative){	
 	        return QueryExecutionFactory.create(q,model);			
 		}
-		return QueryExecutionFactory.sparqlService(endpoint,prefix+instanceSignature+query);
+        QueryEngineHTTP engine=QueryExecutionFactory.createServiceRequest(endpoint, q);
+//		engine.setSelectContentType(WebContent.contentTypeResultsJSON) ;
+		return engine;
 	}
 	
 	
