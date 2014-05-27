@@ -11,11 +11,13 @@
     <script type="text/javascript" src="/resources/js/sparql.js"></script>
     <script type="text/javascript" src="/resources/js/namespaces.js"></script>
     <script type="text/javascript" src="/resources/js/snorql.js"></script>
+    <script type="text/javascript" src="//jquery-elastic.googlecode.com/svn/trunk/jquery.elastic.source.js" ></script>
     <script type="text/javascript" src="/resources/js/highlight/codemirror.js"></script>
     <script type="text/javascript" src="/resources/js/highlight/matchbrackets.js"></script>
     <script type="text/javascript" src="/resources/js/highlight/sparql.js"></script>
     <script>
     $(function(){
+    	$("#queries").elastic()
     	snorql.loadQueries("#queries")
       snorql.start()
 //       CodeMirror.fromTextArea(document.getElementById("querytext"), {
@@ -23,6 +25,7 @@
 //         matchBrackets: true,
 //         theme:'elegant'
 //       });
+    	
     	
     });
     </script>
@@ -77,7 +80,7 @@
         <input type="hidden" name="graph" value="" id="graph-uri" disabled="disabled" />
       </div></form>
       <div>
-        <textarea name="query" rows="10" cols="80" id="querytext"></textarea>
+        <textarea name="query" id="querytext"></textarea>
         Results: <div id="time"></div>
         <select id="selectoutput" onchange="snorql.updateOutputMode()">
           <option selected="selected" value="browse">Browse</option>

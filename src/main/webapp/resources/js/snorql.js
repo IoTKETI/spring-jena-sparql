@@ -59,10 +59,9 @@ function Snorql() {
     		}
     	})
     	
-    	$(selector).change(function(e,query){
+    	return $(selector).change(function(e,query){
     		document.getElementById('querytext').value=decodeURIComponent($(this).val());
     	})
-    	
     }
     
     this.start = function() {

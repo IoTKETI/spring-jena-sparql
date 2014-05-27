@@ -130,7 +130,7 @@ public class Evidences extends TripleStore{
 	@Test
 	public void Q53_involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_differentFrom() throws Exception{
 		// specific query
-		String q=FileUtil.getResourceAsString("sparql/Q53-3-involvedInGO0007155_WithEvidence_NotIEA_And_NotISS.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q53.sparql");
 
 		//
 		// execute query
@@ -159,7 +159,7 @@ public class Evidences extends TripleStore{
 	@Test
 	public void Q57_locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP() throws Exception{        
 		// specific query
-		String q=FileUtil.getResourceAsString("sparql/Q57-locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q57.sparql");
 
 		//
 		// execute query

@@ -121,7 +121,7 @@ public class SparqlController extends TripleStore{
 	@RequestMapping(value = "/sparql",  produces="application/json")
     public @ResponseBody String spaql(HttpServletRequest request, HttpServletResponse response,
     		@RequestParam(value="query", required=false) String query, 
-    		@RequestParam(value="outout", required=false) String output) {
+    		@RequestParam(value="output", required=false) String output) {
 		if (output!=null && output.equalsIgnoreCase("json")){
 			response.setHeader("Accept", "application/sparql-results+json");			
 		}
