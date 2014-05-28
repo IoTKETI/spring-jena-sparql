@@ -35,7 +35,10 @@ public class TripleStore {
 	private String endpoint;
 	private Model model;
 	private boolean isNative=false;
+
+	private static final String TEST_NAME = "TOTO" + System.currentTimeMillis();
 	
+
 	//
 	// identify the current test
 	private String instanceSignature = "";
@@ -202,8 +205,6 @@ public class TripleStore {
 		return "";
 	}
 	
-	private static final String TEST_NAME = "TOTO" + System.currentTimeMillis();
-	
 	public QueryExecution createQueryExecution(String query ){
 		Query q = QueryFactory.create(prefix+instanceSignature+query);
 
@@ -214,13 +215,12 @@ public class TripleStore {
 		if(isNative){	
 	        return QueryExecutionFactory.create(q,model);			
 		}
-        QueryEngineHTTP engine=QueryExecutionFactory.createServiceRequest(endpoint, q);
+        
+		QueryEngineHTTP engine=QueryExecutionFactory.createServiceRequest(endpoint, q);
         engine.addParam("testid", TEST_NAME);
         engine.addParam("title", "\"" + getMetaInfo(query).get("title") + "\"");
-        System.out.println("Test is" + TEST_NAME);
         //engine.addParam("engine", getMetaInfo(query).get("title"));
-        //		engine.setSelectContentType(WebContent.contentTypeResultsJSON) ;
-		return engine;
+        return engine;
 	}
 	
 	
