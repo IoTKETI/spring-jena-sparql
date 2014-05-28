@@ -202,6 +202,8 @@ public class TripleStore {
 		return "";
 	}
 	
+	private static final String TEST_NAME = "TOTO" + System.currentTimeMillis();
+	
 	public QueryExecution createQueryExecution(String query ){
 		Query q = QueryFactory.create(prefix+instanceSignature+query);
 
@@ -213,7 +215,11 @@ public class TripleStore {
 	        return QueryExecutionFactory.create(q,model);			
 		}
         QueryEngineHTTP engine=QueryExecutionFactory.createServiceRequest(endpoint, q);
-//		engine.setSelectContentType(WebContent.contentTypeResultsJSON) ;
+        engine.addParam("testid", TEST_NAME);
+        engine.addParam("title", "\"" + getMetaInfo(query).get("title") + "\"");
+        System.out.println("Test is" + TEST_NAME);
+        //engine.addParam("engine", getMetaInfo(query).get("title"));
+        //		engine.setSelectContentType(WebContent.contentTypeResultsJSON) ;
 		return engine;
 	}
 	
