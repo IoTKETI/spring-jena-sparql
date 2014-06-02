@@ -80,7 +80,7 @@ public class Evidences extends TripleStore{
 	public void Q53_involvedInGO0007155_WithEvidence_NotIEA_And_NotISS() throws Exception{
 		//
 		// specific query
-		String q=FileUtil.getResourceAsString("sparql/Q53-1-involvedInGO0007155_WithEvidence_NotIEA_And_NotISS.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q53-1.sparql");
 
 		//
 		// execute query
@@ -108,7 +108,7 @@ public class Evidences extends TripleStore{
 	@Test
 	public void Q53_involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_disJointWith() throws Exception{
 		// specific query
-		String q=FileUtil.getResourceAsString("sparql/Q53-2-involvedInGO0007155_WithEvidence_NotIEA_And_NotISS.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q53-2.sparql");
 
 		//
 		// execute query
@@ -127,10 +127,9 @@ public class Evidences extends TripleStore{
 	}	
 	
 
-	@Test
 	public void Q53_involvedInGO0007155_WithEvidence_NotIEA_And_NotISS_differentFrom() throws Exception{
 		// specific query
-		String q=FileUtil.getResourceAsString("sparql/Q53.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q53-3.sparql");
 
 		//
 		// execute query

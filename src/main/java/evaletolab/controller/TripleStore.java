@@ -41,8 +41,9 @@ public class TripleStore {
 
 	//
 	// identify the current test
-	private String instanceSignature = "";
-	
+	private  String instanceSignature = "";
+	private  static String date = new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date());
+
 	private String prefix="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" + 
 			"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" + 
 			"PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" + 
@@ -79,7 +80,7 @@ public class TripleStore {
 					config.getProperty("virtuoso.password")
 			);
 			model=ModelFactory.createModelForGraph(graph);
-			instanceSignature="#id:"+generateTestId()+" host:"+config.getProperty("virtuoso.url")+"\n";
+			instanceSignature=generateTestId();
 			isNative=true;
 			return;
 		}
@@ -90,7 +91,7 @@ public class TripleStore {
 		if (config.containsKey("sparql.proxied"))
 			proxied=" endpoint:"+config.getProperty("sparql.proxied")+"\n";
 		
-		instanceSignature="#id:"+generateTestId()+proxied;
+		instanceSignature=generateTestId();
 	}
 	
 	
@@ -100,8 +101,7 @@ public class TripleStore {
 	 */
 	private String generateTestId() {
 		String version = getTripleVersion()+"-";
-		String newstring = new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date());
-		String testId = "SPARQL-" + version + newstring;
+		String testId = "SPARQL-" + version + date;
 		return testId;
 	}
 
@@ -197,7 +197,7 @@ public class TripleStore {
 
 	public String getTripleVersion(){
 		try{
-			ResultSet rs= createQueryExecution("select ?version where{ :Version rdfs:comment ?version }").execSelect();
+			ResultSet rs= createQueryExecution("select ?version where{ :Version :git ?version }").execSelect();
 			String v=rs.next().get("version").asLiteral().getString();			
 			return v;
 		}catch (Exception e){
@@ -206,7 +206,7 @@ public class TripleStore {
 	}
 	
 	public QueryExecution createQueryExecution(String query ){
-		Query q = QueryFactory.create(prefix+instanceSignature+query);
+		Query q = QueryFactory.create(prefix+query);
 
 		if (isQueryPending(query)){
 			System.out.println("PENDING: "+getMetaInfo(query).get("title"));
@@ -217,9 +217,8 @@ public class TripleStore {
 		}
         
 		QueryEngineHTTP engine=QueryExecutionFactory.createServiceRequest(endpoint, q);
-        engine.addParam("testid", TEST_NAME);
+        engine.addParam("testid", instanceSignature);
         engine.addParam("title", "\"" + getMetaInfo(query).get("title") + "\"");
-        //engine.addParam("engine", getMetaInfo(query).get("title"));
         return engine;
 	}
 	
