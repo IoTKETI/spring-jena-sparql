@@ -24,7 +24,6 @@ import evaletolab.tool.FileUtil;
  * Use case for features queries
  * Q3	with >=2 transmembrane regions 
  * Q9	with 3 disulfide bonds and that are not hormones 
- * Q10 that are glycosylated and not located in the membrane
  * Q13 with a protein kinase domain but no kinase activity 
  * Q14 with 2 SH3 domains and 1 SH2 domain 
  * Q15 with a PDZ domain that interact with at least 1 protein which is expressed in brain 
@@ -68,7 +67,7 @@ public class Features extends TripleStore{
 	 */
 	@Test
 	public void Q3_with2TransmembraneRegions() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q3-with2TransmembraneRegions.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q3.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -92,7 +91,7 @@ public class Features extends TripleStore{
 	 */
 	@Test
 	public void Q9_with3DisulfideBondsAndNotHormones() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q9-with3DisulfideBondsAndNotHormones.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q9.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -109,28 +108,7 @@ public class Features extends TripleStore{
         	assertTrue(ac,uri.contains(ac.trim()));  
 	}	
 	
-	/**
-	 * Q10 that are glycosylated and not located in the membrane 
-	 * @throws Exception 
-	 */
-	@Test
-	public void Q10_thatAreGlycosylatedAndNotLocatedInTheMembrane() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q10.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim())); 
-	}	
+
 
 	/**
 	 * Q13 with a protein kinase domain but no kinase activity
@@ -139,7 +117,7 @@ public class Features extends TripleStore{
 	 */
 	@Test
 	public void Q13_withKinaseDomainButNotKinaseActivity() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q13-withKinaseDomainButNotKinaseActivity.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q13.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -163,7 +141,7 @@ public class Features extends TripleStore{
 	 */
 	@Test
 	public void wQ14_ith2SH3And1SHD2() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q14-with2SH3And1SHD2.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q14.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -189,7 +167,7 @@ public class Features extends TripleStore{
 	 */
 	@Test
 	public void Q16_withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature1() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q16-1-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q16-1.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -212,7 +190,7 @@ public class Features extends TripleStore{
 	 */
 	@Test
 	public void Q16_withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature2() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q16-2-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q16-2.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -235,7 +213,7 @@ public class Features extends TripleStore{
 	 */
 	@Test
 	public void Q16_withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature3() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q16-3-withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q16-3.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -259,7 +237,7 @@ public class Features extends TripleStore{
 	 */
 	@Test
 	public void Q18_thatAreAcetylatedAndMethylated() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q18-thatAreAcetylatedAndMethylated.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q18.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -283,7 +261,7 @@ public class Features extends TripleStore{
 	 */
 	@Test
 	public void Q19_containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q19-containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q19.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -331,7 +309,7 @@ public class Features extends TripleStore{
 	 */
 	@Test
 	public void Q34_withHomeoboxAndWithVariantsInTheHomeobox() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q34-withHomeoboxAndWithVariantsInTheHomeobox.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q34.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");

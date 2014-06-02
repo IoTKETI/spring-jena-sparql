@@ -1,0 +1,12 @@
+#title:Q66 that are cytoplasmic with alternate O-glycosylation or phosphorylation at the same positions
+#ac:O15294,P00749,P04083,P05783,P08047,P08238,P08670,P10636,P25786,P31749
+SELECT  distinct ?entry ?comment  WHERE  {
+  ?entry :isoform ?iso.
+# get 2 assertion constraints by the cytoplasm localisation   
+    ?iso :modifiedResidue ?s1,?s2;:localisation/:in/:childOf term:SL-0086.
+    ?s1 rdf:type :GlycosylationSite;rdfs:comment ?comment; :start ?gPos.
+    ?s2 rdf:type :AminoAcidModification;:start ?pPos.
+  FILTER(?gPos=?pPos)
+# use this filter to avoid other glyco
+  FILTER regex(?comment, "o-linked","i")
+}

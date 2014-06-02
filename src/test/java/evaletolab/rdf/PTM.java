@@ -24,7 +24,9 @@ import evaletolab.tool.FileUtil;
  * Use case for PTM queries
 
  * @author evaleto
- *
+ * - Q10 that are glycosylated and not located in the membrane
+ * - Q66 that are cytoplasmic with alternate O-glycosylation or phosphorylation at the same positions
+ * - Q67 with alternative acetylation or Ubl conjugation (SUMO or Ubiquitin) at the same positions
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -42,12 +44,12 @@ public class PTM extends TripleStore{
 	}
 	
 	/**
-	 * Q24 with >1 reported gold interaction 
+	 * Q10 that are glycosylated and not located in the membrane 
 	 * @throws Exception 
 	 */
 	@Test
-	public void QX_witnInteractionsReportedGold() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q24.sparql");
+	public void Q10_thatAreGlycosylatedAndNotLocatedInTheMembrane() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q10.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -61,9 +63,53 @@ public class PTM extends TripleStore{
 		List<String> uri=getLiterals(rs);
         assertTrue( rs.getRowNumber()>=count);
         for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));      
-	}			
-	
+        	assertTrue(ac,uri.contains(ac.trim())); 
+	}	
 
+	/**
+	 * Q66 that are cytoplasmic with alternate O-glycosylation or phosphorylation at the same positions 
+	 * @throws Exception 
+	 */
+	@Test
+	public void Q66_thatAreCytoplasmicWithAlternateO_glycoOrPhosphoAtTheSamePosition() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q66.sparql");
+		//
+		// execute query
+		String acs=getMetaInfo(q).get("acs");
+		int count=getQueryMetaCount(q);
 		
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(ac,uri.contains(ac.trim())); 
+	}			
+
+	/**
+	 * Q67 with alternative acetylation or Ubl conjugation (SUMO or Ubiquitin) at the same positions 
+	 * @throws Exception 
+	 */
+	@Test
+	public void Q67_altAcetylationOrUblConjugationAtSamePos() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q67.sparql");
+		//
+		// execute query
+		String acs=getMetaInfo(q).get("acs");
+		int count=getQueryMetaCount(q);
+		
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(ac,uri.contains(ac.trim())); 
+	}	
 }
+

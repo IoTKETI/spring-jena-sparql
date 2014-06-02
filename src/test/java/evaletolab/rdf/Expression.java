@@ -88,7 +88,7 @@ public class Expression extends TripleStore{
 	 */
 	@Test
 	public void Q11_expressedInLiverAndInvolvedInTransport() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q11-expressedInLiverAndInvolvedInTransport.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q11.sparql");
 
 		//
 		// execute query
@@ -113,7 +113,7 @@ public class Expression extends TripleStore{
 	 */
 	@Test
 	public void Q17_gt1000aaAndLocatedInNucleusAndExpressedInNervousSystem() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q17-gt1000aaAndLocatedInNucleusAndExpressedInNervousSystem.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q17.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -139,7 +139,7 @@ public class Expression extends TripleStore{
 	 */
 	@Test
 	public void Q4_highlyExpressedInBrainButNotInTestis() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q4-highlyExpressedInBrainButNotInTestis.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q4.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -164,7 +164,7 @@ public class Expression extends TripleStore{
 	 */
 	@Test
 	public void Q50_expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q50-expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q50.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -187,7 +187,7 @@ public class Expression extends TripleStore{
 	 */
 	@Test
 	public void Q83_xpressedOnASingleTissue() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q83-expressedOnASingleTissue.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q83.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -210,7 +210,7 @@ public class Expression extends TripleStore{
 	 */
 	@Test
 	public void Q77_expressedInLiverAccordingIHCButNotInHUPOLiverProteom() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q77-expressedInLiverAccordingIHCButNotInHUPOLiverProteom.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q77.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -234,7 +234,7 @@ public class Expression extends TripleStore{
 	 */
 	@Test
 	public void Q15_PDZdomainthatInteractWithProteinExpresssedInBrain() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q15-PDZdomainthatInteractWithProteinExpresssedInBrain.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q15.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -259,7 +259,7 @@ public class Expression extends TripleStore{
 	 */
 	@Test
 	public void Q20_HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q20-HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q20.sparql");
 		//
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
@@ -276,4 +276,29 @@ public class Expression extends TripleStore{
         	assertTrue(ac,uri.contains(ac.trim()));
 
 	}	
+	
+	/**
+	 * Q77, Proteins which are expressed in liver according to IHC data but not found in HUPO liver proteome set 
+	 *      highly expressed at IHC level in heart
+	 * @throws Exception 
+	 */
+	@Test
+	public void Q77_expressInLiverAccordingIHCButNotInHUPOLiverProteom() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q77.sparql");
+		//
+		// execute query
+		String acs=getMetaInfo(q).get("acs");
+		int count=getQueryMetaCount(q);
+		
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(ac,uri.contains(ac.trim()));
+
+	}		
 }

@@ -1,0 +1,11 @@
+#title:Q67 with alternative acetylation or Ubl conjugation (SUMO or Ubiquitin) at the same positions
+#ac:A0AVT1,A6NNY8,B5ME19,O00116,O00148,O00193,O00231,O00232,O00267,O00299
+SELECT  distinct ?entry ?comment  WHERE  {
+  ?entry :isoform ?iso.
+    ?iso :modifiedResidue ?s1,?s2.
+    ?s1 rdf:type :AminoAcidModification;rdfs:comment ?comment; :start ?gPos.
+    ?s2 rdf:type :CrossLink;:start ?pPos.
+  FILTER(?gPos=?pPos)
+# use this filter to select acetylations
+  FILTER regex(?comment, "acetyl","i")
+}

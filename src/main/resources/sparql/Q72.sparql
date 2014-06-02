@@ -1,0 +1,6 @@
+#title:Q72 with a cross-reference to CCDS
+#ac:A0A183,A0AUZ9,A0AV02,A0AV96,A0AVF1,A0AVI2,A0AVI4,A0AVK6,A0AVT1,A0FGR8
+#count:16672
+select distinct ?entry {
+ ?entry :reference  / :provenance db:CCDS .
+}

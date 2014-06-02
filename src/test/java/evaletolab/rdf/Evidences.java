@@ -177,6 +177,28 @@ public class Evidences extends TripleStore{
         	assertTrue(ac,uri.contains(ac.trim()));
 	
 	}	
+	@Test
+	public void Q57_1_locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP() throws Exception{        
+		// specific query
+		String q=FileUtil.getResourceAsString("sparql/Q57-1.sparql");
+
+		//
+		// execute query
+		String acs=getMetaInfo(q).get("acs");
+		int count=getQueryMetaCount(q);
+		
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        System.out.println(acs+" = "+uri);
+        for(String ac:acs.split(","))
+        	assertTrue(ac,uri.contains(ac.trim()));
+	
+	}		
 	
 	/**
 	 * Q63 which have >=1 RRM RNA-binding domain (DO-00581 UniprotDomain) and either no GO "RNA binding" (GO:0003723 go molecular function)
@@ -186,7 +208,7 @@ public class Evidences extends TripleStore{
 	@Test
 	public void Q63_with1RRM_RNAbindingDomainWithEvidenceIEAorISS() throws Exception{
 		// specific query
-		String q=FileUtil.getResourceAsString("sparql/Q63-with1RRM_RNAbindingDomainWithEvidenceIEAorISS.sparql");
+		String q=FileUtil.getResourceAsString("sparql/Q63.sparql");
 
 		//
 		// execute query
