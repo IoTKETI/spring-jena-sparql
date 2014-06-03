@@ -2,11 +2,12 @@
 #pending
 #ac:A4D1T9,A6NC86,A6NDD2,A6NDV4,A6NGN9,A8MWS1,A8MWY0,A8MXU0,B1AKI9,D3W0D1
 #tags:selected
-SELECT distinct ?entry  WHERE {
+select distinct ?entry   WHERE {
  ?statement a :DisulfideBond.
- ?entry :isoform ?iso.
- ?iso :modifiedResidue ?statement
- FILTER NOT EXISTS {
-   ?entry :classifiedWith term:KW-0372 
- }
-}group by ?entry ?iso HAVING(count(?statement)=3)
+ ?entry :isoform ?isoform.
+ ?isoform :modifiedResidue ?statement .
+ FILTER NOT EXISTS{?entry :classifiedWith term:KW-0372}
+
+# KW-0372 has related cv in go ontolology, the filter bellow will take care of them  
+ FILTER NOT EXISTS{?entry :isoform/:function/:in/^:related term:KW-0372}
+}GROUP by ?entry ?isoform HAVING (count(?statement) =3 )

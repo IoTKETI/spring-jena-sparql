@@ -132,7 +132,8 @@ $ ff localhost:6969
 * [Q66](src/main/resources/sparql/Q66.sparql) Proteins that are cytoplasmic with alternate O-glycosylation or phosphorylation at the same positions
 * [Q67](src/main/resources/sparql/Q67.sparql) Proteins with alternative acetylation or Ubl conjugation (SUMO or Ubiquitin) at the same positions
 
-
+###Federated queries
+* [Q95](src/main/resources/sparql/Q95.sparql) which are targets of antibiotics - federated query with drugbank -
 
 
 It is compatible with tomcat and jetty maven plugins.

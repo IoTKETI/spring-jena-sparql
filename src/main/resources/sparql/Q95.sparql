@@ -1,0 +1,17 @@
+#title:Q95 which are targets of antibiotics - federated query with drugbank -
+#ac:O75469,P00374,P00813,P02768,P08183,P11388,P33527,P61073
+#tags:selected
+PREFIX diseasome: <http://wifo5-04.informatik.uni-mannheim.de/diseasome/resource/diseasome/>
+PREFIX drugbank: <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugbank/>
+PREFIX drug: <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugcategory/>
+PREFIX server: <http://wifo5-03.informatik.uni-mannheim.de/drugbank/>
+SELECT distinct ?entry 
+WHERE {
+  service server:sparql {
+    SELECT distinct ?unipage WHERE {
+    values ?drugs {drug:antibiotics drug:antibioticAgents drug:ophthalmicAntibiotic drug:topicalAntibiotic}
+    ?drug drugbank:drugCategory ?drugs;drugbank:target/drugbank:swissprotPage ?unipage .
+    }
+  }
+ ?entry :swissprotPage ?unipage .
+}
