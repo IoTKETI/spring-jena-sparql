@@ -23,6 +23,7 @@ import evaletolab.tool.FileUtil;
 /**
  * Use case for Xref queries
  * - Q75 which have been detected in the HUPO liver proteome set but not the HUPO plasma proteome set
+ * - Q109 All proteins that have a peptide that maps partly or fully into a signal sequence
  * @author evaleto
  *
  */
@@ -47,7 +48,7 @@ public class Paptide extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void QX_witnInteractionsReportedGold() throws Exception{
+	public void Q75_whichHaveBeenDetectedInTheHUPOLiverProteomButNotHUPOPlasma() throws Exception{
 		String q=FileUtil.getResourceAsString("sparql/Q75.sparql");
 		//
 		// execute query
@@ -65,6 +66,27 @@ public class Paptide extends TripleStore{
         	assertTrue(ac,uri.contains(ac.trim()));      
 	}			
 	
-
+	/**
+	 * Q109 All proteins that have a peptide that maps partly or fully into a signal sequence 
+	 * @throws Exception 
+	 */
+	@Test
+	public void Q109_thatHavePeptideThatMapsPartlyOrFullyIntoSignalSeq() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q109.sparql");
+		//
+		// execute query
+		String acs=getMetaInfo(q).get("acs");
+		int count=getQueryMetaCount(q);
+		
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(ac,uri.contains(ac.trim()));      
+	}	
 		
 }

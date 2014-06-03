@@ -120,9 +120,12 @@ $ ff localhost:6969
 ###Use case for [Xref](src/main/java/evaletolab/rdf/Xref.java) queries  
 * [Q72](src/main/resources/sparql/Q72.sparql) Proteins with a cross-reference to CCDS
 
+###Use case for [3Dstructure](src/main/java/evaletolab/rdf/_3Dstructure.java) queries  
+* [Q108](src/main/resources/sparql/Q108.sparql)  All proteins that have a 3D structure in PDB that overlap by at least 50 amino acids with a SH3 domain.
 
-###Use case for [Xref](src/main/java/evaletolab/rdf/Peptide.java) queries  
+###Use case for [Peptide](src/main/java/evaletolab/rdf/Peptide.java) queries  
 * [Q75](src/main/resources/sparql/Q75.sparql) Proteins which have been detected in the HUPO liver proteome set but not the HUPO plasma proteome set
+* [Q109](src/main/resources/sparql/Q109.sparql) All proteins that have a peptide that maps partly or fully into a signal sequence
 
 ###Use case for [PTM](src/main/java/evaletolab/rdf/PTM.java) queries  
 * [Q10](src/main/resources/sparql/Q10.sparql) Proteins that are glycosylated and not located in the membrane
