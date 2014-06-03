@@ -82,11 +82,11 @@ public class SparqlController extends TripleStore{
 		for(String q:sparqls){
 			String query=FileUtil.getResourceAsString(q);
 			if(getMetaInfo(query).get("title")==null){
-				System.out.println("-----------------> removing query : "+q);
 				continue;
 			}
 			meta.put("title", getMetaInfo(query).get("title"));
 			meta.put("query", query);
+			meta.put("tags", getMetaInfo(query).get("tags"));
 			result.add(meta);
 			meta=new HashMap<String, String>();
 		}

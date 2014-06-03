@@ -4,6 +4,7 @@
 #     is oneOf (:Biotechnology :Disease :Pharmaceutical :Polymorphism )
 #pending
 #ac:A6NHR9,O00187,O00255,O00305,O00555,O00584,O00754,O14686,O14773,O14802
+#tags:selected
 SELECT distinct ?entry WHERE  {
   ?entry :isoform / :variant ?variant .
   ?variant :original "C"^^xsd:string;:variation ?v.

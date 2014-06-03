@@ -1,5 +1,6 @@
 #title:Q66 that are cytoplasmic with alternate O-glycosylation or phosphorylation at the same positions
 #ac:O15294,P00749,P04083,P05783,P08047,P08238,P08670,P10636,P25786,P31749
+#tags:selected
 SELECT  distinct ?entry ?comment  WHERE  {
   ?entry :isoform ?iso.
 # get 2 assertion constraints by the cytoplasm localisation   

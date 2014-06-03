@@ -65,9 +65,12 @@
     
     <div class="section" style="margin-right: 12em">
       <h2 style="display: inline">Select an example</h2>
-      <div>
+      <p>
         <select id="queries" style="font-size: 110%; padding: 5px; border: 1px solid #ddd;width:90%"></select>
-      </div>
+      </p>
+      <p id="filters">
+      filter by: 
+      </p>
     </div>    
 
     <div class="section" style="margin-right: 12em">

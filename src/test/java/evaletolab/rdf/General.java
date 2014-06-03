@@ -30,6 +30,7 @@ import evaletolab.tool.FileUtil;
  * Q8 whose genes are x bp away from the location of the gene of protein Y
  * Q22 Proteins with no function annotated
  * Q31 with >=10 "splice" isoforms
+ * Q30 Proteins whose gene is located in chromosome 2 that belongs to families with >=5 members in the human proteome 
  * Q32 with a coiled coil region and involved in transcription but does not contain a bZIP domain
  * Q47 with a gene name CLDN*
  * Q64 which are enzymes with an incomplete EC number
@@ -267,6 +268,28 @@ public class General extends TripleStore{
         for(String ac:acs.split(","))
         	assertTrue(ac,uri.contains(ac.trim()));              
 	}	
+	/**
+	 * Q30 Proteins whose gene is located in chromosome 2 that belongs to families with >=5 members in the human proteome 
+	 * @throws Exception 
+	 */
+	@Test
+	public void Q30_whoseGeneLocatedInChr2ThatBelongsToFmaliliesWith5MembersInTheHuman() throws Exception{
+		String q=FileUtil.getResourceAsString("sparql/Q22.sparql");
+		//
+		// execute query
+		String acs=getMetaInfo(q).get("acs");
+		int count=getQueryMetaCount(q);
+		
+		QueryExecution qe = createQueryExecution(q);
+        ResultSet rs=qe.execSelect();
+        
+        //
+        // validate result
+		List<String> uri=getLiterals(rs);
+        assertTrue( rs.getRowNumber()>=count);
+        for(String ac:acs.split(","))
+        	assertTrue(ac,uri.contains(ac.trim()));              
+	}	 
 
 	/**
 	 * Q31 with >=10 "splice" isoforms

@@ -111,6 +111,7 @@ $ ff localhost:6969
 * [Q8](src/main/resources/sparql/Q8.sparql) Proteins whose genes are x bp away from the location of the gene of protein Y
 * [Q22](src/main/resources/sparql/Q22.sparql) Proteins with no function annotated
 * [Q31](src/main/resources/sparql/Q31.sparql) Proteins with >=10 "splice" isoforms
+* [Q30](src/main/resources/sparql/Q30.sparql) Proteins whose gene is located in chromosome 2 that belongs to families with >=5 members in the human proteome 
 * [Q32](src/main/resources/sparql/Q32.sparql) Proteins with a coiled coil region and involved in transcription but does not contain a bZIP domain
 * [Q68](src/main/resources/sparql/Q68.sparql)	Proteins with protein evidence PE=2 (transcript level)
 * [Q65](src/main/resources/sparql/Q65.sparql) Proteins with >1 catalytic activity 

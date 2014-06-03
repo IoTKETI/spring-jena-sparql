@@ -34,10 +34,7 @@ public class TripleStore {
 	
 	private String endpoint;
 	private Model model;
-	private boolean isNative=false;
-
-	private static final String TEST_NAME = "TOTO" + System.currentTimeMillis();
-	
+	private boolean isNative=false;	
 
 	//
 	// identify the current test
@@ -127,6 +124,14 @@ public class TripleStore {
 			meta.put("id", m.group(1));
 			meta.put("endpoint", m.group(2));
 		}
+
+		//
+		// get tags
+		m=Pattern.compile("[# ]?tags:([^ \\n]*)",Pattern.DOTALL | Pattern.MULTILINE).matcher(query);
+		if(m.find()){
+			meta.put("tags", m.group(1));
+		}		
+		
 		
 		//
 		// get acs

@@ -44,19 +44,51 @@ function Snorql() {
       	
     	
     }
+    this.getStyleRule=function(name) {
+	  for(var i=0; i<document.styleSheets.length; i++) {
+		    var ix, sheet = document.styleSheets[i];
+		    for (ix=0; ix<sheet.cssRules.length; ix++) {
+		        if (sheet.cssRules[ix].selectorText === name)
+		            return sheet.cssRules[ix].style;
+		    }
+		  }
+		return null;
+	}
+    
     this.loadQueries=function(selector){
-    	var opts=[]
+    	var opts=[], me=this;	
         var match = document.location.href.match(/\?query=(.*)/);
         var title = match ? this._betterUnescape(match[1]).match(/#title:([^ ]*)/) : '';
-        
+        var filters={}
         $.getJSON( "/sparql/queries", function(queries){
-    		var $select=$(selector);opts
+    		var $select=$(selector),tagClass
     		for (var i in queries.sort()){
+    			// get filters
+    			tagClass=""
+    			if(queries[i].tags){
+    				tagClass=queries[i].tags.split(',').join(' ')
+    				queries[i].tags.split(',').forEach(function(tag){
+    					filters[tag]=true
+    				})
+    				
+    			}
+
+    			// get query
     			var q=queries[i].query.replace(/(#ac[^\n]+|#pending[^\n]*)/g,'');
     			var m=q.match(/#title:([^ ]*)/)
-    			$select.append("<option selected='"+(title&&m&&m[0]==title[0])+"' value='"+encodeURIComponent(q)+"'>"+queries[i].title+"</option>")
-    			opts.push(queries[i])
+    			$select.append("<option selected='"+(title&&m&&m[0]==title[0])+"' value='"+encodeURIComponent(q)+"' rel='"+tagClass+"'>"+queries[i].title+"</option>")
+    			opts.push(queries[i])    			
     		}
+			// append in form
+			var $filter=$('#filters');
+			Object.keys(filters).forEach(function(tag){
+				$filter.append("<a href='' rel='"+tag+"'>"+tag+"</a>, ");
+			})
+			$filter.find('a').click(function(e){
+				$select.find('option[rel!='+this.rel+']').toggle()
+				console.log($select.find('option[rel!='+this.rel+']'))
+				return false;
+			})    		
     	})
     	
     	return $(selector).change(function(e,query){

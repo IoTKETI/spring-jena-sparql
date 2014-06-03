@@ -3,6 +3,7 @@
 # ECO_0000045 as IHC, ECO_0000104 as EST and ECO_0000220 as microarray
 #pending
 #ac:
+#tags:selected
 SELECT distinct ?entry WHERE {
   ?entry :isoform ?iso.
     ?iso :expression ?s1,?s2.

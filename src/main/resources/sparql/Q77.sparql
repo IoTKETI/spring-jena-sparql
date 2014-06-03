@@ -1,5 +1,6 @@
 #title:Q77, Proteins which are expressed in liver according to IHC data but not found in HUPO liver proteome set
 #ac:A0AUZ9,A0AV02,A0AVI4,A0PG75,A0PJE2,A0PJW6,A0PJW8,A0PJX2,A0PK00,A0PK11
+#tags:selected
 select distinct ?entry where {
   ?entry :isoform /:expression ?s1.
   ?s1 :withEvidence ?evi;:in/:childOf term:TS-0564. #Liver 
