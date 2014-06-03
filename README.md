@@ -1,3 +1,5 @@
+  __NOTE: the public access of nextprot sparql is scheduled for 2014__
+
 Advanced SPARQL for nextprot with spring-mvc, jena and virtuoso 
 ===============================================================
 The purpose of this document is to give an original way to build and test the new advanced search engine for neXtProt. neXtProt is an on-line knowledge platform on human proteins. It is based on a top-down data integration process, materialized in a central SQL engine (postgres). neXtProt tends to integrate, with a top-down process, a large amount of data provided by independant groups (bottom-up process). Currently, all neXtProt's data can't be easily interrogated because of the lack of an advanced query engine. The nature of bioinformatics data makes this features difficult to achieve. Data are highly interconnected and are difficult to be normalized without adding useless of complexity.
@@ -22,11 +24,8 @@ This project proposes a solution to build an advanced query engine, based on the
 
 This project also demonstrates how to use and configure a triplestore (open-virtuoso, fuseki) with Jena and spring-mvc. Following the instructions, you should be able to build your own neXtProt mirror
 
-<!--
-###RDFS and queries,
-* [initial rdf schema](src/main/resources/owl)
-* [view all sparql queries](src/main/resources/sparql)
--->
+###Use our public sparql endpoint
+* TODO (Oauth and public key) 
 
 ###Get your own triplestore instance 
 * install open-virtuoso 7.x (redhat, ubuntu),
@@ -39,7 +38,7 @@ $mvn install:install-file -Dfile=virtjdbc4.jar -DgroupId=virtuoso.jdbc4 -Dartifa
 * Configure triplestore endpoint
   * in file [main.properties](src/main/resources/config/main.properties) configure your own virtuoso instance or use the public nextprot sparql endpoint
   * if you dont have a virtuoso instance, you can use the public access of nextprot sparql. To do that, you have to uncomment the variable 'sparql.endpoint' in the config/main.properties
-  * __NOTE: the public access of nextprot sparql is scheduled for June 2014__
+  * __NOTE: the public access of nextprot sparql is scheduled for 2014__
 
 ###Test  your configuration: run a single TestClasse
 ```shell
