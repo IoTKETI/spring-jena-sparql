@@ -1,0 +1,13 @@
+#title:Q109 All proteins that have a peptide that maps partly or fully into a signal sequence
+#ac:A6NJS3,O00115,O95445,P00738,P00747,P00751,P01011,P01023,P01024,P01344
+#pending
+select distinct ?entry where {
+?entry :isoform ?isoform .
+#get Signal and Peptide from isoform
+  ?isoform :processing ?signal;:mapping ?pep.
+#get Signal position
+    ?signal a :SignalPeptide;:start ?s1;:end ?s2 .
+#get peptide position
+  ?pep a :PeptideMapping;:position [ :start ?p1 ; :end ?p2] .
+  filter ( ?p1 >= ?s1 && ?p1 < ?s2   )
+}
