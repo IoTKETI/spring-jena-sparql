@@ -1,4 +1,4 @@
-#title:Proteins that are not highly expressed in liver at embryo stage
+#Proteins that are not highly expressed in liver at embryo stage
 #ac:
 SELECT distinct ?entry WHERE {
   ?entry :isoform/:expression ?statement.
