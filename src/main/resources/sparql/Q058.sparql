@@ -1,4 +1,4 @@
-#title:Q058 which are located on the genome next to a protein which is involved in spermatogenesis (right)
+#title:Q058 which are located on the genome next to a protein which is involved in spermatogenesis
 #ac:Q0P670,P56378
 # ... |- PREV -|end ... begin|- SP -|end ... begin|- NEXT -| ...
 SELECT ?entry WHERE {

@@ -2,7 +2,6 @@ package evaletolab.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,9 +11,10 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-import org.apache.jena.riot.WebContent;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import virtuoso.jena.driver.VirtGraph;
 
 import com.hp.hpl.jena.query.Query;
@@ -35,6 +35,8 @@ public class TripleStore {
 	private String endpoint;
 	private Model model;
 	private boolean isNative=false;	
+
+    @Rule public TestName currentTest = new TestName();
 
 	//
 	// identify the current test
@@ -223,7 +225,7 @@ public class TripleStore {
         
 		QueryEngineHTTP engine=QueryExecutionFactory.createServiceRequest(endpoint, q);
         engine.addParam("testid", instanceSignature);
-        engine.addParam("title", "\"" + getMetaInfo(query).get("title") + "\"");
+        engine.addParam("title", currentTest.getMethodName());
         return engine;
 	}
 	

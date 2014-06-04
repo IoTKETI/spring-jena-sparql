@@ -1,5 +1,5 @@
 #title:Q058 which are located on the genome next to a protein which is involved in spermatogenesis (right)
-#ac:P56378
+#ac:Q0P670
 SELECT distinct ?entry WHERE {
 {
 # SP -|end ... begin|- NEXT -| ...
