@@ -50,6 +50,11 @@ public class TripleStoreBaseTest extends TripleStore {
 		//
 		// validate result
 		List<String> uri = getLiterals(rs);
+		System.out.println("Results for " + sparqlFileName + ":");
+		for(String u : uri){
+			System.out.print(u);
+			System.out.print(",");
+		}
 		assertTrue(rs.getRowNumber() >= count);
 		for (String ac : acs.split(","))
 			assertTrue(ac, uri.contains(ac.trim()));
