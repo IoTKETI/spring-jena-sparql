@@ -40,7 +40,7 @@ public class TripleStore {
 
 	//
 	// identify the current test
-	private  String instanceSignature = "";
+	protected static String instanceSignature = "";
 	private  static String date = new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date());
 
 	private String prefix="PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" + 
