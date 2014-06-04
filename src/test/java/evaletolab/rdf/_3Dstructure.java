@@ -5,7 +5,7 @@ import org.junit.Test;
 import evaletolab.controller.TripleStoreBaseTest;
 
 /**
- * Use case for Xref queries
+ * Use case for _3Dstructure
  * - Q81 with >=1 3D structure and are located in the mitochondrion and are linked with a disease 
  * - Q108 All proteins that have a 3D structure in PDB that overlap by at least 50 amino acids with a SH3 domain.
  * @author evaleto, dteixeir
