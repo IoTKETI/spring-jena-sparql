@@ -1,8 +1,8 @@
 #title:Q058 which are located on the genome next to a protein which is involved in spermatogenesis (right)
-#ac:Q0P670
+#ac:P56378
 SELECT distinct ?entry WHERE {
 {
-# ... |- PREV -|end ... begin|- SP -|end ... begin|- NEXT -| ...
+# SP -|end ... begin|- NEXT -| ...
 SELECT ?sp_entry ?sp_gene_end (MIN(?next_distance) as ?min_distance_next) ?chr WHERE {
   ?sp_entry :classifiedWith term:KW-0744 . # spermatogenesis keyword
   ?sp_entry :gene ?sp_gene .
