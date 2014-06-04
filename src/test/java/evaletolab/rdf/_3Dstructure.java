@@ -1,70 +1,32 @@
 package evaletolab.rdf;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-import java.util.Properties;
-
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.ResultSet;
-
-import evaletolab.config.WebConfig;
-import evaletolab.controller.TripleStore;
-import evaletolab.tool.FileUtil;
+import evaletolab.controller.TripleStoreBaseTest;
 
 /**
  * Use case for Xref queries
+ * - Q81 with >=1 3D structure and are located in the mitochondrion and are linked with a disease 
  * - Q108 All proteins that have a 3D structure in PDB that overlap by at least 50 amino acids with a SH3 domain.
- * @author evaleto
+ * @author evaleto, dteixeir
  *
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextConfiguration(classes = WebConfig.class)
-public class _3Dstructure extends TripleStore{
+public class _3Dstructure extends TripleStoreBaseTest{
 	
-	@Autowired
-	private Properties config;
-	
-	@Before
-	public void setup() throws Exception {
-		//
-		// open session in triplestore
-		open();
-	}
-	
-	/**
-	 * Q108 All proteins that have a 3D structure in PDB that overlap by at least 50 amino acids with a SH3 domain. 
-	 * @throws Exception 
-	 */
 	@Test
-	public void Q108_thatHave3DStructInPDBThatOverlapByAtLeast50AAWithaSH3() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q108.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));      
+	public void Q108_that_have_a_3D_structure_in_PDB_that_overlap_by_at_least_50_amino_acids_with_a_SH3_domain(){
+		testSparql("Q108.sparql");
 	}			
 	
+	@Test
+	public void Q081_with_at_least_one_3D_structure_that_is_located_in_the_mitochondrion_and_are_linked_with_a_disease_using_keyword(){
+		testSparql("Q081-keyword.sparql");
+	}			
 
-		
+	@Test
+	public void Q081_with_at_least_one_3D_structure_that_is_located_in_the_mitochondrion_and_are_linked_with_a_disease_using_localisation(){
+		testSparql("Q081-localisation.sparql");
+	}			
+	
 }

@@ -1,0 +1,7 @@
+#title:Q81 with >=1 3D structure and are located in the mitochondrion and are linked with a disease
+#ac:Q09013
+SELECT distinct ?entry WHERE {
+  ?entry :classifiedWith term:KW-0002 . # 3D-structure
+  ?entry :classifiedWith term:KW-0496 . # Mitochondrion 
+  ?entry :isoform/:medical/rdf:type :Disease.
+}

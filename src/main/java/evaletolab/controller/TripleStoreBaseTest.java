@@ -39,7 +39,7 @@ public class TripleStoreBaseTest extends TripleStore {
 			e.printStackTrace();
 			org.junit.Assert.fail();
 		}
-		//
+
 		// execute query
 		String acs = getMetaInfo(q).get("acs");
 		int count = getQueryMetaCount(q);
@@ -47,10 +47,9 @@ public class TripleStoreBaseTest extends TripleStore {
 		QueryExecution qe = createQueryExecution(q);
 		ResultSet rs = qe.execSelect();
 
-		//
 		// validate result
 		List<String> uri = getLiterals(rs);
-		System.out.println("Results for " + sparqlFileName + ":");
+		System.out.println(uri.size() + " results found for " + sparqlFileName + ":");
 		for(String u : uri){
 			System.out.print(u);
 			System.out.print(",");
@@ -60,5 +59,4 @@ public class TripleStoreBaseTest extends TripleStore {
 			assertTrue(ac, uri.contains(ac.trim()));
 
 	}
-
 }
