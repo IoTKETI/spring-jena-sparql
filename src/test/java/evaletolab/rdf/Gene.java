@@ -5,7 +5,7 @@ import org.junit.Test;
 import evaletolab.controller.TripleStoreBaseTest;
 
 /**
- * Use case for features queries
+ * Use case for gene queries
  * Q55 which have genes of length >=10000 bp 
  * 
  * @author dteixeir
@@ -19,6 +19,6 @@ public class Gene extends TripleStoreBaseTest{
 	 */
 	@Test
 	public void Q55_withHaveGenesOfLengthBiggerThan10000BP() {
-		testSparql("Q55.sparql");
+		testSparql("Q055.sparql");
 	}	
 }
