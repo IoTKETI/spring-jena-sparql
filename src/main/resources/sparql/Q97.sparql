@@ -1,0 +1,14 @@
+#title:Q97 located on chromosome 2 and having known variants on a phosphotyrosine position
+#ac:Q9ULH0,Q15303
+#tags:selected
+select distinct ?entry where {
+  ?entry :isoform ?iso ;
+         :gene / :chromosome "2"^^xsd:string .
+  ?iso :modifiedResidue  ?ptm ;
+       :variant ?var .
+  ?ptm :in term:PTM-0255 ; #phosphotyrosine
+       :in / rdfs:label ?ptmName ;
+       :start ?position .
+  ?var rdf:type :SequenceVariant ;
+       :start ?position .
+}
