@@ -18,6 +18,7 @@ import com.hp.hpl.jena.query.ResultSet;
 
 import evaletolab.config.WebConfig;
 import evaletolab.controller.TripleStore;
+import evaletolab.controller.TripleStoreBaseTest;
 import evaletolab.tool.FileUtil;
 
 /**
@@ -28,20 +29,7 @@ import evaletolab.tool.FileUtil;
  * - Q66 that are cytoplasmic with alternate O-glycosylation or phosphorylation at the same positions
  * - Q67 with alternative acetylation or Ubl conjugation (SUMO or Ubiquitin) at the same positions
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextConfiguration(classes = WebConfig.class)
-public class PTM extends TripleStore{
-	
-	@Autowired
-	private Properties config;
-	
-	@Before
-	public void setup() throws Exception {
-		//
-		// open session in triplestore
-		open();
-	}
+public class PTM extends TripleStoreBaseTest{
 	
 	/**
 	 * Q10 that are glycosylated and not located in the membrane 
@@ -54,7 +42,7 @@ public class PTM extends TripleStore{
 		// execute query
 		String acs=getMetaInfo(q).get("acs");
 		int count=getQueryMetaCount(q);
-		
+
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();
         
@@ -111,5 +99,16 @@ public class PTM extends TripleStore{
         for(String ac:acs.split(","))
         	assertTrue(ac,uri.contains(ac.trim())); 
 	}	
+
+	/**
+	 * Q97 located on chromosome 2 and having known variants on a phosphotyrosine position
+	 * @throws Exception 
+	 */
+	@Test
+	public void Q97_withVariantOnPhosphotyrosyne() {
+		testSparql("Q97.sparql");
+	}	
+
+
 }
 
