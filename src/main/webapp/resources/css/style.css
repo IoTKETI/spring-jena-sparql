@@ -38,3 +38,7 @@ img { border: none; }
 .browser .queryresults th { background: #7b7; }
 .browser .queryresults .odd td { background: #f0fcf0; }
 .browser .queryresults .even td { background: #d4f6d4; }
+.hide{
+	display:none;
+	visibility: hidden;
+}
