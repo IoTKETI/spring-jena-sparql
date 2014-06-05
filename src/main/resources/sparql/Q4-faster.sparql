@@ -1,0 +1,13 @@
+#title:Q4-faster, Proteins highly expressed in brain but not expressed in testis
+#ac:A1L3X0,A2RUS2,A5PLN9,A5YM72,A6NFN3,A6NH11,A6NH21,A6NHL2,A6NI56
+select distinct ?entry where {
+  ?entry :isoform ?iso .
+  ?iso :expression ?s1.
+  ?s1 :in/:childOf  term:TS-0095.
+  ?s1 :withEvidence/:expressionLevel :High.
+  filter exists  {
+   ?iso :expression ?s2.
+   ?s2 :in/:childOf  term:TS-1030.
+   ?s2 :withEvidence/:expressionLevel :Negative.
+  }
+}
