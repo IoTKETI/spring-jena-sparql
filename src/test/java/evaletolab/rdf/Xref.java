@@ -3,12 +3,13 @@ package evaletolab.rdf;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+
 import org.junit.Test;
 
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
 
-import evaletolab.controller.TripleStoreBaseTest;
+import evaletolab.TripleStoreBaseTest;
 import evaletolab.tool.FileUtil;
 
 /**
