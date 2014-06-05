@@ -16,9 +16,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
 
+import evaletolab.TripleStoreBaseTest;
 import evaletolab.config.WebConfig;
 import evaletolab.controller.TripleStore;
-import evaletolab.controller.TripleStoreBaseTest;
 import evaletolab.tool.FileUtil;
 
 /**

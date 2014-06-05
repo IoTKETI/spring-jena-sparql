@@ -11,8 +11,6 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.junit.Rule;
-import org.junit.rules.TestName;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import virtuoso.jena.driver.VirtGraph;
@@ -35,9 +33,7 @@ public class TripleStore {
 	private String endpoint;
 	private Model model;
 	private boolean isNative=false;	
-
-    @Rule public TestName currentTest = new TestName();
-
+	
 	//
 	// identify the current test
 	protected static String instanceSignature = "";
@@ -211,8 +207,13 @@ public class TripleStore {
 		}
 		return "";
 	}
-	
-	public QueryExecution createQueryExecution(String query ){
+
+	@Deprecated
+	public QueryExecution createQueryExecution(String query){
+		return createQueryExecution(query, getMetaInfo(query).get("title"));
+	}
+
+	public QueryExecution createQueryExecution(String query, String title){
 		Query q = QueryFactory.create(prefix+query);
 
 		if (isQueryPending(query)){
@@ -225,7 +226,7 @@ public class TripleStore {
         
 		QueryEngineHTTP engine=QueryExecutionFactory.createServiceRequest(endpoint, q);
         engine.addParam("testid", instanceSignature);
-        engine.addParam("title", currentTest.getMethodName());
+        engine.addParam("title", title);
         return engine;
 	}
 	

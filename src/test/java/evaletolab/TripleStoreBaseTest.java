@@ -1,4 +1,4 @@
-package evaletolab.controller;
+package evaletolab;
 
 import static org.junit.Assert.assertTrue;
 
@@ -7,6 +7,8 @@ import java.util.Properties;
 
 import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -17,12 +19,16 @@ import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
 
 import evaletolab.config.WebConfig;
+import evaletolab.controller.TripleStore;
 import evaletolab.tool.FileUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = WebConfig.class)
 public class TripleStoreBaseTest extends TripleStore {
+
+    @Rule public TestName currentTest = new TestName();
+
 	@Autowired
 	private static Properties config;
 
@@ -43,13 +49,14 @@ public class TripleStoreBaseTest extends TripleStore {
 		// execute query
 		String acs = getMetaInfo(q).get("acs");
 		int count = getQueryMetaCount(q);
-
-		QueryExecution qe = createQueryExecution(q);
+		String title=currentTest.getMethodName();
+		
+		QueryExecution qe = createQueryExecution(q, title);
 		ResultSet rs = qe.execSelect();
 
 		// validate result
 		List<String> uri = getLiterals(rs);
-		System.out.println(uri.size() + " results found for \"" + currentTest.getMethodName() + "\" (" + sparqlFileName + "):");
+		System.out.println(uri.size() + " results found for \"" + title + "\" (" + sparqlFileName + "):");
 		for(String u : uri){
 			System.out.print(u);
 			System.out.print(",");
