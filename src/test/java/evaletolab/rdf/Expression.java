@@ -119,8 +119,8 @@ public class Expression extends TripleStoreBaseTest{
 	 * @throws Exception 
 	 */
 	@Test
-	public void Q15_PDZdomainthatInteractWithProteinExpresssedInBrain() throws Exception{
-		testSparql("Q15.sparql");
+	public void Q015_PDZdomainthatInteractWithProteinExpresssedInBrain() {
+		testSparql("Q015.sparql");
 	}	
 	
 	/**

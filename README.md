@@ -68,7 +68,7 @@ $ ff localhost:6969
 * QX  Proteins that are not highly expressed in liver at embrion stage
 * [Q4](src/main/resources/sparql/Q4.sparql)  highly expressed in brain but not expressed in testis
 * [Q11](src/main/resources/sparql/Q11.sparql) that are expressed in liver and involved in transport 
-* Q[15](src/main/resources/sparql/Q15.sparql) with a PDZ domain that interact with at least 1 protein which is expressed in brain 
+* Q[15](src/main/resources/sparql/Q015.sparql) with a PDZ domain that interact with at least 1 protein which is expressed in brain 
 * [Q17](src/main/resources/sparql/Q17.sparql) >=1000 amino acids and located in nucleus and expression in nervous system 
 * [Q20](src/main/resources/sparql/Q20.sparql) with >=2 HPA antibodies whose genes are located on chromosome 21 and that are highly expressed at IHC level in heart
 * [Q50](src/main/resources/sparql/Q50.sparql) which are expressed in brain according to IHC but not expressed in brain according to microarray
