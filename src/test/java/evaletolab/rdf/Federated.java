@@ -2,7 +2,7 @@ package evaletolab.rdf;
 
 import org.junit.Test;
 
-import evaletolab.controller.TripleStoreBaseTest;
+import evaletolab.TripleStoreBaseTest;
 
 /**
  * Use case for federated queries

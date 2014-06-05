@@ -1,4 +1,4 @@
-package evaletolab.controller;
+package evaletolab;
 
 import static org.junit.Assert.assertTrue;
 
@@ -7,6 +7,8 @@ import java.util.Properties;
 
 import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -17,6 +19,7 @@ import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
 
 import evaletolab.config.WebConfig;
+import evaletolab.controller.TripleStore;
 import evaletolab.tool.FileUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,7 +28,9 @@ import evaletolab.tool.FileUtil;
 public class TripleStoreBaseTest extends TripleStore {
 	
 	private static final String SPLUNK_URL = "http://crick:8000/en-US/app/search/sparql_queries_time_performance?form.operator=%3E&form.minTime=0&earliest=0&latest=&form.testId=";
-	
+
+    @Rule public TestName currentTest = new TestName();
+
 
 	@Autowired
 	private Properties config;
@@ -48,7 +53,7 @@ public class TripleStoreBaseTest extends TripleStore {
 		String acs = getMetaInfo(q).get("acs");
 		int count = getQueryMetaCount(q);
 
-		QueryExecution qe = createQueryExecution(q);
+		QueryExecution qe = createQueryExecution(q, currentTest.getMethodName());
 		ResultSet rs = qe.execSelect();
 
 		// validate result
