@@ -78,8 +78,8 @@ $ ff localhost:6969
 
 ###Use case for [sequence annotations](src/main/java/evaletolab/rdf/Features.java)
 * [Q3](src/main/resources/sparql/Q3.sparql)	Proteins with >=2 transmembrane regions 
-* [Q5](src/main/resources/sparql/Q5.sparql)	Proteins located in mitochondrion and that lack a transit peptide
-* [Q9](src/main/resources/sparql/Q9.sparql)	Proteins with 3 disulfide bonds and that are not hormones 
+* [Q5](src/main/resources/sparql/Q005.sparql)	Proteins located in mitochondrion and that lack a transit peptide
+* [Q9](src/main/resources/sparql/Q009.sparql)	Proteins with 3 disulfide bonds and that are not hormones 
 * [Q13](src/main/resources/sparql/Q13.sparql) Proteins with a protein kinase domain but no kinase activity 
 * [Q14](src/main/resources/sparql/Q14.sparql) Proteins with 2 SH3 domains and 1 SH2 domain 
 * [Q15](src/main/resources/sparql/Q15.sparql) Proteins with a PDZ domain that interact with at least 1 protein which is expressed in brain 

@@ -3,14 +3,12 @@ package evaletolab;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
-import java.util.Properties;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -27,10 +25,9 @@ import evaletolab.tool.FileUtil;
 @ContextConfiguration(classes = WebConfig.class)
 public class TripleStoreBaseTest extends TripleStore {
 
+	private static final String TEST_VERSION = "http://crick:8000/en-US/app/search/sparql_queries_time_performance?form.operator=%3E&form.minTime=0&earliest=0&latest=&form.testId=";
+	
     @Rule public TestName currentTest = new TestName();
-
-	@Autowired
-	private static Properties config;
 
 	@Before
 	public void setup() throws Exception {
@@ -87,10 +84,8 @@ public class TripleStoreBaseTest extends TripleStore {
 	
 	@AfterClass
 	public static void done() {
-		if(config.contains("logger.splunk")){
 			System.out.println();
-			System.out.println("Access your test results in: \n" + config.getProperty("logger.splunk") + instanceSignature);
-		}
+			System.out.println("Access your test results in: \n" + TEST_VERSION + instanceSignature);
 	}
 
 }

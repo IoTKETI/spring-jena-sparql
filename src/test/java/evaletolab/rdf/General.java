@@ -37,8 +37,8 @@ public class General extends TripleStoreBaseTest {
 	}
 
 	@Test
-	public void Q5_that_are_located_in_mitochondrion_and_lack_a_transit_peptide() {
-		testSparql("Q5.sparql");
+	public void Q005_that_are_located_in_mitochondrion_and_lack_a_transit_peptide() {
+		testSparql("Q005.sparql");
 	}
 
 	@Test
