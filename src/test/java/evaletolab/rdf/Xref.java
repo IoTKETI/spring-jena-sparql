@@ -3,21 +3,13 @@ package evaletolab.rdf;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
-import java.util.Properties;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
 
-import evaletolab.config.WebConfig;
-import evaletolab.controller.TripleStore;
+import evaletolab.TripleStoreBaseTest;
 import evaletolab.tool.FileUtil;
 
 /**
@@ -27,20 +19,8 @@ import evaletolab.tool.FileUtil;
  *
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextConfiguration(classes = WebConfig.class)
-public class Xref extends TripleStore{
+public class Xref extends TripleStoreBaseTest {
 	
-	@Autowired
-	private Properties config;
-	
-	@Before
-	public void setup() throws Exception {
-		//
-		// open session in triplestore
-		open();
-	}
 	
 	/**
 	 * Q72 with a cross-reference to CCDS 
@@ -66,5 +46,15 @@ public class Xref extends TripleStore{
 	}			
 	
 
+	/**
+	 * Q107 All proteins with a protein evidence not "At protein level" with a HGNC identifier/xref that includes the regexp "orf"
+	 * @throws Exception 
+	 */
+	@Test
+	public void Q107_PE1_HGNCref_containingORF() {
+		testSparql("Q107.sparql");
+	}	
+
+	
 		
 }
