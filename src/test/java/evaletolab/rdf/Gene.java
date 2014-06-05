@@ -1,8 +1,10 @@
 package evaletolab.rdf;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import evaletolab.TripleStoreBaseTest;
+import evaletolab.rdf.sab.SABTest;
 
 /**
  * Use case for gene queries
@@ -36,6 +38,7 @@ public class Gene extends TripleStoreBaseTest {
 	}
 
 	@Test
+	@Category(SABTest.class)  
 	public void Q58_which_are_located_on_the_genome_next_to_a_protein_which_is_involved_in_spermatogenesis() {
 		testSparql("Q058.sparql");
 	}

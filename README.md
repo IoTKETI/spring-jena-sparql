@@ -85,7 +85,7 @@ $ ff localhost:6969
 * [Q15](src/main/resources/sparql/Q15.sparql) Proteins with a PDZ domain that interact with at least 1 protein which is expressed in brain 
 * [Q16](src/main/resources/sparql/Q16-1.sparql), [Q16a](src/main/resources/sparql/Q16-2.sparql) [Q16b](src/main/resources/sparql/Q16-3.sparql), Proteins with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain 
 * [Q18](src/main/resources/sparql/Q18.sparql) Proteins that are acetylated and methylated and located in the nucleus 
-* [Q19](src/main/resources/sparql/Q19.sparql) Proteins contains a signal sequence followed by a extracellular domain containing a "KRKR" motif 
+* [Q19](src/main/resources/sparql/Q019.sparql) Proteins contains a signal sequence followed by a extracellular domain containing a "KRKR" motif 
 * Q27 Proteins with >=1 glycosylation sites reported in PubMed:X or PubMed:Y
 * [Q32](src/main/resources/sparql/Q32.sparql) Proteins with a coiled coil region and involved in transcription but does not contain a bZIP domain
 * [Q34](src/main/resources/sparql/Q34.sparql) Proteins with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)

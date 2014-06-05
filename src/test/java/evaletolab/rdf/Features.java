@@ -1,8 +1,10 @@
 package evaletolab.rdf;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import evaletolab.TripleStoreBaseTest;
+import evaletolab.rdf.sab.SABTest;
 
 /**
  * Use case for features queries
@@ -13,7 +15,7 @@ import evaletolab.TripleStoreBaseTest;
  * Q15 with a PDZ domain that interact with at least 1 protein which is expressed in brain
  * Q16 with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain
  * Q18 that are acetylated and methylated and located in the nucleus
- * Q19 contains a signal sequence followed by a extracellular domain containing a "KRKR" motif
+ * Q019 contains a signal sequence followed by a extracellular domain containing a "KRKR" motif
  ** Q27 with >=1 glycosylation sites reported in PubMed:X or PubMed:Y
  * Q32 with a coiled coil region and involved in transcription but does not contain a bZIP domain
  * Q34 with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
@@ -34,7 +36,9 @@ public class Features extends TripleStoreBaseTest {
 		testSparql("Q3.sparql");
 	}
 
+
 	@Test
+	@Category(SABTest.class)  
 	public void Q9_with3DisulfideBondsAndNotHormones() {
 		testSparql("Q009.sparql");
 	}
@@ -104,14 +108,15 @@ public class Features extends TripleStoreBaseTest {
 	}
 
 	/**
-	 * Q19 contains a signal sequence followed by a extracellular domain containing a "KRKR" motif
+	 * Q019 contains a signal sequence followed by a extracellular domain containing a "KRKR" motif
 	 * WARNING 5s query
 	 * 
 	 * @throws Exception
 	 */
 	@Test
-	public void Q19_containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif() throws Exception {
-		testSparql("Q19.sparql");
+	@Category(SABTest.class)  
+	public void Q19_contains_a_signal_sequence_followed_by_a_extracellular_domain_containing_a_KRKR_motif() throws Exception {
+		testSparql("Q019.sparql");
 	}
 
 	/**

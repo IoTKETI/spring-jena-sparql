@@ -1,8 +1,10 @@
 package evaletolab.rdf;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import evaletolab.TripleStoreBaseTest;
+import evaletolab.rdf.sab.SABTest;
 
 /**
  * Use case for features queries
@@ -37,6 +39,7 @@ public class General extends TripleStoreBaseTest {
 	}
 
 	@Test
+	@Category(SABTest.class)  
 	public void Q005_that_are_located_in_mitochondrion_and_lack_a_transit_peptide() {
 		testSparql("Q005.sparql");
 	}
@@ -72,6 +75,7 @@ public class General extends TripleStoreBaseTest {
 	}
 
 	@Test
+	@Category(SABTest.class)  
 	public void Q30_whose_gene_is_located_in_chromosome_2_that_belongs_to_families_with_more_or_equal_to_5_members_in_the_human_proteome() {
 		testSparql("Q30.sparql");
 	}
