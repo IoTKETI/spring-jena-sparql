@@ -23,12 +23,8 @@ import evaletolab.tool.FileUtil;
 @WebAppConfiguration
 @ContextConfiguration(classes = WebConfig.class)
 public class TripleStoreBaseTest extends TripleStore {
-	
-	private static final String SPLUNK_URL = "http://crick:8000/en-US/app/search/sparql_queries_time_performance?form.operator=%3E&form.minTime=0&earliest=0&latest=&form.testId=";
-	
-
 	@Autowired
-	private Properties config;
+	private static Properties config;
 
 	@Before
 	public void setup() throws Exception {
@@ -66,8 +62,10 @@ public class TripleStoreBaseTest extends TripleStore {
 	
 	@AfterClass
 	public static void done() {
-		System.out.println();
-		System.out.println("Access your test results in: \n" + SPLUNK_URL + instanceSignature);
+		if(config.contains("logger.splunk")){
+			System.out.println();
+			System.out.println("Access your test results in: \n" + config.getProperty("logger.splunk") + instanceSignature);
+		}
 	}
 
 }
