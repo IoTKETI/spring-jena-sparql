@@ -28,6 +28,12 @@ public class Gene extends TripleStoreBaseTest {
 		//Don't why the performance of this query is much slower than on the right side!!!!
 		testSparql("Q058-left.sparql");
 	}
+	
+	@Test
+	public void Q58_which_are_located_on_the_genome_next_to_a_protein_which_is_involved_in_spermatogenesis_left_b() {
+		//This one fixes the performance issue but does not return the same number of rows
+		testSparql("Q058-left-b.sparql");
+	}
 
 	@Test
 	public void Q58_which_are_located_on_the_genome_next_to_a_protein_which_is_involved_in_spermatogenesis() {

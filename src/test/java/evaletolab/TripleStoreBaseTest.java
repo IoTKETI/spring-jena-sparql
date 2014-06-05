@@ -40,6 +40,24 @@ public class TripleStoreBaseTest extends TripleStore {
 		open();
 	}
 
+	protected void runSparql(String sparqlFileName) {
+		String q = null;
+		try {
+			q = FileUtil.getResourceAsString("sparql/" + sparqlFileName);
+		} catch (Exception e) {
+			e.printStackTrace();
+			org.junit.Assert.fail();
+		}
+
+		QueryExecution qe = createQueryExecution(q, currentTest.getMethodName());
+		ResultSet rs = qe.execSelect();
+		
+		while(rs.hasNext()){
+			System.out.println(rs.next());
+		}
+
+	}
+	
 	protected void testSparql(String sparqlFileName) {
 		String q = null;
 		try {
