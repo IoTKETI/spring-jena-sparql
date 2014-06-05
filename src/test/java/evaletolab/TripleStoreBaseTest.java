@@ -1,4 +1,4 @@
-package evaletolab.controller;
+package evaletolab;
 
 import static org.junit.Assert.assertTrue;
 
@@ -17,6 +17,7 @@ import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
 
 import evaletolab.config.WebConfig;
+import evaletolab.controller.TripleStore;
 import evaletolab.tool.FileUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
