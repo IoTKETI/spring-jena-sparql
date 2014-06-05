@@ -1,8 +1,10 @@
 package evaletolab.rdf;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import evaletolab.TripleStoreBaseTest;
+import evaletolab.rdf.sab.SABTest;
 
 /**
  * Use case for federated queries
@@ -18,6 +20,7 @@ public class Federated extends TripleStoreBaseTest{
 	 * @throws Exception 
 	 */
 	@Test
+	@Category(SABTest.class)
 	public void Q95_targetsForANtibiotics() {
 		testSparql("Q95.sparql");
 	}	

@@ -6,7 +6,6 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import org.junit.Before;

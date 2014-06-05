@@ -93,6 +93,7 @@ public class Expression extends TripleStoreBaseTest{
 	 * @throws Exception 
 	 */
 	@Test
+	@Category(SABTest.class)
 	public void Q50_expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray() throws Exception{
 		testSparql("Q50.sparql");
 	}			
@@ -111,6 +112,7 @@ public class Expression extends TripleStoreBaseTest{
 	 * @throws Exception 
 	 */
 	@Test
+	@Category(SABTest.class)
 	public void Q77_expressedInLiverAccordingIHCButNotInHUPOLiverProteom() throws Exception{
 		testSparql("Q77.sparql");
 	}	

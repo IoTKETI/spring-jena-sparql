@@ -15,6 +15,7 @@ import evaletolab.rdf.sab.SABTest;
 public class Gene extends TripleStoreBaseTest {
 
 	@Test
+	@Category(SABTest.class)  
 	public void Q55_wich_have_genes_of_length_bigger_than_10000BP() {
 		testSparql("Q055.sparql");
 	}

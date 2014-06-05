@@ -1,16 +1,10 @@
 package evaletolab.rdf;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
 import org.junit.Test;
-
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.ResultSet;
+import org.junit.experimental.categories.Category;
 
 import evaletolab.TripleStoreBaseTest;
-import evaletolab.tool.FileUtil;
+import evaletolab.rdf.sab.SABTest;
 
 /**
  * Use case for Xref queries
@@ -28,21 +22,7 @@ public class Xref extends TripleStoreBaseTest {
 	 */
 	@Test
 	public void Q72_withXrefToCCDS() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q72.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));      
+		testSparql("Q72.sparql");
 	}			
 	
 
@@ -51,6 +31,7 @@ public class Xref extends TripleStoreBaseTest {
 	 * @throws Exception 
 	 */
 	@Test
+	@Category(SABTest.class)
 	public void Q107_PE1_HGNCref_containingORF() {
 		testSparql("Q107.sparql");
 	}	

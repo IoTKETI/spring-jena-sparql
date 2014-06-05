@@ -170,6 +170,7 @@ public class Features extends TripleStoreBaseTest {
 	 * @throws Exception
 	 */
 	@Test
+	@Category(SABTest.class)  
 	public void Q40_thatAreEnzymesAndWith1mutagenesisThatDecreaseOrAbolishActivity() throws Exception {
 		testSparql("Q40.sparql");
 	}
@@ -190,6 +191,7 @@ public class Features extends TripleStoreBaseTest {
 	 * @throws Exception
 	 */
 	@Test
+	@Category(SABTest.class)  
 	public void Q48_with1VariantOfType_CtoAnythingElse_thatAreTo1Disease() throws Exception {
 		testSparql("Q48.sparql");
 	}

@@ -1,19 +1,19 @@
 package evaletolab.tool;
 
+import static us.monoid.web.Resty.data;
+import static us.monoid.web.Resty.form;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import us.monoid.web.Resty;
+
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.RDF;
-
-
-import static us.monoid.web.Resty.*;
-import us.monoid.web.Resty;
-import us.monoid.web.TextResource;
 
 public class MaxIndexToModel {
     static String Uniprot ="http://purl.uniprot.org/core/";
