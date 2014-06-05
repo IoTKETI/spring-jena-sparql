@@ -2,6 +2,7 @@
 #ac:O00151,O00233,O00560,O14640,O14641,O14745,O14907,O14908,O14910,O14936
 #tags:selected
 SELECT distinct ?entry WHERE {
-  ?entry :isoform ?iso.
-  ?iso :region/:in term:DO-00477;:interaction/:with/:isoform?/:expression/:in/:childOf term:TS-0095
+	?entry :isoform ?iso.
+	?iso :region/:in term:DO-00477. #PDZ domain
+	?iso :interaction/:with/:isoform?/:expression/:in/:childOf term:TS-0095 #brain
 }

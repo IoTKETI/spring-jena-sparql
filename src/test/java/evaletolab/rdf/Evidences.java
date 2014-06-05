@@ -1,8 +1,10 @@
 package evaletolab.rdf;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import evaletolab.TripleStoreBaseTest;
+import evaletolab.rdf.sab.SABTest;
 
 /**
  * Use case for evidences queries
@@ -33,6 +35,7 @@ public class Evidences extends TripleStoreBaseTest {
 	 * @throws Exception
 	 */
 	@Test
+	@Category(SABTest.class)  
 	public void Q53_involvedInGO0007155_WithEvidence_NotIEA_And_NotISS() throws Exception {
 		testSparql("Q53-1.sparql");
 	}

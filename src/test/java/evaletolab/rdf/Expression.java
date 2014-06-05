@@ -1,11 +1,13 @@
 package evaletolab.rdf;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
 
 import evaletolab.TripleStoreBaseTest;
+import evaletolab.rdf.sab.SABTest;
 import evaletolab.tool.FileUtil;
 
 /**
@@ -91,6 +93,7 @@ public class Expression extends TripleStoreBaseTest{
 	 * @throws Exception 
 	 */
 	@Test
+	@Category(SABTest.class)
 	public void Q50_expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray() throws Exception{
 		testSparql("Q50.sparql");
 	}			
@@ -109,6 +112,7 @@ public class Expression extends TripleStoreBaseTest{
 	 * @throws Exception 
 	 */
 	@Test
+	@Category(SABTest.class)
 	public void Q77_expressedInLiverAccordingIHCButNotInHUPOLiverProteom() throws Exception{
 		testSparql("Q77.sparql");
 	}	
@@ -119,8 +123,9 @@ public class Expression extends TripleStoreBaseTest{
 	 * @throws Exception 
 	 */
 	@Test
-	public void Q15_PDZdomainthatInteractWithProteinExpresssedInBrain() throws Exception{
-		testSparql("Q15.sparql");
+	@Category(SABTest.class)  
+	public void Q015_wit_a_PDZ_domain_that_interacts_with_proteins_expresssed_in_brain() {
+		testSparql("Q015.sparql");
 	}	
 	
 	/**
@@ -129,8 +134,9 @@ public class Expression extends TripleStoreBaseTest{
 	 * @throws Exception 
 	 */
 	@Test
-	public void Q20_HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel() throws Exception{
-		testSparql("Q20.sparql");
+	@Category(SABTest.class)  
+	public void Q020_HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel(){
+		testSparql("Q020.sparql");
 	}	
 	
 	/**

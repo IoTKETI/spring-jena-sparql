@@ -68,7 +68,7 @@ $ ff localhost:6969
 * QX  Proteins that are not highly expressed in liver at embrion stage
 * [Q4](src/main/resources/sparql/Q4.sparql)  highly expressed in brain but not expressed in testis
 * [Q11](src/main/resources/sparql/Q11.sparql) that are expressed in liver and involved in transport 
-* Q[15](src/main/resources/sparql/Q15.sparql) with a PDZ domain that interact with at least 1 protein which is expressed in brain 
+* Q[15](src/main/resources/sparql/Q015.sparql) with a PDZ domain that interact with at least 1 protein which is expressed in brain 
 * [Q17](src/main/resources/sparql/Q17.sparql) >=1000 amino acids and located in nucleus and expression in nervous system 
 * [Q20](src/main/resources/sparql/Q20.sparql) with >=2 HPA antibodies whose genes are located on chromosome 21 and that are highly expressed at IHC level in heart
 * [Q50](src/main/resources/sparql/Q50.sparql) which are expressed in brain according to IHC but not expressed in brain according to microarray
@@ -78,14 +78,14 @@ $ ff localhost:6969
 
 ###Use case for [sequence annotations](src/main/java/evaletolab/rdf/Features.java)
 * [Q3](src/main/resources/sparql/Q3.sparql)	Proteins with >=2 transmembrane regions 
-* [Q5](src/main/resources/sparql/Q5.sparql)	Proteins located in mitochondrion and that lack a transit peptide
-* [Q9](src/main/resources/sparql/Q9.sparql)	Proteins with 3 disulfide bonds and that are not hormones 
+* [Q5](src/main/resources/sparql/Q005.sparql)	Proteins located in mitochondrion and that lack a transit peptide
+* [Q9](src/main/resources/sparql/Q009.sparql)	Proteins with 3 disulfide bonds and that are not hormones 
 * [Q13](src/main/resources/sparql/Q13.sparql) Proteins with a protein kinase domain but no kinase activity 
 * [Q14](src/main/resources/sparql/Q14.sparql) Proteins with 2 SH3 domains and 1 SH2 domain 
 * [Q15](src/main/resources/sparql/Q15.sparql) Proteins with a PDZ domain that interact with at least 1 protein which is expressed in brain 
 * [Q16](src/main/resources/sparql/Q16-1.sparql), [Q16a](src/main/resources/sparql/Q16-2.sparql) [Q16b](src/main/resources/sparql/Q16-3.sparql), Proteins with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain 
 * [Q18](src/main/resources/sparql/Q18.sparql) Proteins that are acetylated and methylated and located in the nucleus 
-* [Q19](src/main/resources/sparql/Q19.sparql) Proteins contains a signal sequence followed by a extracellular domain containing a "KRKR" motif 
+* [Q19](src/main/resources/sparql/Q019.sparql) Proteins contains a signal sequence followed by a extracellular domain containing a "KRKR" motif 
 * Q27 Proteins with >=1 glycosylation sites reported in PubMed:X or PubMed:Y
 * [Q32](src/main/resources/sparql/Q32.sparql) Proteins with a coiled coil region and involved in transcription but does not contain a bZIP domain
 * [Q34](src/main/resources/sparql/Q34.sparql) Proteins with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)

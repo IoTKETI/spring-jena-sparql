@@ -1,0 +1,25 @@
+#title:Q058 which are located on the genome next to a protein which is involved in spermatogenesis (left)
+#ac:P56378
+SELECT distinct ?entry WHERE {
+{
+# ... |- PREV -|end ... begin|- SP 
+SELECT ?sp_entry ?sp_gene_begin (MIN(?prev_distance) as ?min_distance_prev) ?chr WHERE {
+  ?sp_entry :classifiedWith term:KW-0744 . # spermatogenesis keyword
+  ?sp_entry :gene ?sp_gene .
+  ?sp_gene :begin ?sp_gene_begin .
+  ?sp_gene  :chromosome ?chr .
+  ?prev_entry :gene ?prev_gene .
+  ?prev_gene :chromosome ?chr . # the previous entry should be in the same chromosome
+  ?prev_gene :begin ?prev_gene_begin .
+  bind (?sp_gene_begin - ?prev_gene_begin as ?prev_distance) . 
+  filter (?prev_distance > 0)  . # only takes the one on the right side (next) 
+}
+group by ?sp_entry ?sp_gene_begin ?chr
+}
+
+  ?entry :gene/:begin ?entry_begin . 
+  ?entry :gene/:chromosome ?chr .
+  bind (?sp_gene_begin - ?entry_begin as ?entry_distance) .
+  filter(?entry_distance = ?min_distance_prev) .
+
+}
