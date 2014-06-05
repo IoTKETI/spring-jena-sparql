@@ -1,0 +1,10 @@
+#title:Q107 All proteins with a protein evidence not "At protein level" with a HGNC identifier/xref that includes the regexp "orf"
+#ac:A1A4T8
+#tags:selected
+select  distinct ?entry {
+  ?entry :existence ?level .
+  filter (?level != :Evidence_at_protein_level) .
+  ?entry :reference ?r .
+  ?r :provenance db:HGNC ; :accession ?ac .
+  filter (regex(?ac,'orf')) .
+}
