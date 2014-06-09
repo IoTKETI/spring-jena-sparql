@@ -2,9 +2,9 @@
 #     an evidence not IAE and not ISS
 #using :notIn partition
 #pending 
-#ac:O00192,O14498,O14522,O14936,O15357,O43294,O43312,O43529,O60462,O60486
+#ac:Q86UP0,Q86UP6,Q86UX7,Q75N03,Q76LX8,Q7L5Y9
 #tags:selected
 SELECT distinct ?entry WHERE {
  ?entry  :isoform/:function ?statement.
- ?statement :in term:GO_0007155;:withEvidence/:code/:notIn :IEA,:ISS
+ ?statement :in / :childOf term:GO_0007155;:withEvidence/:code/:notIn :IEA,:ISS
 }

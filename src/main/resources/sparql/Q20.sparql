@@ -1,10 +1,22 @@
 #title:Q20, Proteins with >=2 HPA antibodies whose genes are located on chromosome 21 and that are highly expressed at IHC level in heart
 #pending
-#ac:A0A183,A0AUZ9,A0AV02,A0AV96,A0AVI4,A0AVT1,A0FGR8,A0FGR9,A0MZ66,A0PG75
+#ac:P56181,P48449,Q8TCY5
 #tags:selected
-SELECT distinct ?entry WHERE {
-# expressed in brain according to IHC
-  ?entry :isoform/:expression ?s1.
-  ?s1 :in/:childOf  term:TS-0445;:withEvidence/:experimentalContext/:detectionMethod term:ECO_0000045.
-}
-  
+select ?entry  where {
+  select distinct ?entry ?ac where {
+    
+    ?entry :gene / :chromosome "21"^^xsd:string .
+
+    ?entry :isoform / :expression ?s1.
+    ?s1 :in / :childOf  term:TS-0445 .
+    ?s1 :withEvidence ?evi .
+    ?evi :expressionLevel :High .
+    ?evi :experimentalContext / :detectionMethod term:ECO_0000045.
+
+    ?entry :isoform / :mapping ?map .
+    ?map a :AntibodyMapping .
+    ?map :reference / :accession ?ac .
+  }
+} group by ?entry 
+having (count(?ac)>=2)
+

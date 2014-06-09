@@ -1,0 +1,17 @@
+#title:Q87 whose genes are on chromosome X and which do not have a ortholog in mouse
+#ac:Q71F78
+#tags:selected
+SELECT  ?entry  (count(?tissue)as ?c)  WHERE {
+  ?entry :gene/:chromosome "19"^^xsd:string;:isoform/:expression/:in/rdfs:label  ?tissue.
+}group by ?entry    ORDER BY  ?c limit 5
+
+#select  ?entry ?ac ?tissueCount where { 
+#  {SELECT  ?entry  (count(?tissue)as ?tissueCount)  WHERE {
+#    ?entry :gene/:chromosome "19"^^xsd:string;:isoform/:expression/:in  ?tissue.
+#  }group by ?entry    ORDER BY  ?tissueCount limit 5}
+#  
+#?entry :isoform/:expression/:in/rdfs:label ?ac
+#  
+#}group by ?entry ?ac ORDER BY  ?tissueCount 
+
+

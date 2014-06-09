@@ -1,6 +1,6 @@
-#title:Q55 which have genes of length >=10000 bp
-#ac:Q01196,Q6PIL6
+#title:Q55 which have genes of length >=2000000 bp
+#ac:Q96P27,P23468,Q15700,Q13449,Q9UHC6,P11532,A1Z1Q3
 select distinct ?entry  where {
   ?entry :gene / :length ?l .
-  filter (?l >= 10000)
+  filter (?l >= 2000000)
 }
