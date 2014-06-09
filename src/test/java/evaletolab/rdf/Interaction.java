@@ -1,24 +1,10 @@
 package evaletolab.rdf;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-import java.util.Properties;
-
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.junit.experimental.categories.Category;
 
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.ResultSet;
-
-import evaletolab.config.WebConfig;
-import evaletolab.controller.TripleStore;
-import evaletolab.tool.FileUtil;
+import evaletolab.TripleStoreBaseTest;
+import evaletolab.rdf.sab.SABTest;
 
 /**
  * Use case for interactions queries
@@ -28,42 +14,14 @@ import evaletolab.tool.FileUtil;
  * @author evaleto
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextConfiguration(classes = WebConfig.class)
-public class Interaction extends TripleStore{
-	
-	@Autowired
-	private Properties config;
-	
-	@Before
-	public void setup() throws Exception {
-		//
-		// open session in triplestore
-		open();
-	}
-	
+public class Interaction extends TripleStoreBaseTest{
 	/**
 	 * Q24 with >1 reported gold interaction 
 	 * @throws Exception 
 	 */
 	@Test
 	public void Q24_witnInteractionsReportedGold() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q24.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));      
+		testSparql("Q24.sparql");
 	}			
 	
 	/**
@@ -71,22 +29,9 @@ public class Interaction extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void Q25_with50InteractorsAndNotInvolvedInADisease() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q25.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
+	@Category(SABTest.class)  
+	public void Q25_with50InteractorsAndNotInvolvedInADisease(){
+		testSparql("Q25.sparql");
 	}	
 	
 	/**
@@ -94,22 +39,8 @@ public class Interaction extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void Q26_withInteractionsLocatedInTheMitochondrion() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q26.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
+	public void Q26_withInteractionsLocatedInTheMitochondrion(){
+		testSparql("Q26.sparql");
 	}	
 		
 }

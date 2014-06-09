@@ -1,35 +1,21 @@
 package evaletolab.rdf;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-import java.util.Properties;
-
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.junit.experimental.categories.Category;
 
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.ResultSet;
-
-import evaletolab.config.WebConfig;
-import evaletolab.controller.TripleStore;
-import evaletolab.tool.FileUtil;
+import evaletolab.TripleStoreBaseTest;
+import evaletolab.rdf.sab.SABTest;
 
 /**
  * Use case for features queries
- * Q3	with >=2 transmembrane regions 
- * Q9	with 3 disulfide bonds and that are not hormones 
- * Q13 with a protein kinase domain but no kinase activity 
- * Q14 with 2 SH3 domains and 1 SH2 domain 
- * Q15 with a PDZ domain that interact with at least 1 protein which is expressed in brain 
- * Q16 with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain 
- * Q18 that are acetylated and methylated and located in the nucleus 
- * Q19 contains a signal sequence followed by a extracellular domain containing a "KRKR" motif 
+ * Q3 with >=2 transmembrane regions
+ * Q9 with 3 disulfide bonds and that are not hormones
+ * Q13 with a protein kinase domain but no kinase activity
+ * Q14 with 2 SH3 domains and 1 SH2 domain
+ * Q15 with a PDZ domain that interact with at least 1 protein which is expressed in brain
+ * Q16 with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain
+ * Q18 that are acetylated and methylated and located in the nucleus
+ * Q019 contains a signal sequence followed by a extracellular domain containing a "KRKR" motif
  ** Q27 with >=1 glycosylation sites reported in PubMed:X or PubMed:Y
  * Q32 with a coiled coil region and involved in transcription but does not contain a bZIP domain
  * Q34 with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
@@ -40,432 +26,184 @@ import evaletolab.tool.FileUtil;
  * Q41 that are annotated with GO "F" terms prefixed by "Not"
  * Q48 with >=1 variants of the type "C->" (Cys to anything else) that are linked to >=1 disease
  * Q49 with >=1 variants of the types "A->R" or "R->A"
- *  
+ * 
  * @author evaleto
- *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextConfiguration(classes = WebConfig.class)
-public class Features extends TripleStore{
-	
-	@Autowired
-	private Properties config;
-	
-	@Before
-	public void setup() throws Exception {
-		//
-		// open session in triplestore
-		open();
+public class Features extends TripleStoreBaseTest {
+
+	@Test
+	public void Q3_with2TransmembraneRegions() {
+		testSparql("Q3.sparql");
 	}
-	
-	
-	
-	/**
-	 * Q3 with >=2 transmembrane regions 
-	 * @throws Exception 
-	 */
-	@Test
-	public void Q3_with2TransmembraneRegions() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q3.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));      
-	}	
-	
 
-	/**
-	 * Q9 with 3 disulfide bonds and that are not hormones 
-	 * @throws Exception 
-	 */
-	@Test
-	public void Q9_with3DisulfideBondsAndNotHormones() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q9.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));  
-	}	
-	
 
+	@Test
+	@Category(SABTest.class)  
+	public void Q9_with3DisulfideBondsAndNotHormones() {
+		testSparql("Q009.sparql");
+	}
 
 	/**
 	 * Q13 with a protein kinase domain but no kinase activity
 	 * uniprot query, database:(type:nextprot) AND annotation:(type:"positional domain" "protein kinase") NOT ec:2.7.-.-
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void Q13_withKinaseDomainButNotKinaseActivity() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q13.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));  
-	}	
+	public void Q13_withKinaseDomainButNotKinaseActivity() {
+		testSparql("Q13.sparql");
+	}
 
 	/**
 	 * Q14 with 2 SH3 domains and 1 SH2 domain
-	 * uniprot query,  database:(type:nextprot) AND annotation:(type:similarity "contains 2 SH3 domains") AND annotation:(type:similarity "contains 1 SH2")
-	 * @throws Exception 
+	 * uniprot query, database:(type:nextprot) AND annotation:(type:similarity "contains 2 SH3 domains") AND annotation:(type:similarity "contains 1 SH2")
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void wQ14_ith2SH3And1SHD2() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q14.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));   
-	}	
-	
+	public void wQ14_ith2SH3And1SHD2() {
+		testSparql("Q14.sparql");
+	}
 
-	
 	/**
 	 * Q16 with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain
 	 * WARNING time>50s
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void Q16_withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature1() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q16-1.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
+	public void Q16_withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature1() {
+		testSparql("Q16-1.sparql");
 	}
-	
+
 	/**
 	 * Q16 with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void Q16_withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature2() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q16-2.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
+	public void Q16_withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature2() throws Exception {
+		testSparql("Q16-2.sparql");
 	}
-	
+
 	/**
 	 * Q16 with a mature chain <= 100 amino acids which are secreted and do not contain cysteines in the mature chain
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void Q16_withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature3() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q16-3.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
+	public void Q16_withMature100AAWhichAreSecretedAndNotContainsCysteinesInMature3() throws Exception {
+		testSparql("Q16-3.sparql");
 	}
-	
+
 	/**
 	 * Q18 that are acetylated and methylated and located in the nucleus
 	 * uniprot query, database:(type:nextprot) AND keyword:"Acetylated [KW-0007|KW-0007]" AND keyword:"Methylated [KW-0488|KW-0488]" AND annotation:(type:location nucleus)
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void Q18_thatAreAcetylatedAndMethylated() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q18.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
+	public void Q18_thatAreAcetylatedAndMethylated() throws Exception {
+		testSparql("Q18.sparql");
 	}
-	
+
 	/**
-	 * Q19 contains a signal sequence followed by a extracellular domain containing a "KRKR" motif
+	 * Q019 contains a signal sequence followed by a extracellular domain containing a "KRKR" motif
 	 * WARNING 5s query
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void Q19_containsSignalSequenceFollowedByAExtracellularDomainContainingKRKRMotif() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q19.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));         
+	@Category(SABTest.class)  
+	public void Q19_contains_a_signal_sequence_followed_by_a_extracellular_domain_containing_a_KRKR_motif() throws Exception {
+		testSparql("Q019.sparql");
 	}
-	
+
 	/**
 	 * Q32 with a coiled coil region and involved in transcription but does not contain a bZIP domain
 	 * uniprot query, database:(type:nextprot) AND keyword:"Transcription [KW-0804]" AND annotation:(type:coiled) NOT annotation:(type:"positional domain" bzip)
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void Q32_withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q32.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));         
+	public void Q32_withCoiledCoiledAndInvolvedInTranscriptionButNotContainBZIP() throws Exception {
+		testSparql("Q32.sparql");
 	}
-	
+
 	/**
 	 * Q34 with >=1 homeobox domain and with >=1 variant in the homeobox domain(s)
 	 * WARNING 5s query
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void Q34_withHomeoboxAndWithVariantsInTheHomeobox() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q34.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));       
-	}		
-	
+	public void Q34_withHomeoboxAndWithVariantsInTheHomeobox() throws Exception {
+		testSparql("Q34.sparql");
+	}
+
 	/**
 	 * Q38 with >=1 selenocysteine in their sequence
 	 * uniprot search, database:(type:nextprot) AND annotation:(type:non_std)
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void Q38_withSelenocysteineInTheirSequence() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q38.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));               
-	}		
-	
+	public void Q38_withSelenocysteineInTheirSequence() throws Exception {
+		testSparql("Q38.sparql");
+	}
+
 	/**
 	 * Q39 with >=1 mutagenesis in a position that correspond to an annotated active site
 	 * WARNING 2s query
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void Q39_with1MutagenesisInAPositionThatCorrespondToAnAnnotatedActiveSite() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q39.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));   
-	}		
+	public void Q39_with1MutagenesisInAPositionThatCorrespondToAnAnnotatedActiveSite() throws Exception {
+		testSparql("Q39.sparql");
+	}
 
 	/**
 	 * Q40 that are enzymes and with >=1 mutagenesis that "decrease" or "abolish" activity
-	 * WARNING 3s query	  
-	 * @throws Exception 
+	 * WARNING 3s query
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void Q40_thatAreEnzymesAndWith1mutagenesisThatDecreaseOrAbolishActivity() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q40.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));         
-	}		
-	
+	@Category(SABTest.class)  
+	public void Q40_thatAreEnzymesAndWith1mutagenesisThatDecreaseOrAbolishActivity() throws Exception {
+		testSparql("Q40.sparql");
+	}
+
 	/**
 	 * Q41 that are annotated with GO "F" terms prefixed by "Not"
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void Q41_thatAreAnnotatedWithGO_F_termsPrefixedByNot() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q41.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));          
-	}		
-	
-	
+	public void Q41_thatAreAnnotatedWithGO_F_termsPrefixedByNot() throws Exception {
+		testSparql("Q41.sparql");
+	}
+
 	/**
 	 * Q48 with >=1 variants of the type "C->" (Cys to anything else) that are linked to >=1 disease
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void Q48_with1VariantOfType_CtoAnythingElse_thatAreTo1Disease() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q48.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));     
-	}		
-	
+	@Category(SABTest.class)  
+	public void Q48_with1VariantOfType_CtoAnythingElse_thatAreTo1Disease() throws Exception {
+		testSparql("Q48.sparql");
+	}
+
 	/**
 	 * Q49 with >=1 variants of the types "A->R" or "R->A"
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void Q49_with1VariantOfTheTypesA_R_or_R_A() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q49.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));          
-	}		
+	public void Q49_with1VariantOfTheTypesA_R_or_R_A() throws Exception {
+		testSparql("Q49.sparql");
+	}
 
 }

@@ -1,23 +1,13 @@
 package evaletolab.rdf;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-import java.util.Properties;
-
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.junit.experimental.categories.Category;
 
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
 
-import evaletolab.config.WebConfig;
-import evaletolab.controller.TripleStore;
+import evaletolab.TripleStoreBaseTest;
+import evaletolab.rdf.sab.SABTest;
 import evaletolab.tool.FileUtil;
 
 /**
@@ -37,24 +27,7 @@ import evaletolab.tool.FileUtil;
  * @author evaleto
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextConfiguration(classes = WebConfig.class)
-public class Expression extends TripleStore{
-	
-	@Autowired
-	private Properties config;
-	
-	@Before
-	public void setup() throws Exception {
-		//
-		// open session in triplestore
-		open();
-	}
-	
-	
-
-	
+public class Expression extends TripleStoreBaseTest{
 	/**
 	 * Proteins that are not highly expressed in liver at embrion stage (count=11'272)
 	 * --> hierarchical Liver (TS-0564) with 17848 entries
@@ -88,22 +61,7 @@ public class Expression extends TripleStore{
 	 */
 	@Test
 	public void Q11_expressedInLiverAndInvolvedInTransport() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q11.sparql");
-
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
+		testSparql("Q11.sparql");
     }
 	
 	/**
@@ -113,21 +71,7 @@ public class Expression extends TripleStore{
 	 */
 	@Test
 	public void Q17_gt1000aaAndLocatedInNucleusAndExpressedInNervousSystem() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q17.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
+		testSparql("Q17.sparql");
 	}		
 	
 	/**
@@ -139,21 +83,7 @@ public class Expression extends TripleStore{
 	 */
 	@Test
 	public void Q4_highlyExpressedInBrainButNotInTestis() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q4.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
+		testSparql("Q4.sparql");
 	}			
 	
 	/**
@@ -163,22 +93,9 @@ public class Expression extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
+	@Category(SABTest.class)
 	public void Q50_expressedInBrainAccordingIHCButNotExpressedInBrainAccordingMicroarray() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q50.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
+		testSparql("Q50.sparql");
 	}			
 	
 	/**
@@ -187,21 +104,7 @@ public class Expression extends TripleStore{
 	 */
 	@Test
 	public void Q83_xpressedOnASingleTissue() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q83.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
+		testSparql("Q83.sparql");
 	}		
 	
 	/**
@@ -209,22 +112,9 @@ public class Expression extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
+	@Category(SABTest.class)
 	public void Q77_expressedInLiverAccordingIHCButNotInHUPOLiverProteom() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q77.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
+		testSparql("Q77.sparql");
 	}	
 	
 	/**
@@ -233,23 +123,9 @@ public class Expression extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void Q15_PDZdomainthatInteractWithProteinExpresssedInBrain() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q15.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
-
+	@Category(SABTest.class)  
+	public void Q015_wit_a_PDZ_domain_that_interacts_with_proteins_expresssed_in_brain() {
+		testSparql("Q015.sparql");
 	}	
 	
 	/**
@@ -258,23 +134,9 @@ public class Expression extends TripleStore{
 	 * @throws Exception 
 	 */
 	@Test
-	public void Q20_HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q20.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
-
+	@Category(SABTest.class)  
+	public void Q020_HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel(){
+		testSparql("Q020.sparql");
 	}	
 	
 	/**
@@ -284,21 +146,6 @@ public class Expression extends TripleStore{
 	 */
 	@Test
 	public void Q77_expressInLiverAccordingIHCButNotInHUPOLiverProteom() throws Exception{
-		String q=FileUtil.getResourceAsString("sparql/Q77.sparql");
-		//
-		// execute query
-		String acs=getMetaInfo(q).get("acs");
-		int count=getQueryMetaCount(q);
-		
-		QueryExecution qe = createQueryExecution(q);
-        ResultSet rs=qe.execSelect();
-        
-        //
-        // validate result
-		List<String> uri=getLiterals(rs);
-        assertTrue( rs.getRowNumber()>=count);
-        for(String ac:acs.split(","))
-        	assertTrue(ac,uri.contains(ac.trim()));
-
+		testSparql("Q77.sparql");
 	}		
 }

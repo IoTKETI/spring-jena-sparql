@@ -56,9 +56,13 @@ function Snorql() {
 	}
     
     this.loadQueries=function(selector){
-    	var opts=[], me=this;	
-        var match = document.location.href.match(/\?query=(.*)/);
-        var title = match ? this._betterUnescape(match[1]).match(/#title:([^ ]*)/) : '';
+    	var opts=[], me=this, title='';	
+        var queryString = document.location.href.match(/\?query=(.*)/);
+        if (queryString){
+        	queryString=this._betterUnescape(queryString[1]);
+            title = queryString.match(/#title:([^ ]*)/);            
+        }
+
         var filters={}
         $.getJSON( "/sparql/queries", function(queries){
     		var $select=$(selector),tagClass
@@ -76,7 +80,8 @@ function Snorql() {
     			// get query
     			var q=queries[i].query.replace(/(#ac[^\n]+|#pending[^\n]*)/g,'');
     			var m=q.match(/#title:([^ ]*)/)
-    			$select.append("<option selected='"+(title&&m&&m[0]==title[0])+"' value='"+encodeURIComponent(q)+"' rel='"+tagClass+"'>"+queries[i].title+"</option>")
+    			
+    			$select.append("<option "+((title&&m&&m[0]==title[0])?"selected='true'":"")+" value='"+encodeURIComponent(q)+"' rel='"+tagClass+"'>"+queries[i].title+"</option>")
     			opts.push(queries[i])    			
     		}
 			// append in form
@@ -85,15 +90,30 @@ function Snorql() {
 				$filter.append("<a href='' rel='"+tag+"'>"+tag+"</a>, ");
 			})
 			$filter.find('a').click(function(e){
-				$select.find('option[rel!='+this.rel+']').toggle()
-				console.log($select.find('option[rel!='+this.rel+']'))
+				$select.find('option[rel!='+this.rel+']').toggle().toggleClass("hide")
 				return false;
 			})    		
     	})
     	
+    	//
+    	// update select to match query
+//        console.log(title)
+//        if(title) {
+//        	$select.find("option").each(function(){
+//        		console.log($(this).text(),title[0],$(this).text()==title[0])
+//        		if($(this).text()==title[0]){
+//        			$(this).prop('selected', true)
+//        		}
+//        			
+//        	})
+//        }
+//    	
+        //
+        // on select change
     	return $(selector).change(function(e,query){
     		document.getElementById('querytext').value=decodeURIComponent($(this).val());
     	})
+    	    	
     }
     
     this.start = function() {

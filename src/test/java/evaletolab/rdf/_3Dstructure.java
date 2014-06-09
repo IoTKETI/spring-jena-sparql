@@ -1,8 +1,10 @@
 package evaletolab.rdf;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import evaletolab.TripleStoreBaseTest;
+import evaletolab.rdf.sab.SABTest;
 
 /**
  * Use case for _3Dstructure
@@ -15,11 +17,13 @@ import evaletolab.TripleStoreBaseTest;
 public class _3Dstructure extends TripleStoreBaseTest{
 	
 	@Test
+	@Category(SABTest.class)  
 	public void Q108_that_have_a_3D_structure_in_PDB_that_overlap_by_at_least_50_amino_acids_with_a_SH3_domain(){
 		testSparql("Q108.sparql");
 	}			
 	
 	@Test
+	@Category(SABTest.class)  
 	public void Q081_with_at_least_one_3D_structure_that_is_located_in_the_mitochondrion_and_are_linked_with_a_disease_using_keyword(){
 		testSparql("Q081-keyword.sparql");
 	}			
