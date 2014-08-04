@@ -60,6 +60,7 @@ $ ff localhost:6969
 ![SNORQL](src/main/webapp/resources/img/snorql.png "snorql frontend")
 
 ###Use case for [evidences](src/main/java/evaletolab/rdf/Evidences.java)
+* [Q27](src/main/resources/sparql/Q27.sparql)	with >=1 glycosylation sites reported in PubMed:X or PubMed:Y
 * [Q53](src/main/resources/sparql/Q53-1.sparql)	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
 * [Q57](src/main/resources/sparql/Q57-locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP.sparql)	which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
 * [Q63](src/main/resources/sparql/Q63-with1RRM_RNAbindingDomainWithEvidenceIEAorISS.sparql)	which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
@@ -74,7 +75,7 @@ $ ff localhost:6969
 * [Q50](src/main/resources/sparql/Q50.sparql) which are expressed in brain according to IHC but not expressed in brain according to microarray
 * [Q77](src/main/resources/sparql/Q77.sparql) which are expressed in liver according to IHC data but not found in HUPO liver proteome set
 * [Q83](./src/main/resources/sparql/Q83.sparql) whose genes are on chromosome N that are expressed only a single tissue/organ
-* Q89 which are located in nucleus and expressed in brain and only have orthologs/paralogs in primates
+* [Q89](./src/main/resources/sparql/Q89.sparql) which are located in nucleus and expressed in brain and only have orthologs/paralogs in primates
 
 ###Use case for [sequence annotations](src/main/java/evaletolab/rdf/Features.java)
 * [Q3](src/main/resources/sparql/Q3.sparql)	Proteins with >=2 transmembrane regions 
@@ -97,7 +98,7 @@ $ ff localhost:6969
 * [Q48](src/main/resources/sparql/Q48.sparql) Proteins with >=1 variants of the type "C->" (Cys to anything else) that are linked to >=1 disease
 * [Q49](src/main/resources/sparql/Q49.sparql) Proteins with >=1 variants of the types "A->R" or "R->A"
 
-###Use case for general [annotations](src/main/java/evaletolab/rdf/Interaction.java)
+###Use case for general [interactions](src/main/java/evaletolab/rdf/Interaction.java)
 * [Q24](src/main/resources/sparql/Q24.sparql) Proteins with >1 reported gold interaction
 * [Q25](src/main/resources/sparql/Q25.sparql) Proteins with >=50 interactors and not involved in a disease
 * [Q26](src/main/resources/sparql/Q26.sparql) Proteins interacting with >=1 protein located in the mitochondrion
@@ -113,15 +114,23 @@ $ ff localhost:6969
 * [Q31](src/main/resources/sparql/Q31.sparql) Proteins with >=10 "splice" isoforms
 * [Q30](src/main/resources/sparql/Q30.sparql) Proteins whose gene is located in chromosome 2 that belongs to families with >=5 members in the human proteome 
 * [Q32](src/main/resources/sparql/Q32.sparql) Proteins with a coiled coil region and involved in transcription but does not contain a bZIP domain
+* [Q47](src/main/resources/sparql/Q47.sparql) Proteins with a gene name CLDN*
+* [Q64](src/main/resources/sparql/Q64.sparql) Proteins which are enzymes with an incomplete EC number
 * [Q68](src/main/resources/sparql/Q68.sparql)	Proteins with protein evidence PE=2 (transcript level)
 * [Q65](src/main/resources/sparql/Q65.sparql) Proteins with >1 catalytic activity 
 * [Q73](src/main/resources/sparql/Q73.sparql) Proteins with no domain 
 
 ###Use case for [Xref](src/main/java/evaletolab/rdf/Xref.java) queries  
 * [Q72](src/main/resources/sparql/Q72.sparql) Proteins with a cross-reference to CCDS
+* [Q107](src/main/resources/sparql/Q107.sparql)All proteins with a protein evidence not "At protein level" with a HGNC identifier/xref that includes the regexp "orf"
+
+###Use case for [Gene](src/main/java/evaletolab/rdf/Gene.java) queries  
+* [Q55](src/main/resources/sparql/Q055.sparql) which have genes of length >=10000 bp
+* [Q58](src/main/resources/sparql/Q058.sparql) which are located on the genome next to a protein_which is involved in spermatogenesis righ
 
 ###Use case for [3Dstructure](src/main/java/evaletolab/rdf/_3Dstructure.java) queries  
 * [Q108](src/main/resources/sparql/Q108.sparql)  All proteins that have a 3D structure in PDB that overlap by at least 50 amino acids with a SH3 domain.
+* [Q81](src/main/resources/sparql/Q081.sparql) Proteins with >=1 3D structure and are located in the mitochondrion and are linked with a disease
 
 ###Use case for [Peptide](src/main/java/evaletolab/rdf/Peptide.java) queries  
 * [Q75](src/main/resources/sparql/Q75.sparql) Proteins which have been detected in the HUPO liver proteome set but not the HUPO plasma proteome set
