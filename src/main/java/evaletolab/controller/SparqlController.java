@@ -49,6 +49,7 @@ public class SparqlController extends TripleStore{
 			qe = createQueryExecution(q); 
 			
 			ResultSet rs = qe.execSelect();
+			System.out.println("------------"+rs);
 			result=registry.convertResultSetToJSON(rs);
 			qe.close();
 		} 

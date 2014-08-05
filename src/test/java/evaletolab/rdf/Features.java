@@ -142,6 +142,17 @@ public class Features extends TripleStoreBaseTest {
 	}
 
 	/**
+	 * Q35 located in the mitochondrion and which is an enzyme
+	 * WARNING 5s query
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void Q35_locatedInMitochondrionAndWhichIsAnEnzyme() throws Exception {
+		testSparql("Q35.sparql");
+	}
+	
+	/**
 	 * Q38 with >=1 selenocysteine in their sequence
 	 * uniprot search, database:(type:nextprot) AND annotation:(type:non_std)
 	 * 

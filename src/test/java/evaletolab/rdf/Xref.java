@@ -9,6 +9,7 @@ import evaletolab.rdf.sab.SABTest;
 /**
  * Use case for Xref queries
  * - Q72 with a cross-reference to CCDS
+ * - Q107 All proteins with a protein evidence not "At protein level" with a HGNC identifier/xref that includes the regexp "orf"
  * @author evaleto
  *
  */

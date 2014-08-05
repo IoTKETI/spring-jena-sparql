@@ -9,6 +9,7 @@ import evaletolab.rdf.sab.SABTest;
 /**
  * Use case for gene queries
  * Q55 which have genes of length >=10000 bp
+ * Q58 which are located on the genome next to a protein_which is involved in spermatogenesis righ
  * 
  * @author dteixeir
  */

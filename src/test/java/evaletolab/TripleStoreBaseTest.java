@@ -63,6 +63,7 @@ public class TripleStoreBaseTest extends TripleStore {
 
 		// execute query
 		String acs = getMetaInfo(q).get("acs");
+		if(acs==null) acs="";
 		int count = getQueryMetaCount(q);
 		String title=currentTest.getMethodName();
 		

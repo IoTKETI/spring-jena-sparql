@@ -19,6 +19,5 @@ SELECT distinct ?entry  WHERE {
   ?iso :function ?s1.
   ?s1 :in term:GO_0003723;:withEvidence/:code ?type.
   values ?type {:IEA :ISS} 
-
  }
 }

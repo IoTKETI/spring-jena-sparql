@@ -30,7 +30,7 @@ public class TripleStore {
 	public Properties config;
 	
 	
-	private String endpoint;
+	private static String endpoint;
 	private Model model;
 	private boolean isNative=false;	
 	
@@ -64,6 +64,9 @@ public class TripleStore {
 
 	public void open(){
    
+		if(endpoint!=null)
+			return;
+		
 		//
 		// trying to use virtuoso with the native driver 
 		if (config.containsKey("virtuoso.url")){
@@ -210,7 +213,9 @@ public class TripleStore {
 
 	@Deprecated
 	public QueryExecution createQueryExecution(String query){
-		return createQueryExecution(query, getMetaInfo(query).get("title"));
+		String title=getMetaInfo(query).get("title");
+		if(title==null) title="";
+		return createQueryExecution(query, title);
 	}
 
 	public QueryExecution createQueryExecution(String query, String title){
@@ -219,14 +224,17 @@ public class TripleStore {
 		if (isQueryPending(query)){
 			System.out.println("PENDING: "+getMetaInfo(query).get("title"));
 		}
-		
+
 		if(isNative){	
 	        return QueryExecutionFactory.create(q,model);			
 		}
-        
 		QueryEngineHTTP engine=QueryExecutionFactory.createServiceRequest(endpoint, q);
         engine.addParam("testid", instanceSignature);
         engine.addParam("title", title);
+        if(config.containsKey("sparql.engine"))
+        	engine.addParam("engine", config.getProperty("sparql.engine"));
+        engine.setAllowDeflate(true);
+        engine.setAllowGZip(true);
         return engine;
 	}
 	

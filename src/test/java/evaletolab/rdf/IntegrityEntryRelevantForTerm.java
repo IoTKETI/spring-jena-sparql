@@ -153,9 +153,9 @@ public class IntegrityEntryRelevantForTerm extends TripleStore{
 	 */
 	@Test
 	public void countProteinsRelevantForLiver_TS_0564(){
-		String q="SELECT (count(distinct ?entry)as ?c) WHERE {\n" + 
-				 "  ?entry :isoform/:expression/:in/:childOf  term:TS-0564.\n" + 
-				 "}";	
+		String q="SELECT  (count(distinct ?entry) AS ?c)\n" + 
+				"WHERE\n" + 
+				"  { ?entry ((:isoform/:expression)/:in)/:childOf term:TS-0564 }";	
 
 		QueryExecution qe = createQueryExecution(q);
         ResultSet rs=qe.execSelect();

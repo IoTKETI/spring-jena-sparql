@@ -48,8 +48,19 @@ public class Expression extends TripleStoreBaseTest{
         ResultSet rs = qe.execSelect();
         //
         // check ResultSet content
-	}	
+	}		
 	
+	/**
+	 * Q4, Proteins highly expressed in brain but not expressed in testis
+	 *  --> hierarchical Terms for Testis (TS-1030)
+	 *  --> Brain 18202 entries, NX_P61604, NX_Q15029, NX_Q07973
+	 *  --> Testis TS-1030  18117 entries
+	 * @throws Exception 
+	 */
+	@Test
+	public void Q4_highlyExpressedInBrainButNotInTestis() throws Exception{
+		testSparql("Q4.sparql");
+	}
 	
 	/**
 	 * Q11, Proteins that are expressed in liver and involved in transport
@@ -65,6 +76,17 @@ public class Expression extends TripleStoreBaseTest{
     }
 	
 	/**
+	 * Q15, Proteins with a PDZ domain that interact with at least 1 protein which is expressed in brain
+	 *  --> hierarchical terms for Brain
+	 * @throws Exception 
+	 */
+	@Test
+	@Category(SABTest.class)  
+	public void Q015_wit_a_PDZ_domain_that_interacts_with_proteins_expresssed_in_brain() {
+		testSparql("Q015.sparql");
+	}
+	
+	/**
 	 * Q17, Proteins >=1000 amino acids and located in nucleus and expression in nervous system
 	 *  --> hierarchical Terms for Nervous System
 	 * @throws Exception 
@@ -75,16 +97,15 @@ public class Expression extends TripleStoreBaseTest{
 	}		
 	
 	/**
-	 * Q4, Proteins highly expressed in brain but not expressed in testis
-	 *  --> hierarchical Terms for Testis (TS-1030)
-	 *  --> Brain 18202 entries, NX_P61604, NX_Q15029, NX_Q07973
-	 *  --> Testis TS-1030  18117 entries
+	 * Q20, Proteins with >=2 HPA antibodies whose genes are located on chromosome 21 and that are 
+	 *      highly expressed at IHC level in heart
 	 * @throws Exception 
 	 */
 	@Test
-	public void Q4_highlyExpressedInBrainButNotInTestis() throws Exception{
-		testSparql("Q4.sparql");
-	}			
+	@Category(SABTest.class)  
+	public void Q020_HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel(){
+		testSparql("Q020.sparql");
+	}				
 	
 	/**
 	 * Q50, Proteins which are expressed in brain according to IHC 
@@ -118,34 +139,12 @@ public class Expression extends TripleStoreBaseTest{
 	}	
 	
 	/**
-	 * Q15, Proteins with a PDZ domain that interact with at least 1 protein which is expressed in brain
-	 *  --> hierarchical terms for Brain
-	 * @throws Exception 
-	 */
-	@Test
-	@Category(SABTest.class)  
-	public void Q015_wit_a_PDZ_domain_that_interacts_with_proteins_expresssed_in_brain() {
-		testSparql("Q015.sparql");
-	}	
-	
-	/**
-	 * Q20, Proteins with >=2 HPA antibodies whose genes are located on chromosome 21 and that are 
+	 * Q89, Proteins which are located in nucleus and expressed in brain and only have orthologs/paralogs in primates 
 	 *      highly expressed at IHC level in heart
 	 * @throws Exception 
 	 */
 	@Test
-	@Category(SABTest.class)  
-	public void Q020_HPAOnChromosome21highlyExpresssedInHeartAtIHCLevel(){
-		testSparql("Q020.sparql");
-	}	
-	
-	/**
-	 * Q77, Proteins which are expressed in liver according to IHC data but not found in HUPO liver proteome set 
-	 *      highly expressed at IHC level in heart
-	 * @throws Exception 
-	 */
-	@Test
-	public void Q77_expressInLiverAccordingIHCButNotInHUPOLiverProteom() throws Exception{
-		testSparql("Q77.sparql");
+	public void Q89_whichAreLocatedInNucleusAndExpressedInBrainAndOnlyHaveOrthologs_ParalogsInPrimates() throws Exception{
+		testSparql("Q89.sparql");
 	}		
 }
