@@ -59,7 +59,7 @@ $ ff localhost:6969
 
 ![SNORQL](src/main/webapp/resources/img/snorql.png "snorql frontend")
 
-###Use case for [evidences](src/main/java/evaletolab/rdf/Evidences.java)
+###Use case for [evidence](src/test/java/evaletolab/rdf/Evidences.java)
 * [Q27](src/main/resources/sparql/Q27.sparql)	with >=1 glycosylation sites reported in PubMed:X or PubMed:Y
 * [Q53](src/main/resources/sparql/Q53-1.sparql)	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
 * [Q57](src/main/resources/sparql/Q57-locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP.sparql)	which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
@@ -77,7 +77,7 @@ $ ff localhost:6969
 * [Q83](./src/main/resources/sparql/Q83.sparql) whose genes are on chromosome N that are expressed only a single tissue/organ
 * [Q89](./src/main/resources/sparql/Q89.sparql) which are located in nucleus and expressed in brain and only have orthologs/paralogs in primates
 
-###Use case for [sequence annotations](src/test/java/evaletolab/rdf/Features.java)
+###Use case for [sequence](src/test/java/evaletolab/rdf/Features.java)
 * [Q3](src/main/resources/sparql/Q3.sparql)	Proteins with >=2 transmembrane regions 
 * [Q5](src/main/resources/sparql/Q005.sparql)	Proteins located in mitochondrion and that lack a transit peptide
 * [Q9](src/main/resources/sparql/Q009.sparql)	Proteins with 3 disulfide bonds and that are not hormones 
@@ -98,12 +98,12 @@ $ ff localhost:6969
 * [Q48](src/main/resources/sparql/Q48.sparql) Proteins with >=1 variants of the type "C->" (Cys to anything else) that are linked to >=1 disease
 * [Q49](src/main/resources/sparql/Q49.sparql) Proteins with >=1 variants of the types "A->R" or "R->A"
 
-###Use case for general [interactions](src/test/java/evaletolab/rdf/Interaction.java)
+###Use case for general [interaction](src/test/java/evaletolab/rdf/Interaction.java)
 * [Q24](src/main/resources/sparql/Q24.sparql) Proteins with >1 reported gold interaction
 * [Q25](src/main/resources/sparql/Q25.sparql) Proteins with >=50 interactors and not involved in a disease
 * [Q26](src/main/resources/sparql/Q26.sparql) Proteins interacting with >=1 protein located in the mitochondrion
   
-###Use case for general [annotations](src/test/java/evaletolab/rdf/General.java)
+###Use case for general [annotation](src/test/java/evaletolab/rdf/General.java)
 * [Q1](src/main/resources/sparql/Q1.sparql) Proteins that are phosphorylated and located in the cytoplasm 
 * [Q2](src/main/resources/sparql/Q2.sparql) Proteins that are located both in the cytoplasm and in the nucleus
 * [Q5](src/main/resources/sparql/Q5.sparql) Proteins located in mitochondrion and that lack a transit peptide
