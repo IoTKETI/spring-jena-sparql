@@ -59,13 +59,13 @@ $ ff localhost:6969
 
 ![SNORQL](src/main/webapp/resources/img/snorql.png "snorql frontend")
 
-###Use case for [evidences](src/main/java/evaletolab/rdf/Evidences.java)
+###Use case for [evidence](src/test/java/evaletolab/rdf/Evidences.java)
 * [Q27](src/main/resources/sparql/Q27.sparql)	with >=1 glycosylation sites reported in PubMed:X or PubMed:Y
 * [Q53](src/main/resources/sparql/Q53-1.sparql)	which are involved in cell adhesion according to GO with an evidence not IAE and not ISS
 * [Q57](src/main/resources/sparql/Q57-locatedInMitochondrionWithEvidenceOtherThan_HPA_And_DKFZ_GFP.sparql)	which are located in mitochondrion with an evidence other than HPA and DKFZ-GFP
 * [Q63](src/main/resources/sparql/Q63-with1RRM_RNAbindingDomainWithEvidenceIEAorISS.sparql)	which have >=1 RRM RNA-binding domain and either no GO "RNA binding" other a GO "RNA binding" with evidence IEA or ISS
 
-###Use case for [expression](src/main/java/evaletolab/rdf/Expression.java)
+###Use case for [expression](src/test/java/evaletolab/rdf/Expression.java)
 * QX  Proteins that are not highly expressed in liver at embrion stage
 * [Q4](src/main/resources/sparql/Q4.sparql)  highly expressed in brain but not expressed in testis
 * [Q11](src/main/resources/sparql/Q11.sparql) that are expressed in liver and involved in transport 
@@ -77,7 +77,7 @@ $ ff localhost:6969
 * [Q83](./src/main/resources/sparql/Q83.sparql) whose genes are on chromosome N that are expressed only a single tissue/organ
 * [Q89](./src/main/resources/sparql/Q89.sparql) which are located in nucleus and expressed in brain and only have orthologs/paralogs in primates
 
-###Use case for [sequence annotations](src/main/java/evaletolab/rdf/Features.java)
+###Use case for [sequence](src/test/java/evaletolab/rdf/Features.java)
 * [Q3](src/main/resources/sparql/Q3.sparql)	Proteins with >=2 transmembrane regions 
 * [Q5](src/main/resources/sparql/Q005.sparql)	Proteins located in mitochondrion and that lack a transit peptide
 * [Q9](src/main/resources/sparql/Q009.sparql)	Proteins with 3 disulfide bonds and that are not hormones 
@@ -98,12 +98,12 @@ $ ff localhost:6969
 * [Q48](src/main/resources/sparql/Q48.sparql) Proteins with >=1 variants of the type "C->" (Cys to anything else) that are linked to >=1 disease
 * [Q49](src/main/resources/sparql/Q49.sparql) Proteins with >=1 variants of the types "A->R" or "R->A"
 
-###Use case for general [interactions](src/main/java/evaletolab/rdf/Interaction.java)
+###Use case for general [interaction](src/test/java/evaletolab/rdf/Interaction.java)
 * [Q24](src/main/resources/sparql/Q24.sparql) Proteins with >1 reported gold interaction
 * [Q25](src/main/resources/sparql/Q25.sparql) Proteins with >=50 interactors and not involved in a disease
 * [Q26](src/main/resources/sparql/Q26.sparql) Proteins interacting with >=1 protein located in the mitochondrion
   
-###Use case for general [annotations](src/main/java/evaletolab/rdf/General.java)
+###Use case for general [annotation](src/test/java/evaletolab/rdf/General.java)
 * [Q1](src/main/resources/sparql/Q1.sparql) Proteins that are phosphorylated and located in the cytoplasm 
 * [Q2](src/main/resources/sparql/Q2.sparql) Proteins that are located both in the cytoplasm and in the nucleus
 * [Q5](src/main/resources/sparql/Q5.sparql) Proteins located in mitochondrion and that lack a transit peptide
@@ -120,11 +120,11 @@ $ ff localhost:6969
 * [Q65](src/main/resources/sparql/Q65.sparql) Proteins with >1 catalytic activity 
 * [Q73](src/main/resources/sparql/Q73.sparql) Proteins with no domain 
 
-###Use case for [Xref](src/main/java/evaletolab/rdf/Xref.java) queries  
+###Use case for [Xref](src/test/java/evaletolab/rdf/Xref.java) queries  
 * [Q72](src/main/resources/sparql/Q72.sparql) Proteins with a cross-reference to CCDS
 * [Q107](src/main/resources/sparql/Q107.sparql)All proteins with a protein evidence not "At protein level" with a HGNC identifier/xref that includes the regexp "orf"
 
-###Use case for [Gene](src/main/java/evaletolab/rdf/Gene.java) queries  
+###Use case for [Gene](src/test/java/evaletolab/rdf/Gene.java) queries  
 * [Q55](src/main/resources/sparql/Q055.sparql) which have genes of length >=10000 bp
 * [Q58](src/main/resources/sparql/Q058.sparql) which are located on the genome next to a protein_which is involved in spermatogenesis righ
 
@@ -132,11 +132,11 @@ $ ff localhost:6969
 * [Q108](src/main/resources/sparql/Q108.sparql)  All proteins that have a 3D structure in PDB that overlap by at least 50 amino acids with a SH3 domain.
 * [Q81](src/main/resources/sparql/Q081.sparql) Proteins with >=1 3D structure and are located in the mitochondrion and are linked with a disease
 
-###Use case for [Peptide](src/main/java/evaletolab/rdf/Peptide.java) queries  
+###Use case for [Peptide](src/test/java/evaletolab/rdf/Peptide.java) queries  
 * [Q75](src/main/resources/sparql/Q75.sparql) Proteins which have been detected in the HUPO liver proteome set but not the HUPO plasma proteome set
 * [Q109](src/main/resources/sparql/Q109.sparql) All proteins that have a peptide that maps partly or fully into a signal sequence
 
-###Use case for [PTM](src/main/java/evaletolab/rdf/PTM.java) queries  
+###Use case for [PTM](src/test/java/evaletolab/rdf/PTM.java) queries  
 * [Q10](src/main/resources/sparql/Q10.sparql) Proteins that are glycosylated and not located in the membrane
 * [Q66](src/main/resources/sparql/Q66.sparql) Proteins that are cytoplasmic with alternate O-glycosylation or phosphorylation at the same positions
 * [Q67](src/main/resources/sparql/Q67.sparql) Proteins with alternative acetylation or Ubl conjugation (SUMO or Ubiquitin) at the same positions
