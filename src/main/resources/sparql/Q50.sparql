@@ -5,12 +5,13 @@
 #ac:
 #tags:selected
 SELECT distinct ?entry WHERE {
-  ?entry :isoform ?iso.
-    ?iso :expression ?s1,?s2.
+ ?entry :isoform ?iso.
+  ?iso :negativeExpression ?s1.
 # not expressed in brain according to microarray 
-  ?s2 :in/:childOf  term:TS-0095;:withEvidence/:expressionLevel :Negative;:withEvidence/:experimentalContext/:detectionMethod term:ECO_0000220.
+  ?s1 :in/:childOf  term:TS-0095;:withEvidence/:experimentalContext/:detectionMethod term:ECO_0000220.
 # expressed in brain according to IHC
-  ?s1 :in/:childOf  term:TS-0095;:withEvidence/:experimentalContext/:detectionMethod term:ECO_0000045.
+  ?iso :expression ?s1.
+  ?s2 :in/:childOf  term:TS-0095;:withEvidence/:experimentalContext/:detectionMethod term:ECO_0000045.
 }
 
 

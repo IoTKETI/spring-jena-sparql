@@ -1,12 +1,8 @@
 #title:Q4, Proteins highly expressed in brain but not expressed in testis
 SELECT distinct ?entry WHERE {
 # get all expression
-  ?entry :isoform/:expression ?s1,?s2.
-
-# highly expressed in brain
-  ?s1 :in/:childOf  term:TS-0095;:withEvidence/:expressionLevel :High.
-
-# not expressed in testis
-  ?s2 :in/:childOf  term:TS-1030;:withEvidence/:expressionLevel :Negative.
+  ?entry :isoform ?iso.
+   ?iso :highExpression/:in/:childOf  term:TS-0095.
+   ?iso :negativeExpression/:in/:childOf  term:TS-1030.
 }
 #ac:A1L3X0,A2RUS2,A5PLN9,A5YM72,A6NFN3,A6NH11,A6NH21,A6NHL2,A6NI56

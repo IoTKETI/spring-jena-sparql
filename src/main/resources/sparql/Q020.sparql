@@ -7,11 +7,9 @@ select ?entry  where {
     
     ?entry :gene / :chromosome "21"^^xsd:string .
 
-    ?entry :isoform / :expression ?s1.
+    ?entry :isoform / :highExpression ?s1.
     ?s1 :in / :childOf  term:TS-0445 .
-    ?s1 :withEvidence ?evi .
-    ?evi :expressionLevel :High .
-    ?evi :experimentalContext / :detectionMethod term:ECO_0000045.
+    ?s1 :withEvidence/ :experimentalContext / :detectionMethod term:ECO_0000045.
 
     ?entry :isoform / :mapping ?map .
     ?map a :AntibodyMapping .
