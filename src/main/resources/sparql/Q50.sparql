@@ -6,12 +6,18 @@
 #tags:selected
 SELECT distinct ?entry WHERE {
  ?entry :isoform ?iso.
-  ?iso :negativeExpression ?s1.
+
 # not expressed in brain according to microarray 
+  ?iso :negativeExpression ?s1.
   ?s1 :in/:childOf  term:TS-0095;:withEvidence/:experimentalContext/:detectionMethod term:ECO_0000220.
+
+# remove positive expression in children Of Brain for Microarray
+  FILTER NOT EXISTS{  
+    ?iso :expression ?s.
+    ?s :in/:childOf term:TS-0095;:withEvidence/:experimentalContext/:detectionMethod term:ECO_0000220.
+  }
+
 # expressed in brain according to IHC
-  ?iso :expression ?s1.
+  ?iso :expression ?s2.
   ?s2 :in/:childOf  term:TS-0095;:withEvidence/:experimentalContext/:detectionMethod term:ECO_0000045.
 }
-
-
