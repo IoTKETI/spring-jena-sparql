@@ -6,5 +6,5 @@ select distinct ?entry  where {
   ?entry :isoform ?iso.
   ?iso :interaction/:with ?interaction .
   FILTER NOT EXISTS {   ?iso :medical/rdf:type :Disease. }
-  FILTER NOT EXISTS {   ?isoform :variant/:disease ?linkedDisease . }
+  FILTER NOT EXISTS {   ?iso :variant/:disease ?linkedDisease . }
 }group by ?entry ?iso having (count(?interaction) >= 50) order by ?entry
